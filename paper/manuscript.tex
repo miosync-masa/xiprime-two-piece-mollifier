@@ -1,0 +1,398 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{Two-component mollification of $\xi'$}
+\fancyhead[R]{Expert-audit draft}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\Qop}{q(-\partial_A)q(-\partial_B)}
+\title{An explicit two-component mollifier for zeros of\texorpdfstring{ $\xi'$}{ xi-prime} on the critical line}
+\author{}
+\date{27 October 2026 \quad---\quad Draft for expert audit}
+\hypersetup{pdftitle={An explicit two-component mollifier for zeros of xi-prime on the critical line},pdfauthor={},pdfsubject={Proof draft for expert audit; multiplicity-counted zeros}}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\Large An explicit two-component mollifier for zeros of $\xi'$\\[3pt]
+on the critical line}\par\vspace{8pt}
+27 October 2026 \quad---\quad Draft for expert audit
+\end{center}
+\begin{abstract}
+We give a proof draft for a lower bound of $88.45\%$ for the proportion of
+zeros of the derivative of the Riemann xi-function on the critical line,
+counted with multiplicity. The construction combines the argument-variation
+method used by Wu with an unrestricted Conrey--Feng mollifier of fixed length
+$T^{4/7-10^{-6}}$. Only the convolution $\mu*\Lambda*\Lambda$ is added to the
+Conrey component. All polynomials are specified by exact finite decimals.
+We give the specialized leading-pole functional and an interval certificate
+for its value. The analytic transplantation is presented for specialist
+verification; the finite certificate does not verify that transplantation.
+No assertion about simple zeros or publication priority is made.
+\end{abstract}
+
+\section{Statement and explicit data}
+
+Put
+\[
+ \xi(s)=H(s)\zeta(s),\qquad
+ H(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2).
+\]
+Let $N(T)$ count the nontrivial zeros of $\zeta$ with $0<\Ima\rho\le T$,
+with multiplicity, and let $N_{\xi',c}(T)$ count zeros of $\xi'$ in this
+height range on $\Rea s=1/2$, also with multiplicity.
+The standard count for $\xi'$ is $N(T)+O(\log T)$; thus the denominator
+below also gives its asymptotic proportion of all zeros.
+
+\begin{theorem}[Claim submitted for verification]\label{thm:main}
+The explicit construction below gives
+\[
+ \liminf_{T\to\infty}\frac{N_{\xi',c}(T)}{N(T)}>0.8845.
+\]
+\end{theorem}
+
+This updates the multiplicity-counted quantity in Wu's Section~3
+\cite{Wu}, not a simple-zero proportion. In particular, it is a different
+quantity from the $0.86864$ simple-and-on-line bound stated in
+\cite[Remark~7.1]{AF}. We fix, without further optimization,
+\begin{equation}\label{eq:constants}
+ R=1.04440033,\qquad \theta=\frac47-10^{-6},\qquad L=\log T,
+ \qquad a=\frac12-\frac RL,\quad y=T^\theta.
+\end{equation}
+The operator and two profiles are
+\begin{align}
+q(x)={}&1-2.27043254x+0.304358115x^2+0.16793368x^3\notag\\
+ &\hspace{7mm}+4.34152016x^4-5.3105844x^5+1.7701948x^6,\label{eq:q}\\
+P_1(x)={}&-0.30528514x+2.50038954x^2-1.12177152x^3-0.07333288x^4,
+ \label{eq:p1}\\
+P_2(x)={}&1.89779072x+0.56594804x^2+0.07023055x^3.\label{eq:p2}
+\end{align}
+Every displayed decimal in \eqref{eq:constants}--\eqref{eq:p2} is an exact
+rational number. In particular $q(0)=P_1(1)=1$ and $P_1(0)=P_2(0)=0$.
+With $x_n=\log(y/n)/\log y$, define
+\begin{equation}\label{eq:psi}
+ \Psi(s)=\sum_{n\le y}\frac{1}{n^{s+R/L}}
+ \left\{\mu(n)P_1(x_n)
+       +\frac{(\mu*\Lambda*\Lambda)(n)}{(\log y)^2}P_2(x_n)\right\}.
+\end{equation}
+Here $*$ denotes Dirichlet convolution and $\Lambda$ is the von Mangoldt
+function. There is \emph{no} factor $\mu^2(n)$ in the second component and
+no extra factorial. Non-squarefree terms are retained. Write
+\begin{equation}\label{eq:U}
+ U(s)=q(-L^{-1}\partial_s)\zeta(s).
+\end{equation}
+The operator acts only on $\zeta$, never on $\Psi$.
+
+\section{The counting interface}
+
+The following formulation separates the exact counting function from its
+asymptotic differential operator. It is the argument principle and
+Littlewood reduction of \cite[Section~3, (18)--(23)]{Wu}, with the right
+boundary normalization checked for \eqref{eq:psi}.
+
+\begin{lemma}\label{lem:count}
+For the fixed data above, suppose
+\begin{equation}\label{eq:moment}
+ \frac1T\int_T^{2T}|U(a+\ii t)\Psi(a+\ii t)|^2\dd t=M+o(1),
+\end{equation}
+and the same mollified second moments for each $L^{-k}\zeta^{(k)}$,
+$0\le k\le6$, are bounded. Then
+\begin{equation}\label{eq:count}
+ \liminf\frac{N_{\xi',c}(T)}{N(T)}\ge1-\frac{\log M}{R}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Set $r(u)=q(1/2-u)$. Exact polynomial arithmetic gives
+\begin{equation}\label{eq:r}
+ r(u)=0.09491351+0.997010185u+2.089866u^2
+                -2.29671034u^4+1.7701948u^6.
+\end{equation}
+If $r(u)=\sum r_ju^j$, use the exact auxiliary function
+\begin{equation}\label{eq:eta}
+ \eta(s)=\sum_{j=0}^6r_jL^{-j}\xi^{(j)}(s),\qquad V(s)=\eta(s)/H(s).
+\end{equation}
+On the critical line, $\xi^{(2j)}$ is real and $\xi^{(2j+1)}$ is purely
+imaginary. Thus
+\[
+ \Ima\eta(1/2+\ii t)=\frac{0.997010185}{L}\Ima\xi'(1/2+\ii t).
+\]
+The nonzero coefficient is essential. The phase-counting argument of Wu
+therefore applies directly, without identifying his polynomial parameters
+with an unverified exact auxiliary function. Argument variation is taken
+upward on the line, passing boundary zeros on their east side. Each net
+advance of $\pi$ detects a zero of $\xi'$; zeros common to $\eta$ and the
+line are included with multiplicity.
+
+On the fixed window $T\le t\le2T$, Stirling's formula gives, uniformly in a
+fixed strip around $1/2\le\Rea s\le3$,
+\[
+ \frac{H^{(j)}(s)}{H(s)L^j}=2^{-j}+O(L^{-1}).
+\]
+Since $r(1/2+z)=q(-z)$, it follows that
+\[
+ V-U=\sum_{k=0}^6O(L^{-1})L^{-k}\zeta^{(k)},\qquad
+ \frac1T\int_T^{2T}|(V-U)\Psi|^2\dd t=O(L^{-2}).
+\]
+The coefficients in the first error may depend on $t$ but are uniformly
+bounded as stated. Consequently the moment of $V\Psi$ is $M+o(1)$.
+
+At $\Rea s=3$, absolute convergence and the profile endpoints show
+\[
+ \Psi_1(s)=\zeta(s)^{-1}+O(L^{-1}),\qquad \Psi_2(s)=O(L^{-2}),
+ \qquad V(s)=\zeta(s)+O(L^{-1}).
+\]
+For the first estimate, bound the profile error by $O(\log n/\log y)$
+and also include the factor $n^{-R/L}$ and the truncation tail. For the
+second, use $\sum_n|\mu*\Lambda*\Lambda|(n)n^{-3}<\infty$.
+Hence $V\Psi=1+O(L^{-1})$ on the right boundary. The logarithmic integral
+there is $O(T/L)$; it is not necessary that $\Psi\to1$.
+
+Let $n_V^+$ count zeros of $V$ in the right rectangle
+$1/2\le\Rea s\le3$, $T\le\Ima s\le2T$, using the boundary convention
+of Wu. Its argument principle and
+$\Delta\arg H=\pi(N(2T)-N(T))+O(\log T)$ give
+\begin{equation}\label{eq:phase}
+ N_{\xi',c}(2T)-N_{\xi',c}(T)
+ \ge N(2T)-N(T)-2n_V^++O(\log T).
+\end{equation}
+An equivalent safe convention overcounts boundary zeros on the right.
+Heights hitting zeros are treated by limiting admissible heights.
+Polynomial growth of the fixed-degree functions, together with their
+nonzero right-boundary normalization, gives the horizontal argument
+integrals $O(\log T)$ by the usual Jensen argument
+\cite[Section~2, (6)--(8)]{Wu}. There are no poles of $H$ or $\zeta$ in
+these high positive-height rectangles.
+
+Every zero counted by $n_V^+$ is a zero of $V\Psi$ and is at horizontal
+distance at least $R/L$ from $\Rea s=a$. Littlewood's formula then gives
+\[
+ 2\pi\frac RL n_V^+
+ \le\int_T^{2T}\log|V(a+\ii t)\Psi(a+\ii t)|\dd t
+       +O(T/L)+O(\log T).
+\]
+Apply Jensen's inequality here, \emph{before} replacing $V$ by $U$.
+No comparison of their negative logarithmic tails is used. Inserting the
+second-moment estimate and \eqref{eq:phase}, and using
+$N(2T)-N(T)\sim TL/(2\pi)$, yields the local version of
+\eqref{eq:count}. Add finitely many dyadic windows $[T/2^J,T]$, with their
+own fixed $L$ and mollifier. First let $T\to\infty$, then $J\to\infty$;
+the omitted count is a fraction $2^{-J}+o(1)$. No estimate uniform in $J$
+is required.
+\end{proof}
+
+\section{Shifted moment and the specialized kernel}
+
+We use the third coefficient case of Pratt--Robles--Zaharescu--Zeindler
+\cite[Theorem~4.1, p.~18]{PRZZ}. For fixed smooth height weight $\Phi$,
+small complex shifts $\alpha,\beta=O(L^{-1})$, and the two coefficient
+sequences obtained by expanding \eqref{eq:psi}, the theorem gives
+\begin{align}\label{eq:PRZZ}
+ &\int\zeta(\tfrac12+\alpha+\ii t)\zeta(\tfrac12+\beta-\ii t)
+           \Psi(a+\ii t)\overline{\Psi(a+\ii t)}\Phi(t/T)\dd t\notag\\
+ &\quad=\sum_{d,e\le y}\frac{a_da_e}{[d,e]}
+        \frac{(d,e)^{\alpha+\beta}}{d^\alpha e^\beta}
+ \int\!\left\{\zeta(1+\alpha+\beta)
+ +\zeta(1-\alpha-\beta)
+ \left(\frac{2\pi de}{t(d,e)^2}\right)^{\alpha+\beta}\right\}
+ \Phi(t/T)\dd t+O(E),
+\end{align}
+where $\Psi(a+\ii t)=\sum a_nn^{-1/2-\ii t}$ and
+$E\ll T^\varepsilon(y^{7/4}+y^{7/8}T^{1/2})$.
+Here $(d,e)$ and $[d,e]$ denote gcd and lcm. The polynomial-profile
+extension and finite linear combinations are included in the proof on
+p.~18. Expanding the two components therefore includes both cross terms,
+not just their diagonal moments. For our $\theta$, the two error exponents
+before $\varepsilon$ are $1-1.75\cdot10^{-6}$ and
+$1-0.875\cdot10^{-6}$. A sufficiently small fixed $\varepsilon$ absorbs
+all fixed logarithmic factors and leaves $o(T)$.
+
+The formula is uniform on fixed compact sets of the normalized complex
+shifts $A=\alpha L$, $B=\beta L$. The apparent poles are combined before
+differentiating. Cauchy's formula allows the fixed operator $\Qop$ to be
+applied to the main term; the normalized derivatives cancel all powers
+of $L$. This proves the bounded derivative moments in Lemma~\ref{lem:count}
+as well. Nonnegative moments pass from smooth weights to the sharp window
+by upper and lower approximations, taking the height limit before the
+width of the endpoint smoothing tends to zero. We allow a slightly
+enlarged fixed height interval for the upper approximation; a finite
+partition and comparable rescaling reduce it to the published support
+convention. The fixed positive length margin absorbs these changes.
+
+Here is a finite integral expression for the limiting main term. It
+specifies precisely the expression to be checked against the arithmetic
+asymptotic. Label the Conrey component by $0$ and the Feng component by
+$2$, and put $F_0=P_1$, $F_2=P_2$. For Mellin variables $s,t$, set
+$X=A+s$, $Y=B+t$, $h=s+t$. The four leading kernels are
+\begin{align}
+ K_{00}&=XY/h,\notag\\
+ K_{20}&=XY/h^3-2Y/h^2+Y/(Xh),\qquad
+ K_{02}=XY/h^3-2X/h^2+X/(Yh),\label{eq:kernels}\\
+ K_{22}&=7XY/h^5-6(X+Y)/h^4
+       +(X/Y+Y/X+8)/h^3\notag\\
+ &\hspace{13mm}-2(X^{-1}+Y^{-1})/h^2+(XYh)^{-1}.\notag
+\end{align}
+In particular the inverse powers of $X,Y$ must not be discarded.
+
+For $0\le w\le\theta$, define
+\begin{align}
+ D_1(A,w;F)&=F'(w/\theta)/\theta+AF(w/\theta),\notag\\
+ D_0(A,w;F)&=F(w/\theta),\label{eq:D}\\
+ D_{-1}(A,w;F)&=\int_0^we^{-Az}F((w-z)/\theta)\dd z.\notag
+\end{align}
+Extend linearly the following rule on every monomial in
+\eqref{eq:kernels}:
+\begin{equation}\label{eq:H}
+ cX^eY^fh^{-n}\ \longmapsto\
+ \frac{c}{\theta^{\ell+m}}
+ \int_0^\theta\frac{v^{n-1}}{(n-1)!}
+ D_e(A,\theta-v;F_\ell)D_f(B,\theta-v;F_m)\dd v.
+\end{equation}
+Its value on $K_{\ell m}$ is denoted $H_{\ell m}(A,B)$. Only
+$e,f\in\{-1,0,1\}$ occur. Define
+\begin{align}\label{eq:I}
+ I(A,B)=\sum_{\ell,m\in\{0,2\}}
+ \frac{H_{\ell m}(A,B)-e^{-A-B}H_{\ell m}(-B,-A)}{A+B},\notag\\
+ M=\left.\Qop I(A,B)\right|_{A=B=-R}.
+\end{align}
+The ordered cross terms are both present. The dual term swaps the two
+shifts; $q$ differentiates the entire quotient in \eqref{eq:I}.
+
+\begin{proposition}\label{prop:mainterm}
+For \eqref{eq:psi}, the constant in \eqref{eq:moment} is \eqref{eq:I}.
+\end{proposition}
+
+\begin{proof}[Derivation from the published shifted moment]
+Insert the coefficient expansion in \eqref{eq:PRZZ} and use Mellin inversion
+for each monomial of $F_\ell$. The leading zeta ratio has prefactor
+$XY/h$. Its logarithmic derivative for one left auxiliary variable is
+$h^{-1}-X^{-1}$, for one right variable it is $h^{-1}-Y^{-1}$, and for a
+left--right pair it is $h^{-2}$. The distinct auxiliary variables represent
+the copies of $\Lambda$. All other connected derivatives for these
+multiaffine coefficients vanish. Matching $k$ left variables to right
+variables has multiplicity $\binom{\ell}{k}(m)_k$. Thus the leading factor is
+\[
+ \frac{XY}{h}\sum_{k=0}^{\min(\ell,m)}
+ \binom{\ell}{k}(m)_k h^{-2k}
+ (h^{-1}-X^{-1})^{\ell-k}(h^{-1}-Y^{-1})^{m-k}.
+\]
+For $\ell,m\in\{0,2\}$ this expands to \eqref{eq:kernels}.
+This is the leading-pole extraction in \cite[Section~6, (6.3), and
+pp.~39--40]{PRZZ}. The arithmetic Euler factor and its derivatives are
+treated by that paper's contour argument: after the logarithmic
+normalization, the omitted terms contribute $O(T/L)$, not a conjectural
+ratios error. See also the procedure on p.~45. Replacing those factors by
+one without this error estimate would not suffice.
+
+Use
+$h^{-n}=\int_0^\infty e^{-hv}v^{n-1}\dd v/(n-1)!$ in the Mellin inversions.
+The profiles have support $w\ge0$ and vanish at zero. Multiplication by
+$A+s$, by $1$, and by $(A+s)^{-1}$ therefore gives respectively the three
+operators \eqref{eq:D}, with no endpoint delta term. Their common support
+restricts $v$ to $[0,\theta]$. The factors $(\log y)^{-\ell-m}$ give
+$\theta^{-\ell-m}$ after rescaling, proving \eqref{eq:H}.
+The second term of \eqref{eq:PRZZ} gives the dual shift
+$(-B,-A)$ and the factor $e^{-A-B}$, with the minus sign from the pole of
+$\zeta(1-\alpha-\beta)$. This gives \eqref{eq:I}; the contour estimates and
+shift uniformity above justify applying $\Qop$.
+\end{proof}
+
+As a normalization check, deleting the Feng component reduces \eqref{eq:I} to
+\[
+ 1+\theta^{-1}\int_0^1\!\int_0^1 e^{2Rv}
+ [P_1'(x)q(v)+\theta P_1(x)(Rq(v)+q'(v))]^2\dd x\dd v.
+\]
+This check is not a substitute for the arithmetic identification in
+Proposition~\ref{prop:mainterm}.
+
+\section{Finite certificate and completion}
+
+\begin{lemma}\label{lem:finite}
+For the rational data \eqref{eq:constants}--\eqref{eq:p2}, the functional
+\eqref{eq:I} satisfies the outward enclosure
+\begin{equation}\label{eq:interval}
+ 1.12818163807203565629105
+ <M<1.12818163807203565629124.
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:threshold}
+ 1.12820541062467513417945
+ <e^{R(1-0.8845)}<1.12820541062467513417947.
+\end{equation}
+\end{lemma}
+
+\begin{proof}[Finite verification and its error bound]
+The attached interval evaluator computes \eqref{eq:H} without quadrature.
+It forms normalized Taylor jets in both shifts through order
+six. In $D_{-1}$, expand $e^{-Az}$ through degree $N=24$. For
+$C_F=\sum_d|F_d|$, the error in its $a$th normalized shift derivative at
+$A=\pm R$ is bounded by
+\begin{equation}\label{eq:tail}
+ \frac{3C_F\theta^{1+a}}{a!(1+a)}
+       \frac{(R\theta)^{N+1}}{(N+1)!},\qquad 0\le a\le6,
+\end{equation}
+because $R\theta<1$ and $e^{R\theta}<3$. The corresponding full-derivative
+bound is the first factor in \eqref{eq:tail}. The finite polynomial
+integrals are evaluated by
+\[
+ \int_0^w z^j(w-z)^d\dd z=\frac{j!d!}{(j+d+1)!}w^{j+d+1},\qquad
+ \int_0^\theta\frac{v^{n-1}(\theta-v)^d}{(n-1)!}\dd v
+   =\frac{d!}{(n+d)!}\theta^{n+d}.
+\]
+For a product of two truncated factors, combine the two errors with their
+full-factor bounds and the product of errors; contract with absolute
+values of the rational kernel and operator coefficients. The summed
+analytic error is less than $8.799\cdot10^{-23}$.
+All remaining operations, including the dual exponential $e^{2R}$,
+use outward-rounded \texttt{mpmath.iv} intervals at 55 decimal digits.
+They yield a narrower interval than \eqref{eq:interval}. An independent
+40-digit, degree-20 setting also passes the threshold. The wrapper
+\texttt{verify.py} checks the stated enclosures, exact polynomial
+constraints, and the four expanded kernels. This is a numerical
+certificate using a specified interval library, not a formal verification
+of that library or of Proposition~\ref{prop:mainterm}.
+\end{proof}
+
+Combining Lemma~\ref{lem:count}, Proposition~\ref{prop:mainterm}, and
+Lemma~\ref{lem:finite} proves the proposed Theorem~\ref{thm:main}.
+The strict gap in \eqref{eq:interval}--\eqref{eq:threshold} is greater than
+$2.37725\cdot10^{-5}$ in moment units. Thus the conclusion uses a fixed
+rational witness, not convergence or global optimality of a numerical
+optimizer. Direct high-precision evaluation gives
+$1-\log M/R=0.884520175542196\ldots$, but the claimed bound is $0.8845$.
+
+\section*{Verification priorities for the referee}
+
+Review should prioritize the phase-counting convention in \eqref{eq:phase},
+the shift-uniform applicability of \eqref{eq:PRZZ} to \eqref{eq:psi}, and
+Proposition~\ref{prop:mainterm}. The code establishes only
+Lemma~\ref{lem:finite}. The separate audit guide gives reproduction
+commands, review questions and the literature-search scope.
+
+\begingroup\small
+\begin{thebibliography}{9}
+\bibitem{Wu}
+X. Wu, \emph{Distinct zeros of the Riemann zeta-function},
+arXiv:1206.3737v2 (2012), especially Section~3, pp.~6--8.
+\url{https://arxiv.org/pdf/1206.3737v2}.
+\bibitem{PRZZ}
+K. Pratt, N. Robles, A. Zaharescu and D. Zeindler,
+\emph{More than five-twelfths of the zeros of $\zeta$ are on the critical line},
+arXiv:1802.10521v3, Theorem~4.1 and Sections~6--7.
+\url{https://arxiv.org/pdf/1802.10521v3}.
+\bibitem{AF}
+L. Alp\"oge and R. Furman, \emph{More than two thirds of the zeta zeros
+are simple and on the critical line}, arXiv:2608.13637v2 (2026), Remark~7.1.
+\url{https://arxiv.org/html/2608.13637v2#S7.SS3}.
+\end{thebibliography}
+\endgroup
+\end{document}

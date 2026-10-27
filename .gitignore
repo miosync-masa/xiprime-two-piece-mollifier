@@ -1,0 +1,28 @@
+# Local environments and external dependency checkouts
+.venv/
+venv/
+af/
+.lake/
+build/
+dist/
+
+# Runtime and editor files
+__pycache__/
+*.py[cod]
+.DS_Store
+.vscode/
+.idea/
+.env
+.env.*
+
+# TeX and Lean build products; retain the distributed manuscript PDF
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.olean
+*.ilean
+*.trace

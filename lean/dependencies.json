@@ -1,0 +1,9 @@
+{
+  "af_repository": "https://github.com/anthropics/formal-math.git",
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "af_tag_at_inspection": "v1.0",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "lean_toolchain": "leanprover/lean4:v4.33.0-rc2",
+  "dependency_source_vendored": false,
+  "full_theorem_formalized": false
+}

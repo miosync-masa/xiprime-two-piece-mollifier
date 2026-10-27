@@ -1,0 +1,44 @@
+{
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "lean_version": "Lean (version 4.33.0-rc2, arm64-apple-darwin24.6.0, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "selected_af_sources_match_pin": true,
+  "source_sha256": {
+    "Zeta23/Analytic/RectangleLogDeriv.lean": "6606f32e30fe5f7a5c0660e2c9ecb8bb041144e52b090fe880d2c0e4734f5755",
+    "Zeta23/XiPrime/Defs.lean": "e3c6ad6f1ad96a6022a7632576f071312dcede283c043c44454435472b20bc39",
+    "Zeta23/XiPrime/Seam.lean": "0c6268e5023d870abb1f157c4fd74388902bbf2e115266e30da0f63a88a4c760",
+    "Zeta23/XiPrime/ZeroCount/ArgBound.lean": "351bae368ba1d236d4572d52132913006ba8cf873001e309c6c1d92c18adf7c8",
+    "Zeta23/XiPrime/ZeroCount/Generic.lean": "67476c8a323fe1e1273885600c511963552cad1a85f06036411c096908936378",
+    "Zeta23/XiPrime/ZeroCount/GenericRvM.lean": "e44f1a2059e9dfeb3900aa5acdf9b9cc9a7fb3199d408f3919c075d83da8b4f8",
+    "Zeta23/XiPrime/ZeroCount/Contour.lean": "b2e4236c117f1857fd1c79185114d322b1f808b6675e50c74e42d102409fba8e",
+    "Zeta23/XiPrime/ZeroCount.lean": "fd34ac4514e46abbcb001ce9031d3723c4ba5e004bc5b851fd7773391cbc3016",
+    "Zeta23/XiPrime/Final.lean": "57e722729934f01f4f108ddde3c330ddb487f0edc7c0b9bc2f38f10505586553"
+  },
+  "checks": {
+    "KernelAlgebra.lean": {
+      "exit_code": 0,
+      "sha256": "eadb0577a36db859613190b12a8f7dba28c6d1339a29e0c1f2ea44e3f964927d",
+      "output": "'XiPrime8845.kernel22' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.dual_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.centered_q' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.length_margin' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "PRZZInterface.lean": {
+      "exit_code": 0,
+      "sha256": "375863e5bc22f46387f6aa13ec8bddada0e8dd5b53704988980b1975c6408a15",
+      "output": "'XiPrime8845.PRZZ.witness_endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.przz41_case3_K2_profiles' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_profiles]\n",
+      "explicit_axiom_declarations": 1
+    },
+    "AFProbe.lean": {
+      "exit_code": 0,
+      "sha256": "b81fac80ca6fa8b955ed235f6c00f50ae9320d70be7c8a10fc0aaef4de180598",
+      "output": "Zeta23.Analytic.rectangleIntegral'_mul_logDeriv {f g : ℂ → ℂ} {z w : ℂ} (hre : z.re ≤ w.re) (him : z.im ≤ w.im)\n  (hf : AnalyticOnNhd ℂ f (z.Rectangle w)) (hg : AnalyticOnNhd ℂ g (z.Rectangle w))\n  (hborder : ∀ s ∈ RectangleBorder z w, f s ≠ 0) (Z : Finset ℂ) (hZ : ∀ s ∈ z.Rectangle w, f s = 0 ↔ s ∈ Z)\n  (hZsub : ↑Z ⊆ z.Rectangle w) :\n  RectangleIntegral' (fun s => g s * logDeriv f s) z w = ∑ ρ ∈ Z, ↑(analyticOrderNatAt f ρ) * g ρ\nZeta23.Analytic.rectangleIntegral'_mul_logDeriv' {f g : ℂ → ℂ} {z w : ℂ} (hre : z.re ≤ w.re) (him : z.im ≤ w.im)\n  (hf : AnalyticOnNhd ℂ f (z.Rectangle w)) (hg : AnalyticOnNhd ℂ g (z.Rectangle w))\n  (hborder : ∀ s ∈ RectangleBorder z w, f s ≠ 0) :\n  RectangleIntegral' (fun s => g s * logDeriv f s) z w = ∑ ρ ∈ ⋯.toFinset, ↑(analyticOrderNatAt f ρ) * g ρ\nAnalyticOnNhd.circleAverage_log_norm {c : ℂ} {R : ℝ} {f : ℂ → ℂ} (hR : R ≠ 0)\n  (h₁f : AnalyticOnNhd ℂ f (Metric.closedBall c |R|)) (h₂f : f c ≠ 0) :\n  Real.circleAverage (fun x => Real.log ‖f x‖) c R =\n    ∑ᶠ (u : ℂ), ↑((MeromorphicOn.divisor f (Metric.closedBall c |R|)) u) * Real.log (R * ‖c - u‖⁻¹) + Real.log ‖f c‖\nAnalyticOnNhd.sum_divisor_le {c : ℂ} {r R M : ℝ} {f : ℂ → ℂ} (r_pos : 0 < |r|) (r_lt_R : |r| < |R|) (hM : 1 ≤ M)\n  (h₁f : AnalyticOnNhd ℂ f (Metric.closedBall c |R|)) (h₂f : f c ≠ 0) (f_bound : ∀ z ∈ Metric.sphere c |R|, ‖f z‖ ≤ M) :\n  ↑(∑ᶠ (u : ℂ), (MeromorphicOn.divisor f (Metric.closedBall c |r|)) u) ≤ Real.log (M / ‖f c‖) / Real.log (R / r)\nZeta23.XiPrime.N0 (T₁ T₂ : ℝ) : ℕ\nZeta23.XiPrime.Ncount (T₁ T₂ : ℝ) : ℕ\nZeta23.XiPrime.one_le_xiDerivMult_iff (ρ : ℂ) : 1 ≤ Zeta23.XiPrime.xiDerivMult ρ ↔ Zeta23.XiPrime.xiDeriv ρ = 0\nZeta23.XiPrime.ZeroCount.Ncount_eq_im_halfContour (hF2 : Zeta23.XiPrime.XiDerivZerosInStrip)\n  (hs : Zeta23.XiPrime.XiDerivSeam) {T₁ T₂ : ℝ} (h12 : T₁ ≤ T₂) (hg₁ : Zeta23.XiPrime.ZeroCount.GoodHeight T₁)\n  (hg₂ : Zeta23.XiPrime.ZeroCount.GoodHeight T₂) :\n  ↑(Zeta23.XiPrime.Ncount T₁ T₂) = 1 / Real.pi * (Zeta23.RvM.halfContour (logDeriv Zeta23.XiPrime.xiDeriv) T₁ T₂).im\n'Zeta23.Analytic.rectangleIntegral'_mul_logDeriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'AnalyticOnNhd.circleAverage_log_norm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Zeta23.XiPrime.ZeroCount.Ncount_eq_im_halfContour' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    }
+  },
+  "runner_sha256": "f61c8736818506d3bb387b1a17872d3999f71caa3a97af801159ea099436b328",
+  "existing_build_used": true,
+  "clean_upstream_build_performed": false,
+  "coefficient_subpower_formal_proof_complete": false,
+  "inverse_mellin_analytic_identification_proved": false,
+  "przz_external_axiom_count": 1,
+  "final_proportion_formalized": false
+}

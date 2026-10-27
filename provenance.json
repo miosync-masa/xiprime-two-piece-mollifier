@@ -1,0 +1,75 @@
+{
+  "snapshot_date": "2026-10-27",
+  "preservation": "byte-identical copies; no mathematical changes",
+  "copied_artifacts": [
+    {
+      "path": "paper/README.md",
+      "source_bundle": "8845 audit draft",
+      "source_filename": "README.md",
+      "sha256": "86cb1840c4b599ae79889150e4b5a54040688f8a7b971119436b2d0497791f57"
+    },
+    {
+      "path": "paper/SHA256SUMS",
+      "source_bundle": "8845 audit draft",
+      "source_filename": "SHA256SUMS",
+      "sha256": "e7502b563faf6369f14c604fa72384af100ea526b5e3c523818fb8e4732b659c"
+    },
+    {
+      "path": "paper/certificate.json",
+      "source_bundle": "8845 audit draft",
+      "source_filename": "certificate.json",
+      "sha256": "aaa47b2cac55d73bab89c45f32f96774e9282ea4d089e3df9571779c954abe0a"
+    },
+    {
+      "path": "paper/manuscript.pdf",
+      "source_bundle": "8845 audit draft",
+      "source_filename": "manuscript.pdf",
+      "sha256": "eb5182407e4eb68bdf72c3a428dc3d02ab0a76df2f43f06680010ea56b8aa63f"
+    },
+    {
+      "path": "paper/manuscript.tex",
+      "source_bundle": "8845 audit draft",
+      "source_filename": "manuscript.tex",
+      "sha256": "272c093b258338d67cc20e7aaa2a63468e71475a544e98b5f956e709c80fb7c0"
+    },
+    {
+      "path": "paper/numerical_interval.py",
+      "source_bundle": "8845 audit draft",
+      "source_filename": "numerical_interval.py",
+      "sha256": "d0dcbae3f5299c31c8576a7fe1afc694c7c27f86921e6865d903f15efd2bc8c7"
+    },
+    {
+      "path": "paper/requirements.txt",
+      "source_bundle": "8845 audit draft",
+      "source_filename": "requirements.txt",
+      "sha256": "a699f46ed76bd216f1081b6b2330e4fb45d7c8c5a5354b208694d6590a5a8645"
+    },
+    {
+      "path": "paper/verify.py",
+      "source_bundle": "8845 audit draft",
+      "source_filename": "verify.py",
+      "sha256": "2b9d37d7b12cc388917cbaeb078258cc56ea1f4af57db9b9f89630be1e5880a7"
+    },
+    {
+      "path": "lean/AFProbe.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "AFProbe.lean",
+      "sha256": "b81fac80ca6fa8b955ed235f6c00f50ae9320d70be7c8a10fc0aaef4de180598"
+    },
+    {
+      "path": "lean/KernelAlgebra.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "KernelAlgebra.lean",
+      "sha256": "eadb0577a36db859613190b12a8f7dba28c6d1339a29e0c1f2ea44e3f964927d"
+    },
+    {
+      "path": "lean/PRZZInterface.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "PRZZInterface.lean",
+      "sha256": "375863e5bc22f46387f6aa13ec8bddada0e8dd5b53704988980b1975c6408a15"
+    }
+  ],
+  "external_dependency_pins": "lean/dependencies.json",
+  "private_workspace_metadata_included": false,
+  "remote_publication_performed": false
+}
