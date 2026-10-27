@@ -45,17 +45,21 @@ paper/       Five-page manuscript and unchanged standalone numerical bundle
 lean/        Three Lean prototypes and pinned dependency information
 tools/       Portable package and Lean verification commands
 checks/      Captured packaging and Lean verification output
-docs/        Proof status, reproduction and publication checklist
+docs/        Proof status and reproduction instructions
 .github/     Numerical-verification workflow
 ```
 
 The paper bundle is preserved byte-for-byte. [Provenance](provenance.json) records its source hashes. No upstream AF or mathlib source tree is vendored.
 
-## Proof boundaries and publication
+## Proof boundaries
 
 See [proof status](docs/STATUS.md) before interpreting a passing test. In particular, PRZZ's gcd/lcm main term and the finite Mellin-pole functional are separate objects; the latter is not smuggled into the PRZZ axiom.
 
-Authorship, license, repository owner and release visibility remain to be set by the maintainer. No license grant is added by this preparation. See the [publication checklist](docs/PUBLICATION.md) and [dependency notices](THIRD_PARTY.md). The GitHub workflow is prepared but has not run on GitHub.
+## Copyright and license
+
+Copyright (c) 2026 MASAMICHI IIZUMI
+
+Licensed under the [MIT License](LICENSE.md).
 
 ## References
 

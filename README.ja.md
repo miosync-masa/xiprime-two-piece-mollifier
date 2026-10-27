@@ -25,8 +25,13 @@ Leanは別途、固定版AFのビルド済み環境が必要です。[再現手�
 - `paper/`：原稿・数値検証器・出力。既存の監査用bundleを内容変更せず収録。
 - `lean/`：kernel恒等式、dual、候補の基本条件、明示的なPRZZ公理、AFのAPI検査。
 - `tools/`・`checks/`：可搬な再実行scriptと検証記録。
-- `docs/`：未形式化部分、再現手順、公開前の確認事項。
-- `.github/`：数値検証CI。GitHub上での実行はこれからです。
+- `docs/`：未形式化部分、再現手順。
+- `.github/`：数値検証CI。
 
 元の研究台帳、私的なセッションID、依存ライブラリ本体、作業用キャッシュは含めません。
-著者情報・ライセンス・公開先は未設定。準備段階ではremote作成、commit、pushを行っていません。
+
+## 著作権とライセンス
+
+Copyright (c) 2026 MASAMICHI IIZUMI
+
+[MIT License](LICENSE.md) に基づき提供します。
