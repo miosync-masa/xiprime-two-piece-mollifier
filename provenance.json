@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-10-28",
-  "preservation": "paper bundle and PRZZ axiom unchanged; Lean sources match the research mirror, including the finite gate, arithmetic regularity, PRZZ residual convergence, exact gcd direct/dual separation, uniform outer zeta-pole and height-factor limits, and logarithmic budget; arithmetic-sum-to-H-kernel evaluation and Wu zero counting remain open",
+  "preservation": "paper bundle and PRZZ axiom unchanged; Lean sources match the research mirror, including the finite gate, arithmetic regularity, PRZZ residual convergence, exact gcd direct/dual separation, uniform outer zeta-pole and height-factor limits, and logarithmic budget; arithmetic-sum-to-H-kernel evaluation and Wu zero counting remain open; exact finite gcd diagonalization, reflected two-bidisc domain and smooth-supported Conrey expansion added; coprimality averaged errors remain open; complex shift weights and harmonic-averaged supported Rankin tails proved; PNT weighted-profile errors remain open",
   "copied_artifacts": [
     {
       "path": "paper/README.md",
@@ -163,6 +163,30 @@
       "source_bundle": "8845 Lean interfaces",
       "source_filename": "HeightScaling.lean",
       "sha256": "f2bba8d8503a61c0dc3e624883bf1ba29a29802fbdd63b48c863e9e975531462"
+    },
+    {
+      "path": "lean/SmoothMobius.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "SmoothMobius.lean",
+      "sha256": "e28dc83da59b5071edef94544837df78a2ff41af516a522db3f9546ba7ff98b4"
+    },
+    {
+      "path": "lean/ElementaryGcd.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ElementaryGcd.lean",
+      "sha256": "9010ffad13c9afe2e1761a6ab91fba92599845cf46a18d8f19d88a272fc52308"
+    },
+    {
+      "path": "lean/ShiftWeights.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ShiftWeights.lean",
+      "sha256": "7ea4f41fdddc2cd4da215a8fb131255b983587c2092a5a4e314e0a24a9898920"
+    },
+    {
+      "path": "lean/SupportTail.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "SupportTail.lean",
+      "sha256": "3b065176d8f019637e5cd1046c7e7281d719fc09f9d04516605af12573173ab8"
     }
   ],
   "external_dependency_pins": "lean/dependencies.json",

@@ -128,9 +128,33 @@
       "sha256": "f2bba8d8503a61c0dc3e624883bf1ba29a29802fbdd63b48c863e9e975531462",
       "output": "'XiPrime8845.HeightScaling.log_height_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.HeightScaling.phase_exact' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.HeightScaling.phase_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.HeightScaling.phase_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.HeightScaling.rescale_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.HeightScaling.mass_rescale' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.HeightScaling.heightFactor_rescale' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.HeightScaling.heightFactor_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.HeightScaling.heightFactor_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "explicit_axiom_declarations": 0
+    },
+    "SmoothMobius.lean": {
+      "exit_code": 0,
+      "sha256": "e28dc83da59b5071edef94544837df78a2ff41af516a522db3f9546ba7ff98b4",
+      "output": "'XiPrime8845.SmoothMobius.supported_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.supported_prime_pow' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.restricted_multiplicative' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.supportedWeight_prime_pow' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.supportedWeight_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.restricted_convolution' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.restricted_divisor_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.moebius_mul_indicator' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "ElementaryGcd.lean": {
+      "exit_code": 0,
+      "sha256": "9010ffad13c9afe2e1761a6ab91fba92599845cf46a18d8f19d88a272fc52308",
+      "output": "'XiPrime8845.ElementaryGcd.reflect_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.reflectedBidisc_center' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.reflect_mem_twoBidiscs' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.uniform_reflected' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.sum_generalizedTotient' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.finite_diagonalization' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.arithmeticSum_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.sum_multiples' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.arithmeticSum_diagonal_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.weighted_divisor_reindex' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.coprime_weighted_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.conrey_inner_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "ShiftWeights.lean": {
+      "exit_code": 0,
+      "sha256": "7ea4f41fdddc2cd4da215a8fb131255b983587c2092a5a4e314e0a24a9898920",
+      "output": "'XiPrime8845.ShiftWeights.shift_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftWeights.profile_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftWeights.weight_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftWeights.normalized_log_mem' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftWeights.exp_weight_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftWeights.weight_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftWeights.weight_shift_modulus' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "SupportTail.lean": {
+      "exit_code": 0,
+      "sha256": "3b065176d8f019637e5cd1046c7e7281d719fc09f9d04516605af12573173ab8",
+      "output": "'XiPrime8845.SupportTail.supported_factored' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_hasSum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.rankin_point' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.rankin_finite' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_iff_rad_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_harmonic' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_average' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_average_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_rankin_tail' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.averaged_rankin_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.squarefree_dvd_rad' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.summable_rad_weight' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.averaged_tail_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.normalizedTail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.normalizedTail_uniform_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
     }
   },
-  "runner_sha256": "cdb0170b61154c12f19924d7bd2c0520642e6f1f6152f0783aa526198bcef99c",
+  "runner_sha256": "59b363ecff32661ab93f5f7863e8dd69c2098f41049da61095015019e0644e6f",
   "existing_build_used": true,
   "clean_upstream_build_performed": false,
   "coefficient_subpower_formal_proof_complete": true,
@@ -142,6 +166,12 @@
   "gcd_mainterm_exact_direct_dual_split_proved": true,
   "outer_zeta_poles_scaled_uniformly": true,
   "dual_height_factor_uniform_limit_proved": true,
+  "reflection_stable_two_bidisc_domain_defined": true,
+  "finite_gcd_diagonalization_proved": true,
+  "smooth_supported_coprimality_expansion_proved": true,
+  "shift_absorption_and_uniform_weight_modulus_proved": true,
+  "harmonic_averaged_supported_tail_uniform_zero_proved": true,
+  "coprimality_averaged_error_proved": false,
   "gcd_mainterm_limit_proved": false,
   "certified_logarithmic_budget_strictly_above_target": true,
   "wu_counting_adapter_proved": false,

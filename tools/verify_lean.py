@@ -53,13 +53,15 @@ def compile_sources(lake, af, source_dir):
                      "CoefficientEvaluator.lean", "NumericalGate.lean", "RationalEvaluator.lean",
                      "RationalBounds.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean",
                      "LogarithmicBudget.lean", "CompactShiftIntegral.lean", "ArithmeticRegularity.lean",
-                     "GcdDecomposition.lean", "ZetaPoleScaling.lean", "HeightScaling.lean"):
+                     "GcdDecomposition.lean", "ZetaPoleScaling.lean", "HeightScaling.lean",
+                     "SmoothMobius.lean", "ElementaryGcd.lean", "ShiftWeights.lean", "SupportTail.lean"):
             command = [lake, "env", "lean", "--root=" + str(source_dir)]
             if name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
                         "IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean",
                         "NumericalGate.lean", "RationalEvaluator.lean", "RationalBounds.lean",
                         "PRZZInterface.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean",
-                        "CompactShiftIntegral.lean", "ArithmeticRegularity.lean", "GcdDecomposition.lean"):
+                        "CompactShiftIntegral.lean", "ArithmeticRegularity.lean", "GcdDecomposition.lean",
+                        "SmoothMobius.lean", "ElementaryGcd.lean"):
                 command += ["-o", str(Path(build) / (Path(name).stem + ".olean"))]
             output = run(command + [str(source_dir / name)], af, env)
             yield name, output.replace(build, "<temporary-build>")
@@ -165,7 +167,7 @@ def main():
         if name in ("IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean", "NumericalGate.lean",
                     "RationalEvaluator.lean", "RationalBounds.lean", "FixedCertificate.lean",
                     "LogarithmicBudget.lean", "CompactShiftIntegral.lean", "GcdDecomposition.lean",
-                    "ZetaPoleScaling.lean", "HeightScaling.lean"):
+                    "ZetaPoleScaling.lean", "HeightScaling.lean", "SmoothMobius.lean", "ElementaryGcd.lean", "ShiftWeights.lean", "SupportTail.lean"):
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             audited = re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE)
             required = {"IntegralJet.lean": "K2_exact_evaluator",
@@ -179,7 +181,11 @@ def main():
                         "CompactShiftIntegral.lean": "compact_integral_smooth",
                         "GcdDecomposition.lean": "normalized_gcd_split",
                         "ZetaPoleScaling.lean": "direct_pole_on_bidisc",
-                        "HeightScaling.lean": "heightFactor_uniform"}[name]
+                        "HeightScaling.lean": "heightFactor_uniform",
+                        "SmoothMobius.lean": "restricted_divisor_sum",
+                        "ElementaryGcd.lean": "conrey_inner_expansion",
+                        "ShiftWeights.lean": "weight_shift_modulus",
+                        "SupportTail.lean": "normalizedTail_uniform_zero"}[name]
             require(required in audited, "Missing integrated evaluator/enclosure audit")
             for theorem in audited:
                 key = "XiPrime8845." + path.stem + "." + theorem
@@ -208,6 +214,12 @@ def main():
         "gcd_mainterm_exact_direct_dual_split_proved": True,
         "outer_zeta_poles_scaled_uniformly": True,
         "dual_height_factor_uniform_limit_proved": True,
+        "reflection_stable_two_bidisc_domain_defined": True,
+        "finite_gcd_diagonalization_proved": True,
+        "smooth_supported_coprimality_expansion_proved": True,
+        "shift_absorption_and_uniform_weight_modulus_proved": True,
+        "harmonic_averaged_supported_tail_uniform_zero_proved": True,
+        "coprimality_averaged_error_proved": False,
         "gcd_mainterm_limit_proved": False,
         "certified_logarithmic_budget_strictly_above_target": True,
         "wu_counting_adapter_proved": False,
