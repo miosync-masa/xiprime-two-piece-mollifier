@@ -12,7 +12,21 @@
     "Zeta23/XiPrime/ZeroCount/GenericRvM.lean": "e44f1a2059e9dfeb3900aa5acdf9b9cc9a7fb3199d408f3919c075d83da8b4f8",
     "Zeta23/XiPrime/ZeroCount/Contour.lean": "b2e4236c117f1857fd1c79185114d322b1f808b6675e50c74e42d102409fba8e",
     "Zeta23/XiPrime/ZeroCount.lean": "fd34ac4514e46abbcb001ce9031d3723c4ba5e004bc5b851fd7773391cbc3016",
-    "Zeta23/XiPrime/Final.lean": "57e722729934f01f4f108ddde3c330ddb487f0edc7c0b9bc2f38f10505586553"
+    "Zeta23/XiPrime/Final.lean": "57e722729934f01f4f108ddde3c330ddb487f0edc7c0b9bc2f38f10505586553",
+    "Zeta23/FromPNTPlus/Auxiliary.lean": "8852b7ebc572ae4eda1f3c3e94f4cc072b1c744c2b71ae297bec3ebb74b00069",
+    "Zeta23/FromPNTPlus/EulerMaclaurin.lean": "0e2b201e2a99db8650c565f14c2d4c65ff54a59a29f81137a63a00f2d1776ab6",
+    "Zeta23/FromPNTPlus/Fourier.lean": "8d53e47135861fd5afaa2ff273737e09353dc9ae0ba8b6875baa16f3a167b1bc",
+    "Zeta23/FromPNTPlus/MediumPNT.lean": "3ce679cd409b134f5c8f3068ed46daad75236cdb79e02dcb230949315002b7cb",
+    "Zeta23/FromPNTPlus/MellinCalculus.lean": "010a74544650e8daeb2124aa0aefa218b5a437e9dba80b4d7b2752e456e93b02",
+    "Zeta23/FromPNTPlus/Rectangle.lean": "6cf1dfca9dd3bbe3db9c58acf135a5ea20669808418ad994ed27f67931ea53d9",
+    "Zeta23/FromPNTPlus/ResidueCalcOnRectangles.lean": "081d38aa0c5eec725a1582eea3bdf4e51d604f6c2ebb3c9729d91df3aa092956",
+    "Zeta23/FromPNTPlus/SmoothExistence.lean": "db308bf757a7b51bdbc835872445266c51f9c2c60708f6e5aae068fc628b9c9b",
+    "Zeta23/FromPNTPlus/Sobolev.lean": "e3f254f6e772ebf941f67b4ad978858b6355b00433a943a4e318c22425959062",
+    "Zeta23/FromPNTPlus/ZetaBounds.lean": "62ab370e278be47e7fbd03ab74b1442010da1fc17b9dec96ea952e9259bfcd06",
+    "Zeta23/FromPNTPlus/ZetaConj.lean": "6160b5a4e5cbcc346a67f973a4ed7d68f535eb79d803c10882eef74a6c2b8fb5",
+    "Zeta23/FromPNTPlus/Mathlib/Algebra/Notation/Support.lean": "7ed4ffe0a99975eb901063cf90f338dd8376d0abde5fdac95983fea1f93be1fb",
+    "Zeta23/FromPNTPlus/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean": "b345f59bff825700221040fb575823d6902383ff1ab340b2ff849d8382460954",
+    "Zeta23/FromPNTPlus/Tactic/AdditiveCombination.lean": "0c59de0160092cc7eb521c09de7b9a35719d5a33b4fee0795bd312a5c9c3d200"
   },
   "checks": {
     "BetaKernel.lean": {
@@ -152,9 +166,27 @@
       "sha256": "3b065176d8f019637e5cd1046c7e7281d719fc09f9d04516605af12573173ab8",
       "output": "'XiPrime8845.SupportTail.supported_factored' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_hasSum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.rankin_point' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.rankin_finite' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_iff_rad_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_harmonic' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_average' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_average_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_rankin_tail' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.averaged_rankin_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.squarefree_dvd_rad' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.summable_rad_weight' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.averaged_tail_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.normalizedTail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.normalizedTail_uniform_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "explicit_axiom_declarations": 0
+    },
+    "MobiusHarmonic.lean": {
+      "exit_code": 0,
+      "sha256": "0a0c0b9df2764a0d8c5fcf22531ff96ed603fa8680e0c53839b0630da8f4de32",
+      "output": "'XiPrime8845.MobiusHarmonic.reciprocal_convolution' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.harmonic_inversion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.harmonic_inversion_real' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.harmonicError_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.remainderKernel_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.harmonic_tail_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.harmonic_tail_real' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.headError_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.dilation_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.tailMass_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.logMean_tendsto_of_mass' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.logMean_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.inversionError_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.logMean_tendsto_of_errors' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.logMean_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.mass_tendsto_of_mu_pnt_alt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.logMean_tendsto_of_mu_pnt_alt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.scaled_linearProfile' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.linearProfile_uniform_of_mass' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusHarmonic.linearProfile_uniform_of_mu_pnt_alt' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "MobiusPNT.lean": {
+      "exit_code": 0,
+      "sha256": "c5f04cc8be21a8ecdd2d4c9ee9e890222626b6f59ab36d23359e69924068adf0",
+      "output": "'XiPrime8845.MobiusPNT.R_isLittleO' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusPNT.M_isLittleO' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusPNT.mu_pnt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusPNT.mu_pnt_alt' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "MobiusPNTBridge.lean": {
+      "exit_code": 0,
+      "sha256": "e2890a83383a2f0191acb4d3465069ef6dcd48e0a2b75067a9342efede16c860",
+      "output": "'XiPrime8845.MobiusPNTBridge.mobiusMass_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusPNTBridge.logMean_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusPNTBridge.linearProfile_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
     }
   },
-  "runner_sha256": "59b363ecff32661ab93f5f7863e8dd69c2098f41049da61095015019e0644e6f",
+  "runner_sha256": "ec5e0267b78fbf28e73104b14735c27f76aeb4ac6f6a574a9f8a194cff4cd936",
   "existing_build_used": true,
   "clean_upstream_build_performed": false,
   "coefficient_subpower_formal_proof_complete": true,
@@ -171,6 +203,12 @@
   "smooth_supported_coprimality_expansion_proved": true,
   "shift_absorption_and_uniform_weight_modulus_proved": true,
   "harmonic_averaged_supported_tail_uniform_zero_proved": true,
+  "mobius_logMean_limit_from_qualitative_mass_proved": true,
+  "linear_mobius_profile_uniform_from_qualitative_PNT_proved": true,
+  "qualitative_mobius_PNT_imported": true,
+  "mobius_logMean_and_linear_profile_PNT_premises_discharged": true,
+  "pntplus_consequences_source_commit": "6a380f0c4658c04a420a9eb00b1ed62a1e3fde01",
+  "general_C2_mobius_weight_transfer_proved": false,
   "coprimality_averaged_error_proved": false,
   "gcd_mainterm_limit_proved": false,
   "certified_logarithmic_budget_strictly_above_target": true,

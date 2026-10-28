@@ -25,6 +25,20 @@ AF_PATHS = [
     "Zeta23/XiPrime/ZeroCount/Contour.lean",
     "Zeta23/XiPrime/ZeroCount.lean",
     "Zeta23/XiPrime/Final.lean",
+    "Zeta23/FromPNTPlus/Auxiliary.lean",
+    "Zeta23/FromPNTPlus/EulerMaclaurin.lean",
+    "Zeta23/FromPNTPlus/Fourier.lean",
+    "Zeta23/FromPNTPlus/MediumPNT.lean",
+    "Zeta23/FromPNTPlus/MellinCalculus.lean",
+    "Zeta23/FromPNTPlus/Rectangle.lean",
+    "Zeta23/FromPNTPlus/ResidueCalcOnRectangles.lean",
+    "Zeta23/FromPNTPlus/SmoothExistence.lean",
+    "Zeta23/FromPNTPlus/Sobolev.lean",
+    "Zeta23/FromPNTPlus/ZetaBounds.lean",
+    "Zeta23/FromPNTPlus/ZetaConj.lean",
+    "Zeta23/FromPNTPlus/Mathlib/Algebra/Notation/Support.lean",
+    "Zeta23/FromPNTPlus/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean",
+    "Zeta23/FromPNTPlus/Tactic/AdditiveCombination.lean",
 ]
 
 
@@ -54,14 +68,15 @@ def compile_sources(lake, af, source_dir):
                      "RationalBounds.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean",
                      "LogarithmicBudget.lean", "CompactShiftIntegral.lean", "ArithmeticRegularity.lean",
                      "GcdDecomposition.lean", "ZetaPoleScaling.lean", "HeightScaling.lean",
-                     "SmoothMobius.lean", "ElementaryGcd.lean", "ShiftWeights.lean", "SupportTail.lean"):
+                     "SmoothMobius.lean", "ElementaryGcd.lean", "ShiftWeights.lean", "SupportTail.lean",
+                     "MobiusHarmonic.lean", "MobiusPNT.lean", "MobiusPNTBridge.lean"):
             command = [lake, "env", "lean", "--root=" + str(source_dir)]
             if name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
                         "IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean",
                         "NumericalGate.lean", "RationalEvaluator.lean", "RationalBounds.lean",
                         "PRZZInterface.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean",
                         "CompactShiftIntegral.lean", "ArithmeticRegularity.lean", "GcdDecomposition.lean",
-                        "SmoothMobius.lean", "ElementaryGcd.lean"):
+                        "SmoothMobius.lean", "ElementaryGcd.lean", "MobiusHarmonic.lean", "MobiusPNT.lean"):
                 command += ["-o", str(Path(build) / (Path(name).stem + ".olean"))]
             output = run(command + [str(source_dir / name)], af, env)
             yield name, output.replace(build, "<temporary-build>")
@@ -167,7 +182,7 @@ def main():
         if name in ("IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean", "NumericalGate.lean",
                     "RationalEvaluator.lean", "RationalBounds.lean", "FixedCertificate.lean",
                     "LogarithmicBudget.lean", "CompactShiftIntegral.lean", "GcdDecomposition.lean",
-                    "ZetaPoleScaling.lean", "HeightScaling.lean", "SmoothMobius.lean", "ElementaryGcd.lean", "ShiftWeights.lean", "SupportTail.lean"):
+                    "ZetaPoleScaling.lean", "HeightScaling.lean", "SmoothMobius.lean", "ElementaryGcd.lean", "ShiftWeights.lean", "SupportTail.lean", "MobiusHarmonic.lean", "MobiusPNT.lean", "MobiusPNTBridge.lean"):
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             audited = re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE)
             required = {"IntegralJet.lean": "K2_exact_evaluator",
@@ -185,7 +200,10 @@ def main():
                         "SmoothMobius.lean": "restricted_divisor_sum",
                         "ElementaryGcd.lean": "conrey_inner_expansion",
                         "ShiftWeights.lean": "weight_shift_modulus",
-                        "SupportTail.lean": "normalizedTail_uniform_zero"}[name]
+                        "SupportTail.lean": "normalizedTail_uniform_zero",
+                        "MobiusHarmonic.lean": "linearProfile_uniform_of_mu_pnt_alt",
+                        "MobiusPNT.lean": "mu_pnt_alt",
+                        "MobiusPNTBridge.lean": "linearProfile_uniform"}[name]
             require(required in audited, "Missing integrated evaluator/enclosure audit")
             for theorem in audited:
                 key = "XiPrime8845." + path.stem + "." + theorem
@@ -219,6 +237,12 @@ def main():
         "smooth_supported_coprimality_expansion_proved": True,
         "shift_absorption_and_uniform_weight_modulus_proved": True,
         "harmonic_averaged_supported_tail_uniform_zero_proved": True,
+        "mobius_logMean_limit_from_qualitative_mass_proved": True,
+        "linear_mobius_profile_uniform_from_qualitative_PNT_proved": True,
+        "qualitative_mobius_PNT_imported": True,
+        "mobius_logMean_and_linear_profile_PNT_premises_discharged": True,
+        "pntplus_consequences_source_commit": "6a380f0c4658c04a420a9eb00b1ed62a1e3fde01",
+        "general_C2_mobius_weight_transfer_proved": False,
         "coprimality_averaged_error_proved": False,
         "gcd_mainterm_limit_proved": False,
         "certified_logarithmic_budget_strictly_above_target": True,

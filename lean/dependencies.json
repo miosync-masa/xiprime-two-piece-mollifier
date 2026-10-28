@@ -4,6 +4,10 @@
   "af_tag_at_inspection": "v1.0",
   "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
   "lean_toolchain": "leanprover/lean4:v4.33.0-rc2",
-  "dependency_source_vendored": false,
+  "af_mathlib_source_vendored": false,
+  "pntplus_selected_proofs_vendored": true,
+  "pntplus_source_commit": "6a380f0c4658c04a420a9eb00b1ed62a1e3fde01",
+  "pntplus_source_license": "Apache-2.0",
+  "additional_af_build_target": "Zeta23.FromPNTPlus.MediumPNT",
   "full_theorem_formalized": false
 }

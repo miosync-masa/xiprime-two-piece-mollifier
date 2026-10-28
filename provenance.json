@@ -187,9 +187,40 @@
       "source_bundle": "8845 Lean interfaces",
       "source_filename": "SupportTail.lean",
       "sha256": "3b065176d8f019637e5cd1046c7e7281d719fc09f9d04516605af12573173ab8"
+    },
+    {
+      "path": "lean/MobiusHarmonic.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "MobiusHarmonic.lean",
+      "sha256": "0a0c0b9df2764a0d8c5fcf22531ff96ed603fa8680e0c53839b0630da8f4de32"
+    },
+    {
+      "path": "lean/MobiusPNT.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "MobiusPNT.lean",
+      "sha256": "c5f04cc8be21a8ecdd2d4c9ee9e890222626b6f59ab36d23359e69924068adf0"
+    },
+    {
+      "path": "lean/MobiusPNTBridge.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "MobiusPNTBridge.lean",
+      "sha256": "e2890a83383a2f0191acb4d3465069ef6dcd48e0a2b75067a9342efede16c860"
     }
   ],
   "external_dependency_pins": "lean/dependencies.json",
+  "mobius_smoothing_status": "AF MediumPNT -> qualitative psi error -> M(x)=o(x) -> sum mu(n)/n -> 0, then unconditional logMean -> 1 and linear-profile uniform asymptotic away from u=0. No new PNT axiom or toolchain change. General C2 shifted profiles, averaged coprimality errors, Feng and zero counting remain open.",
   "private_workspace_metadata_included": false,
-  "remote_publication_performed": false
+  "remote_publication_performed": false,
+  "pntplus_port": {
+    "repository": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+    "commit": "6a380f0c4658c04a420a9eb00b1ed62a1e3fde01",
+    "tag": "v4.32.2",
+    "source_file": "PrimeNumberTheoremAnd/Consequences.lean",
+    "source_sha256": "b6c3ce0377e08884af9ead61b19c028635a0226c375af55460f6e41143657c6a",
+    "destination": "lean/MobiusPNT.lean",
+    "license": "Apache-2.0",
+    "license_file": "licenses/PNTPlus-Apache-2.0.txt",
+    "modifications": "Selected Mobius consequences only; removed blueprint attributes; local namespace; replaced WeakPNT entry with pinned AF MediumPNT and adapted notation, distance simplification and limits to Lean v4.33.0-rc2.",
+    "upstream_build_target": "Zeta23.FromPNTPlus.MediumPNT"
+  }
 }
