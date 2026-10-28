@@ -57,7 +57,7 @@ def main():
             "Lean toolchain mismatch")
     run(["git", "diff", "--exit-code", pins["af_commit"], "--", *AF_PATHS], af)
     checks = {}
-    for name in ("KernelAlgebra.lean", "PRZZInterface.lean", "AFProbe.lean"):
+    for name in ("BetaKernel.lean", "KernelAlgebra.lean", "PRZZInterface.lean", "AFProbe.lean", "FiniteJet.lean"):
         path = ROOT / "lean" / name
         output = run([args.lake, "env", "lean", str(path)], af)
         require("sorryAx" not in output and "error:" not in output, f"Proof check failed: {name}")
@@ -76,6 +76,30 @@ def main():
                 expected = standard | ({"przz41_case3_K2_profiles"}
                                        if theorem == "witness_przz_estimate" else set())
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
+        if name == "FiniteJet.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            for theorem in ("polynomial_jet_zero", "polynomial_jet_at", "exponential_jet",
+                            "reciprocal_jet", "denominator_jet", "inverse_integrand_jet",
+                            "reflected_jet", "dual_derivative", "separable_jet₂",
+                            "integral_polynomial", "inverseTrunc_eq_integral",
+                            "inverseShiftPoly_eval", "inverseShiftPoly_jet"):
+                key = "XiPrime8845.FiniteJet." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                require(actual == {"propext", "Classical.choice", "Quot.sound"},
+                        f"Unexpected axiom dependencies: {key}: {actual}")
+        if name == "BetaKernel.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            for theorem in ("beta_recurrence", "beta_monomial", "outer_beta",
+                            "inverse_jet_beta_term", "inverseJetEval_eq_integral",
+                            "outer_beta_order", "outer_polynomial", "assemble00", "assemble20",
+                            "assemble02", "assemble22", "monomialIntegral_swap", "H02_swap",
+                            "fourTerms_diagonal", "weighted_sum_transpose", "shifted_q_coefficient"):
+                key = "XiPrime8845.BetaKernel." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                require(actual == {"propext", "Classical.choice", "Quot.sound"},
+                        f"Unexpected axiom dependencies: {key}: {actual}")
         # Make captured diagnostics portable; do not disclose workstation paths.
         output = output.replace(str(ROOT), "<package>").replace(str(af), "<af>")
         checks[name] = {"exit_code": 0, "sha256": sha(path), "output": output,
@@ -91,6 +115,10 @@ def main():
         "coefficient_subpower_formal_proof_complete": True,
         "normalized_przz_error_envelope_tends_to_zero": True,
         "witness_przz_coefficient_hypotheses_discharged": True,
+        "finite_truncated_inverse_integral_and_jet_identities_proved": True,
+        "beta_integral_and_finite_inverse_jet_coefficients_proved": True,
+        "four_K2_linear_assembly_and_undifferentiated_cross_swap_proved": True,
+        "full_K2_evaluator_equivalence_proved": False,
         "inverse_mellin_analytic_identification_proved": False,
         "przz_external_axiom_count": 1, "final_proportion_formalized": False,
     }

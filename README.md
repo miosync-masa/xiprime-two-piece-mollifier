@@ -13,6 +13,8 @@ This repository contains a proof draft for specialist review, a reproducible fin
 | Fixed witness and finite main-term inequality | Exact rational checks and interval calculation, with saved output |
 | Four K2 kernel identities, dual involution, witness identities and length margins | Lean proofs, compiled against the pinned environment |
 | Uniform coefficient bound, Subpower and normalized PRZZ error envelope | Lean proofs without an external analytic axiom |
+| Truncated inverse integrals and shift-jet identities | Lean foundations; full K2 evaluator equivalence and remainder bounds remain open |
+| Beta-integral coefficients and four K2 coefficient sums | Lean proofs; differentiated quotient/dual assembly remains open |
 | PRZZ shifted-moment input | One explicit external axiom in a separate Lean file |
 | Leading-pole asymptotics, analytic Mellin identification and Wu counting adapter | Proof draft; formalization incomplete |
 | New simple-zero bound or publication-priority claim | Not claimed |
