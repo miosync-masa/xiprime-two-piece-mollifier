@@ -85,7 +85,7 @@ def main():
     print(f"PASS: {count} distribution hashes and local Markdown link targets")
     print("PASS: exact rational checks and all four interval runs")
     print("PASS: fresh certificate JSON matches the saved file byte-for-byte")
-    print("Scope: finite certificate only; analytic review and the final Lean theorem remain open.")
+    print("Scope: Python finite certificate only; Lean checks run separately. Analytic review and the zero-proportion theorem remain open.")
 
 
 if __name__ == "__main__":

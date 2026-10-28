@@ -50,9 +50,45 @@
       "sha256": "9af1394b1cf86a05b8c6de03e95c6cef5e948f401cf0299a8407d71159e319fe",
       "output": "'XiPrime8845.IntegralJet.contracted_fourTerms_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.contracted_cross_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.K2_exact_evaluator' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.fourTerms_jet₂' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.fourTerms_quotient_W' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.fourTerms_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.fourTerms_dual_W' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.H_jet₂' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.regular_H' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.dual_general_W' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.monomial_dual_W' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.W_matrix_contraction' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.quotient_general_W' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.monomial_quotient_W' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.monomial_right_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.monomial_slice_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.quotient_outer_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.quotient_general_jet₂' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.weighted_operator_jet' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.monomialIntegral_jet₂' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.operator_jet' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.operator_jet_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.iteratedDeriv_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.jet_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.inverse_operator_contDiff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.inverseMoment_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.operator_contDiff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.hasDerivAt_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.inverseMoment_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.inverseMoment_iteratedDeriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.IntegralJet.inverse_operator_jet' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "explicit_axiom_declarations": 0
+    },
+    "TaylorEnvelope.lean": {
+      "exit_code": 0,
+      "sha256": "af64a95655cbae53872f6283989d01814e009e5581d53a0f486f72051ebd9e62",
+      "output": "'XiPrime8845.TaylorEnvelope.expPartial_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.inverse_operator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.inverse_operator_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.operator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.operator_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.product_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.monomial_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.poleSum_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.H_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.four_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.weighted_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.exact_finite_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TaylorEnvelope.K2_Taylor_enclosure' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "CoefficientEvaluator.lean": {
+      "exit_code": 0,
+      "sha256": "4646c7061d32b4cbd2d52fa298a3a16430b8f53471b564b9d770266b96009df0",
+      "output": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\n'XiPrime8845.CoefficientEvaluator.complex_beta' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.inversePoly_eval' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.inversePoly_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.fsPoly_eval' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.betaEval_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.monomial_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.fusedPoly_beta' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.fusedPoly_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.fusedPoly_cached' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.HApprox_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.finiteEvaluator_coefficients' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.CoefficientEvaluator.K2_coefficient_enclosure' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.pair_cross_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.weighted_poleSum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.pairEvaluator_fused' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.coefficientEvaluator_diagonal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.CoefficientEvaluator.finiteEvaluator_cached' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoefficientEvaluator.K2_cached_enclosure' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "NumericalGate.lean": {
+      "exit_code": 0,
+      "sha256": "834fcdd249703a20dc9180577fd49592815ef95a1e50d08e42132f8da9647deb",
+      "output": "'XiPrime8845.NumericalGate.coeffNorm_range' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.profile_witness_matches' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.q_witness_matches' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.parameters_match' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.profile_norm_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.target_lower' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.half_radius_exp' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.dual_exp_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.witness_domain' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.tail_factor_24' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.inverse_bound_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.operator_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.product_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.outer_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.poleError_mono' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.H_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.four_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.op_norm_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.reciprocal_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.W_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.weighted_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.total_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.actual_sub_finite' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.re_le_of_norm_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.scalar_gate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.NumericalGate.fixed_finite_gate' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "RationalEvaluator.lean": {
+      "exit_code": 0,
+      "sha256": "5df09ff19dd24d72bdbe1e4402e619cd6bfb6b37a93e7165cf9f0cb84a14836d",
+      "output": "'XiPrime8845.RationalEvaluator.finiteValue_exact' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.RationalEvaluator.fs_correct' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.RationalEvaluator.interp_add' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.RationalEvaluator.interp_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.RationalEvaluator.beta_correct' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "RationalBounds.lean": {
+      "exit_code": 0,
+      "sha256": "e86464cd17f440e31cc21ebfa670a47a95030833082eeb1894f78616f7496776",
+      "output": "'XiPrime8845.RationalBounds.rational_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "FixedCertificate.lean": {
+      "exit_code": 0,
+      "sha256": "04d244216ff367c547b68cee77cafe1a0ca0b364309dd01744dabc48353549ab",
+      "output": "'XiPrime8845.FixedCertificate.finiteValue_upper' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FixedCertificate.actual_upper' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FixedCertificate.fixed_functional_gate' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
     }
   },
-  "runner_sha256": "21838b50e6a736ee675e0cd624c59888c7e20b63f76150ab509896cc2bdf1b0c",
+  "runner_sha256": "7d3aadb35b73892202a6b21a1e828095d95fb5636df9b07a7470cf7506bab0b8",
   "existing_build_used": true,
   "clean_upstream_build_performed": false,
   "coefficient_subpower_formal_proof_complete": true,
@@ -65,7 +101,20 @@
   "inverse_and_outer_integral_derivative_interchange_proved": true,
   "exact_untruncated_K2_W_evaluator_equivalence_proved": true,
   "integrated_contracted_cross_reduction_proved": true,
-  "Taylor_truncation_error_envelope_formalized": false,
+  "Taylor_truncation_error_envelope_formalized": true,
+  "Taylor_bound_identical_to_python_sparse_envelope": false,
+  "Taylor_polynomial_integrals_evaluated_as_coefficient_sums": true,
+  "finite_Taylor_integrals_equal_cached_coefficient_evaluator": true,
+  "coefficient_evaluator_error_bound_from_actual_K2_functional": true,
+  "fixed_target_and_dual_exponentials_interval_certified": true,
+  "fixed_total_K2_Taylor_error_le_one_millionth": true,
+  "fixed_coefficient_expression_numerically_certified": true,
+  "rational_backend_equals_fixed_cached_evaluator": true,
+  "rational_bounds_checked_by_kernel_reduction": true,
+  "fixed_functional_gate_has_no_numerical_premises": true,
+  "fixed_finite_gate_has_explicit_coefficient_bound_premise": true,
+  "python_execution_and_interval_rounding_formalized": false,
+  "final_interval_inequality_formalized": true,
   "separable_quotient_derivatives_identified_with_W": true,
   "local_dual_conjugation_and_positive_op_proved": true,
   "swapped_dual_quotient_diagonal_identified_with_positive_W": true,

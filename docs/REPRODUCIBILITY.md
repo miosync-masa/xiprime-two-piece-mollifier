@@ -37,7 +37,9 @@ cd ..
 python3 tools/verify_lean.py --af af
 ```
 
-If `lake` is not on PATH, add `--lake /path/to/lake`. The runner checks AF and mathlib commit identities and the selected AF source files, then invokes `lake env lean` for each of the six supplied files. It freshly compiles `BetaKernel` and `FiniteJet` into a temporary import directory before compiling `IntegralJet`, so the new module does not rely on stale local import artifacts. It performs no fetch, reset, checkout or package installation and does not write build products into AF. An existing modified dependency tree is not certified as a clean upstream build.
+If `lake` is not on PATH, add `--lake /path/to/lake`. The runner checks AF and mathlib commit identities and the selected AF source files, then invokes `lake env lean` for each of the twelve supplied files. It freshly compiles `BetaKernel`, `FiniteJet`, `KernelAlgebra`, `IntegralJet`, `TaylorEnvelope`, `CoefficientEvaluator`, `NumericalGate`, `RationalEvaluator` and `RationalBounds` into a temporary import directory before checking their dependents, including `FixedCertificate`. No stale local import artifact is used for these modules. It performs no fetch, reset, checkout or package installation and does not write build products into AF. An existing modified dependency tree is not certified as a clean upstream build.
+
+The `NumericalGate` audit covers the fixed exponential bounds and aggregate Taylor error. `RationalEvaluator` proves equality between executable rational arithmetic and the existing coefficient expression. `RationalBounds` checks the actual rational inequalities by `decide +kernel`, without `native_decide` or imported numerical data. `FixedCertificate.fixed_functional_gate` discharges the coefficient premise of the earlier scalar helper. Its axiom audit permits only `propext`, `Classical.choice` and `Quot.sound`; it has no numerical or analytic premise. This completes the finite-functional inequality, not the arithmetic asymptotic or the final zero-proportion theorem.
 
 To save fresh output in an ignored location:
 

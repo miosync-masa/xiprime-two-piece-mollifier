@@ -49,9 +49,13 @@ def compile_sources(lake, af, source_dir):
         env = dict(os.environ)
         env["LEAN_PATH"] = build + (os.pathsep + env["LEAN_PATH"] if env.get("LEAN_PATH") else "")
         for name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
-                     "PRZZInterface.lean", "AFProbe.lean", "IntegralJet.lean"):
+                     "PRZZInterface.lean", "AFProbe.lean", "IntegralJet.lean", "TaylorEnvelope.lean",
+                     "CoefficientEvaluator.lean", "NumericalGate.lean", "RationalEvaluator.lean",
+                     "RationalBounds.lean", "FixedCertificate.lean"):
             command = [lake, "env", "lean", "--root=" + str(source_dir)]
-            if name in ("BetaKernel.lean", "FiniteJet.lean"):
+            if name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
+                        "IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean",
+                        "NumericalGate.lean", "RationalEvaluator.lean", "RationalBounds.lean"):
                 command += ["-o", str(Path(build) / (Path(name).stem + ".olean"))]
             output = run(command + [str(source_dir / name)], af, env)
             yield name, output.replace(build, "<temporary-build>")
@@ -121,12 +125,20 @@ def main():
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 require(actual == {"propext", "Classical.choice", "Quot.sound"},
                         f"Unexpected axiom dependencies: {key}: {actual}")
-        if name == "IntegralJet.lean":
+        if name in ("IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean", "NumericalGate.lean",
+                    "RationalEvaluator.lean", "RationalBounds.lean", "FixedCertificate.lean"):
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             audited = re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE)
-            require("K2_exact_evaluator" in audited, "Missing full exact evaluator audit")
+            required = {"IntegralJet.lean": "K2_exact_evaluator",
+                        "TaylorEnvelope.lean": "K2_Taylor_enclosure",
+                        "CoefficientEvaluator.lean": "K2_cached_enclosure",
+                        "NumericalGate.lean": "actual_sub_finite",
+                        "RationalEvaluator.lean": "finiteValue_exact",
+                        "RationalBounds.lean": "rational_bounds",
+                        "FixedCertificate.lean": "fixed_functional_gate"}[name]
+            require(required in audited, "Missing integrated evaluator/enclosure audit")
             for theorem in audited:
-                key = "XiPrime8845.IntegralJet." + theorem
+                key = "XiPrime8845." + path.stem + "." + theorem
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 require(actual == {"propext", "Classical.choice", "Quot.sound"},
@@ -153,7 +165,20 @@ def main():
         "inverse_and_outer_integral_derivative_interchange_proved": True,
         "exact_untruncated_K2_W_evaluator_equivalence_proved": True,
         "integrated_contracted_cross_reduction_proved": True,
-        "Taylor_truncation_error_envelope_formalized": False,
+        "Taylor_truncation_error_envelope_formalized": True,
+        "Taylor_bound_identical_to_python_sparse_envelope": False,
+        "Taylor_polynomial_integrals_evaluated_as_coefficient_sums": True,
+        "finite_Taylor_integrals_equal_cached_coefficient_evaluator": True,
+        "coefficient_evaluator_error_bound_from_actual_K2_functional": True,
+        "fixed_target_and_dual_exponentials_interval_certified": True,
+        "fixed_total_K2_Taylor_error_le_one_millionth": True,
+        "fixed_coefficient_expression_numerically_certified": True,
+        "rational_backend_equals_fixed_cached_evaluator": True,
+        "rational_bounds_checked_by_kernel_reduction": True,
+        "fixed_functional_gate_has_no_numerical_premises": True,
+        "fixed_finite_gate_has_explicit_coefficient_bound_premise": True,
+        "python_execution_and_interval_rounding_formalized": False,
+        "final_interval_inequality_formalized": True,
         "separable_quotient_derivatives_identified_with_W": True,
         "local_dual_conjugation_and_positive_op_proved": True,
         "swapped_dual_quotient_diagonal_identified_with_positive_W": True,

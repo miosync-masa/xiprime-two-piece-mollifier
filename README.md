@@ -10,23 +10,29 @@ This repository contains a proof draft for specialist review, a reproducible fin
 
 | Component | Current status |
 | --- | --- |
-| Fixed witness and finite main-term inequality | Exact rational checks and interval calculation, with saved output |
+| Fixed witness and finite-functional inequality | Lean proof without numerical premises; independent Python interval calculation with saved output |
 | Four K2 kernel identities, dual involution, witness identities and length margins | Lean proofs, compiled against the pinned environment |
 | Uniform coefficient bound, Subpower and normalized PRZZ error envelope | Lean proofs without an external analytic axiom |
-| Truncated inverse integrals and shift-jet identities | Lean foundations; full K2 evaluator equivalence and remainder bounds remain open |
+| Truncated inverse integrals and shift-jet identities | Lean proofs, now connected to finite beta-coefficient sums |
 | Beta-integral coefficients and four K2 coefficient sums | Lean proofs |
 | Quotient derivatives, W matrix and positive-side dual op | Lean proofs for smooth separable factors, including swapped dual and contracted profile symmetry |
-| Inverse/outer integral differentiation and exact K2 evaluator | Lean proofs for the untruncated functional, including integrated contracted cross-term reduction; Taylor error and interval bridge remain open |
+| Inverse/outer integral differentiation and exact K2 evaluator | Lean proofs for the untruncated functional, including integrated contracted cross-term reduction |
+| Taylor truncation error through the full K2 functional | Lean enclosure theorem |
+| Finite beta-coefficient evaluator, cached W contraction and cross symmetry | Lean equality with the Taylor-polynomial integrals and an inherited error bound |
+| Fixed target/dual exponential bounds and aggregate Taylor error <= 10^-6 | Lean proofs |
+| Executable rational evaluator and fixed finite gate | Kernel-checked rational bounds; `FixedCertificate.fixed_functional_gate` has no numerical premise or external analytic axiom |
 | PRZZ shifted-moment input | One explicit external axiom in a separate Lean file |
 | Leading-pole asymptotics, analytic Mellin identification and Wu counting adapter | Proof draft; formalization incomplete |
 | New simple-zero bound or publication-priority claim | Not claimed |
 
-The candidate uses $R=1.04440033$, $\theta=4/7-10^{-6}$, and the unrestricted Dirichlet convolution $\mu*\Lambda*\Lambda$. The finite certificate encloses
+The candidate uses $R=1.04440033$, $\theta=4/7-10^{-6}$, and the unrestricted Dirichlet convolution $\mu*\Lambda*\Lambda$. The unchanged Python certificate encloses
 
 $$
 1.12818163807203565629105<M<1.12818163807203565629124
 <\exp\{R(1-0.8845)\}.
 $$
+
+The Lean certificate uses a separate, coarser enclosure: the real part of the differentiated K2 functional is at most **1.128201**, while the target exponential is greater than **1.1282054105**. It proves the finite inequality, not the arithmetic asymptotic or the zero-counting conclusion.
 
 ## Reproduce the finite certificate
 
@@ -47,7 +53,7 @@ For optional Lean checks and manuscript rebuilding, see [reproduction instructio
 
 ```text
 paper/       Five-page manuscript and unchanged standalone numerical bundle
-lean/        Six Lean modules and pinned dependency information
+lean/        Twelve Lean modules and pinned dependency information
 tools/       Portable package and Lean verification commands
 checks/      Captured packaging and Lean verification output
 docs/        Proof status and reproduction instructions

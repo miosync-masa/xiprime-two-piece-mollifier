@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-10-28",
-  "preservation": "paper bundle unchanged; Lean interfaces match updated source, including coefficient, error-envelope, finite inverse/jet, beta coefficients, K2 assembly, quotient W, positive-op dual, inverse/outer derivative interchange and exact untruncated K2 evaluator proofs",
+  "preservation": "paper bundle unchanged; Lean sources match the research mirror, including the complete finite K2 coefficient semantics, total Taylor error bound, executable rational evaluator, kernel-checked rational inequalities and unconditional fixed finite-functional gate; arithmetic asymptotics and zero counting remain open",
   "copied_artifacts": [
     {
       "path": "paper/README.md",
@@ -85,6 +85,42 @@
       "source_bundle": "8845 Lean interfaces",
       "source_filename": "IntegralJet.lean",
       "sha256": "9af1394b1cf86a05b8c6de03e95c6cef5e948f401cf0299a8407d71159e319fe"
+    },
+    {
+      "path": "lean/TaylorEnvelope.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "TaylorEnvelope.lean",
+      "sha256": "af64a95655cbae53872f6283989d01814e009e5581d53a0f486f72051ebd9e62"
+    },
+    {
+      "path": "lean/CoefficientEvaluator.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "CoefficientEvaluator.lean",
+      "sha256": "4646c7061d32b4cbd2d52fa298a3a16430b8f53471b564b9d770266b96009df0"
+    },
+    {
+      "path": "lean/NumericalGate.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "NumericalGate.lean",
+      "sha256": "834fcdd249703a20dc9180577fd49592815ef95a1e50d08e42132f8da9647deb"
+    },
+    {
+      "path": "lean/RationalEvaluator.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "RationalEvaluator.lean",
+      "sha256": "5df09ff19dd24d72bdbe1e4402e619cd6bfb6b37a93e7165cf9f0cb84a14836d"
+    },
+    {
+      "path": "lean/RationalBounds.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "RationalBounds.lean",
+      "sha256": "e86464cd17f440e31cc21ebfa670a47a95030833082eeb1894f78616f7496776"
+    },
+    {
+      "path": "lean/FixedCertificate.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FixedCertificate.lean",
+      "sha256": "04d244216ff367c547b68cee77cafe1a0ca0b364309dd01744dabc48353549ab"
     }
   ],
   "external_dependency_pins": "lean/dependencies.json",

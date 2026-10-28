@@ -11,6 +11,11 @@ Updated: 28 October 2026. The fixed witness is unchanged. This status describes 
 | Finite inverse, quotient and dual jets | `lean/FiniteJet.lean` | Exponential remainder bounds or the final interval inequality |
 | Beta coefficients and K2 assembly | `lean/BetaKernel.lean` | Full equivalence of the integrated functional with the numerical evaluator |
 | Exact integrated K2 evaluator | `lean/IntegralJet.lean` | Taylor-truncated Python evaluator semantics, rounding, interval certification, or arithmetic main-term identification |
+| Full K2 Taylor error envelope | `lean/TaylorEnvelope.lean` | Equality with Python's sparse error envelope or the final numerical interval inequality |
+| Finite beta-coefficient evaluator | `lean/CoefficientEvaluator.lean` | Python execution/rounding semantics, a numerical enclosure of the coefficient expression, or arithmetic main-term identification |
+| Fixed exponential and aggregate-error bounds | `lean/NumericalGate.lean` | Its scalar helper requires the coefficient bound supplied by `FixedCertificate` |
+| Executable rational coefficient semantics | `lean/RationalEvaluator.lean` | Arithmetic main-term identification or Python execution semantics |
+| Kernel-checked fixed finite inequality | `lean/RationalBounds.lean`, `lean/FixedCertificate.lean` | Leading-pole asymptotics or zero counting |
 | Analytic proof | `paper/manuscript.tex`, prepared as a draft for expert audit | A completed Lean proof or completed human peer review |
 
 The reported proportion concerns zeros on the critical line counted with multiplicity. It is not a claim about simple zeros, and no global numerical optimality is asserted.
@@ -59,11 +64,107 @@ The order of operations matters: `FiniteJet.inverseShiftPoly` truncates the expo
 
 `quotient_general_W` extends the quotient contraction to a nonseparable numerator with a full mixed-jet array. The actual K2 numerator satisfies its regularity conditions. `K2_exact_evaluator` proves, for arbitrary finite order D, coefficient sequence q, polynomial profiles and complex shifts A+B != 0, that the successive differential operators applied to `BetaKernel.shiftedFunctional` equal `exactEvaluator`: the direct W contraction plus the reflected positive-op W contraction with its exponential factor. Its statement has no assumed derivative-interchange or evaluator-equivalence hypothesis. `contracted_fourTerms_diagonal` proves the integrated cross-term reduction after differentiation and W contraction, retaining both ordered cross terms until that step. All 31 printed dependencies in this module are audited against only `propext`, `Classical.choice` and `Quot.sound`; no PRZZ axiom is imported.
 
-This is equivalence with an **exact, untruncated** evaluator. Full equivalence with `paper/numerical_interval.py` remains open: the remaining exponential in each inverse jet must be replaced by its finite Taylor polynomial with a proved remainder bound, propagated through products, beta integration, kernel assembly and W contraction. The final Lean interval inequality also remains open. Python dictionary accumulation and mpmath rounding are not formally verified by the exact functional identity.
+This is equivalence with an **exact, untruncated** evaluator. The next module supplies the truncation error; it does not formally verify Python dictionary accumulation or mpmath rounding.
+
+### Taylor error enclosure
+
+`TaylorEnvelope.lean` replaces the remaining exponential in each normalized inverse jet by its degree-N Taylor polynomial, **after** differentiation. For theta > 0, 0 <= w <= theta and norm(A) theta <= 1, `inverse_operator_error` proves
+
+$$
+\left\|D_{-1}^{[a]}(A,w)-D_{-1,N}^{[a]}(A,w)\right\|
+\le B_a(F,\theta)\,\tau_N(\|A\|\theta),\qquad
+B_a(F,\theta)=\frac{3C_F\theta^{a+1}}{a!(a+1)},\quad
+\tau_N(r)=\frac{r^{N+1}}{(N+1)!},
+$$
+
+where $C_F$ is the sum of the absolute values of the profile coefficients. `inverse_operator_bound` proves the corresponding exact-jet bound $B_a$. The constant 3 comes from a proved complex exponential Taylor estimate, not an assumed remainder formula.
+
+For each pair of jets, `product_error` propagates exact-factor bounds and errors as $E_fB_g+E_gB_f+E_fE_g$. `monomial_error` integrates the outer power weight to obtain the factor $\theta^n/n!$. Absolute coefficient sums then propagate these errors through the literal pole sum, all four ordered K2 terms, and the direct and reflected W contractions. The dual exponential is retained exactly, with its norm multiplying the reflected error.
+
+The final theorem `K2_Taylor_enclosure`, assuming only $A+B\ne0$, $\theta>0$, $\|A\|\theta\le1$ and $\|B\|\theta\le1$, proves
+
+$$
+\left\|q(-\partial_A)q(-\partial_B)\mathcal I(A,B)
+-\operatorname{finiteEvaluator}_N(A,B)\right\|
+\le \operatorname{evaluatorError}_N(A,B).
+$$
+
+Here q is the finite coefficient sequence through the chosen order D. `finiteEvaluator` is defined using integrals of Taylor-polynomial jets; `evaluatorError` is an explicit finite expression in norms, coefficients, powers, factorials, W weights and the dual exponential. The theorem has no assumed derivative-interchange, evaluator-equivalence or error-bound hypothesis. All 13 printed theorem dependencies are audited against only `propext`, `Classical.choice` and `Quot.sound`.
+
+The noninverse-operator bound is intentionally looser than the order-specific sparse bound in `paper/numerical_interval.py`. The two envelopes are not asserted to be identical. `NumericalGate.lean` certifies a coarse numerical bound on this Lean envelope; `FixedCertificate.lean` uses it to close the finite inequality below.
+
+### Coefficient evaluator equivalence
+
+`CoefficientEvaluator.lean` proves the beta formula for complex coefficients, with real endpoints. `inversePoly_eval` identifies each differentiated-then-truncated inverse jet with a polynomial in the remaining endpoint w. Its coefficient contributions are exactly
+
+$$
+\frac{p_d}{\theta^d}\frac{(-1)^a(-A)^j(a+j)!d!}{a!j!(d+1+a+j)!}
+\quad\text{at degree }d+1+a+j.
+$$
+
+`inversePoly_coeff` proves accumulation when several contributions have the same output degree. `fsPoly_eval` covers all three K2 exponents, including the sparse zero/first derivative branches for the noninverse operators. `betaEval_integral` and `monomial_coefficients` replace the outer polynomial integrals by the exact coefficient sum
+
+$$
+\sum_d c_d\frac{\theta^{d+n}d!}{(d+n)!}.
+$$
+
+`fusedPoly_coeff` proves convolution of polynomial coefficients at degree da+db. `fusedPoly_cached` identifies the computation that first forms the W-weighted right-jet polynomial for each left jet. Linearity of the beta sum and `weighted_poleSum` justify moving these finite contractions before outer evaluation and the pole loops. `pairEvaluator_fused` connects the complete normalized profile-pair expression to this cached-polynomial order of computation.
+
+`pair_cross_swap` proves the contracted cross symmetry using W symmetry and the swap of the two jet indices; it does not substitute an undifferentiated diagonal identity. The two ordered cross terms therefore reduce to one with weight 2. `coefficientEvaluator_diagonal` retains the negative-side op and the positive-side shifted op, together with the exact dual factor exp(2R).
+
+The main equality `finiteEvaluator_cached` identifies the Taylor-polynomial integral expression with `cachedEvaluator`, a coefficient-only model of the two-sign, three-profile-pair computation in `paper/numerical_interval.py`. This model has no unevaluated integral or derivative; the dual exponential is retained exactly. `K2_cached_enclosure` carries the previous error bound all the way from the actual differentiated K2 functional to that coefficient expression, under R != 0, theta > 0 and |R| theta <= 1. All 18 printed theorem dependencies use only the standard three axioms, without the PRZZ input or `sorryAx`.
+
+This completes the exact-arithmetic coefficient semantics and truncation bridge. It is not a formal verification of Python dictionary execution or mpmath outward rounding.
+
+### Fixed exponential and aggregate-error certificate
+
+`NumericalGate.lean` fixes exactly the existing q, R, theta and profiles; `profile_witness_matches`, `q_witness_matches` and `parameters_match` prove agreement with `KernelAlgebra.lean`. The scalar exponential bounds are
+
+$$
+e^{R(1-.8845)}>1.1282054105,\qquad
+8.075224414565<e^{2R}<8.075224414566.
+$$
+
+The target lower bound uses a positive finite exponential sum. The dual bounds use a proved remainder at R/2 followed by a fourth power. All rational comparisons are checked by Lean proof terms, with no `native_decide`, external numerical axiom or JSON input.
+
+`total_error_bound` certifies the **entire** degree-24 `evaluatorError` as at most $10^{-6}$. It uses coefficient norms at most 5, derivative coefficient norms at most 10, both op arrays bounded by 5000, coarse W bounds, the literal pole-coefficient absolute sums, and the dual exponential bound. This is a deliberately loose bound for the Lean envelope, not the sharper Python interval width.
+
+`actual_sub_finite` combines that numerical bound with `K2_cached_enclosure`:
+
+$$
+\left|M_{\rm functional}-C_{24}\right|\le10^{-6},
+$$
+
+where `actual` is the differentiated complex K2 functional and `finiteValue` is the fixed cached coefficient expression. The scalar helper `fixed_finite_gate` takes the explicit premise `finiteValue.re <= 1.12820`; the following modules now prove it. The 26 printed theorem dependencies in `NumericalGate` are the standard three axioms only.
+
+### Closed fixed finite gate
+
+`RationalEvaluator.lean` implements polynomial addition, scalar multiplication, multiplication, inverse-jet coefficients, beta evaluation, W contraction and the literal pole sum over rational coefficient lists. Its interpretation theorems identify these operations with the existing complex polynomial model. `finiteValue_exact` proves the exact fixed-witness identity
+
+$$
+C_{24}=m+e^{2R}p,
+$$
+
+with executable rational values m and p. The original q, R, theta and both profiles are unchanged. The rational values are large and cancel; the calculation retains their exact rational arithmetic.
+
+`RationalBounds.rational_bounds` proves, by `decide +kernel`,
+
+$$
+m\le-588381.5413543881,\qquad
+0\le p\le72862.7019299614.
+$$
+
+`FixedCertificate.finiteValue_upper` combines these bounds with the proved dual-exponential upper bound to obtain `finiteValue.re <= 1.12820`. Adding the proved total error gives `actual_upper`:
+
+$$
+\operatorname{Re}M_{\rm functional}\le1.128201
+<1.1282054105<e^{R(1-.8845)}.
+$$
+
+The theorem **`FixedCertificate.fixed_functional_gate` has no numerical premise**. Its printed dependencies are only `propext`, `Classical.choice` and `Quot.sound`. Neither `native_decide`, a numerical axiom, a trusted JSON value, nor the PRZZ axiom enters this finite certificate. It is coarser than the independent Python interval, and does not claim the Python interval's full decimal precision.
 
 Remaining formal obligations include:
 
-- connecting the exact integrated evaluator to the finite beta-coefficient evaluator with proved exponential remainder bounds, and closing the interval certificate in Lean;
 - analytic Mellin inversion and the uniform leading-pole asymptotic;
 - the Wu auxiliary-function counting argument, boundary zeros and Littlewood connection;
 - shift differentiation, exact-V comparison, smoothing and cumulative-count limits.
