@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-10-28",
-  "preservation": "paper bundle unchanged; Lean interfaces match updated source, including coefficient, error-envelope, finite inverse/jet, beta coefficients and K2 assembly proofs",
+  "preservation": "paper bundle unchanged; Lean interfaces match updated source, including coefficient, error-envelope, finite inverse/jet, beta coefficients, K2 assembly, quotient W, positive-op dual, inverse/outer derivative interchange and exact untruncated K2 evaluator proofs",
   "copied_artifacts": [
     {
       "path": "paper/README.md",
@@ -72,13 +72,19 @@
       "path": "lean/FiniteJet.lean",
       "source_bundle": "8845 Lean interfaces",
       "source_filename": "FiniteJet.lean",
-      "sha256": "746708653d42a0ec878d137b95a2586134c294bb2361ddc3a6f6509f06b3b566"
+      "sha256": "f9bde851a952d2af58e2025dc3cab31caf73d3e719ee6b2cbdd34806369ef6cb"
     },
     {
       "path": "lean/BetaKernel.lean",
       "source_bundle": "8845 Lean interfaces",
       "source_filename": "BetaKernel.lean",
       "sha256": "5d27aee028e74f0c5ef76d8b59b4b5500a13b30fdbd890db2a9952204dee5f01"
+    },
+    {
+      "path": "lean/IntegralJet.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "IntegralJet.lean",
+      "sha256": "9af1394b1cf86a05b8c6de03e95c6cef5e948f401cf0299a8407d71159e319fe"
     }
   ],
   "external_dependency_pins": "lean/dependencies.json",

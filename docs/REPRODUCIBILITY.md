@@ -37,7 +37,7 @@ cd ..
 python3 tools/verify_lean.py --af af
 ```
 
-If `lake` is not on PATH, add `--lake /path/to/lake`. The runner checks AF and mathlib commit identities and the selected AF source files, then invokes `lake env lean` for each supplied file. It performs no fetch, reset, checkout or package installation. An existing modified dependency tree is not certified as a clean upstream build.
+If `lake` is not on PATH, add `--lake /path/to/lake`. The runner checks AF and mathlib commit identities and the selected AF source files, then invokes `lake env lean` for each of the six supplied files. It freshly compiles `BetaKernel` and `FiniteJet` into a temporary import directory before compiling `IntegralJet`, so the new module does not rely on stale local import artifacts. It performs no fetch, reset, checkout or package installation and does not write build products into AF. An existing modified dependency tree is not certified as a clean upstream build.
 
 To save fresh output in an ignored location:
 

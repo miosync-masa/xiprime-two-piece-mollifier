@@ -6,11 +6,13 @@ No fetch, reset or source edit is performed. This is not a clean AF build.
 import argparse
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 AF_PATHS = [
@@ -31,14 +33,28 @@ def require(condition, message):
         raise ValueError(message)
 
 
-def run(args, cwd):
-    proc = subprocess.run(args, cwd=cwd, text=True, capture_output=True, check=False)
+def run(args, cwd, env=None):
+    proc = subprocess.run(args, cwd=cwd, env=env, text=True, capture_output=True, check=False)
     require(proc.returncode == 0, f"Command failed: {args[0]}\n{proc.stdout}\n{proc.stderr}")
     return proc.stdout
 
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def compile_sources(lake, af, source_dir):
+    # Fresh local imports: no stale package oleans, and no writes into AF.
+    with tempfile.TemporaryDirectory(prefix="xiprime-lean-") as build:
+        env = dict(os.environ)
+        env["LEAN_PATH"] = build + (os.pathsep + env["LEAN_PATH"] if env.get("LEAN_PATH") else "")
+        for name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
+                     "PRZZInterface.lean", "AFProbe.lean", "IntegralJet.lean"):
+            command = [lake, "env", "lean", "--root=" + str(source_dir)]
+            if name in ("BetaKernel.lean", "FiniteJet.lean"):
+                command += ["-o", str(Path(build) / (Path(name).stem + ".olean"))]
+            output = run(command + [str(source_dir / name)], af, env)
+            yield name, output.replace(build, "<temporary-build>")
 
 
 def main():
@@ -57,9 +73,8 @@ def main():
             "Lean toolchain mismatch")
     run(["git", "diff", "--exit-code", pins["af_commit"], "--", *AF_PATHS], af)
     checks = {}
-    for name in ("BetaKernel.lean", "KernelAlgebra.lean", "PRZZInterface.lean", "AFProbe.lean", "FiniteJet.lean"):
+    for name, output in compile_sources(args.lake, af, ROOT / "lean"):
         path = ROOT / "lean" / name
-        output = run([args.lake, "env", "lean", str(path)], af)
         require("sorryAx" not in output and "error:" not in output, f"Proof check failed: {name}")
         explicit = sum(line.startswith("axiom ") for line in path.read_text().splitlines())
         require(explicit == (1 if name == "PRZZInterface.lean" else 0),
@@ -82,7 +97,13 @@ def main():
                             "reciprocal_jet", "denominator_jet", "inverse_integrand_jet",
                             "reflected_jet", "dual_derivative", "separable_jet₂",
                             "integral_polynomial", "inverseTrunc_eq_integral",
-                            "inverseShiftPoly_eval", "inverseShiftPoly_jet"):
+                            "inverseShiftPoly_eval", "inverseShiftPoly_jet",
+                            "reciprocal_mixed_jet", "jet_mul", "signed_dual_derivative",
+                            "dual_op_contraction", "reciprocal_slice_smooth",
+                            "quotient_separable_jet", "W_eq_evaluator", "W_contraction",
+                            "quotient_W_contraction", "contract₂_rect", "dual_contract₂",
+                            "quotient_slice_smooth", "quotient_contract₂_W", "dual_quotient_W",
+                            "W_symm", "W_profile_swap", "dual_quotient_diagonal"):
                 key = "XiPrime8845.FiniteJet." + theorem
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
@@ -96,6 +117,16 @@ def main():
                             "assemble02", "assemble22", "monomialIntegral_swap", "H02_swap",
                             "fourTerms_diagonal", "weighted_sum_transpose", "shifted_q_coefficient"):
                 key = "XiPrime8845.BetaKernel." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                require(actual == {"propext", "Classical.choice", "Quot.sound"},
+                        f"Unexpected axiom dependencies: {key}: {actual}")
+        if name == "IntegralJet.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE)
+            require("K2_exact_evaluator" in audited, "Missing full exact evaluator audit")
+            for theorem in audited:
+                key = "XiPrime8845.IntegralJet." + theorem
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 require(actual == {"propext", "Classical.choice", "Quot.sound"},
@@ -119,6 +150,14 @@ def main():
         "beta_integral_and_finite_inverse_jet_coefficients_proved": True,
         "four_K2_linear_assembly_and_undifferentiated_cross_swap_proved": True,
         "full_K2_evaluator_equivalence_proved": False,
+        "inverse_and_outer_integral_derivative_interchange_proved": True,
+        "exact_untruncated_K2_W_evaluator_equivalence_proved": True,
+        "integrated_contracted_cross_reduction_proved": True,
+        "Taylor_truncation_error_envelope_formalized": False,
+        "separable_quotient_derivatives_identified_with_W": True,
+        "local_dual_conjugation_and_positive_op_proved": True,
+        "swapped_dual_quotient_diagonal_identified_with_positive_W": True,
+        "W_contracted_profile_swap_proved": True,
         "inverse_mellin_analytic_identification_proved": False,
         "przz_external_axiom_count": 1, "final_proportion_formalized": False,
     }
