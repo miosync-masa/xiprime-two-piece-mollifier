@@ -22,6 +22,10 @@ This repository contains a proof draft for specialist review, a reproducible fin
 | Fixed target/dual exponential bounds and aggregate Taylor error <= 10^-6 | Lean proofs |
 | Executable rational evaluator and fixed finite gate | Kernel-checked rational bounds; `FixedCertificate.fixed_functional_gate` has no numerical premise or external analytic axiom |
 | PRZZ shifted-moment input | One explicit external axiom in a separate Lean file |
+| Actual normalized PRZZ residual on a fixed bidisc | Uniform convergence and arbitrary finite mixed-derivative convergence to zero, relative only to the existing PRZZ axiom |
+| Regularity of the actual zeta integral and gcd main term | Joint complex smoothness proved for T > 1 and negative real parts of both shifts; Cauchy regularity premises discharged |
+| Outer factors of the literal gcd main term | Exact direct/dual separation, uniform scaled zeta-pole limits and uniform normalized height-factor limit proved; the arithmetic-sum-to-H-kernel limit remains open |
+| Logarithmic numerical budget | Lean proof of `1 - log(1.128201)/R > 0.8845`; not a zero-counting theorem |
 | Leading-pole asymptotics, analytic Mellin identification and Wu counting adapter | Proof draft; formalization incomplete |
 | New simple-zero bound or publication-priority claim | Not claimed |
 
@@ -53,7 +57,7 @@ For optional Lean checks and manuscript rebuilding, see [reproduction instructio
 
 ```text
 paper/       Five-page manuscript and unchanged standalone numerical bundle
-lean/        Twelve Lean modules and pinned dependency information
+lean/        Sixteen Lean modules and pinned dependency information
 tools/       Portable package and Lean verification commands
 checks/      Captured packaging and Lean verification output
 docs/        Proof status and reproduction instructions

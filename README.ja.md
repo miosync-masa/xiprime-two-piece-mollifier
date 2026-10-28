@@ -40,6 +40,14 @@ Leanは別途、固定版AFのビルド済み環境が必要です。[再現手�
 
 この合成誤差上界はPython検証器の次数別上界と同一ではなく、Python実行やmpmathの丸めを形式検証したものでもありません。算術主項・零点計数への接続も別の未完部分です。
 
+`lean/PRZZAsymptotic.lean`では、PRZZ公理の実際のmomentとgcd主項の差をTで割り、`(-R,-R)`を中心とする各半径`R/4`の双円板で一様に0へ収束することを証明しました。gcd主項の極限からmomentの極限へ移す定理では、未証明のgcd主項の評価を引数に明示しています。
+
+`lean/CompactShiftIntegral.lean`はコンパクトな実区間上の複素パラメータ積分の微分交換と任意階の滑らかさを証明します。`lean/ArithmeticRegularity.lean`は実際のζ積分・gcd和へ適用し、`T > 1`、両shiftの実部が負の領域で二変数の正則性を証明しました。重みの台の制限、ζの極回避、複素冪の枝、混合微分後の正則性を含みます。これにより `ArithmeticRegularity.normalized_mixed_error_tendsto` は、**正則性を仮定に残さず**、任意の有限混合微分の正規化PRZZ誤差が0へ収束することを証明します。正則性部分は通常三公理のみ、誤差収束で追加するのは既存のPRZZ一公理のみです。gcd和から有限kernelへの主項同定・Wu計数はまだ別の未完部分です。
+
+`lean/LogarithmicBudget.lean`は、有限証明書の上界から `1 - log(1.128201)/R > 0.8845` を証明します。正のmomentがこの上界以下と証明できれば同じ余白を使えますが、そのmomentとの同定・Wuの計数不等式そのものはまだ証明していません。
+
+`lean/GcdDecomposition.lean`はliteralなgcd主項をdirect／dualへ厳密に分離し、反射shift `(-B,-A)` と必要な `log T` 正規化を保持します。`lean/ZetaPoleScaling.lean`は外側のζ極の一様極限、`lean/HeightScaling.lean`は `t=Tu` の厳密変数変換と正規化高さ積分の一様極限 `exp(-S)∫Φ` を証明します。これらは通常三公理のみで、新しい解析公理を置きません。**残る核心は `log T × 算術gcd和 → 四つのH項` の一様評価**であり、Euler積・Mellin輪郭移動・剰余の証明は未完です。
+
 元の研究台帳、私的なセッションID、依存ライブラリ本体、作業用キャッシュは含めません。
 
 ## 著作権とライセンス

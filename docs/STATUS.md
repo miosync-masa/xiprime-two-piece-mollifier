@@ -16,6 +16,10 @@ Updated: 28 October 2026. The fixed witness is unchanged. This status describes 
 | Fixed exponential and aggregate-error bounds | `lean/NumericalGate.lean` | Its scalar helper requires the coefficient bound supplied by `FixedCertificate` |
 | Executable rational coefficient semantics | `lean/RationalEvaluator.lean` | Arithmetic main-term identification or Python execution semantics |
 | Kernel-checked fixed finite inequality | `lean/RationalBounds.lean`, `lean/FixedCertificate.lean` | Leading-pole asymptotics or zero counting |
+| Actual PRZZ residual, uniform in shifts | `lean/PRZZAsymptotic.lean`, relative to the existing PRZZ axiom | Evaluation of the gcd main term |
+| Actual arithmetic regularity and mixed residual derivatives | `lean/CompactShiftIntegral.lean`, `lean/ArithmeticRegularity.lean`; regularity premises discharged | Uniform gcd-to-kernel asymptotics, explicit zeta-derivative moment identification, or zero counting |
+| Exact gcd decomposition and uniform outer-factor limits | `lean/GcdDecomposition.lean`, `lean/ZetaPoleScaling.lean`, `lean/HeightScaling.lean` | The arithmetic-sum-to-H-kernel limit, Euler-product remainder or Mellin contour estimates |
+| Logarithmic budget | `lean/LogarithmicBudget.lean` | Identification with a positive arithmetic moment or Wu's counting inequality |
 | Analytic proof | `paper/manuscript.tex`, prepared as a draft for expert audit | A completed Lean proof or completed human peer review |
 
 The reported proportion concerns zeros on the critical line counted with multiplicity. It is not a claim about simple zeros, and no global numerical optimality is asserted.
@@ -162,6 +166,168 @@ $$
 $$
 
 The theorem **`FixedCertificate.fixed_functional_gate` has no numerical premise**. Its printed dependencies are only `propext`, `Classical.choice` and `Quot.sound`. Neither `native_decide`, a numerical axiom, a trusted JSON value, nor the PRZZ axiom enters this finite certificate. It is coarser than the independent Python interval, and does not claim the Python interval's full decimal precision.
+
+### First analytic bridge: uniform PRZZ residual
+
+`PRZZAsymptotic.lean` now applies the existing PRZZ estimate to the actual
+`twistedMoment` and literal `gcdMainTerm`, both normalized by T. This is more
+than convergence of an abstract error envelope: `normalized_difference_uniform`
+proves uniform convergence of their difference to zero on
+
+$$
+\{(A,B): |A|,|B|\le b,\ |A+B|\ge g\},\qquad b,g>0.
+$$
+
+The theorem uses the same fixed witness, theta and epsilon as `PRZZInterface`.
+`witnessBidisc_subset` supplies the concrete domain
+
+$$
+|A+R|,|B+R|\le R/4
+\quad\Longrightarrow\quad
+|A|,|B|\le5R/4,\qquad |A+B|\ge3R/2>0.
+$$
+
+`normalized_difference_on_bidisc` therefore gives simultaneous complex-shift
+control around the evaluation point. The only nonstandard axiom in this
+result is `przz41_case3_K2_profiles`. Geometry and error-envelope limits use
+only the standard three axioms. No axiom declaration has been added or changed.
+
+`mixed_cauchy_bound` proves the successive Cauchy estimate
+
+$$
+|\partial_A^a\partial_B^b E(c,c)|\le a!b!C/r^{a+b}
+$$
+
+from a bound C on the product of boundary circles, with explicit
+`DiffContOnCl` hypotheses on the inner slices and the outer derivative slice.
+`normalized_mixed_error_tendsto` applies it to the actual normalized PRZZ
+residual for arbitrary finite orders, hence also orders 0 through 6.
+The generic theorem in `PRZZAsymptotic` keeps these slice hypotheses visible.
+The new `ArithmeticRegularity.normalized_mixed_error_tendsto` discharges both
+of them for the actual arithmetic functions, as described below. Identifying
+the resulting derivatives with the explicit mollified zeta-derivative moment
+remains a separate adapter.
+
+`moment_limit_of_gcd_limit` and `moment_uniform_limit_of_gcd_limit` transfer
+a separately proved gcd-sum limit to the moment. Their `hmain` premise is
+explicit; these are not proofs that the limit is the K2 kernel functional.
+They do not suppress the weight mass, replace a smoothed moment by a sharp
+window, or perform any Euler-factor or Mellin calculation.
+
+### Discharged arithmetic regularity
+
+`CompactShiftIntegral.compact_integral_hasFDerivAt` proves differentiation
+under a compact real interval integral with a continuous complex-valued weight
+and a jointly complex-smooth core. Local compactness supplies a uniform bound
+on the parameter derivative, hence an integrable dominator. Induction proves
+`compact_integral_smooth` at every finite order. `rightIterated_smooth` shows
+that taking any number of right-coordinate derivatives preserves joint smoothness.
+
+`ArithmeticRegularity.twistedMoment_smooth` and `gcdMainTerm_smooth` prove
+joint complex C-infinity regularity of the literal PRZZ expressions on
+
+$$
+\{(A,B): \operatorname{Re} A<0,\ \operatorname{Re} B<0\},\qquad T>1.
+$$
+
+The proof restricts the real integrals exactly to `[T,2T]` using the supplied
+weight support; this is not removal of smoothing or a tail approximation.
+A complex time strip `Re z > 0`, `|Im z| < 1/4` provides a neighborhood of the
+integration segment. The two moment zeta arguments avoid 1 by their real parts.
+The gcd zeta arguments avoid 1 because the sum of shift real parts is negative.
+For positive natural d and e, the gcd power base is nonzero; its complex-time
+extension stays in the logarithm's slit plane. Its exponential/logarithmic
+representation is proved equal to the original complex power on the real segment.
+The finite Dirichlet polynomials remain fixed when differentiating shifts.
+
+The closed radius-R/4 discs lie strictly inside this shift domain. The theorems
+`normalizedError_right_regular` and `normalizedError_left_mixed_regular` supply
+exactly the two `DiffContOnCl` hypotheses of the previous Cauchy estimate.
+Consequently `ArithmeticRegularity.normalized_mixed_error_tendsto` proves
+convergence to zero for every finite mixed derivative of the actual normalized
+moment-minus-gcd residual, with only `SmoothWeight Phi` and the derivative orders
+as parameters, and no residual regularity hypotheses.
+
+The three compact-integral audits and twelve arithmetic-regularity audits use
+only `propext`, `Classical.choice`, and `Quot.sound`. The thirteenth arithmetic
+audit, for mixed residual convergence, additionally uses the original
+`przz41_case3_K2_profiles` axiom. No new analytic axiom is introduced.
+
+### Exact gcd decomposition and uniform outer-factor limits
+
+Write L = log T, S = A+B, and let S_T(A,B) denote `arithmeticSum`
+at shifts A/L and B/L, with the actual profile coefficients. Define
+J_T(A,B) = L S_T(A,B), as in `scaledArithmetic`. The theorem
+`normalized_gcd_split` proves the exact identity
+
+$$
+\frac{G_T(A,B)}{T}
+=\frac{\zeta(1+S/L)}{L}\,J_T(A,B)\frac{m_T}{T}
++\frac{\zeta(1-S/L)}{L}\,J_T(-B,-A)\frac{h_T(S/L)}{T},
+$$
+
+where m_T is the weighted height mass and h_T is the same integral with
+the phase (2 pi/t)^(S/L). No coefficients, repeated prime factors or
+ordered cross terms are discarded. `dual_weight` proves the reflected
+shift identity using positive real bases, so no complex-log branch
+identity is left as an assumption. Compact support and integrability
+justify splitting and taking constants outside the literal integrals.
+
+`scaled_zeta_uniform` and `scaled_zeta_minus_uniform` prove, uniformly
+for gap <= norm S <= bound with gap > 0,
+
+$$
+\frac{\zeta(1+S/L)}{L}\longrightarrow\frac1S,
+\qquad
+\frac{\zeta(1-S/L)}{L}\longrightarrow-\frac1S.
+$$
+
+The two bidisc corollaries use the already proved gap 3R/2 and bound
+5R/2. They use mathlib's residue-one theorem, not PRZZ or an added
+asymptotic axiom.
+
+`mass_rescale` and `heightFactor_rescale` perform the exact substitution
+t = Tu. `heightFactor_uniform` proves the actual normalized height
+integral tends uniformly to exp(-S) times the integral of Phi over [1,2]
+on every bounded complex S-set. No nonnegativity of Phi is required.
+With c = |log(2 pi)| + log 2, the pointwise estimate is
+
+$$
+\left|\left(\frac{2\pi}{Tu}\right)^{S/L}-e^{-S}\right|
+\le e^B\frac{2Bc}{L},\qquad
+1\le u\le2,\quad |S|\le B,\quad Bc/L\le1.
+$$
+
+The height-integral estimate multiplies this by a proved bound on |Phi|.
+All 21 printed dependencies in these three modules use only the usual
+three axioms. They do not depend on the PRZZ axiom.
+
+**Still unproved:** J_T(A,B) tends uniformly to `BetaKernel.fourTerms`
+with the complex-cast profiles, both on the direct bidisc and its reflected
+image. This is the arithmetic Euler-product / leading-pole / profile-Mellin
+problem, not a consequence of the outer-factor limits. No theorem in these
+modules assumes that identification or claims the full gcd-to-kernel
+limit. The verification flag `gcd_mainterm_limit_proved` remains false.
+
+### Logarithmic margin for the future counting adapter
+
+`LogarithmicBudget.lean` defines a positive cap U = 1.128201 and proves
+
+$$
+\operatorname{Re}M_{\rm functional}\le U,
+\qquad 0.8845 < 1-\frac{\log U}{R}.
+$$
+
+Every positive real M with M <= U inherits this same fixed lower budget.
+`positive_moment_gate` specializes this to M <= Re M_functional. Positivity
+is an explicit premise: it is not inferred from an upper bound or from Lean's
+total definition of log. All six printed dependencies are standard three only.
+No zero-count function or Wu counting assumption is imported by this module.
+
+The next concrete analytic obligations are the explicit zeta-derivative moment
+adapter, the uniform gcd-to-kernel limit with its height-weight mass,
+and independently the Wu phase/Littlewood argument. The full analytic bridge
+is not completed by the above transfer lemmas.
 
 Remaining formal obligations include:
 

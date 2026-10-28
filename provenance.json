@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-10-28",
-  "preservation": "paper bundle unchanged; Lean sources match the research mirror, including the complete finite K2 coefficient semantics, total Taylor error bound, executable rational evaluator, kernel-checked rational inequalities and unconditional fixed finite-functional gate; arithmetic asymptotics and zero counting remain open",
+  "preservation": "paper bundle and PRZZ axiom unchanged; Lean sources match the research mirror, including the finite gate, arithmetic regularity, PRZZ residual convergence, exact gcd direct/dual separation, uniform outer zeta-pole and height-factor limits, and logarithmic budget; arithmetic-sum-to-H-kernel evaluation and Wu zero counting remain open",
   "copied_artifacts": [
     {
       "path": "paper/README.md",
@@ -121,6 +121,48 @@
       "source_bundle": "8845 Lean interfaces",
       "source_filename": "FixedCertificate.lean",
       "sha256": "04d244216ff367c547b68cee77cafe1a0ca0b364309dd01744dabc48353549ab"
+    },
+    {
+      "path": "lean/PRZZAsymptotic.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "PRZZAsymptotic.lean",
+      "sha256": "a52c07e49c4983696e247abe4e279ecf1111afe424a993bd8300864211d38e09"
+    },
+    {
+      "path": "lean/LogarithmicBudget.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "LogarithmicBudget.lean",
+      "sha256": "cfdab440d99c4bcd9bb71707917371e0566c7028592f70086b6f8182e2ea820c"
+    },
+    {
+      "path": "lean/CompactShiftIntegral.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "CompactShiftIntegral.lean",
+      "sha256": "788010f507aad45d4abed063621f915e070529784a6ad67a86fa01f37a045e83"
+    },
+    {
+      "path": "lean/ArithmeticRegularity.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ArithmeticRegularity.lean",
+      "sha256": "d00df824f6e8eadb83d6de4b87c3511635a55a2419ab92e8d72c246e7a193902"
+    },
+    {
+      "path": "lean/GcdDecomposition.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "GcdDecomposition.lean",
+      "sha256": "1e0c0df8e3e64ee9a753b27cf6048b7cfedc2936c6d1902b44b12db2ae38c91d"
+    },
+    {
+      "path": "lean/ZetaPoleScaling.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ZetaPoleScaling.lean",
+      "sha256": "72b5904858706601431cb24f2344eee8e2c0f0ebad4b18eb529c1778afb33481"
+    },
+    {
+      "path": "lean/HeightScaling.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "HeightScaling.lean",
+      "sha256": "f2bba8d8503a61c0dc3e624883bf1ba29a29802fbdd63b48c863e9e975531462"
     }
   ],
   "external_dependency_pins": "lean/dependencies.json",

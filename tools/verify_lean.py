@@ -51,11 +51,15 @@ def compile_sources(lake, af, source_dir):
         for name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
                      "PRZZInterface.lean", "AFProbe.lean", "IntegralJet.lean", "TaylorEnvelope.lean",
                      "CoefficientEvaluator.lean", "NumericalGate.lean", "RationalEvaluator.lean",
-                     "RationalBounds.lean", "FixedCertificate.lean"):
+                     "RationalBounds.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean",
+                     "LogarithmicBudget.lean", "CompactShiftIntegral.lean", "ArithmeticRegularity.lean",
+                     "GcdDecomposition.lean", "ZetaPoleScaling.lean", "HeightScaling.lean"):
             command = [lake, "env", "lean", "--root=" + str(source_dir)]
             if name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
                         "IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean",
-                        "NumericalGate.lean", "RationalEvaluator.lean", "RationalBounds.lean"):
+                        "NumericalGate.lean", "RationalEvaluator.lean", "RationalBounds.lean",
+                        "PRZZInterface.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean",
+                        "CompactShiftIntegral.lean", "ArithmeticRegularity.lean", "GcdDecomposition.lean"):
                 command += ["-o", str(Path(build) / (Path(name).stem + ".olean"))]
             output = run(command + [str(source_dir / name)], af, env)
             yield name, output.replace(build, "<temporary-build>")
@@ -95,6 +99,39 @@ def main():
                 expected = standard | ({"przz41_case3_K2_profiles"}
                                        if theorem == "witness_przz_estimate" else set())
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
+        if name == "PRZZAsymptotic.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            standard = {"propext", "Classical.choice", "Quot.sound"}
+            elementary = {"errorEnvelope_tendsto", "radius_pos", "witnessBidisc_subset",
+                          "witnessBidisc_sum_ne_zero", "mixed_cauchy_bound"}
+            analytic = {"normalized_difference_bound", "normalized_difference_uniform",
+                        "normalized_difference_on_bidisc", "moment_limit_of_gcd_limit",
+                        "moment_uniform_limit_of_gcd_limit", "normalized_mixed_error_tendsto"}
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            require(audited == elementary | analytic, "PRZZ asymptotic audit coverage changed")
+            for theorem in audited:
+                key = "XiPrime8845.PRZZAsymptotic." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = standard | ({"przz41_case3_K2_profiles"} if theorem in analytic else set())
+                require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
+        if name == "ArithmeticRegularity.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            require(audited == {"momentCore_smooth", "zeta_shift_ne_one", "gcd_zeta_ne_one",
+                               "closed_disc_re_neg", "weighted_integral_restrict", "twistedMoment_smooth",
+                               "gcdCore_smooth", "gcd_integral_smooth", "gcdMainTerm_smooth",
+                               "normalizedError_smooth", "normalizedError_right_regular",
+                               "normalizedError_left_mixed_regular", "normalized_mixed_error_tendsto"},
+                    "Arithmetic regularity audit coverage changed")
+            for theorem in audited:
+                key = "XiPrime8845.ArithmeticRegularity." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem == "normalized_mixed_error_tendsto":
+                    expected.add("przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
         if name == "FiniteJet.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             for theorem in ("polynomial_jet_zero", "polynomial_jet_at", "exponential_jet",
@@ -126,7 +163,9 @@ def main():
                 require(actual == {"propext", "Classical.choice", "Quot.sound"},
                         f"Unexpected axiom dependencies: {key}: {actual}")
         if name in ("IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean", "NumericalGate.lean",
-                    "RationalEvaluator.lean", "RationalBounds.lean", "FixedCertificate.lean"):
+                    "RationalEvaluator.lean", "RationalBounds.lean", "FixedCertificate.lean",
+                    "LogarithmicBudget.lean", "CompactShiftIntegral.lean", "GcdDecomposition.lean",
+                    "ZetaPoleScaling.lean", "HeightScaling.lean"):
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             audited = re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE)
             required = {"IntegralJet.lean": "K2_exact_evaluator",
@@ -135,7 +174,12 @@ def main():
                         "NumericalGate.lean": "actual_sub_finite",
                         "RationalEvaluator.lean": "finiteValue_exact",
                         "RationalBounds.lean": "rational_bounds",
-                        "FixedCertificate.lean": "fixed_functional_gate"}[name]
+                        "FixedCertificate.lean": "fixed_functional_gate",
+                        "LogarithmicBudget.lean": "positive_moment_gate",
+                        "CompactShiftIntegral.lean": "compact_integral_smooth",
+                        "GcdDecomposition.lean": "normalized_gcd_split",
+                        "ZetaPoleScaling.lean": "direct_pole_on_bidisc",
+                        "HeightScaling.lean": "heightFactor_uniform"}[name]
             require(required in audited, "Missing integrated evaluator/enclosure audit")
             for theorem in audited:
                 key = "XiPrime8845." + path.stem + "." + theorem
@@ -157,6 +201,16 @@ def main():
         "existing_build_used": True, "clean_upstream_build_performed": False,
         "coefficient_subpower_formal_proof_complete": True,
         "normalized_przz_error_envelope_tends_to_zero": True,
+        "actual_przz_normalized_difference_uniform_on_bidisc": True,
+        "mixed_przz_error_cauchy_transfer_with_explicit_regularity_premises": True,
+        "arithmetic_shift_regularity_premises_discharged": True,
+        "actual_mixed_przz_error_tends_to_zero_without_regularity_premises": True,
+        "gcd_mainterm_exact_direct_dual_split_proved": True,
+        "outer_zeta_poles_scaled_uniformly": True,
+        "dual_height_factor_uniform_limit_proved": True,
+        "gcd_mainterm_limit_proved": False,
+        "certified_logarithmic_budget_strictly_above_target": True,
+        "wu_counting_adapter_proved": False,
         "witness_przz_coefficient_hypotheses_discharged": True,
         "finite_truncated_inverse_integral_and_jet_identities_proved": True,
         "beta_integral_and_finite_inverse_jet_coefficients_proved": True,
