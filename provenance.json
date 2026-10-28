@@ -1,6 +1,6 @@
 {
-  "snapshot_date": "2026-10-27",
-  "preservation": "byte-identical copies; no mathematical changes",
+  "snapshot_date": "2026-10-28",
+  "preservation": "paper bundle unchanged; Lean interfaces match updated source, including coefficient and error-envelope proofs",
   "copied_artifacts": [
     {
       "path": "paper/README.md",
@@ -66,7 +66,7 @@
       "path": "lean/PRZZInterface.lean",
       "source_bundle": "8845 Lean interfaces",
       "source_filename": "PRZZInterface.lean",
-      "sha256": "375863e5bc22f46387f6aa13ec8bddada0e8dd5b53704988980b1975c6408a15"
+      "sha256": "1a4419bbc73371018e446d96835ac34bc6f70917eb6acf9dbaaa2243e5f05ca0"
     }
   ],
   "external_dependency_pins": "lean/dependencies.json",

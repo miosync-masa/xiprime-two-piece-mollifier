@@ -6,6 +6,7 @@ No fetch, reset or source edit is performed. This is not a clean AF build.
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -63,6 +64,18 @@ def main():
         explicit = sum(line.startswith("axiom ") for line in path.read_text().splitlines())
         require(explicit == (1 if name == "PRZZInterface.lean" else 0),
                 f"Unexpected explicit axiom count: {name}")
+        if name == "PRZZInterface.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            standard = {"propext", "Classical.choice", "Quot.sound"}
+            for theorem in ("abs_fengArithmetic_le_log_sq", "witness_profile_bounds",
+                            "witness_coefficient_bound", "witness_subpower",
+                            "witness_normalized_error_tendsto_zero", "witness_przz_estimate"):
+                key = "XiPrime8845.PRZZ." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = standard | ({"przz41_case3_K2_profiles"}
+                                       if theorem == "witness_przz_estimate" else set())
+                require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
         # Make captured diagnostics portable; do not disclose workstation paths.
         output = output.replace(str(ROOT), "<package>").replace(str(af), "<af>")
         checks[name] = {"exit_code": 0, "sha256": sha(path), "output": output,
@@ -75,7 +88,9 @@ def main():
         "source_sha256": {name: sha(af / name) for name in AF_PATHS},
         "checks": checks, "runner_sha256": sha(Path(__file__)),
         "existing_build_used": True, "clean_upstream_build_performed": False,
-        "coefficient_subpower_formal_proof_complete": False,
+        "coefficient_subpower_formal_proof_complete": True,
+        "normalized_przz_error_envelope_tends_to_zero": True,
+        "witness_przz_coefficient_hypotheses_discharged": True,
         "inverse_mellin_analytic_identification_proved": False,
         "przz_external_axiom_count": 1, "final_proportion_formalized": False,
     }

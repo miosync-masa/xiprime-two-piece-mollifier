@@ -23,7 +23,7 @@ Leanは別途、固定版AFのビルド済み環境が必要です。[再現手�
 ## 収録範囲
 
 - `paper/`：原稿・数値検証器・出力。既存の監査用bundleを内容変更せず収録。
-- `lean/`：kernel恒等式、dual、候補の基本条件、明示的なPRZZ公理、AFのAPI検査。
+- `lean/`：kernel恒等式、dual、候補の基本条件、係数の一様上界・Subpower・正規化誤差の極限、明示的なPRZZ公理、AFのAPI検査。
 - `tools/`・`checks/`：可搬な再実行scriptと検証記録。
 - `docs/`：未形式化部分、再現手順。
 - `.github/`：数値検証CI。

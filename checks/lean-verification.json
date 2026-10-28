@@ -23,8 +23,8 @@
     },
     "PRZZInterface.lean": {
       "exit_code": 0,
-      "sha256": "375863e5bc22f46387f6aa13ec8bddada0e8dd5b53704988980b1975c6408a15",
-      "output": "'XiPrime8845.PRZZ.witness_endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.przz41_case3_K2_profiles' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_profiles]\n",
+      "sha256": "1a4419bbc73371018e446d96835ac34bc6f70917eb6acf9dbaaa2243e5f05ca0",
+      "output": "'XiPrime8845.PRZZ.witness_normalized_error_tendsto_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_przz_estimate' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_profiles]\n'XiPrime8845.PRZZ.witness_coefficient_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_subpower' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_profile_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.abs_fengArithmetic_le_log_sq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.przz41_case3_K2_profiles' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_profiles]\n",
       "explicit_axiom_declarations": 1
     },
     "AFProbe.lean": {
@@ -34,10 +34,12 @@
       "explicit_axiom_declarations": 0
     }
   },
-  "runner_sha256": "f61c8736818506d3bb387b1a17872d3999f71caa3a97af801159ea099436b328",
+  "runner_sha256": "2e535f51e74cde62633ee3eef7525aa92093838506fa2ecc0aceea7c52ca0fd3",
   "existing_build_used": true,
   "clean_upstream_build_performed": false,
-  "coefficient_subpower_formal_proof_complete": false,
+  "coefficient_subpower_formal_proof_complete": true,
+  "normalized_przz_error_envelope_tends_to_zero": true,
+  "witness_przz_coefficient_hypotheses_discharged": true,
   "inverse_mellin_analytic_identification_proved": false,
   "przz_external_axiom_count": 1,
   "final_proportion_formalized": false
