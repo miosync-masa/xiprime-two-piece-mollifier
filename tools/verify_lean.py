@@ -69,14 +69,25 @@ def compile_sources(lake, af, source_dir):
                      "LogarithmicBudget.lean", "CompactShiftIntegral.lean", "ArithmeticRegularity.lean",
                      "GcdDecomposition.lean", "ZetaPoleScaling.lean", "HeightScaling.lean",
                      "SmoothMobius.lean", "ElementaryGcd.lean", "ShiftWeights.lean", "SupportTail.lean",
-                     "MobiusHarmonic.lean", "MobiusPNT.lean", "MobiusPNTBridge.lean"):
+                     "MobiusHarmonic.lean", "MobiusPNT.lean", "MobiusPNTBridge.lean", "WeightedMobius.lean", "WeightDerivatives.lean", "ShiftedMobius.lean", "CoprimeShift.lean", "SupportProductTail.lean",
+                     "ShiftedEndpoint.lean", "CoprimeHead.lean", "CoprimeApproximation.lean",
+                     "TotientWeight.lean", "EndpointAverage.lean",
+                     "MultiplicativeSummability.lean", "TotientConvolution.lean", "TotientSummability.lean",
+                     "TotientHarmonic.lean", "TotientAbel.lean", "ShiftedTotient.lean",
+                     "ShiftedEulerLocal.lean", "ShiftedEulerUniform.lean"):
             command = [lake, "env", "lean", "--root=" + str(source_dir)]
             if name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
                         "IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean",
                         "NumericalGate.lean", "RationalEvaluator.lean", "RationalBounds.lean",
                         "PRZZInterface.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean",
                         "CompactShiftIntegral.lean", "ArithmeticRegularity.lean", "GcdDecomposition.lean",
-                        "SmoothMobius.lean", "ElementaryGcd.lean", "MobiusHarmonic.lean", "MobiusPNT.lean"):
+                        "SmoothMobius.lean", "ElementaryGcd.lean", "MobiusHarmonic.lean", "MobiusPNT.lean", "MobiusPNTBridge.lean",
+                        "ShiftWeights.lean", "WeightedMobius.lean", "WeightDerivatives.lean",
+                        "ShiftedMobius.lean", "SupportTail.lean", "CoprimeShift.lean", "SupportProductTail.lean",
+                        "ShiftedEndpoint.lean", "CoprimeHead.lean", "CoprimeApproximation.lean",
+                        "TotientWeight.lean", "MultiplicativeSummability.lean", "TotientConvolution.lean",
+                        "TotientSummability.lean", "TotientHarmonic.lean", "ShiftedTotient.lean",
+                        "ShiftedEulerLocal.lean"):
                 command += ["-o", str(Path(build) / (Path(name).stem + ".olean"))]
             output = run(command + [str(source_dir / name)], af, env)
             yield name, output.replace(build, "<temporary-build>")
@@ -182,7 +193,12 @@ def main():
         if name in ("IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean", "NumericalGate.lean",
                     "RationalEvaluator.lean", "RationalBounds.lean", "FixedCertificate.lean",
                     "LogarithmicBudget.lean", "CompactShiftIntegral.lean", "GcdDecomposition.lean",
-                    "ZetaPoleScaling.lean", "HeightScaling.lean", "SmoothMobius.lean", "ElementaryGcd.lean", "ShiftWeights.lean", "SupportTail.lean", "MobiusHarmonic.lean", "MobiusPNT.lean", "MobiusPNTBridge.lean"):
+                    "ZetaPoleScaling.lean", "HeightScaling.lean", "SmoothMobius.lean", "ElementaryGcd.lean", "ShiftWeights.lean", "SupportTail.lean", "MobiusHarmonic.lean", "MobiusPNT.lean", "MobiusPNTBridge.lean", "WeightedMobius.lean", "WeightDerivatives.lean", "ShiftedMobius.lean", "CoprimeShift.lean", "SupportProductTail.lean",
+                     "ShiftedEndpoint.lean", "CoprimeHead.lean", "CoprimeApproximation.lean",
+                     "TotientWeight.lean", "EndpointAverage.lean",
+                     "MultiplicativeSummability.lean", "TotientConvolution.lean", "TotientSummability.lean",
+                     "TotientHarmonic.lean", "TotientAbel.lean", "ShiftedTotient.lean",
+                     "ShiftedEulerLocal.lean", "ShiftedEulerUniform.lean"):
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             audited = re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE)
             required = {"IntegralJet.lean": "K2_exact_evaluator",
@@ -203,7 +219,25 @@ def main():
                         "SupportTail.lean": "normalizedTail_uniform_zero",
                         "MobiusHarmonic.lean": "linearProfile_uniform_of_mu_pnt_alt",
                         "MobiusPNT.lean": "mu_pnt_alt",
-                        "MobiusPNTBridge.lean": "linearProfile_uniform"}[name]
+                        "MobiusPNTBridge.lean": "linearProfile_uniform",
+                        "WeightedMobius.lean": "weighted_family_uniform",
+                        "WeightDerivatives.lean": "second_bound",
+                        "ShiftedMobius.lean": "shifted_jet_reflected",
+                        "CoprimeShift.lean": "scaled_coprime_expansion",
+                        "SupportProductTail.lean": "product_error_average",
+                        "ShiftedEndpoint.lean": "coprime_second_moment",
+                        "CoprimeHead.lean": "finite_head_eventually",
+                        "CoprimeApproximation.lean": "coprime_product_error_eventually",
+                        "TotientWeight.lean": "zero_shift_weight",
+                        "EndpointAverage.lean": "actual_log_endpoint_bound",
+                        "MultiplicativeSummability.lean": "summable_of_local_mass",
+                        "TotientConvolution.lean": "harmonic_representation",
+                        "TotientSummability.lean": "correction_mass_one",
+                        "TotientHarmonic.lean": "summatory_log_bound",
+                        "TotientAbel.lean": "weighted_error_bound",
+                        "ShiftedTotient.lean": "outerWeight_product",
+                        "ShiftedEulerLocal.lean": "prime_defect_bound",
+                        "ShiftedEulerUniform.lean": "averageError_twoBidiscs_uniform"}[name]
             require(required in audited, "Missing integrated evaluator/enclosure audit")
             for theorem in audited:
                 key = "XiPrime8845." + path.stem + "." + theorem
@@ -242,7 +276,28 @@ def main():
         "qualitative_mobius_PNT_imported": True,
         "mobius_logMean_and_linear_profile_PNT_premises_discharged": True,
         "pntplus_consequences_source_commit": "6a380f0c4658c04a420a9eb00b1ed62a1e3fde01",
-        "general_C2_mobius_weight_transfer_proved": False,
+        "general_C2_mobius_weight_transfer_proved": True,
+        "absolute_logMean_error_Cesaro_limit_proved": True,
+        "shifted_profile_uniform_derivative_bounds_supplied": True,
+        "shifted_profile_jet_limit_proved": True,
+        "unrestricted_shifted_profile_uniform_on_both_bidiscs": True,
+        "restricted_shifted_sum_exact_convolution_proved": True,
+        "harmonic_product_supported_tail_uniform_zero_proved": True,
+        "product_error_harmonic_transfer_with_explicit_envelopes_proved": True,
+        "actual_coprime_endpoint_uniform_bound_proved": True,
+        "actual_coprime_harmonic_second_moment_proved": True,
+        "finite_coprime_head_mainterm_uniformly_identified": True,
+        "actual_interior_coprime_product_error_envelopes_supplied": True,
+        "actual_log_endpoint_quantitative_bound_proved": True,
+        "zero_shift_totient_weight_identified": True,
+        "totient_weight_harmonic_asymptotic_proved": True,
+        "totient_normalized_summatory_uniform_proved": True,
+        "totient_complex_weighted_Abel_error_proved": True,
+        "shifted_outer_weight_finite_Euler_product_proved": True,
+        "shifted_outer_Euler_ratio_uniform_limit_proved": True,
+        "shifted_outer_Euler_ratio_uniform_for_growing_g_on_both_bidiscs": True,
+        "shifted_outer_weight_averaged_replacement_proved": True,
+        "bounded_test_array_outer_weight_error_proved": True,
         "coprimality_averaged_error_proved": False,
         "gcd_mainterm_limit_proved": False,
         "certified_logarithmic_budget_strictly_above_target": True,

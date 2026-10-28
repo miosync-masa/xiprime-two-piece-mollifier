@@ -1,6 +1,6 @@
 {
-  "snapshot_date": "2026-10-28",
-  "preservation": "paper bundle and PRZZ axiom unchanged; Lean sources match the research mirror, including the finite gate, arithmetic regularity, PRZZ residual convergence, exact gcd direct/dual separation, uniform outer zeta-pole and height-factor limits, and logarithmic budget; arithmetic-sum-to-H-kernel evaluation and Wu zero counting remain open; exact finite gcd diagonalization, reflected two-bidisc domain and smooth-supported Conrey expansion added; coprimality averaged errors remain open; complex shift weights and harmonic-averaged supported Rankin tails proved; PNT weighted-profile errors remain open",
+  "snapshot_date": "2026-10-29",
+  "preservation": "paper bundle and PRZZ axiom unchanged; Lean sources match the research mirror, including the finite gate, arithmetic regularity, PRZZ residual convergence, exact gcd direct/dual separation, uniform outer zeta-pole and height-factor limits, and logarithmic budget; arithmetic-sum-to-H-kernel evaluation and Wu zero counting remain open; exact finite gcd diagonalization, reflected two-bidisc domain and smooth-supported Conrey expansion added; complex shift weights and harmonic-averaged supported Rankin tails proved; general weighted Mobius residual identity, absolute Cesaro error, concrete shifted-profile derivative bounds and uniform main-term/jet limits on both reflected domains proved; actual interior coprime product errors to a finite-head main term and quantitative endpoint-window domination added; full Euler-factor outer asymptotics, Feng terms and zero counting remain open; mu^2/phi = log x + O(1) with an unconditional uniform constant, complex weighted Abel error bounds and exact shifted outer Euler factors now proved; the shifted Euler ratio now converges uniformly for growing g on both reflected bidiscs, and actual outer-weight average errors and bounded-test errors vanish; full coprime-to-Euler/profile main-term assembly and Feng/Wu remain open",
   "copied_artifacts": [
     {
       "path": "paper/README.md",
@@ -205,10 +205,118 @@
       "source_bundle": "8845 Lean interfaces",
       "source_filename": "MobiusPNTBridge.lean",
       "sha256": "e2890a83383a2f0191acb4d3465069ef6dcd48e0a2b75067a9342efede16c860"
+    },
+    {
+      "path": "lean/WeightedMobius.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "WeightedMobius.lean",
+      "sha256": "a3fd38d47dfc3edaeee30f79dc0f3da8f02dadb7d66f8293f36cf0a2c15d96d6"
+    },
+    {
+      "path": "lean/WeightDerivatives.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "WeightDerivatives.lean",
+      "sha256": "4b25824069eb9e2d10f0efcd182d181473c0d4b7360fdac66d9dd3fc9f03db29"
+    },
+    {
+      "path": "lean/ShiftedMobius.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ShiftedMobius.lean",
+      "sha256": "ffaf208a9c04715988b0b9b7721899ce92f1508560680a92c5ecf107d2389517"
+    },
+    {
+      "path": "lean/CoprimeShift.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "CoprimeShift.lean",
+      "sha256": "3d372bd8828faafc47b321e63005db91487a717037e77a8756a9569365a2fd82"
+    },
+    {
+      "path": "lean/SupportProductTail.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "SupportProductTail.lean",
+      "sha256": "c83011079066c226148f0163a96a774be934434e3f337050e6bbfbaca8c4cddf"
+    },
+    {
+      "path": "lean/ShiftedEndpoint.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ShiftedEndpoint.lean",
+      "sha256": "fb8b064b2973d1590b8c34db5fd75c7a8040fc9a4c2672b6e0a7c10e5325412e"
+    },
+    {
+      "path": "lean/CoprimeHead.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "CoprimeHead.lean",
+      "sha256": "6140e9f3b568bd7e77f5c7c331a3b93b6f6580578bf50bf77450fde5892d12c9"
+    },
+    {
+      "path": "lean/CoprimeApproximation.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "CoprimeApproximation.lean",
+      "sha256": "9ca0ae585d2c2840833529a26e902b8fa539c04122c167aadb68b46d3b6ef044"
+    },
+    {
+      "path": "lean/TotientWeight.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "TotientWeight.lean",
+      "sha256": "9763f31f1a471e95e459cf78f9b687590c9e13229ee95294560f8cdcd15ea9eb"
+    },
+    {
+      "path": "lean/EndpointAverage.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "EndpointAverage.lean",
+      "sha256": "9ac2d66b69aea2a9cc9f0f5e013197faed57ef25c84956eb588fb71faac1948b"
+    },
+    {
+      "path": "lean/MultiplicativeSummability.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "MultiplicativeSummability.lean",
+      "sha256": "af4f681ac17522be97427e48ec1960c1f0121a52725df6d98feeb4f18c450c6e"
+    },
+    {
+      "path": "lean/TotientConvolution.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "TotientConvolution.lean",
+      "sha256": "191dd075d9b321cbc99a3c353bd5a7f482df733a23aa292204f7c858140938da"
+    },
+    {
+      "path": "lean/TotientSummability.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "TotientSummability.lean",
+      "sha256": "9841720e24bb303cc4cf0ed74e73d9bfb6128353111c55bf8dd0a20987251e08"
+    },
+    {
+      "path": "lean/TotientHarmonic.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "TotientHarmonic.lean",
+      "sha256": "3b3e516cc2dbdc5e9b59352bddb78488ec148e47e790aa33556bacde978f06f0"
+    },
+    {
+      "path": "lean/TotientAbel.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "TotientAbel.lean",
+      "sha256": "f8c776190cc275412c1c6bbe6c35d835483ff78597aff50372b2293f08f3535d"
+    },
+    {
+      "path": "lean/ShiftedTotient.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ShiftedTotient.lean",
+      "sha256": "d07cf69a6545ad194973ebbad86ad76127d258254ff78fffe4ccfaecf01a5ca2"
+    },
+    {
+      "path": "lean/ShiftedEulerLocal.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ShiftedEulerLocal.lean",
+      "sha256": "9878b30b012f5836b2fa1eeeb8146d19f924f966bce9e9b66bbb856cc12a648e"
+    },
+    {
+      "path": "lean/ShiftedEulerUniform.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ShiftedEulerUniform.lean",
+      "sha256": "e1bb8e67c2d5d5f950163f4cc13b655a8320ace9d65e03f6205defeaaca4838f"
     }
   ],
   "external_dependency_pins": "lean/dependencies.json",
-  "mobius_smoothing_status": "AF MediumPNT -> qualitative psi error -> M(x)=o(x) -> sum mu(n)/n -> 0, then unconditional logMean -> 1 and linear-profile uniform asymptotic away from u=0. No new PNT axiom or toolchain change. General C2 shifted profiles, averaged coprimality errors, Feng and zero counting remain open.",
+  "mobius_smoothing_status": "AF MediumPNT -> qualitative psi error -> M(x)=o(x) -> sum mu(n)/n -> 0 -> logMean -> 1. WeightedMobius proves exact twice-integration and residual identities, absolute Cesaro error -> 0, and uniform weighted smoothing away from u=0. WeightDerivatives supplies explicit first/second real derivatives and coefficient-sum bounds for ShiftWeights.weight. ShiftedMobius proves uniform L*S -> A*P(u/theta)+P'(u/theta)/theta for bounded complex shifts and u in [u0,U], u0>0; covers both witness and swapped reflected bidiscs. Entire shift dependence and Cauchy estimates with explicit outer-radius margin prove every normalized FiniteJet.jet limit uniformly, including values at (-B,-A) before reflection chain-rule signs. No quantitative Mobius rate, extra PNT premise, new axiom or toolchain change. ShiftedEndpoint supplies endpoint-safe bounds for the actual scaled coprime sums. Interior finite-head product errors and endpoint-window domination are now proved as specified below. The full arithmetic-weighted outer asymptotic, Feng terms, gcd main-term limit and zero counting remain open.",
   "private_workspace_metadata_included": false,
   "remote_publication_performed": false,
   "pntplus_port": {
@@ -222,5 +330,6 @@
     "license_file": "licenses/PNTPlus-Apache-2.0.txt",
     "modifications": "Selected Mobius consequences only; removed blueprint attributes; local namespace; replaced WeakPNT entry with pinned AF MediumPNT and adapted notation, distance simplification and limits to Lean v4.33.0-rc2.",
     "upstream_build_target": "Zeta23.FromPNTPlus.MediumPNT"
-  }
+  },
+  "coprime_product_status": "Exact shifted coprime convolution and product-safe Rankin tails are connected to actual sums. CoprimeHead identifies each fixed finite supported head uniformly in g, bounded complex shifts and u in [u0,U], u0>0. CoprimeApproximation supplies eps/r plus a Rankin tail envelopes and returns actual two-profile product errors to the harmonic g-average with an explicit eps and Q^(-1/4) bound. ShiftedEndpoint proves actual second-moment bounds including u=0. EndpointAverage proves actual_log_endpoint_bound: head harmonic mass H_Q^2*(L*delta+4) plus 2*H_floor(exp(L*U))*Q^(-1/4)*productConstant, times the squared profile cap. This is quantitative endpoint domination for the 1/g average, not yet the literal generalized-totient gcd weight. TotientWeight identifies eulerMass g 0=g/phi(g) and the zero-shift weight mu(g)^2/phi(g). Its harmonic asymptotic log x+O(1), shifted outer main-term identification, full Euler-factor limits, Feng terms and Wu counting are NOT proved. No new axiom, numerical optimization, toolchain change or publication."
 }

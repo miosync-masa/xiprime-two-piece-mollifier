@@ -184,9 +184,117 @@
       "sha256": "e2890a83383a2f0191acb4d3465069ef6dcd48e0a2b75067a9342efede16c860",
       "output": "'XiPrime8845.MobiusPNTBridge.mobiusMass_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusPNTBridge.logMean_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.MobiusPNTBridge.linearProfile_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "explicit_axiom_declarations": 0
+    },
+    "WeightedMobius.lean": {
+      "exit_code": 0,
+      "sha256": "a3fd38d47dfc3edaeee30f79dc0f3da8f02dadb7d66f8293f36cf0a2c15d96d6",
+      "output": "'XiPrime8845.WeightedMobius.logKernel_finite' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.logKernel_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.logKernel_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.endpoint_taylor' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.finite_weighted_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.weighted_mobius_twice_ibp' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.weighted_mobius_residual' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.cesaro_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.absoluteError_cesaro' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.weighted_residual_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.error_integral_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightedMobius.weighted_family_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "WeightDerivatives.lean": {
+      "exit_code": 0,
+      "sha256": "4b25824069eb9e2d10f0efcd182d181473c0d4b7360fdac66d9dd3fc9f03db29",
+      "output": "'XiPrime8845.WeightDerivatives.weight_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightDerivatives.first_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightDerivatives.second_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightDerivatives.eval_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightDerivatives.first_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightDerivatives.second_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WeightDerivatives.first_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "ShiftedMobius.lean": {
+      "exit_code": 0,
+      "sha256": "ffaf208a9c04715988b0b9b7721899ce92f1508560680a92c5ecf107d2389517",
+      "output": "'XiPrime8845.ShiftedMobius.shifted_jet_twoBidiscs' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedMobius.shifted_jet_reflected' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedMobius.scaledSum_entire' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedMobius.mainTerm_entire' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedMobius.shifted_derivative_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedMobius.shifted_jet_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedMobius.shifted_main_term_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedMobius.twoBidiscs_norm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedMobius.shifted_main_term_twoBidiscs' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "CoprimeShift.lean": {
+      "exit_code": 0,
+      "sha256": "3d372bd8828faafc47b321e63005db91487a717037e77a8756a9569365a2fd82",
+      "output": "<package>/lean/CoprimeShift.lean:61:25: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'XiPrime8845.CoprimeShift.translated_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeShift.scaled_coprime_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeShift.weight_translate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeShift.shifted_coprime_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeShift.conrey_shifted_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeShift.inner_eq_weightedSum' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "SupportProductTail.lean": {
+      "exit_code": 0,
+      "sha256": "c83011079066c226148f0163a96a774be934434e3f337050e6bbfbaca8c4cddf",
+      "output": "<package>/lean/SupportProductTail.lean:98:25: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n<package>/lean/SupportProductTail.lean:118:21: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n<package>/lean/SupportProductTail.lean:168:70: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n<package>/lean/SupportProductTail.lean:279:64: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'XiPrime8845.SupportProductTail.product_error_average' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportProductTail.head_tail_rootBound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportProductTail.supported_product_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportProductTail.tail_times_mass_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportProductTail.normalizedProductTail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportProductTail.normalizedProductTail_uniform_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.SupportProductTail.rootRad_product_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportProductTail.summable_root_weight' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportProductTail.supported_product_average' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportProductTail.supported_product_average_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "ShiftedEndpoint.lean": {
+      "exit_code": 0,
+      "sha256": "fb8b064b2973d1590b8c34db5fd75c7a8040fc9a4c2672b6e0a7c10e5325412e",
+      "output": "<package>/lean/ShiftedEndpoint.lean:106:20: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n<package>/lean/ShiftedEndpoint.lean:106:42: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'XiPrime8845.ShiftedEndpoint.scaledSum_uniform_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEndpoint.scaled_coprime_common_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEndpoint.coprime_second_moment' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEndpoint.absoluteError_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEndpoint.mainTerm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEndpoint.scaledSum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEndpoint.scaled_coprime_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "CoprimeHead.lean": {
+      "exit_code": 0,
+      "sha256": "6140e9f3b568bd7e77f5c7c331a3b93b6f6580578bf50bf77450fde5892d12c9",
+      "output": "<package>/lean/CoprimeHead.lean:31:38: warning: Variable name `hL` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _hL\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\n'XiPrime8845.CoprimeHead.finite_head_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeHead.finite_head_in_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeHead.translated_mainTerm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeHead.translated_mainTerm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeHead.head_term_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeHead.finite_head_eventually' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "CoprimeApproximation.lean": {
+      "exit_code": 0,
+      "sha256": "9ca0ae585d2c2840833529a26e902b8fa539c04122c167aadb68b46d3b6ef044",
+      "output": "'XiPrime8845.CoprimeApproximation.coprime_product_error_eventually' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.CoprimeApproximation.headMain_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeApproximation.reciprocal_rootBound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeApproximation.term_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeApproximation.headMain_extend' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeApproximation.head_approximation_envelope' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.CoprimeApproximation.errorCoeff_rootBound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "TotientWeight.lean": {
+      "exit_code": 0,
+      "sha256": "9763f31f1a471e95e459cf78f9b687590c9e13229ee95294560f8cdcd15ea9eb",
+      "output": "'XiPrime8845.TotientWeight.totient_product_real' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TotientWeight.eulerMass_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TotientWeight.zero_shift_weight' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "EndpointAverage.lean": {
+      "exit_code": 0,
+      "sha256": "9ac2d66b69aea2a9cc9f0f5e013197faed57ef25c84956eb588fb71faac1948b",
+      "output": "'XiPrime8845.EndpointAverage.endpoint_cutoff_mem' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.EndpointAverage.actual_log_endpoint_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.EndpointAverage.mass_square_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.EndpointAverage.window_second_moment' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.EndpointAverage.actual_window_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.EndpointAverage.harmonic_log_window_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "MultiplicativeSummability.lean": {
+      "exit_code": 0,
+      "sha256": "af4f681ac17522be97427e48ec1960c1f0121a52725df6d98feeb4f18c450c6e",
+      "output": "'XiPrime8845.MultiplicativeSummability.summable_of_local_mass' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "TotientConvolution.lean": {
+      "exit_code": 0,
+      "sha256": "191dd075d9b321cbc99a3c353bd5a7f482df733a23aa292204f7c858140938da",
+      "output": "<package>/lean/TotientConvolution.lean:82:18: warning: This simp argument is unused:\n  show k + 1 ≠ 1 by omega\n\nHint: Omit it from the simp argument list.\n  [apply] simp [hk, show k + 1 + 1 ≠ 2 by omega]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'XiPrime8845.TotientConvolution.correction_convolution' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TotientConvolution.harmonic_representation' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TotientConvolution.correction_prime_pow' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "TotientSummability.lean": {
+      "exit_code": 0,
+      "sha256": "9841720e24bb303cc4cf0ed74e73d9bfb6128353111c55bf8dd0a20987251e08",
+      "output": "<package>/lean/TotientSummability.lean:33:38: warning: This simp argument is unused:\n  Nat.cast_one\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [localMass, Nat.cast_add, add_assoc, one_add_one_eq_two, Nat.cast_ofNat]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'XiPrime8845.TotientSummability.powerMass_summable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TotientSummability.correction_mass_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "TotientHarmonic.lean": {
+      "exit_code": 0,
+      "sha256": "3b3e516cc2dbdc5e9b59352bddb78488ec148e47e790aa33556bacde978f06f0",
+      "output": "'XiPrime8845.TotientHarmonic.summatory_log_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TotientHarmonic.normalized_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "TotientAbel.lean": {
+      "exit_code": 0,
+      "sha256": "f8c776190cc275412c1c6bbe6c35d835483ff78597aff50372b2293f08f3535d",
+      "output": "<package>/lean/TotientAbel.lean:67:75: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n<package>/lean/TotientAbel.lean:68:37: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'XiPrime8845.TotientAbel.abel_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TotientAbel.weighted_error_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.TotientAbel.weighted_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "ShiftedTotient.lean": {
+      "exit_code": 0,
+      "sha256": "d07cf69a6545ad194973ebbad86ad76127d258254ff78fffe4ccfaecf01a5ca2",
+      "output": "<package>/lean/ShiftedTotient.lean:61:30: warning: This simp argument is unused:\n  neg_add_rev\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [euler, add_zero, neg_zero, zero_add, Complex.cpow_neg_one, SupportTail.eulerMass, sub_zero,\n    zero_sub, Real.rpow_neg_one]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n<package>/lean/ShiftedTotient.lean:61:43: warning: This simp argument is unused:\n  neg_zero\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [euler, add_zero, neg_add_rev, zero_add, Complex.cpow_neg_one, SupportTail.eulerMass, sub_zero,\n    zero_sub, Real.rpow_neg_one]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n<package>/lean/ShiftedTotient.lean:61:53: warning: This simp argument is unused:\n  zero_add\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [euler, add_zero, neg_add_rev, neg_zero, Complex.cpow_neg_one, SupportTail.eulerMass, sub_zero,\n    zero_sub, Real.rpow_neg_one]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n<package>/lean/ShiftedTotient.lean:62:49: warning: This simp argument is unused:\n  sub_zero\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [euler, add_zero, neg_add_rev, neg_zero, zero_add, Complex.cpow_neg_one, SupportTail.eulerMass,\n    zero_sub, Real.rpow_neg_one]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n<package>/lean/ShiftedTotient.lean:112:28: warning: This simp argument is unused:\n  Finset.prod_div_distrib\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [localFactor, Finset.prod_mul_distrib, Finset.prod_inv_distrib, div_eq_mul_inv, mul_inv_rev]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'XiPrime8845.ShiftedTotient.generalizedTotient_squarefree' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedTotient.generalizedTotient_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedTotient.outerWeight_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedTotient.outerWeight_product' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedTotient.local_ratio_defect' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "ShiftedEulerLocal.lean": {
+      "exit_code": 0,
+      "sha256": "9878b30b012f5836b2fa1eeeb8146d19f924f966bce9e9b66bbb856cc12a648e",
+      "output": "'XiPrime8845.ShiftedEulerLocal.primeRatio_factor' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerLocal.denominator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerLocal.local_defect_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerLocal.twist_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerLocal.prime_defect_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "ShiftedEulerUniform.lean": {
+      "exit_code": 0,
+      "sha256": "e1bb8e67c2d5d5f950163f4cc13b655a8320ace9d65e03f6205defeaaca4838f",
+      "output": "'XiPrime8845.ShiftedEulerUniform.tested_weight_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.averageError_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.averageError_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.ratio_twoBidiscs_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.averageError_twoBidiscs_uniform' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.prime_log_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.ratio_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.outerWeight_factor' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.outerWeight_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.ratio_uniform_growing' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
     }
   },
-  "runner_sha256": "ec5e0267b78fbf28e73104b14735c27f76aeb4ac6f6a574a9f8a194cff4cd936",
+  "runner_sha256": "3338332ca56295747b984cad8524c0eaa2b25937b3baf92475c54bd80d4f39ba",
   "existing_build_used": true,
   "clean_upstream_build_performed": false,
   "coefficient_subpower_formal_proof_complete": true,
@@ -208,7 +316,28 @@
   "qualitative_mobius_PNT_imported": true,
   "mobius_logMean_and_linear_profile_PNT_premises_discharged": true,
   "pntplus_consequences_source_commit": "6a380f0c4658c04a420a9eb00b1ed62a1e3fde01",
-  "general_C2_mobius_weight_transfer_proved": false,
+  "general_C2_mobius_weight_transfer_proved": true,
+  "absolute_logMean_error_Cesaro_limit_proved": true,
+  "shifted_profile_uniform_derivative_bounds_supplied": true,
+  "shifted_profile_jet_limit_proved": true,
+  "unrestricted_shifted_profile_uniform_on_both_bidiscs": true,
+  "restricted_shifted_sum_exact_convolution_proved": true,
+  "harmonic_product_supported_tail_uniform_zero_proved": true,
+  "product_error_harmonic_transfer_with_explicit_envelopes_proved": true,
+  "actual_coprime_endpoint_uniform_bound_proved": true,
+  "actual_coprime_harmonic_second_moment_proved": true,
+  "finite_coprime_head_mainterm_uniformly_identified": true,
+  "actual_interior_coprime_product_error_envelopes_supplied": true,
+  "actual_log_endpoint_quantitative_bound_proved": true,
+  "zero_shift_totient_weight_identified": true,
+  "totient_weight_harmonic_asymptotic_proved": true,
+  "totient_normalized_summatory_uniform_proved": true,
+  "totient_complex_weighted_Abel_error_proved": true,
+  "shifted_outer_weight_finite_Euler_product_proved": true,
+  "shifted_outer_Euler_ratio_uniform_limit_proved": true,
+  "shifted_outer_Euler_ratio_uniform_for_growing_g_on_both_bidiscs": true,
+  "shifted_outer_weight_averaged_replacement_proved": true,
+  "bounded_test_array_outer_weight_error_proved": true,
   "coprimality_averaged_error_proved": false,
   "gcd_mainterm_limit_proved": false,
   "certified_logarithmic_budget_strictly_above_target": true,
