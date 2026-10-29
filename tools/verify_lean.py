@@ -100,7 +100,9 @@ def compile_sources(lake, af, source_dir):
                      "FengMixedAbel.lean", "FengMixedLimit.lean",
                      "FengMixedInterior.lean", "FengMixedProduct.lean", "FengMixedShift.lean",
                      "FengLogMainTerm.lean", "FengOutsideProfile.lean", "FengCrossAssembly.lean",
-                     "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean"):
+                     "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean",
+                     "CoprimeEulerError.lean", "FengPrimeWindow.lean", "FengOutsideAverage.lean", "FengOutsideReplacement.lean",
+                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean"):
             command = [lake, "env", "lean", "--root=" + str(source_dir)]
             if name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
                         "IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean",
@@ -119,7 +121,7 @@ def compile_sources(lake, af, source_dir):
                         "CoprimeEndpoint.lean", "CoprimeGluing.lean", "ConreyOuter.lean",
                         "ConreyCoefficientBridge.lean", "ZetaPoleScaling.lean", "HeightScaling.lean",
                         "FengArithmetic.lean", "FengShift.lean", "FengAtG.lean", "FengLogBounds.lean",
-                        "FengLogEndpoint.lean", "FengOutside.lean", "FengPrimeMass.lean", "FengOutsideBounds.lean",
+                        "ConreyMainTerm.lean", "FengCoefficientBridge.lean", "FengLogEndpoint.lean", "FengOutside.lean", "FengPrimeMass.lean", "FengOutsideBounds.lean",
                         "FengPrimeCancellation.lean", "FengShared.lean", "FengSharedBlock.lean",
                         "FengResidual.lean", "FengSharedBounds.lean", "FengSharedApproximation.lean",
                         "FengSharedTail.lean", "FengSharedInterior.lean",
@@ -129,8 +131,10 @@ def compile_sources(lake, af, source_dir):
                         "FengMarkedDiagonal.lean", "FengMarkedCross.lean", "FengMarkedCrossLimit.lean",
                         "FengMixedMoment.lean", "FengMixedAbel.lean", "FengMixedLimit.lean",
                         "FengSharedLimit.lean", "FengMixedInterior.lean", "FengMixedProduct.lean",
-                        "FengMixedShift.lean", "FengLogMainTerm.lean", "FengOutsideProfile.lean",
-                        "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean"):
+                        "FengMixedShift.lean", "FengLogMainTerm.lean", "FengOutsideProfile.lean", "FengCrossAssembly.lean",
+                        "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean",
+                        "CoprimeEulerError.lean", "FengPrimeWindow.lean", "FengOutsideAverage.lean", "FengOutsideReplacement.lean",
+                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean"):
                 command += ["-o", str(Path(build) / (Path(name).stem + ".olean"))]
             output = run(command + [str(source_dir / name)], af, env)
             yield name, output.replace(build, "<temporary-build>")
@@ -258,7 +262,9 @@ def main():
                      "FengMixedAbel.lean", "FengMixedLimit.lean",
                      "FengMixedInterior.lean", "FengMixedProduct.lean", "FengMixedShift.lean",
                      "FengLogMainTerm.lean", "FengOutsideProfile.lean", "FengCrossAssembly.lean",
-                     "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean"):
+                     "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean",
+                     "CoprimeEulerError.lean", "FengPrimeWindow.lean", "FengOutsideAverage.lean", "FengOutsideReplacement.lean",
+                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean"):
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             audited = re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE)
             required = {"IntegralJet.lean": "K2_exact_evaluator",
@@ -351,7 +357,17 @@ def main():
                         "FengCrossAssembly.lean": "fullSum_twoBidiscs_of_outside",
                         "FengPrimeProfile.lean": "profileTransform_uniform",
                         "FengPrimeExclusion.lean": "excluded_mass_scaled",
-                        "FengOutsidePrime.lean": "mainProxy_twoBidiscs"}[name]
+                        "FengOutsidePrime.lean": "mainProxy_twoBidiscs",
+                        "CoprimeEulerError.lean": "innerError_average",
+                        "FengPrimeWindow.lean": "endpoint_mass",
+                        "FengOutsideAverage.lean": "averageError_twoBidiscs",
+                        "FengOutsideReplacement.lean": "outside_sub_proxy_twoBidiscs",
+                        "FengInverseProfile.lean": "zero_profile_uniform",
+                        "CoprimeSingleGluing.lean": "average_uniform",
+                        "FengOutsideProxy.lean": "zeroModel_sub_profile_uniform",
+                        "FengOutsideMainTerm.lean": "outsideAsymptotic",
+                        "FengCrossCoefficient.lean": "scaledArithmetic20_twoBidiscs",
+                        "FengMixedMainTerm.lean": "normalized_cross_uniform"}[name]
             require(required in audited, "Missing integrated evaluator/enclosure audit")
             for theorem in audited:
                 key = "XiPrime8845." + path.stem + "." + theorem
@@ -459,10 +475,17 @@ def main():
         "Feng_actual_Conrey_logBlock_raw_shifted_limit_proved": True,
         "Feng_outside_candidate_convolution_equals_inverse_profile": True,
         "Feng_Conrey_Feng_assembly_conditional_on_actual_outside_limit": True,
-        "Feng_actual_Conrey_outsideBlock_limit_proved": False,
+        "Feng_actual_Conrey_outsideBlock_limit_proved": True,
+        "Feng_outside_outerProxy_profile_integral_uniform": True,
+        "Feng_Conrey_Feng_fullSum_poleSum02_before_theta_normalization": True,
+        "mixed_PRZZ_scaledArithmetic_H02_H20_uniform_both_bidiscs": True,
+        "mixed_theta_minus_two_finite_coefficient_bridge": True,
+        "mixed_original_normalized_gcd_H02_H20_uniform": True,
         "Feng_outside_finite_mainProxy_inverse_profile_uniform_growing_g": True,
         "Feng_outside_mainProxy_includes_zero_endpoint_and_both_bidiscs": True,
-        "Feng_outside_actual_inner_replacement_average_discharge": False,
+        "Feng_outside_actual_inner_replacement_average_discharge": True,
+        "Feng_outside_moving_endpoint_prime_power_window_proved": True,
+        "Feng_outside_raw_shifted_outer_proxy_difference_uniform_zero": True,
         "Feng_actual_shared_product_zero_shift_outer_weight_limit_proved": True,
         "Feng_marked_higher_prime_power_tail_normalized_zero": True,
         "Feng_marked_diagonal_one_twentieth_and_ordered_cross_one_120_proved": True,
