@@ -292,9 +292,63 @@
       "sha256": "e1bb8e67c2d5d5f950163f4cc13b655a8320ace9d65e03f6205defeaaca4838f",
       "output": "'XiPrime8845.ShiftedEulerUniform.tested_weight_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.averageError_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.averageError_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.ratio_twoBidiscs_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.averageError_twoBidiscs_uniform' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.prime_log_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.ratio_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.outerWeight_factor' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.outerWeight_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ShiftedEulerUniform.ratio_uniform_growing' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "explicit_axiom_declarations": 0
+    },
+    "LogProfileSum.lean": {
+      "exit_code": 0,
+      "sha256": "94e798fec7a6c14ff5d339a309020c8c60f02e1a1a0775d6d356e6a33ded37db",
+      "output": "'XiPrime8845.LogProfileSum.shiftedSum_sub_zeroSum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.LogProfileSum.shiftedSum_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.LogProfileSum.shifted_family_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.LogProfileSum.log_rescale' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.LogProfileSum.zeroSum_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "OuterProfile.lean": {
+      "exit_code": 0,
+      "sha256": "1e7adba6d01d71524f01f92d0e28bc400d624f950e80d949a7d9a39a36352467",
+      "output": "'XiPrime8845.OuterProfile.modelSum_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.OuterProfile.modelSum_twoBidiscs' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.OuterProfile.modelSum_reflected' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.OuterProfile.mainTerm_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.OuterProfile.profile_sum_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.OuterProfile.integral_eq_H00' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.OuterProfile.profile_sum_twoBidiscs' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.OuterProfile.headMain_factor' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.OuterProfile.eulerMain_product_weight' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "EulerHead.lean": {
+      "exit_code": 0,
+      "sha256": "0c53ba28c22e3d6c2e0f754ef1cacd1623a5ce25917194b6815c94102266cc73",
+      "output": "'XiPrime8845.EulerHead.mass_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.EulerHead.mass_product_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.EulerHead.full_tail_product' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "CoprimeEulerCompletion.lean": {
+      "exit_code": 0,
+      "sha256": "961b76ed0553c4a8edb23f5338c998b8e87b57a627e597b7e6da5a784a012843",
+      "output": "'XiPrime8845.CoprimeEulerCompletion.actual_product_average_uniform' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.CoprimeEulerCompletion.head_product_completion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeEulerCompletion.actual_product_completion' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "BareEuler.lean": {
+      "exit_code": 0,
+      "sha256": "185d40a9c87023f1310cae9cdee9600153ebe00198a9308d0bb52e92a2fda277",
+      "output": "'XiPrime8845.BareEuler.weight_factor' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.BareEuler.prime_defect' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.BareEuler.prime_log_head_tail' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.BareEuler.ratio_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "BareEulerUniform.lean": {
+      "exit_code": 0,
+      "sha256": "a33243228b4104afea65ce07822354e3545602fcf36f2dd422b3964551fddcf3",
+      "output": "'XiPrime8845.BareEulerUniform.ratio_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.BareEulerUniform.weight_bound_eventually' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.BareEulerUniform.weighted_Euler_difference' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.BareEulerUniform.weighted_Euler_error_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "CoprimeEndpoint.lean": {
+      "exit_code": 0,
+      "sha256": "aa69f6269b06fcfa4db38d836f3d9f068760a1c84964a9a40b45de1ab33e2ed7",
+      "output": "'XiPrime8845.CoprimeEndpoint.endpoint_small' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeEndpoint.full_window' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeEndpoint.product_error_dominated' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeEndpoint.harmonic_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CoprimeEndpoint.endpoint_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "CoprimeGluing.lean": {
+      "exit_code": 0,
+      "sha256": "791c6c081852bb5d03a2b19543b4f0dad56a53629cb2f6089344cabad15faa5f",
+      "output": "'XiPrime8845.CoprimeGluing.averageError_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
+    },
+    "ConreyOuter.lean": {
+      "exit_code": 0,
+      "sha256": "c4dcbf6bab8087a9fcd78b0f3ac340447de49bc78dbed5af594772afdb16e14e",
+      "output": "'XiPrime8845.ConreyOuter.actual_sub_zero_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyOuter.zero_sub_model_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyOuter.actualSum_twoBidiscs' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyOuter.actualSum_reflected' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0
     }
   },
-  "runner_sha256": "3338332ca56295747b984cad8524c0eaa2b25937b3baf92475c54bd80d4f39ba",
+  "runner_sha256": "7218952ca16a798478db6a989e2b918bb825aade0cb0b21eb99eb0b40396a91a",
   "existing_build_used": true,
   "clean_upstream_build_performed": false,
   "coefficient_subpower_formal_proof_complete": true,
@@ -338,6 +392,16 @@
   "shifted_outer_Euler_ratio_uniform_for_growing_g_on_both_bidiscs": true,
   "shifted_outer_weight_averaged_replacement_proved": true,
   "bounded_test_array_outer_weight_error_proved": true,
+  "logarithmic_profile_sum_explicit_error_proved": true,
+  "shifted_Euler_model_outer_profile_limit_on_both_bidiscs_proved": true,
+  "outer_profile_integral_identified_with_H00": true,
+  "supported_full_Euler_mass_product_tail_proved": true,
+  "actual_interior_coprime_products_zero_shift_Euler_average_proved": true,
+  "zero_shift_to_shifted_inner_Euler_replacement_proved": true,
+  "literal_bare_prefactor_uniform_bound_proved": true,
+  "coprime_product_endpoint_gluing_proved": true,
+  "actual_diagonal_Conrey_sum_H00_limit_on_both_bidiscs_proved": true,
+  "literal_PRZZ_Conrey_coefficient_adapter_proved": false,
   "coprimality_averaged_error_proved": false,
   "gcd_mainterm_limit_proved": false,
   "certified_logarithmic_budget_strictly_above_target": true,

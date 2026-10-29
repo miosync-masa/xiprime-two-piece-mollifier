@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-10-29",
-  "preservation": "paper bundle and PRZZ axiom unchanged; Lean sources match the research mirror, including the finite gate, arithmetic regularity, PRZZ residual convergence, exact gcd direct/dual separation, uniform outer zeta-pole and height-factor limits, and logarithmic budget; arithmetic-sum-to-H-kernel evaluation and Wu zero counting remain open; exact finite gcd diagonalization, reflected two-bidisc domain and smooth-supported Conrey expansion added; complex shift weights and harmonic-averaged supported Rankin tails proved; general weighted Mobius residual identity, absolute Cesaro error, concrete shifted-profile derivative bounds and uniform main-term/jet limits on both reflected domains proved; actual interior coprime product errors to a finite-head main term and quantitative endpoint-window domination added; full Euler-factor outer asymptotics, Feng terms and zero counting remain open; mu^2/phi = log x + O(1) with an unconditional uniform constant, complex weighted Abel error bounds and exact shifted outer Euler factors now proved; the shifted Euler ratio now converges uniformly for growing g on both reflected bidiscs, and actual outer-weight average errors and bounded-test errors vanish; full coprime-to-Euler/profile main-term assembly and Feng/Wu remain open",
+  "preservation": "Paper bundle, fixed numerical witness, PRZZ axiom and dependency pins unchanged. Lean sources match the research mirror. The fixed finite-functional gate, qualitative Mobius PNT bridge, smooth shifted inner sums, coprimality expansion, product-safe averaged tails, totient harmonic asymptotic and Euler-weight profile model are proved. The literal bare generalized-totient prefactor now pays the zero-shift versus shifted inner Euler product difference uniformly for growing g. Endpoint gluing and the actual diagonal Conrey product sum limit to BetaKernel.H00 are proved on both reflected bidiscs. ConreyCoefficientBridge now identifies the original PRZZ pure-Conrey coefficient arithmetic sum with that diagonal sum exactly and transfers its H00 limit on both bidiscs. ConreyMainTerm now composes the zeta poles, original arithmetic sums and rescaled height integrals to prove the normalized pure-Conrey gcd main-term uniform limit. The exact Feng logarithmic decomposition, ordered coefficient splitting and unrestricted shifted prime-power convolution/second-derivative identity are now proved. Feng uniform limits, full K2 gcd main-term asymptotics and Wu zero counting remain separate work. This snapshot records the verified code and mathematical scope; Git records publication history.",
   "copied_artifacts": [
     {
       "path": "paper/README.md",
@@ -313,12 +313,155 @@
       "source_bundle": "8845 Lean interfaces",
       "source_filename": "ShiftedEulerUniform.lean",
       "sha256": "e1bb8e67c2d5d5f950163f4cc13b655a8320ace9d65e03f6205defeaaca4838f"
+    },
+    {
+      "path": "lean/LogProfileSum.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "LogProfileSum.lean",
+      "sha256": "94e798fec7a6c14ff5d339a309020c8c60f02e1a1a0775d6d356e6a33ded37db"
+    },
+    {
+      "path": "lean/OuterProfile.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "OuterProfile.lean",
+      "sha256": "1e7adba6d01d71524f01f92d0e28bc400d624f950e80d949a7d9a39a36352467"
+    },
+    {
+      "path": "lean/EulerHead.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "EulerHead.lean",
+      "sha256": "0c53ba28c22e3d6c2e0f754ef1cacd1623a5ce25917194b6815c94102266cc73"
+    },
+    {
+      "path": "lean/CoprimeEulerCompletion.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "CoprimeEulerCompletion.lean",
+      "sha256": "961b76ed0553c4a8edb23f5338c998b8e87b57a627e597b7e6da5a784a012843"
+    },
+    {
+      "path": "lean/BareEuler.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "BareEuler.lean",
+      "sha256": "185d40a9c87023f1310cae9cdee9600153ebe00198a9308d0bb52e92a2fda277"
+    },
+    {
+      "path": "lean/BareEulerUniform.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "BareEulerUniform.lean",
+      "sha256": "a33243228b4104afea65ce07822354e3545602fcf36f2dd422b3964551fddcf3"
+    },
+    {
+      "path": "lean/CoprimeEndpoint.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "CoprimeEndpoint.lean",
+      "sha256": "aa69f6269b06fcfa4db38d836f3d9f068760a1c84964a9a40b45de1ab33e2ed7"
+    },
+    {
+      "path": "lean/CoprimeGluing.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "CoprimeGluing.lean",
+      "sha256": "791c6c081852bb5d03a2b19543b4f0dad56a53629cb2f6089344cabad15faa5f"
+    },
+    {
+      "path": "lean/ConreyOuter.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ConreyOuter.lean",
+      "sha256": "c4dcbf6bab8087a9fcd78b0f3ac340447de49bc78dbed5af594772afdb16e14e"
+    },
+    {
+      "path": "lean/ConreyCoefficientBridge.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ConreyCoefficientBridge.lean",
+      "sha256": "1650a9ad8431a39fee87af7bcfd61e5fafceb2496fac9a5817f3141e6a88857c"
+    },
+    {
+      "path": "lean/ConreyMainTerm.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "ConreyMainTerm.lean",
+      "sha256": "7cdf8f55e055be2f4954499293bb050bb5f42882fe041672227e20ad9df1fe03"
+    },
+    {
+      "path": "lean/FengArithmetic.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengArithmetic.lean",
+      "sha256": "7d844609675bfeca2b2a0b93a7811f967ee0377a1896c78aa6ad04b2fe3fe2a6"
+    },
+    {
+      "path": "lean/FengCoefficientBridge.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengCoefficientBridge.lean",
+      "sha256": "f7c0273212eaed6e2dc58a5c4caa20eced1bf83b796ee250df711fae9fc0f061"
+    },
+    {
+      "path": "lean/FengShift.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengShift.lean",
+      "sha256": "a07b265e385617a7cc880cec398615b48b8d192b07b15933caf9716a2025a68f"
+    },
+    {
+      "path": "lean/FengAtG.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengAtG.lean",
+      "sha256": "74daeddc5cc01338e7a4228b1c23577f75fb272e24ef64dbe1f1b496395061d0"
+    },
+    {
+      "path": "lean/FengLogBounds.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengLogBounds.lean",
+      "sha256": "8c4adac653ca0d8af06e6988cdae6b38399c0a6d9c05495000d1d725b37504b4"
+    },
+    {
+      "path": "lean/FengLogEndpoint.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengLogEndpoint.lean",
+      "sha256": "7ab69e402d59b01dae9de6e83ff5a34a5b64bf8886078ca4cdbea19848dea938"
+    },
+    {
+      "path": "lean/FengPrimeCancellation.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengPrimeCancellation.lean",
+      "sha256": "a9bbc4dd03b338cf83fc43f32c4f1eb14f576c6a18a215b18f93a234be5c8b07"
+    },
+    {
+      "path": "lean/FengOutside.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengOutside.lean",
+      "sha256": "ff69afe272ec954631fc2565d06b7bb59eb29c9313a731bb70770129d822387f"
+    },
+    {
+      "path": "lean/FengPrimeMass.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengPrimeMass.lean",
+      "sha256": "e9060297a99de0e5544a429ce17113c8db75a30c09856b20a4cfbd252230b6ad"
+    },
+    {
+      "path": "lean/FengOutsideBounds.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengOutsideBounds.lean",
+      "sha256": "221ace28f240fcdd891061cedf19c45c625cf7055b1f07767c8a55283d41227e"
+    },
+    {
+      "path": "lean/FengOutsideEndpoint.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengOutsideEndpoint.lean",
+      "sha256": "c494bd2f046be2b5f91b8c854aaf81ba161d9fd0cab795a6f0ed9394020f1914"
+    },
+    {
+      "path": "lean/FengShared.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengShared.lean",
+      "sha256": "12d4c021aab87e66a8430b508f27a39ed23a2c40ccdfdb5c0a2e4da3f99f756a"
+    },
+    {
+      "path": "lean/FengSharedBlock.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengSharedBlock.lean",
+      "sha256": "dd1bb2a1dc9cbc193c40c5802064e66bb6934031c5285c1346220fec39c08d9a"
     }
   ],
   "external_dependency_pins": "lean/dependencies.json",
-  "mobius_smoothing_status": "AF MediumPNT -> qualitative psi error -> M(x)=o(x) -> sum mu(n)/n -> 0 -> logMean -> 1. WeightedMobius proves exact twice-integration and residual identities, absolute Cesaro error -> 0, and uniform weighted smoothing away from u=0. WeightDerivatives supplies explicit first/second real derivatives and coefficient-sum bounds for ShiftWeights.weight. ShiftedMobius proves uniform L*S -> A*P(u/theta)+P'(u/theta)/theta for bounded complex shifts and u in [u0,U], u0>0; covers both witness and swapped reflected bidiscs. Entire shift dependence and Cauchy estimates with explicit outer-radius margin prove every normalized FiniteJet.jet limit uniformly, including values at (-B,-A) before reflection chain-rule signs. No quantitative Mobius rate, extra PNT premise, new axiom or toolchain change. ShiftedEndpoint supplies endpoint-safe bounds for the actual scaled coprime sums. Interior finite-head product errors and endpoint-window domination are now proved as specified below. The full arithmetic-weighted outer asymptotic, Feng terms, gcd main-term limit and zero counting remain open.",
+  "mobius_smoothing_status": "AF MediumPNT -> qualitative psi error -> M(x)=o(x) -> sum mu(n)/n -> 0 -> logMean -> 1. WeightedMobius proves exact twice-integration and residual identities, absolute Cesaro error -> 0, and uniform weighted smoothing away from u=0. WeightDerivatives supplies explicit first/second real derivatives and coefficient-sum bounds for ShiftWeights.weight. ShiftedMobius proves uniform L*S -> A*P(u/theta)+P'(u/theta)/theta for bounded complex shifts and u in [u0,U], u0>0; covers both witness and swapped reflected bidiscs. Entire shift dependence and Cauchy estimates with explicit outer-radius margin prove every normalized FiniteJet.jet limit uniformly, including values at (-B,-A) before reflection chain-rule signs. No quantitative Mobius rate, extra PNT premise, new axiom or toolchain change. ShiftedEndpoint supplies endpoint-safe bounds for the actual scaled coprime sums. Interior finite-head product errors and endpoint-window domination are now proved as specified below. ConreyOuter now proves the actual diagonal Conrey product sum limit with the literal arithmetic prefactor, including the endpoint. The exact pure-Conrey PRZZ coefficient adapter is now proved. The Feng terms, full K2 gcd main-term limit and zero counting remain open.",
   "private_workspace_metadata_included": false,
-  "remote_publication_performed": false,
   "pntplus_port": {
     "repository": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
     "commit": "6a380f0c4658c04a420a9eb00b1ed62a1e3fde01",
@@ -331,5 +474,26 @@
     "modifications": "Selected Mobius consequences only; removed blueprint attributes; local namespace; replaced WeakPNT entry with pinned AF MediumPNT and adapted notation, distance simplification and limits to Lean v4.33.0-rc2.",
     "upstream_build_target": "Zeta23.FromPNTPlus.MediumPNT"
   },
-  "coprime_product_status": "Exact shifted coprime convolution and product-safe Rankin tails are connected to actual sums. CoprimeHead identifies each fixed finite supported head uniformly in g, bounded complex shifts and u in [u0,U], u0>0. CoprimeApproximation supplies eps/r plus a Rankin tail envelopes and returns actual two-profile product errors to the harmonic g-average with an explicit eps and Q^(-1/4) bound. ShiftedEndpoint proves actual second-moment bounds including u=0. EndpointAverage proves actual_log_endpoint_bound: head harmonic mass H_Q^2*(L*delta+4) plus 2*H_floor(exp(L*U))*Q^(-1/4)*productConstant, times the squared profile cap. This is quantitative endpoint domination for the 1/g average, not yet the literal generalized-totient gcd weight. TotientWeight identifies eulerMass g 0=g/phi(g) and the zero-shift weight mu(g)^2/phi(g). Its harmonic asymptotic log x+O(1), shifted outer main-term identification, full Euler-factor limits, Feng terms and Wu counting are NOT proved. No new axiom, numerical optimization, toolchain change or publication."
+  "coprime_product_status": "BareEuler and BareEulerUniform prove exact literal-prefactor factorization, a uniform growing-g O(1/g) bound, and weighted E0(g)^2 versus E_(A/L)(g) E_(B/L)(g) replacement with error at most eps times mu(g)^2/phi(g). The bare Euler ratio uses prime head/tail control: sum_(p|g) log(p)/p <= Q+1+log(g)/Q, choosing Q before L. CoprimeEndpoint extends supported second-moment window bounds to the full Euler mass and proves endpoint smallness by choosing Q, then the endpoint width, then L. CoprimeGluing proves the actual full coprime-product harmonic error tends uniformly to zero. ConreyOuter composes literal-prefactor error transfer, weighted Euler replacement and the concrete profile integral: actualSum -> BetaKernel.H 0 0 uniformly on Kminus union Kplus, with swapped reflected evaluation (-B,-A). Hypotheses are the stated profile zero endpoints and fixed witness parameters, not unproved asymptotic premises. ConreyCoefficientBridge proves the exact adapter from PRZZ.coefficient with feng=0 to this diagonal sum, including the right-coefficient conjugation, finite cutoffs and L=log(T) normalization. Feng terms, full K2/gcd asymptotics and Wu counting remain open. Five new modules contain30theorems and18printed audits, standard three axioms only.",
+  "conrey_coefficient_adapter_status": "ConreyCoefficientBridge.scaledArithmetic_eq_actualSum is an exact identity for arbitrary real polynomials, theta>0 and T>1, without profile endpoint conditions. The existing PRZZ.coefficient is specialized by Profiles(P,0), not redefined. Real-to-complex polynomial evaluation, conjugation, cutoff floor(exp(log(T)*theta))/g, mu(g*n) coprimality and shift exponent identities are explicit. scaledArithmetic_twoBidiscs and scaledArithmetic_reflected transfer H00 convergence with profile zero endpoints at the fixed witness theta. normalized_gcdMainTerm_eq replaces both original arithmetic factors in the exact direct/dual formula. Eleven new theorems compile and six printed audits use only propext, Classical.choice, Quot.sound; no PRZZ or sorryAx dependency.",
+  "verification_status": "All 68 local Lean modules were recompiled in one fresh temporary build directory with inherited LEAN_PATH removed; every module and configured axiom audit passed. checks/lean-verification-68.json is the current full-run record, with source and runner hashes. checks/lean-verification.json retains the earlier 53-module full run; subsequent incremental records are preserved unchanged. All 68 sources match the research mirror. Pinned existing AF/mathlib compiled dependencies were reused; this is not a clean upstream build. No Lean source change was needed for this full run.",
+  "conrey_normalized_mainterm_status": "ConreyMainTerm.normalized_gcdMainTerm_uniform proves the original PRZZ.gcdMainTerm for Profiles(P,0), Profiles(Q,0), divided by T, converges uniformly on witnessBidisc to weightMass(Phi) times [H00(A,B)-exp(-A-B)*H00(-B,-A)]/(A+B). P,Q are real polynomials with zero endpoints; theta is the fixed witness length. Phi is any fixed SmoothWeight; positivity and mass-one normalization are not assumed. Both arithmetic reflected domains are supplied by ConreyCoefficientBridge, while the output domain is witnessBidisc. Explicit H00, reciprocal and height-factor bounds justify uniform products. All nine theorems have printed audits using only propext, Classical.choice, Quot.sound. No PRZZ axiom, unproved asymptotic premise, Feng term, moment limit or zero-counting result is introduced.",
+  "feng_entry_status": "FengArithmetic proves Dlog(f*g)=Dlog(f)*g+f*Dlog(g), mu*Lambda=-Dlog(mu), and the exact original fengArithmetic=Dlog(Dlog(mu))+mu*Dlog(Lambda). The weighted divisor formula retains prime powers with cutoff N/r. Regression theorems give feng(p)=0 and feng(p^2)=log(p)^2 for every prime p. FengCoefficientBridge splits original PRZZ coefficients, scaledArithmetic and the literal gcdMainTerm into ordered 00+20+02+22 components, and keeps coefficients at g*n in the generic diagonalization. FengShift proves the unrestricted shifted Feng sum equals L^2 times the second A-derivative of the finite Conrey inner sum plus the explicit log-weighted Mangoldt convolution with translated cutoff/profile. L is nonzero for the derivative identity; no profile endpoint, limit or false factorization at g*n is assumed. The coefficient retains the original log(length)^2 normalization and no 2! division. These are finite identities, not proofs of H20/H02/H22 asymptotics. Remaining duties are the prime-power convolution at g*n, uniform averaged bounds on both reflected bidiscs, endpoint control, and identification of the three kernels.",
+  "feng_gn_status": "FengAtG.feng_at_mul and fengBlock_decomposition retain the exact original coefficient at g*n as the log-square block plus the prime-power divisor correction coprime to g and an explicit shared-prime correction. No squarefree truncation is imposed, and shared_prime_square proves the shared correction is log(p)^2 at g=n=p. logBlock_derivatives expresses the log-square block as mu(g) times [t^2 C - 2t C' + C''], where t=log(g)/L and C=L times the actual finite coprime Mobius sum. FengLogBounds applies radius-one Cauchy estimates on an enlarged shift ball and the proved endpoint-safe coprime bound: norm(logBlock)<=D E0(g), uniformly for bounded log(g)/L, all u in [0,U], and both reflected bidiscs. FengLogEndpoint proves a generic Euler-square window transfer and smallness of the harmonic average of products of the actual log blocks in the endpoint window; the endpoint width and L threshold are uniform on both bidiscs. Normalization is L/L^2 before theta^-2. These estimates concern only the logarithmic block, not the complete Feng coefficient. The sharedBlock and outsideBlock uniform asymptotics, their endpoints and cross-products, and H20/H02/H22 identification remain open. No new axiom, numerical certificate change, final zero proportion, commit or push.",
+  "feng_corrections_status": "FengOutside proves the exact outsideBlock convolution with N/r cutoff and u-log(r)/L translation, its finite E0(g)-mainTerm proxy and the actual weighted coprime-error budget, including harmonic g-average transfer. This proxy is NOT identified with a limiting integral and its error is NOT yet proved o(1). FengPrimeCancellation proves the arbitrary-exponent local shared-prime telescope with coprime residue, retaining non-squarefree terms; no global sharedBlock reindexing is claimed. FengPrimeMass proves sum_{r<=N} Lambda(r)log(r)/r <= 2 log(N)^2 and its L^-2 uniform bound, without a PNT rate. FengOutsideBounds proves a uniform convolution operator bound 2U^2 exp(CU), and the actual outsideBlock <= D E0(g) for every nonzero g and u in [0,U], including both reflected bidiscs. FengOutsideEndpoint proves harmonic-window smallness for products of two actual outside blocks on both bidiscs. Global sharedBlock estimates, mixed-block endpoint transfer, interior prime-power limiting integrals, H20/H02/H22 identification and Wu counting remain open. No new axiom, certificate change, commit or push.",
+  "feng_global_shared_status": "FengShared partitions the literal shared(g,n) divisor sum into the complete prime-power strings for primes dividing g, then applies the local telescope. For g,n nonzero the exact answer is sum_{p|g} mu((g*n)/p^v_p(g*n)) log(p)^2, equivalently mu(ordCompl_p(g)*ordCompl_p(n)) in each summand. No mu(g) factor or squarefree truncation is introduced. shared_two_prime_powers proves shared(p^b,p^a)=log(p)^2 for every b>0,a>=0. shared_norm_le removes local valuation growth in a finite absolute coefficient bound. FengSharedBlock swaps the n and prime sums and factors mu(ordCompl_p(g)) with the exact residual coprimality indicator. The residualInner still uses the original n denominator, log(n)/L profile argument and Icc 1 N cutoff. sharedBlock_residual preserves the L/L^2 normalization before theta^-2 for arbitrary complex shifts. Entire shift regularity and finite absolute weighted/block bounds are proved. Reindexing residualInner as n=p^a*m with exact translated cutoffs, sharp growing-g/endpoint estimates, limiting profile integrals and H20/H02/H22 remain open. Earlier feng_corrections_status describes the preceding local milestone; this entry supersedes its global shared reindexing gap only, not its asymptotic gaps. No new axiom, certificate change, commit or push.",
+  "publication_tracking": "Git commit and remote publication status are recorded in Git and the canonical ContextStream session, outside this checksum-covered snapshot. Earlier milestone entries retain their historical no-push scope.",
+  "full_68_verification": {
+    "record": "checks/lean-verification-68.json",
+    "sha256": "c3d7c683eadee24f4d8ef33dc5dc9e931b6044889f0acd358b62756885831ff5",
+    "module_count": 68,
+    "all_compile_exit_codes_zero": true,
+    "configured_axiom_audits_passed": true,
+    "explicit_external_analytic_axiom_count": 1,
+    "local_imports_freshly_compiled": true,
+    "inherited_LEAN_PATH_removed": true,
+    "clean_upstream_build_performed": false,
+    "Feng_K20_K02_K22_uniform_asymptotics_proved": false,
+    "final_zero_proportion_formalized": false
+  }
 }

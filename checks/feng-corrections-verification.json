@@ -1,0 +1,193 @@
+{
+  "verification_kind": "incremental_Feng_outside_bounds_and_shared_local_cancellation",
+  "date": "2026-10-29",
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "lean_version": "Lean (version 4.33.0-rc2, arm64-apple-darwin24.6.0, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "preexisting_verification_records": [
+    {
+      "path": "checks/lean-verification.json",
+      "sha256": "4cb086411dfbed443d1041349fe389c828633613dfe752c7ee78392938a1b9d2",
+      "count": 53
+    },
+    {
+      "path": "checks/conrey-adapter-verification.json",
+      "sha256": "21d310ff6c6a708e0f3af927c8de64b04593dfbfdfac8975223c371ee5254a1a",
+      "count": 1
+    },
+    {
+      "path": "checks/conrey-mainterm-verification.json",
+      "sha256": "d9c6a5a4dbaea2694c9992700b9e52830acfc9fa389272bbe29abe398441baaf",
+      "count": 1
+    },
+    {
+      "path": "checks/feng-entry-verification.json",
+      "sha256": "c26bca7bf13b2d587b4587d01b9b8fb43437fd5f9dc4803a297065120d61c754",
+      "count": 3
+    },
+    {
+      "path": "checks/feng-gn-verification.json",
+      "sha256": "4466b3059439fcf4f1e4504db9b0c63dad831132778f574cbba60eb879423b02",
+      "count": 3
+    }
+  ],
+  "all_61_preexisting_Lean_sources_unchanged": true,
+  "all_pinned_AF_source_hashes_match_current": true,
+  "existing_build_used": true,
+  "full_66_module_run_performed": false,
+  "clean_upstream_build_performed": false,
+  "command": "LEAN_PATH=<prebuilt-local-olean-directory> lake env lean --root=lean -o <prebuilt-local-olean-directory>/<Module>.olean lean/<Module>.lean",
+  "command_note": "Five new modules compiled individually against the pinned AF checkout and previously built local dependencies. New dependency oleans were emitted in order. All theorem declarations in these five files have matching successful printed axiom audits. Full runners register 66 modules; their dependency order and required emitted oleans were checked, but they were not run in full this turn.",
+  "current_full_runner_sha256": "4b1592bb9cda5fde7553a9b2ea6851462376fc412892c16f5b1afa84299d0699",
+  "research_runner_sha256": "88cf6848bbf2bbb082a0558d1cc2809e49e00f3f148395b42417929517ed1bc5",
+  "source_sha256": {
+    "AFProbe.lean": "b81fac80ca6fa8b955ed235f6c00f50ae9320d70be7c8a10fc0aaef4de180598",
+    "ArithmeticRegularity.lean": "d00df824f6e8eadb83d6de4b87c3511635a55a2419ab92e8d72c246e7a193902",
+    "BareEuler.lean": "185d40a9c87023f1310cae9cdee9600153ebe00198a9308d0bb52e92a2fda277",
+    "BareEulerUniform.lean": "a33243228b4104afea65ce07822354e3545602fcf36f2dd422b3964551fddcf3",
+    "BetaKernel.lean": "5d27aee028e74f0c5ef76d8b59b4b5500a13b30fdbd890db2a9952204dee5f01",
+    "CoefficientEvaluator.lean": "4646c7061d32b4cbd2d52fa298a3a16430b8f53471b564b9d770266b96009df0",
+    "CompactShiftIntegral.lean": "788010f507aad45d4abed063621f915e070529784a6ad67a86fa01f37a045e83",
+    "ConreyCoefficientBridge.lean": "1650a9ad8431a39fee87af7bcfd61e5fafceb2496fac9a5817f3141e6a88857c",
+    "ConreyMainTerm.lean": "7cdf8f55e055be2f4954499293bb050bb5f42882fe041672227e20ad9df1fe03",
+    "ConreyOuter.lean": "c4dcbf6bab8087a9fcd78b0f3ac340447de49bc78dbed5af594772afdb16e14e",
+    "CoprimeApproximation.lean": "9ca0ae585d2c2840833529a26e902b8fa539c04122c167aadb68b46d3b6ef044",
+    "CoprimeEndpoint.lean": "aa69f6269b06fcfa4db38d836f3d9f068760a1c84964a9a40b45de1ab33e2ed7",
+    "CoprimeEulerCompletion.lean": "961b76ed0553c4a8edb23f5338c998b8e87b57a627e597b7e6da5a784a012843",
+    "CoprimeGluing.lean": "791c6c081852bb5d03a2b19543b4f0dad56a53629cb2f6089344cabad15faa5f",
+    "CoprimeHead.lean": "6140e9f3b568bd7e77f5c7c331a3b93b6f6580578bf50bf77450fde5892d12c9",
+    "CoprimeShift.lean": "3d372bd8828faafc47b321e63005db91487a717037e77a8756a9569365a2fd82",
+    "ElementaryGcd.lean": "9010ffad13c9afe2e1761a6ab91fba92599845cf46a18d8f19d88a272fc52308",
+    "EndpointAverage.lean": "9ac2d66b69aea2a9cc9f0f5e013197faed57ef25c84956eb588fb71faac1948b",
+    "EulerHead.lean": "0c53ba28c22e3d6c2e0f754ef1cacd1623a5ce25917194b6815c94102266cc73",
+    "FengArithmetic.lean": "7d844609675bfeca2b2a0b93a7811f967ee0377a1896c78aa6ad04b2fe3fe2a6",
+    "FengAtG.lean": "74daeddc5cc01338e7a4228b1c23577f75fb272e24ef64dbe1f1b496395061d0",
+    "FengCoefficientBridge.lean": "f7c0273212eaed6e2dc58a5c4caa20eced1bf83b796ee250df711fae9fc0f061",
+    "FengLogBounds.lean": "8c4adac653ca0d8af06e6988cdae6b38399c0a6d9c05495000d1d725b37504b4",
+    "FengLogEndpoint.lean": "7ab69e402d59b01dae9de6e83ff5a34a5b64bf8886078ca4cdbea19848dea938",
+    "FengOutside.lean": "ff69afe272ec954631fc2565d06b7bb59eb29c9313a731bb70770129d822387f",
+    "FengOutsideBounds.lean": "221ace28f240fcdd891061cedf19c45c625cf7055b1f07767c8a55283d41227e",
+    "FengOutsideEndpoint.lean": "c494bd2f046be2b5f91b8c854aaf81ba161d9fd0cab795a6f0ed9394020f1914",
+    "FengPrimeCancellation.lean": "a9bbc4dd03b338cf83fc43f32c4f1eb14f576c6a18a215b18f93a234be5c8b07",
+    "FengPrimeMass.lean": "e9060297a99de0e5544a429ce17113c8db75a30c09856b20a4cfbd252230b6ad",
+    "FengShift.lean": "a07b265e385617a7cc880cec398615b48b8d192b07b15933caf9716a2025a68f",
+    "FiniteJet.lean": "f9bde851a952d2af58e2025dc3cab31caf73d3e719ee6b2cbdd34806369ef6cb",
+    "FixedCertificate.lean": "04d244216ff367c547b68cee77cafe1a0ca0b364309dd01744dabc48353549ab",
+    "GcdDecomposition.lean": "1e0c0df8e3e64ee9a753b27cf6048b7cfedc2936c6d1902b44b12db2ae38c91d",
+    "HeightScaling.lean": "f2bba8d8503a61c0dc3e624883bf1ba29a29802fbdd63b48c863e9e975531462",
+    "IntegralJet.lean": "9af1394b1cf86a05b8c6de03e95c6cef5e948f401cf0299a8407d71159e319fe",
+    "KernelAlgebra.lean": "eadb0577a36db859613190b12a8f7dba28c6d1339a29e0c1f2ea44e3f964927d",
+    "LogProfileSum.lean": "94e798fec7a6c14ff5d339a309020c8c60f02e1a1a0775d6d356e6a33ded37db",
+    "LogarithmicBudget.lean": "cfdab440d99c4bcd9bb71707917371e0566c7028592f70086b6f8182e2ea820c",
+    "MobiusHarmonic.lean": "0a0c0b9df2764a0d8c5fcf22531ff96ed603fa8680e0c53839b0630da8f4de32",
+    "MobiusPNT.lean": "c5f04cc8be21a8ecdd2d4c9ee9e890222626b6f59ab36d23359e69924068adf0",
+    "MobiusPNTBridge.lean": "e2890a83383a2f0191acb4d3465069ef6dcd48e0a2b75067a9342efede16c860",
+    "MultiplicativeSummability.lean": "af4f681ac17522be97427e48ec1960c1f0121a52725df6d98feeb4f18c450c6e",
+    "NumericalGate.lean": "834fcdd249703a20dc9180577fd49592815ef95a1e50d08e42132f8da9647deb",
+    "OuterProfile.lean": "1e7adba6d01d71524f01f92d0e28bc400d624f950e80d949a7d9a39a36352467",
+    "PRZZAsymptotic.lean": "a52c07e49c4983696e247abe4e279ecf1111afe424a993bd8300864211d38e09",
+    "PRZZInterface.lean": "1a4419bbc73371018e446d96835ac34bc6f70917eb6acf9dbaaa2243e5f05ca0",
+    "RationalBounds.lean": "e86464cd17f440e31cc21ebfa670a47a95030833082eeb1894f78616f7496776",
+    "RationalEvaluator.lean": "5df09ff19dd24d72bdbe1e4402e619cd6bfb6b37a93e7165cf9f0cb84a14836d",
+    "ShiftWeights.lean": "7ea4f41fdddc2cd4da215a8fb131255b983587c2092a5a4e314e0a24a9898920",
+    "ShiftedEndpoint.lean": "fb8b064b2973d1590b8c34db5fd75c7a8040fc9a4c2672b6e0a7c10e5325412e",
+    "ShiftedEulerLocal.lean": "9878b30b012f5836b2fa1eeeb8146d19f924f966bce9e9b66bbb856cc12a648e",
+    "ShiftedEulerUniform.lean": "e1bb8e67c2d5d5f950163f4cc13b655a8320ace9d65e03f6205defeaaca4838f",
+    "ShiftedMobius.lean": "ffaf208a9c04715988b0b9b7721899ce92f1508560680a92c5ecf107d2389517",
+    "ShiftedTotient.lean": "d07cf69a6545ad194973ebbad86ad76127d258254ff78fffe4ccfaecf01a5ca2",
+    "SmoothMobius.lean": "e28dc83da59b5071edef94544837df78a2ff41af516a522db3f9546ba7ff98b4",
+    "SupportProductTail.lean": "c83011079066c226148f0163a96a774be934434e3f337050e6bbfbaca8c4cddf",
+    "SupportTail.lean": "3b065176d8f019637e5cd1046c7e7281d719fc09f9d04516605af12573173ab8",
+    "TaylorEnvelope.lean": "af64a95655cbae53872f6283989d01814e009e5581d53a0f486f72051ebd9e62",
+    "TotientAbel.lean": "f8c776190cc275412c1c6bbe6c35d835483ff78597aff50372b2293f08f3535d",
+    "TotientConvolution.lean": "191dd075d9b321cbc99a3c353bd5a7f482df733a23aa292204f7c858140938da",
+    "TotientHarmonic.lean": "3b3e516cc2dbdc5e9b59352bddb78488ec148e47e790aa33556bacde978f06f0",
+    "TotientSummability.lean": "9841720e24bb303cc4cf0ed74e73d9bfb6128353111c55bf8dd0a20987251e08",
+    "TotientWeight.lean": "9763f31f1a471e95e459cf78f9b687590c9e13229ee95294560f8cdcd15ea9eb",
+    "WeightDerivatives.lean": "4b25824069eb9e2d10f0efcd182d181473c0d4b7360fdac66d9dd3fc9f03db29",
+    "WeightedMobius.lean": "a3fd38d47dfc3edaeee30f79dc0f3da8f02dadb7d66f8293f36cf0a2c15d96d6",
+    "ZetaPoleScaling.lean": "72b5904858706601431cb24f2344eee8e2c0f0ebad4b18eb529c1778afb33481"
+  },
+  "checks": {
+    "FengPrimeCancellation.lean": {
+      "exit_code": 0,
+      "sha256": "a9bbc4dd03b338cf83fc43f32c4f1eb14f576c6a18a215b18f93a234be5c8b07",
+      "output": "'XiPrime8845.FengPrimeCancellation.mark_prime_pow' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengPrimeCancellation.moebius_prime_pow_ge_two' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengPrimeCancellation.prime_power_telescope' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengPrimeCancellation.marked_prime_power_telescope' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.FengPrimeCancellation.shared_local_cancellation' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengPrimeCancellation.shared_local_at_gn' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengPrimeCancellation.shared_local_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "audited_theorems": [
+        "mark_prime_pow",
+        "moebius_prime_pow_ge_two",
+        "prime_power_telescope",
+        "marked_prime_power_telescope",
+        "shared_local_cancellation",
+        "shared_local_at_gn",
+        "shared_local_norm_le"
+      ]
+    },
+    "FengOutside.lean": {
+      "exit_code": 0,
+      "sha256": "ff69afe272ec954631fc2565d06b7bb59eb29c9313a731bb70770129d822387f",
+      "output": "'XiPrime8845.FengOutside.outside_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengOutside.outsideBlock_transform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengOutside.transform_sub' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengOutside.transform_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengOutside.outsideBlock_main_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengOutside.errorBudget_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengOutside.outside_error_average' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "audited_theorems": [
+        "outside_weighted",
+        "outsideBlock_transform",
+        "transform_sub",
+        "transform_error_bound",
+        "outsideBlock_main_error",
+        "errorBudget_nonneg",
+        "outside_error_average"
+      ]
+    },
+    "FengPrimeMass.lean": {
+      "exit_code": 0,
+      "sha256": "e9060297a99de0e5544a429ce17113c8db75a30c09856b20a4cfbd252230b6ad",
+      "output": "<package>/lean/FengPrimeMass.lean:75:25: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'XiPrime8845.FengPrimeMass.reciprocal_le_floor' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengPrimeMass.mangoldt_floor_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengPrimeMass.mangoldt_reciprocal_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengPrimeMass.mass_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengPrimeMass.mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengPrimeMass.scaled_mass_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "audited_theorems": [
+        "reciprocal_le_floor",
+        "mangoldt_floor_sum",
+        "mangoldt_reciprocal_sum",
+        "mass_nonneg",
+        "mass_le",
+        "scaled_mass_bound"
+      ]
+    },
+    "FengOutsideBounds.lean": {
+      "exit_code": 0,
+      "sha256": "221ace28f240fcdd891061cedf19c45c625cf7055b1f07767c8a55283d41227e",
+      "output": "<package>/lean/FengOutsideBounds.lean:32:22: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n<package>/lean/FengOutsideBounds.lean:51:27: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n<package>/lean/FengOutsideBounds.lean:107:21: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'XiPrime8845.FengOutsideBounds.mark_support_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengOutsideBounds.transform_uniform_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengOutsideBounds.outsideBlock_euler_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengOutsideBounds.outsideBlock_twoBidiscs' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "audited_theorems": [
+        "mark_support_bound",
+        "transform_uniform_error_bound",
+        "outsideBlock_euler_bound",
+        "outsideBlock_twoBidiscs"
+      ]
+    },
+    "FengOutsideEndpoint.lean": {
+      "exit_code": 0,
+      "sha256": "c494bd2f046be2b5f91b8c854aaf81ba161d9fd0cab795a6f0ed9394020f1914",
+      "output": "'XiPrime8845.FengOutsideEndpoint.outside_product_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengOutsideEndpoint.outside_product_endpoint_twoBidiscs' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "audited_theorems": [
+        "outside_product_endpoint",
+        "outside_product_endpoint_twoBidiscs"
+      ]
+    }
+  },
+  "audited_theorem_count": 26,
+  "all_new_audits_standard_three_only": true,
+  "research_mirrors_byte_identical": true,
+  "Feng_outside_finite_proxy_weighted_error_proved": true,
+  "Feng_shared_prime_local_telescope_proved": true,
+  "Feng_prime_power_scaled_mass_uniform_bound_proved": true,
+  "Feng_outside_endpoint_safe_Euler_bound_on_both_bidiscs": true,
+  "Feng_outside_product_endpoint_small_on_both_bidiscs": true,
+  "Feng_outside_proxy_limiting_integral_identified": false,
+  "Feng_outside_proxy_error_tends_to_zero": false,
+  "Feng_global_sharedBlock_reindexed_and_estimated": false,
+  "Feng_K20_K02_K22_uniform_asymptotics_proved": false,
+  "wu_counting_adapter_proved": false,
+  "final_8845_proportion_formalized": false
+}

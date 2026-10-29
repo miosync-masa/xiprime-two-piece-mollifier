@@ -1,0 +1,34 @@
+{
+  "verification_kind": "incremental_adapter_compile",
+  "date": "2026-10-29",
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "lean_version": "Lean (version 4.33.0-rc2, arm64-apple-darwin24.6.0, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "baseline": "checks/lean-verification.json",
+  "baseline_sha256": "4cb086411dfbed443d1041349fe389c828633613dfe752c7ee78392938a1b9d2",
+  "baseline_module_count": 53,
+  "all_baseline_source_hashes_match_current": true,
+  "all_pinned_AF_source_hashes_match_current": true,
+  "existing_build_used": true,
+  "full_54_module_run_performed": false,
+  "clean_upstream_build_performed": false,
+  "command": "LEAN_PATH=<prebuilt-local-olean-directory> lake env lean --root=lean -o <prebuilt-local-olean-directory>/ConreyCoefficientBridge.olean lean/ConreyCoefficientBridge.lean",
+  "command_note": "Run from pinned AF checkout with absolute source/root paths; reused local oleans, including freshly recompiled ConreyOuter. Full reproducible fresh-local-import regression is tools/verify_lean.py, now registering 54 modules.",
+  "current_full_runner_sha256": "d698e9dd462bd2c33244318e01cab5f30602b0eab6485c51cdd47071f1e8cd25",
+  "checks": {
+    "ConreyCoefficientBridge.lean": {
+      "exit_code": 0,
+      "sha256": "1650a9ad8431a39fee87af7bcfd61e5fafceb2496fac9a5817f3141e6a88857c",
+      "output": "'XiPrime8845.ConreyCoefficientBridge.coefficient_in_range' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyCoefficientBridge.inner_coefficient' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyCoefficientBridge.scaledArithmetic_eq_actualSum' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.ConreyCoefficientBridge.scaledArithmetic_twoBidiscs' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.ConreyCoefficientBridge.scaledArithmetic_reflected' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.ConreyCoefficientBridge.normalized_gcdMainTerm_eq' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "theorem_count": 11,
+      "printed_axiom_audits": 6
+    }
+  },
+  "literal_PRZZ_Conrey_coefficient_adapter_proved": true,
+  "original_PRZZ_Conrey_scaled_arithmetic_H00_limit_proved": true,
+  "original_PRZZ_Conrey_normalized_gcd_exact_adapter_proved": true,
+  "full_K2_gcd_mainterm_limit_proved": false,
+  "wu_counting_adapter_proved": false,
+  "final_proportion_formalized": false
+}

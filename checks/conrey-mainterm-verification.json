@@ -1,0 +1,36 @@
+{
+  "verification_kind": "incremental_uniform_mainterm_compile",
+  "date": "2026-10-29",
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "lean_version": "Lean (version 4.33.0-rc2, arm64-apple-darwin24.6.0, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "baseline": "checks/lean-verification.json",
+  "baseline_sha256": "4cb086411dfbed443d1041349fe389c828633613dfe752c7ee78392938a1b9d2",
+  "baseline_module_count": 53,
+  "adapter_record": "checks/conrey-adapter-verification.json",
+  "adapter_record_sha256": "21d310ff6c6a708e0f3af927c8de64b04593dfbfdfac8975223c371ee5254a1a",
+  "all_baseline_source_hashes_match_current": true,
+  "adapter_source_hash_matches_current": true,
+  "all_pinned_AF_source_hashes_match_current": true,
+  "existing_build_used": true,
+  "full_55_module_run_performed": false,
+  "clean_upstream_build_performed": false,
+  "command": "LEAN_PATH=<prebuilt-local-olean-directory> lake env lean --root=lean -o <prebuilt-local-olean-directory>/ConreyMainTerm.olean lean/ConreyMainTerm.lean",
+  "command_note": "Run from pinned AF checkout with absolute paths. ZetaPoleScaling and HeightScaling were recompiled with oleans before this module; other existing local dependencies reused. Full fresh-local-import runner now registers 55 modules.",
+  "current_full_runner_sha256": "4a39e6e802a8782fa9f90aeafd70a8b1305989e243d6c7fbaa77e91e7f2bc22d",
+  "checks": {
+    "ConreyMainTerm.lean": {
+      "exit_code": 0,
+      "sha256": "7cdf8f55e055be2f4954499293bb050bb5f42882fe041672227e20ad9df1fe03",
+      "output": "'XiPrime8845.ConreyMainTerm.uniform_mul_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyMainTerm.H00_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyMainTerm.H00_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyMainTerm.reciprocal_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyMainTerm.mass_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyMainTerm.height_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyMainTerm.height_limit_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyMainTerm.normalized_gcdMainTerm_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ConreyMainTerm.normalized_gcdMainTerm_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "theorem_count": 9,
+      "printed_axiom_audits": 9
+    }
+  },
+  "original_PRZZ_Conrey_normalized_gcd_uniform_limit_proved": true,
+  "arithmetic_reflected_domain_used": true,
+  "full_K2_gcd_mainterm_limit_proved": false,
+  "wu_counting_adapter_proved": false,
+  "final_proportion_formalized": false
+}
