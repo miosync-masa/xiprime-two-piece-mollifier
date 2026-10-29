@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-10-29",
-  "preservation": "Paper bundle, fixed numerical witness, PRZZ axiom and dependency pins unchanged. Lean sources match the research mirror. The fixed finite-functional gate, qualitative Mobius PNT bridge, smooth shifted inner sums, coprimality expansion, product-safe averaged tails, totient harmonic asymptotic and Euler-weight profile model are proved. The literal bare generalized-totient prefactor now pays the zero-shift versus shifted inner Euler product difference uniformly for growing g. Endpoint gluing and the actual diagonal Conrey product sum limit to BetaKernel.H00 are proved on both reflected bidiscs. ConreyCoefficientBridge now identifies the original PRZZ pure-Conrey coefficient arithmetic sum with that diagonal sum exactly and transfers its H00 limit on both bidiscs. ConreyMainTerm now composes the zeta poles, original arithmetic sums and rescaled height integrals to prove the normalized pure-Conrey gcd main-term uniform limit. The exact Feng logarithmic decomposition, ordered coefficient splitting and unrestricted shifted prime-power convolution/second-derivative identity are now proved. Feng uniform limits, full K2 gcd main-term asymptotics and Wu zero counting remain separate work. This snapshot records the verified code and mathematical scope; Git records publication history.",
+  "preservation": "Paper bundle, fixed numerical witness, PRZZ axiom and dependency pins unchanged. Lean sources match the research mirror. The fixed finite-functional gate, qualitative Mobius PNT bridge, smooth shifted inner sums, coprimality expansion, product-safe averaged tails, totient harmonic asymptotic and Euler-weight profile model are proved. The literal bare generalized-totient prefactor now pays the zero-shift versus shifted inner Euler product difference uniformly for growing g. Endpoint gluing and the actual diagonal Conrey product sum limit to BetaKernel.H00 are proved on both reflected bidiscs. ConreyCoefficientBridge now identifies the original PRZZ pure-Conrey coefficient arithmetic sum with that diagonal sum exactly and transfers its H00 limit on both bidiscs. ConreyMainTerm now composes the zeta poles, original arithmetic sums and rescaled height integrals to prove the normalized pure-Conrey gcd main-term uniform limit. The exact Feng logarithmic decomposition, ordered coefficient splitting and unrestricted shifted prime-power convolution/second-derivative identity are now proved. Feng uniform limits, full K2 gcd main-term asymptotics and Wu zero counting remain separate work. This snapshot records the verified code and mathematical scope; Git records publication history. The actual marked scalar asymptotic 7/120 and its unconditional marked profile limit on both reflected bidiscs are now proved; this does not close the full Feng kernel assembly.",
   "copied_artifacts": [
     {
       "path": "paper/README.md",
@@ -457,6 +457,186 @@
       "source_bundle": "8845 Lean interfaces",
       "source_filename": "FengSharedBlock.lean",
       "sha256": "dd1bb2a1dc9cbc193c40c5802064e66bb6934031c5285c1346220fec39c08d9a"
+    },
+    {
+      "path": "lean/FengResidual.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengResidual.lean",
+      "sha256": "73e6dfe1e7d0cb9fe5fbfd4f2a8981af151cd3d6aa74cf39825579d0cfdf06d0"
+    },
+    {
+      "path": "lean/FengSharedApproximation.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengSharedApproximation.lean",
+      "sha256": "b50dd3cffaf911cc78c466b7a718be801847142cc3ea11d21b19e6236a9457a5"
+    },
+    {
+      "path": "lean/FengSharedBounds.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengSharedBounds.lean",
+      "sha256": "cb809c3f8db8f08d9db1205b6e350af371f0439038123c7b5649d371469bdd89"
+    },
+    {
+      "path": "lean/FengSharedEndpoint.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengSharedEndpoint.lean",
+      "sha256": "3a040d1942bcd73424c23deb62ca0b6fc63c5af01a1ef86619bc8c60eceef8fe"
+    },
+    {
+      "path": "lean/FengSharedTail.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengSharedTail.lean",
+      "sha256": "d06c31a1633dcb68b56cdfa22cff8998d337eee1bbc9bc9829f653f070a106ea"
+    },
+    {
+      "path": "lean/FengSharedInterior.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengSharedInterior.lean",
+      "sha256": "3a01d905a89174d269287c19f62ec4efab32513714c03de164f46c9ed89d88d5"
+    },
+    {
+      "path": "lean/FengMarkedProfile.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMarkedProfile.lean",
+      "sha256": "746f4adfb355968c361258a969c54420a2cbd87285ad22f6c7487a648bfb7894"
+    },
+    {
+      "path": "lean/FengMarkedAbel.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMarkedAbel.lean",
+      "sha256": "4c9d0fdba11e4f93d8ef0bf312bc86e68fe86ca3ae78ec3cd5425f7af735e5fc"
+    },
+    {
+      "path": "lean/FengMarkedLimit.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMarkedLimit.lean",
+      "sha256": "b9dd6a107dc96ef64db52071df943c0df2045e9999793c2185a645ae46b010a9"
+    },
+    {
+      "path": "lean/TotientCoprime.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "TotientCoprime.lean",
+      "sha256": "e6f9cb57fb86ab29c671e0ec5bd4ff092c6ddb2688aa4eef6a1e904c3c2f0d1e"
+    },
+    {
+      "path": "lean/FengMarkedArithmetic.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMarkedArithmetic.lean",
+      "sha256": "33d179d15e8fdaa13b8f5708eb801dbf52c5f4074851bb968ffb5ad416f71406"
+    },
+    {
+      "path": "lean/FengMarkedDecomposition.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMarkedDecomposition.lean",
+      "sha256": "278d9d511eb3ac4a3e35b1f39e854e3823e3099b0fbfaf1a332cb9fb18b40d21"
+    },
+    {
+      "path": "lean/FengMarkedTail.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMarkedTail.lean",
+      "sha256": "eb84b2b9ac7ff31e654c9ccc5ce92a388e1fe9ea1bf0c9d0efba4ae2bedbe8bf"
+    },
+    {
+      "path": "lean/FengMertensModels.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMertensModels.lean",
+      "sha256": "833a61dd669f07d810f7b59af1ce8c37d510f52b0022592e21dd79cfc5931d32"
+    },
+    {
+      "path": "lean/FengMarkedDiagonal.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMarkedDiagonal.lean",
+      "sha256": "dccba31ff27c38c2aff5b42ea31e3664d45951bd4537a4220edbe49878ec9843"
+    },
+    {
+      "path": "lean/FengMarkedCross.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMarkedCross.lean",
+      "sha256": "f6ff216023572bd7a84fa5a67075b81fd25e2ea87452d382654e4f18a0f7f70b"
+    },
+    {
+      "path": "lean/FengMarkedCrossLimit.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMarkedCrossLimit.lean",
+      "sha256": "5ad1c04e902f61d6e86f6739dbad024be006039f7780d6044f31ee1be460d779"
+    },
+    {
+      "path": "lean/FengMixedMoment.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMixedMoment.lean",
+      "sha256": "6db0cd0eb6bd4369b6d4d4db6fb564a85ec56f68d993b3c75afe78bb05810b38"
+    },
+    {
+      "path": "lean/FengSharedLimit.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengSharedLimit.lean",
+      "sha256": "85539ea82cea4e95a500b55ed6bff52950ab86b696af135742322c13de9af6fd"
+    },
+    {
+      "path": "lean/FengMixedAbel.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMixedAbel.lean",
+      "sha256": "9bc8737e0c6d9b451e2e2f36d555f87b05983a11a44ebcb958c76669b3c83144"
+    },
+    {
+      "path": "lean/FengMixedLimit.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMixedLimit.lean",
+      "sha256": "df3670174848d75554c236dd9de6dc985ec17b4ff7d18593f4b42510993a2ae6"
+    },
+    {
+      "path": "lean/FengMixedInterior.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMixedInterior.lean",
+      "sha256": "eefeba23ba2172167114f1a64af16bebb6ba1b431d6cb1d33c7c0340212a0b73"
+    },
+    {
+      "path": "lean/FengMixedProduct.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMixedProduct.lean",
+      "sha256": "9154521269b506ea010706111cfed498b30f0a057ef94995be21638fd6954647"
+    },
+    {
+      "path": "lean/FengMixedShift.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengMixedShift.lean",
+      "sha256": "4f5414bc42f6f1174ceb56e445aef65e9d4575e294ae63b9f5ac77fce763f03b"
+    },
+    {
+      "path": "lean/FengLogMainTerm.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengLogMainTerm.lean",
+      "sha256": "a8aa31ac433ead3a78e5121b6a98d44afa333ea90553c7e95a22cce23dbdf9ab"
+    },
+    {
+      "path": "lean/FengOutsideProfile.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengOutsideProfile.lean",
+      "sha256": "4f7ad15ac633752bb8cf867d2e635ab0ac1a388ffcf20ca18668f353b067cbb8"
+    },
+    {
+      "path": "lean/FengCrossAssembly.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengCrossAssembly.lean",
+      "sha256": "64e1e55ba0f7bfb261c0e4c31f8988828e6711a290b9716ee0993b8ec8abc32e"
+    },
+    {
+      "path": "lean/FengPrimeProfile.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengPrimeProfile.lean",
+      "sha256": "030e970cbf2c4fca67a833ad919cbd2cd9762fad41b8aa0fc6df5e53a6aabadc"
+    },
+    {
+      "path": "lean/FengPrimeExclusion.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengPrimeExclusion.lean",
+      "sha256": "05c572d9785f7ff7172889fd9423243eeabc1b0a2610c235c231b118c56fe737"
+    },
+    {
+      "path": "lean/FengOutsidePrime.lean",
+      "source_bundle": "8845 Lean interfaces",
+      "source_filename": "FengOutsidePrime.lean",
+      "sha256": "542f38618aee63ea128c0ed5373c6f043c46f8de5062382f7d4fb18964738596"
     }
   ],
   "external_dependency_pins": "lean/dependencies.json",
@@ -476,7 +656,7 @@
   },
   "coprime_product_status": "BareEuler and BareEulerUniform prove exact literal-prefactor factorization, a uniform growing-g O(1/g) bound, and weighted E0(g)^2 versus E_(A/L)(g) E_(B/L)(g) replacement with error at most eps times mu(g)^2/phi(g). The bare Euler ratio uses prime head/tail control: sum_(p|g) log(p)/p <= Q+1+log(g)/Q, choosing Q before L. CoprimeEndpoint extends supported second-moment window bounds to the full Euler mass and proves endpoint smallness by choosing Q, then the endpoint width, then L. CoprimeGluing proves the actual full coprime-product harmonic error tends uniformly to zero. ConreyOuter composes literal-prefactor error transfer, weighted Euler replacement and the concrete profile integral: actualSum -> BetaKernel.H 0 0 uniformly on Kminus union Kplus, with swapped reflected evaluation (-B,-A). Hypotheses are the stated profile zero endpoints and fixed witness parameters, not unproved asymptotic premises. ConreyCoefficientBridge proves the exact adapter from PRZZ.coefficient with feng=0 to this diagonal sum, including the right-coefficient conjugation, finite cutoffs and L=log(T) normalization. Feng terms, full K2/gcd asymptotics and Wu counting remain open. Five new modules contain30theorems and18printed audits, standard three axioms only.",
   "conrey_coefficient_adapter_status": "ConreyCoefficientBridge.scaledArithmetic_eq_actualSum is an exact identity for arbitrary real polynomials, theta>0 and T>1, without profile endpoint conditions. The existing PRZZ.coefficient is specialized by Profiles(P,0), not redefined. Real-to-complex polynomial evaluation, conjugation, cutoff floor(exp(log(T)*theta))/g, mu(g*n) coprimality and shift exponent identities are explicit. scaledArithmetic_twoBidiscs and scaledArithmetic_reflected transfer H00 convergence with profile zero endpoints at the fixed witness theta. normalized_gcdMainTerm_eq replaces both original arithmetic factors in the exact direct/dual formula. Eleven new theorems compile and six printed audits use only propext, Classical.choice, Quot.sound; no PRZZ or sorryAx dependency.",
-  "verification_status": "All 68 local Lean modules were recompiled in one fresh temporary build directory with inherited LEAN_PATH removed; every module and configured axiom audit passed. checks/lean-verification-68.json is the current full-run record, with source and runner hashes. checks/lean-verification.json retains the earlier 53-module full run; subsequent incremental records are preserved unchanged. All 68 sources match the research mirror. Pinned existing AF/mathlib compiled dependencies were reused; this is not a clean upstream build. No Lean source change was needed for this full run.",
+  "verification_status": "98 Lean modules are registered. The three new outside prime-profile modules were rebuilt into a fresh output directory using pinned existing dependency oleans: 12 printed theorem audits use only propext, Classical.choice, Quot.sound. All 95 previous source hashes are unchanged, all 98 mirrors agree, and 32 selected AF source pins agree. Both runners validate compile order, 91 emitted imports and 91 required-audit entries. No full98 or clean AF build was performed. Historical entries retain their original scope.",
   "conrey_normalized_mainterm_status": "ConreyMainTerm.normalized_gcdMainTerm_uniform proves the original PRZZ.gcdMainTerm for Profiles(P,0), Profiles(Q,0), divided by T, converges uniformly on witnessBidisc to weightMass(Phi) times [H00(A,B)-exp(-A-B)*H00(-B,-A)]/(A+B). P,Q are real polynomials with zero endpoints; theta is the fixed witness length. Phi is any fixed SmoothWeight; positivity and mass-one normalization are not assumed. Both arithmetic reflected domains are supplied by ConreyCoefficientBridge, while the output domain is witnessBidisc. Explicit H00, reciprocal and height-factor bounds justify uniform products. All nine theorems have printed audits using only propext, Classical.choice, Quot.sound. No PRZZ axiom, unproved asymptotic premise, Feng term, moment limit or zero-counting result is introduced.",
   "feng_entry_status": "FengArithmetic proves Dlog(f*g)=Dlog(f)*g+f*Dlog(g), mu*Lambda=-Dlog(mu), and the exact original fengArithmetic=Dlog(Dlog(mu))+mu*Dlog(Lambda). The weighted divisor formula retains prime powers with cutoff N/r. Regression theorems give feng(p)=0 and feng(p^2)=log(p)^2 for every prime p. FengCoefficientBridge splits original PRZZ coefficients, scaledArithmetic and the literal gcdMainTerm into ordered 00+20+02+22 components, and keeps coefficients at g*n in the generic diagonalization. FengShift proves the unrestricted shifted Feng sum equals L^2 times the second A-derivative of the finite Conrey inner sum plus the explicit log-weighted Mangoldt convolution with translated cutoff/profile. L is nonzero for the derivative identity; no profile endpoint, limit or false factorization at g*n is assumed. The coefficient retains the original log(length)^2 normalization and no 2! division. These are finite identities, not proofs of H20/H02/H22 asymptotics. Remaining duties are the prime-power convolution at g*n, uniform averaged bounds on both reflected bidiscs, endpoint control, and identification of the three kernels.",
   "feng_gn_status": "FengAtG.feng_at_mul and fengBlock_decomposition retain the exact original coefficient at g*n as the log-square block plus the prime-power divisor correction coprime to g and an explicit shared-prime correction. No squarefree truncation is imposed, and shared_prime_square proves the shared correction is log(p)^2 at g=n=p. logBlock_derivatives expresses the log-square block as mu(g) times [t^2 C - 2t C' + C''], where t=log(g)/L and C=L times the actual finite coprime Mobius sum. FengLogBounds applies radius-one Cauchy estimates on an enlarged shift ball and the proved endpoint-safe coprime bound: norm(logBlock)<=D E0(g), uniformly for bounded log(g)/L, all u in [0,U], and both reflected bidiscs. FengLogEndpoint proves a generic Euler-square window transfer and smallness of the harmonic average of products of the actual log blocks in the endpoint window; the endpoint width and L threshold are uniform on both bidiscs. Normalization is L/L^2 before theta^-2. These estimates concern only the logarithmic block, not the complete Feng coefficient. The sharedBlock and outsideBlock uniform asymptotics, their endpoints and cross-products, and H20/H02/H22 identification remain open. No new axiom, numerical certificate change, final zero proportion, commit or push.",
@@ -495,5 +675,137 @@
     "clean_upstream_build_performed": false,
     "Feng_K20_K02_K22_uniform_asymptotics_proved": false,
     "final_zero_proportion_formalized": false
+  },
+  "feng_residual_status": "FengResidual proves the exact finite bijection n=p^a*m, p coprime m, with a<=Nat.log p N and m<=N/p^a, including a=0 and N=0. residual_weighted combines p-free residual coprimality with p coprimality into modulus h*p. residual_scaled and sharedBlock_coprimeScaled connect L times residualInner and the actual sharedBlock to existing coprimeScaled, retaining mu(h), supportFactor(p^a), translated u-log(p^a)/L and exact floor cutoffs. supportFactor_pow proves only that the coefficient is geometric; cutoff and profile remain a-dependent, so no infinite Euler factor is substituted. The shared block is retained as a potential main-term contribution, not discarded. No profile endpoint assumption is needed for these finite identities. Sharp growing-g bounds, endpoint estimates, prime-power limiting profiles, complete H20/H02/H22 assembly and zero counting remain open. This entry supersedes the residual reindexing gap in feng_global_shared_status, not its analytic gaps.",
+  "feng_residual_verification": {
+    "record": "checks/feng-residual-verification.json",
+    "sha256": "0506f917180adeb68567e7f8905c4170c1d9003f5f638e27c6160d3209804b11",
+    "new_modules": 1,
+    "audited_theorems": 9,
+    "full_69_run_performed": false
+  },
+  "feng_shared_bounds_status": "FengSharedApproximation replaces each actual coprimeScaled at modulus ordCompl_p(g)*p and translated cutoff by the finite zeroEulerMain proxy, retaining the complete p/a summations. transform_error, sharedBlock_main_error and shared_error_average give the explicit actual weighted norm error; they do not prove that error tends to zero. FengSharedBounds proves Euler mass monotonicity by prime support, E0(ordCompl_p(g)*p)<=E0(g), sum_{p|g}log(p)^2<=log(g)^2, and the finite prime-power coefficient norm sum<=2 exp(CU). The actual L-scaled residual is bounded by D E0(h*p), uniformly in all nonzero h, all primes p, L>0 and u in [0,U]. Consequently sharedBlock<=D E0(g) uniformly for abs(log(g)/L)<=V, including u=0 and both reflected bidiscs. No shared contribution is declared negligible. FengSharedEndpoint combines the original log/outside/shared blocks into an actual complete Feng Euler envelope (before theta^-2). A generic endpoint product transfer applies to mixed families with these envelopes. product_endpoint_twoBidiscs proves a single endpoint width and eventual L threshold for the selected shared/shared, shared/full, full/shared and full/full products over growing g on both bidiscs. P(0)=G(0)=0 is explicit. Remaining: actual interior weighted error decay, finite proxy limiting profiles, complete H20/H02/H22 identification and Wu zero counting. These results supersede the shared-envelope and endpoint gaps in earlier historical milestone entries, not their interior asymptotic gaps.",
+  "feng_shared_bounds_verification": {
+    "record": "checks/feng-shared-bounds-verification.json",
+    "sha256": "02ad9f91a4c8ac2dc51a4e7c7e160318dd9f7183b83d2bb340f331f35a904838",
+    "new_modules": 3,
+    "audited_theorems": 19,
+    "full_72_run_performed": false
+  },
+  "feng_shared_interior_status": "FengSharedTail identifies coprimality and Euler mass at ordCompl_p(g)*p with those at g, splits the actual finite p-power transform at a=0, and proves the a>=1 remainder is O(E0(g)/L), uniformly for growing g with bounded log(g)/L, bounded complex shifts and u in [0,U]. The a=0 contribution mark(g,L) times the actual coprimeScaled is retained. FengSharedInterior proves the actual shared/shared product minus main(P)*main(G) has harmonic g-average o(1), uniformly on both reflected bidiscs and including the cutoff endpoint. Here main=mark(g,L)*E0(g)*D1(profile); the original full mainProxy errorBudget is not asserted to tend to zero. FengMarkedProfile separates the zero-shift arithmetic factor exactly: phi(g)/g^2 times main(P)*main(G) equals mark(g,L)^2/phi(g) times D1(P)*D1(G). There is no inserted mu(g)^2: mark retains mu(ordCompl_p(g)), including non-squarefree g. Its unscaled primeMoment square is exactly split into same-prime and ordered distinct-prime terms. This is finite profile separation, NOT the limiting marked-totient profile integral. That limit, shifted raw arithmetic-prefactor transfer, outside/shared mixed asymptotics, full H20/H02/H22 assembly and Wu counting remain open. Earlier status entries are historical milestones; only the specific shared/shared remainder gap is discharged here.",
+  "feng_shared_interior_verification": {
+    "record": "checks/feng-shared-interior-verification.json",
+    "sha256": "6da79cb0adb4b2825cfea7d6aeb0846bdc45aef5e664ee8dc4a6beb8334df079",
+    "new_modules": 3,
+    "audited_theorems": 27,
+    "full_75_run_performed": false,
+    "marked_profile_integral_limit_proved": false
+  },
+  "feng_marked_profile_transfer_status": "FengMarkedAbel defines the actual nonnegative weight Re(primeMoment(g))^2/phi(g), proves primeMoment is real and identifies its complex cast exactly with primeMoment(g)^2/phi(g), retaining all non-squarefree g. An unconditional majorant by log(g)^4 E0(g)^2/g controls its mass. Abel summation and integration by parts give an exact error identity against c log(x)^5 and an explicit tested-profile error bound. FengMarkedLimit proves cumulative monotonicity, unconditional normalized mass control, and endpoint-safe uniform cumulative convergence on [0,U] from the explicit scalar limit summatory(exp(t))/t^5 -> c. The profile-family error is at most eps*(M+U*D) when normalized cumulative error is bounded by eps, yielding uniform profile convergence. For c=7/120 the density integral equals 7*monomialIntegral(A,B,theta,P,G,1,1,5), before theta^-4. marked_profile_twoBidiscs covers both reflected regions but explicitly assumes MarkedScalarAsymptotic, a Prop definition and NOT an axiom or a proved supplier. The actual marked scalar asymptotic, same-prime/distinct-prime and non-squarefree limiting estimates, full shifted raw arithmetic prefactor transfer, remaining Feng components and Wu counting are still open. This milestone closes the conditional analytic transfer, not the unconditional marked profile limit.",
+  "feng_marked_profile_verification": {
+    "record": "checks/feng-marked-profile-verification.json",
+    "sha256": "a380e44536169b0d3586edff4b18b892f51b8166affa0d641b27784512242824",
+    "new_modules": 2,
+    "audited_theorems": 20,
+    "full77_run_performed": false,
+    "explicit_marked_scalar_premise_discharged": false
+  },
+  "feng_marked_arithmetic_status": "TotientCoprime proves exact prime removal T(N)-Tp(N)=Tp(N/p)/(p-1), nonnegative prime/two-prime exclusion bounds and logarithmic majorants uniform in the excluded primes. FengMarkedArithmetic reindexes the same-prime diagonal over every positive prime power p^a and proves that the ordered distinct-prime residue product equals mu(g)^2; this squarefree reduction is NOT used for the diagonal. Exact pq reindexing connects each ordered pair to Tpq(N/(pq))/((p-1)(q-1)). FengMarkedDecomposition proves the global actual FengMarkedAbel.summatory equals the full prime-power diagonal plus ordered cross sum, with no limiting hypothesis. Non-squarefree diagonal terms are retained. Mertens-Abel limits, quantitative summable non-squarefree tail, the scalar7/120 supplier and unconditional marked profile limit remain open.",
+  "feng_marked_arithmetic_verification": {
+    "record": "checks/feng-marked-arithmetic-verification.json",
+    "sha256": "c5e03f8aa5f0913a0f1a5d5979c80026f22704290a593f3103a800e0b9d412bf",
+    "modules": 3,
+    "audited_theorems": 27,
+    "registered_modules": 80,
+    "full80_run_performed": false,
+    "MarkedScalarAsymptotic_discharged": false
+  },
+  "feng_marked_scalar_status": "FengMarkedTail retains all higher prime powers and proves their normalized contribution tends to zero with an O((1+X)^3) bound. Pinned AF Mertens prime moments feed FengMertensModels. FengMarkedDiagonal proves actual diagonal/X^5 ->1/20. FengMarkedCross and FengMarkedCrossLimit pay coprimality, reciprocal-denominator and coincident-prime corrections, yielding actual ordered cross/X^5 ->1/120. Exact summatory decomposition discharges FengMarkedLimit.MarkedScalarAsymptotic. The new unconditional marked_profile_twoBidiscs proves the actual marked profile sum tends uniformly to 7*E(1,1,5), before theta^-4, on both reflected bidiscs. No new PNT premise, PRZZ axiom or numerical assumption enters these theorem audits. Full Feng K20/K02/K22 and Wu counting remain open.",
+  "feng_marked_scalar_verification": {
+    "record": "checks/feng-marked-scalar-verification.json",
+    "sha256": "d399b4bde3ead9cb5a90acf5b913e180d074788ee6373f7c9c75d3570d92244d",
+    "modules": 5,
+    "audited_theorems": 34,
+    "registered_modules": 85,
+    "full85_run_performed": false,
+    "MarkedScalarAsymptotic_discharged": true,
+    "unconditional_marked_profile_twoBidiscs": true
+  },
+  "feng_mixed_shared_status": "FengMixedMoment proves the exact signed identity mu(g)*primeMoment(g)=-mu(g)^2*sum_{p|g}log(p)^2, its actual prime-coprimality reindexing, an O((1+X)^2) error against the Mertens-Abel model, and summatory(exp X)/X^3 -> -1/6. This supplies a scalar mixed arithmetic moment, not yet its weighted profile integral. FengSharedLimit connects the actual sharedBlock/sharedBlock product, including endpoint and non-squarefree g, to 7*monomialIntegral(A,B,theta,P,G,1,1,5) uniformly on BOTH reflected bidiscs, before theta^-4. The theorem uses exactly the zero-shift outer totient weight phi(g)/g^2; the raw shift-dependent generalized-totient prefactor is NOT substituted. P(0)=G(0)=0 is explicit. No new PNT or PRZZ premise enters these audits. The mixed-profile Abel transfer, full shifted prefactor transfer, log/outside/shared cross terms, complete K20/K02/K22 and Wu/final zero proportion remain open.",
+  "feng_mixed_shared_verification": {
+    "record": "checks/feng-mixed-shared-verification.json",
+    "sha256": "33a1de8270b83026c9a3f23aa54f39e7d3eedc751ab8a73013b00a1e9216992a",
+    "modules": 2,
+    "audited_theorems": 13,
+    "registered_modules": 87,
+    "full87_run_performed": false,
+    "signed_mixed_scalar_limit": "-1/6",
+    "actual_shared_product_zero_shift_outer_weight_uniform_limit": true,
+    "full_shifted_raw_prefactor_transfer_proved": false
+  },
+  "feng_mixed_profile_status": "FengMixedAbel uses the actual signed weight mu(g)*Re(primeMoment(g))/phi(g), proves its complex cast and exact finite profile sum with L^-3 normalization, then proves Abel/error identities and the cumulative-error bound without assuming weight positivity. FengMixedLimit combines existing Mertens-Abel bounds to prove abs(summatory(exp X)+X^3/6)<=C*(1+X)^2 for X>=0. This supplies cubic cumulative uniformity on the full closed interval [0,U], including zero. The profile error is at most eps*(M+U*D), uniform for any C1 complex family with bounded value at zero and derivative. Its density is -(U-u)^2/2. For OuterProfile the integral equals -monomialIntegral(A,B,theta,P,G,1,1,3), and mixed_profile_twoBidiscs and mixed_profile_reflected give unconditional uniform limits on both reflected domains and swapped reflected shifts. No P(0)=G(0)=0, extra scalar/PNT hypothesis or PRZZ axiom is needed for this weighted main-term profile. This closes the mixed-profile Abel transfer left open in feng_mixed_shared_status, not the replacement error for the actual Conrey/shared product. Raw shifted outer weight, remaining Feng cross terms, full K20/K02/K22, Wu and final88.45 remain open.",
+  "feng_mixed_profile_verification": {
+    "record": "checks/feng-mixed-profile-verification.json",
+    "sha256": "ffec2ac89c635936c05a8adcaf1856093eff9664372508a210160128eb150d1c",
+    "modules": 2,
+    "audited_theorems": 16,
+    "registered_modules": 89,
+    "full89_run_performed": false,
+    "mixed_profile_uniform_on_both_bidiscs": true,
+    "actual_Conrey_shared_product_limit_proved": false
+  },
+  "feng_mixed_product_status": "FengMixedInterior retains the literal Conrey mu(g*n) sum via conrey_eq. It proves the actual Conrey/shared product error is bounded by (D/L)*E0(g)^2+V^2*productError, and its harmonic g-average tends uniformly to zero over growing g, including u=0 and both reflected bidiscs. FengMixedProduct identifies the finite main sum exactly with the signed FengMixedAbel.profileSum, with the explicit zero-shift outer weight phi(g)/g^2 and 1/L normalization. actual_sub_profile_uniform supplies the actual weighted product minus that profile sum as o(1). actualSum_twoBidiscs and actualSum_reflected prove the unconditional limit -monomialIntegral(A,B,theta,P,G,1,1,3), before theta^-2. P(0)=G(0)=0 is explicit for this actual-product replacement. The shared marked term is retained, not discarded. All 12 new audits use only standard Lean axioms. This closes the actual Conrey/shared replacement gap in feng_mixed_profile_status for the specified zero-shift weight; raw shift-dependent generalized-totient prefactor transfer, remaining log/outside/shared terms, full K20/K02/K22, Wu and final zero proportion remain open.",
+  "feng_mixed_product_verification": {
+    "record": "checks/feng-mixed-product-verification.json",
+    "sha256": "49aad7710e1842aa077a6f5a2c5252a503380d99aa105460933777ec28a3a17c",
+    "modules": 2,
+    "audited_theorems": 12,
+    "registered_modules": 91,
+    "full91_run_performed": false,
+    "actual_Conrey_shared_zero_shift_outer_weight_limit": true,
+    "endpoint_safe_averaged_error_uniform_zero": true,
+    "full_shifted_raw_prefactor_transfer_proved": false
+  },
+  "feng_mixed_shift_status": "FengMixedShift defines the raw generalized-totient outer weight without mu(g)^2. mixed_weight_factor proves its exact Euler-ratio replacement AFTER multiplication by the actual Conrey mu(g) factor; it is not a general raw-weight identity for shared/shared products. Actual mixed products obey an endpoint-safe E0(g)^2 envelope, so the growing-g harmonic average of the shift replacement error is o(1), uniformly for bounded shifts with C*U<=1. actualSum_twoBidiscs and actualSum_reflected now give the actual raw-shifted Conrey/shared product limit -monomialIntegral(A,B,theta,P,G,1,1,3), before theta^-2, on both reflected domains. P(0)=G(0)=0 remains explicit. kernel20_target and kernel02_target check only the algebraic remaining targets after subtracting this shared contribution; logBlock/outsideBlock asymptotics are not inferred. This closes the mixed-product shifted-prefactor gap left in feng_mixed_product_status. Shared/shared shifted-prefactor transfer, remaining Feng terms, full K20/K02/K22, Wu counting and final zero proportion remain open.",
+  "feng_mixed_shift_verification": {
+    "record": "checks/feng-mixed-shift-verification.json",
+    "sha256": "40e803603e0bc470c62d1ae1cce86845ac0c8bfbdbb7182d46612285c10d018f",
+    "new_modules": 1,
+    "fresh_recompiled_modules": 3,
+    "audited_theorems": 21,
+    "new_audited_theorems": 9,
+    "registered_modules": 92,
+    "full92_run_performed": false,
+    "actual_Conrey_shared_raw_shifted_outer_weight_limit": true,
+    "shared_shared_shifted_outer_weight_transfer_proved": false
+  },
+  "feng_log_outside_status": "FengLogMainTerm absorbs the exact normalized log(g*n)^2 into logProfile(U,theta,G)=(U-theta*X)^2*G at u=U-log(g)/L, retaining the original finite cutoff and mu(g*n). For U=theta the actual raw-shifted Conrey/logBlock sum equals ConreyOuter.actualSum with this modified polynomial, and converges uniformly on both reflected bidiscs to 2*E(1,1,3)-2*E(1,0,2), before theta^-2. FengOutsideProfile proves the exact candidate convolution integral t*exp(-B*t)*D1(G,u-t)=D(-1)(G,u) for G(0)=0 and its outer integral E(1,-1,1). This does NOT prove that the finite outside prime-power sum tends to that candidate. FengCrossAssembly supplies the exact full finite split, a raw-weighted outside-proxy error bound, and a residual identity. Its fullSum_twoBidiscs_of_outside and reflected theorem are explicitly conditional on OutsideAsymptotic for the literal actual outside sum. The remaining outside error-budget decay and prime-power-to-profile transfer, unconditional K20/K02/K22 limits, Wu counting and final proportion remain open. All 14 new audits use only standard Lean axioms; no new axiom is added.",
+  "feng_log_outside_verification": {
+    "record": "checks/feng-log-outside-verification.json",
+    "sha256": "6316f12825aa4cf595d93c9ba6b523e042e1092a6164a9a7159b31685c6751ec",
+    "new_modules": 3,
+    "fresh_recompiled_modules": 4,
+    "audited_theorems": 23,
+    "new_audited_theorems": 14,
+    "registered_modules": 95,
+    "full95_run_performed": false,
+    "actual_Conrey_logBlock_raw_shifted_limit": true,
+    "outside_candidate_inverse_profile_identity": true,
+    "actual_outside_prime_power_uniform_limit": false,
+    "full_K02_assembly_requires_explicit_outside_hypothesis": true
+  },
+  "feng_outside_prime_status": "FengPrimeProfile extends the proved AF Mertens-Abel estimate to complex weights, and bounds the normalized finite all-prime-power transform by 2*KM*(2*U*M+U^2*D)/L, uniformly including u=0. Specialization to exp(-A*t)*D1(G,u-t) gives the exact inverse profile for G(0)=0. FengPrimeExclusion bounds the excluded non-coprime mass by log(g)+2*Cdef: the prime part uses prime_log_square_div_sum and the higher powers use the summable AF defect. Thus after L^-2 normalization the loss is at most U/L+2*Cdef/L^2 for every nonzero g with log(g)<=L*U. FengOutsidePrime proves an exact identity with the existing finite mainProxy and the bound norm(mainProxy-mu(g)*E0(g)*D(-1)G)<=E0(g)*errorEnvelope, errorEnvelope tending to zero, on both bidiscs and including the cutoff endpoint. E0(g) is retained, not claimed uniformly bounded. This closes the finite main-profile prime-power-to-integral transfer, NOT the actual coprimeScaled-to-mainProxy averaged error, subsequent actual outer-sum limit, or OutsideAsymptotic. Full K20/K02/K22, Wu counting and the final proportion remain open.",
+  "feng_outside_prime_verification": {
+    "record": "checks/feng-outside-prime-verification.json",
+    "sha256": "5d5fee9224227bde3a5a14ea820cf09af2f60b3a0df7fbf37e6abc88a1304c62",
+    "new_modules": 3,
+    "fresh_recompiled_modules": 3,
+    "audited_theorems": 12,
+    "registered_modules": 98,
+    "full98_run_performed": false,
+    "finite_mainProxy_uniform_Euler_weighted_error": true,
+    "growing_modulus_both_bidiscs_and_u_zero": true,
+    "actual_inner_replacement_average_discharged": false,
+    "OutsideAsymptotic_discharged": false
   }
 }
