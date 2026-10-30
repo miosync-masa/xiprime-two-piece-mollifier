@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-30",
+  "scope": "Fresh four-module focused compilation using the source-hash-verified corrected-C-infinity baseline cache. Not a full 140-module rebuild.",
+  "source_sha256": {
+    "PRZZLocalization.lean": "e024bd0532951745cc0d8e05f69bb96e52dbaeb11554973f2f5b0abf7e5a8029",
+    "PRZZLocalizedError.lean": "cb9e30a59df4e7c832ad61b8420c75153f0b0e2b0a668e7dcae2726c3bfcf4d8",
+    "SmoothEndpoint.lean": "f72f9d162f9ef6f3c1596bad11192626a2eaccf4f0559022ad41441846e806d6",
+    "WuEndpointTransfer.lean": "a5f3281f67799f912d88c234a57d87b2d46808c1299d9aa11d1e7c727350ba6d"
+  },
+  "runner_sha256": "e952712cea8bc00d7647f19c09647607038fc6e500fa01f795bd3ea1d423f287",
+  "baseline_record": "checks/smooth-weight-verification.json",
+  "baseline_record_sha256": "06610735cce74ee5f51ed6dc1ce8b58e8c5e2ccc5d3b943f0e8353bfd4cbfcba",
+  "unsmoothing_record": "checks/wu-unsmoothing-verification.json",
+  "unsmoothing_record_sha256": "ca401e6afc985d70db0239f240a378a6ade249740bab95eae81deb2e72204d93",
+  "baseline_133_sources_unchanged": true,
+  "unsmoothing_3_sources_unchanged": true,
+  "registered_modules": 140,
+  "new_fresh_compiled_modules": 4,
+  "full140_runner_invocation_performed": false,
+  "clean_af_build_performed": false,
+  "new_audited_theorems": 24,
+  "standard_only_new_audits": 23,
+  "existing_PRZZ_dependent_new_audits": 1,
+  "new_axioms": false,
+  "sorryAx": false,
+  "localized_estimate_proved": false,
+  "localized_estimate_is_axiom": false,
+  "localized_estimate_to_moment_suppliers_connected": false,
+  "actual_endpoint_tightness_discharged": false,
+  "conditional_endpoint_tightness_proved": true,
+  "full_limit_conditional_on": [
+    "WuEndpointTransfer.LocalizedUMoments",
+    "WuEndpointTransfer.MajorantDerivativeBounds"
+  ],
+  "original_T_preserved": true,
+  "endpoint_weight_support": [
+    "1/2",
+    "5/2"
+  ],
+  "endpoint_weight_full_mass_bound": "8*delta",
+  "stirling_used_only_on": "[T,2T]",
+  "primary_proof_audit_document": "e926712b-a018-4f61-bcd1-3dcbef96f251",
+  "final_zero_proportion_theorem": false,
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "checks": {
+    "PRZZLocalization.lean": {
+      "exit_code": 0,
+      "sha256": "e024bd0532951745cc0d8e05f69bb96e52dbaeb11554973f2f5b0abf7e5a8029",
+      "output": "'XiPrime8845.PRZZLocalization.old_weight_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLocalization.compact_support' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLocalization.integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLocalization.fullMass_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLocalization.scaled_support' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLocalization.weighted_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.PRZZLocalization.old_weight_iff": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.PRZZLocalization.compact_support": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.PRZZLocalization.integrable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.PRZZLocalization.fullMass_eq": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.PRZZLocalization.scaled_support": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.PRZZLocalization.weighted_integrable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "PRZZLocalizedError.lean": {
+      "exit_code": 0,
+      "sha256": "cb9e30a59df4e7c832ad61b8420c75153f0b0e2b0a668e7dcae2726c3bfcf4d8",
+      "output": "'XiPrime8845.PRZZLocalizedError.normalized_difference_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLocalizedError.normalized_difference_uniform' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZLocalizedError.normalized_difference_on_bidisc' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZLocalizedError.moment_uniform_limit_of_gcd_limit' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.PRZZLocalizedError.normalized_difference_bound": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.PRZZLocalizedError.normalized_difference_uniform": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.PRZZLocalizedError.normalized_difference_on_bidisc": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.PRZZLocalizedError.moment_uniform_limit_of_gcd_limit": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "SmoothEndpoint.lean": {
+      "exit_code": 0,
+      "sha256": "f72f9d162f9ef6f3c1596bad11192626a2eaccf4f0559022ad41441846e806d6",
+      "output": "'XiPrime8845.SmoothEndpoint.cap_mass' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothEndpoint.weight_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothEndpoint.weight_mass' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothEndpoint.endpoint_majorant' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothEndpoint.fullCap_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothEndpoint.fullCap_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.SmoothEndpoint.cap_mass": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.SmoothEndpoint.weight_smooth": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.SmoothEndpoint.weight_mass": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.SmoothEndpoint.endpoint_majorant": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.SmoothEndpoint.fullCap_smooth": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.SmoothEndpoint.fullCap_one": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "WuEndpointTransfer.lean": {
+      "exit_code": 0,
+      "sha256": "a5f3281f67799f912d88c234a57d87b2d46808c1299d9aa11d1e7c727350ba6d",
+      "output": "'XiPrime8845.WuEndpointTransfer.broad_u_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuEndpointTransfer.broad_derivative_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuEndpointTransfer.full_error_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuEndpointTransfer.fullError_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuEndpointTransfer.fullError_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuEndpointTransfer.endpoint_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuEndpointTransfer.endpointTight_of_localizedMoments' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.WuEndpointTransfer.fullMoment_tendsto_of_localizedMoments' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuEndpointTransfer.broad_u_integrable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuEndpointTransfer.broad_derivative_integrable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuEndpointTransfer.full_error_integrable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuEndpointTransfer.fullError_bound": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuEndpointTransfer.fullError_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuEndpointTransfer.endpoint_bound": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuEndpointTransfer.endpointTight_of_localizedMoments": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuEndpointTransfer.fullMoment_tendsto_of_localizedMoments": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    }
+  }
+}

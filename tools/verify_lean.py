@@ -4,6 +4,7 @@
 No fetch, reset or source edit is performed. This is not a clean AF build.
 """
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 import os
@@ -28,6 +29,8 @@ AF_PATHS = [
     "Zeta23/Analytic/RectangleLogDeriv.lean",
     "Zeta23/XiPrime/Defs.lean",
     "Zeta23/XiPrime/Seam.lean",
+    "Zeta23/GammaFacts/StirlingVert.lean",
+    "Zeta23/Analytic/Stirling.lean",
     "Zeta23/XiPrime/ZeroCount/ArgBound.lean",
     "Zeta23/XiPrime/ZeroCount/Generic.lean",
     "Zeta23/XiPrime/ZeroCount/GenericRvM.lean",
@@ -66,13 +69,31 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def compile_sources(lake, af, source_dir):
+def compile_sources(lake, af, source_dir, jobs=1):
     # Fresh local imports: no stale package oleans, and no writes into AF.
-    with tempfile.TemporaryDirectory(prefix="xiprime-lean-") as build:
+    with tempfile.TemporaryDirectory(prefix="xiprime-lean-") as build, ThreadPoolExecutor(max_workers=jobs) as pool:
         env = dict(os.environ)
         env["LEAN_PATH"] = build + (os.pathsep + env["LEAN_PATH"] if env.get("LEAN_PATH") else "")
+        pending = {}
+        ordered = []
+
+        def enqueue(name, command):
+            imports = re.findall(r"^import\s+([A-Za-z0-9_.]+)",
+                                 (source_dir / name).read_text(), re.MULTILINE)
+            local = [module for module in imports if (source_dir / (module + ".lean")).is_file()]
+            require(all(module in pending for module in local), f"Non-topological module order: {name}")
+            dependencies = [pending[module] for module in local]
+
+            def compile_after_dependencies():
+                for dependency in dependencies:
+                    dependency.result()
+                return run(command + [str(source_dir / name)], af, env)
+
+            future = pool.submit(compile_after_dependencies)
+            pending[Path(name).stem] = future
+            ordered.append((name, future))
         for name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
-                     "PRZZInterface.lean", "AFProbe.lean", "IntegralJet.lean", "TaylorEnvelope.lean",
+                     "PRZZInterface.lean", "SmoothWeightWitness.lean", "AFProbe.lean", "IntegralJet.lean", "TaylorEnvelope.lean",
                      "CoefficientEvaluator.lean", "NumericalGate.lean", "RationalEvaluator.lean",
                      "RationalBounds.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean",
                      "LogarithmicBudget.lean", "CompactShiftIntegral.lean", "ArithmeticRegularity.lean",
@@ -102,12 +123,14 @@ def compile_sources(lake, af, source_dir):
                      "FengLogMainTerm.lean", "FengOutsideProfile.lean", "FengCrossAssembly.lean",
                      "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean",
                      "CoprimeEulerError.lean", "FengPrimeWindow.lean", "FengOutsideAverage.lean", "FengOutsideReplacement.lean",
-                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean"):
+                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean",
+                     "FengLogProducts.lean", "FengSquareAssembly.lean",
+                     "FengOutsidePartner.lean", "FengInverseProducts.lean", "FengOutsideSquare.lean", "FengOutsideShared.lean", "RawEuler.lean", "FengSharedShift.lean", "FengSquareCoefficient.lean", "FengSquareMainTerm.lean", "TwoPieceMainTerm.lean", "CauchyJetTransfer.lean", "TwoPieceMoment.lean", "ZetaMomentIntegral.lean", "ZetaMomentPolynomial.lean", "ZetaMomentMainTerm.lean", "WitnessMomentBound.lean", "WuAuxiliary.lean", "WuStirling.lean", "WuGammaJets.lean", "WuStirlingTransfer.lean", "WuStirlingMoment.lean", "WuMomentTransfer.lean"):
             command = [lake, "env", "lean", "--root=" + str(source_dir)]
             if name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
                         "IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean",
                         "NumericalGate.lean", "RationalEvaluator.lean", "RationalBounds.lean",
-                        "PRZZInterface.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean",
+                        "PRZZInterface.lean", "SmoothWeightWitness.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean", "LogarithmicBudget.lean",
                         "CompactShiftIntegral.lean", "ArithmeticRegularity.lean", "GcdDecomposition.lean",
                         "SmoothMobius.lean", "ElementaryGcd.lean", "MobiusHarmonic.lean", "MobiusPNT.lean", "MobiusPNTBridge.lean",
                         "ShiftWeights.lean", "WeightedMobius.lean", "WeightDerivatives.lean",
@@ -134,10 +157,22 @@ def compile_sources(lake, af, source_dir):
                         "FengMixedShift.lean", "FengLogMainTerm.lean", "FengOutsideProfile.lean", "FengCrossAssembly.lean",
                         "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean",
                         "CoprimeEulerError.lean", "FengPrimeWindow.lean", "FengOutsideAverage.lean", "FengOutsideReplacement.lean",
-                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean"):
+                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean",
+                     "FengLogProducts.lean", "FengSquareAssembly.lean",
+                     "FengOutsidePartner.lean", "FengInverseProducts.lean", "FengOutsideSquare.lean", "FengOutsideShared.lean", "RawEuler.lean", "FengSharedShift.lean", "FengSquareCoefficient.lean", "FengSquareMainTerm.lean", "TwoPieceMainTerm.lean", "CauchyJetTransfer.lean", "TwoPieceMoment.lean", "ZetaMomentIntegral.lean", "ZetaMomentPolynomial.lean", "ZetaMomentMainTerm.lean", "WitnessMomentBound.lean", "WuAuxiliary.lean", "WuStirling.lean", "WuGammaJets.lean", "WuStirlingTransfer.lean", "WuStirlingMoment.lean", "WuMomentTransfer.lean"):
                 command += ["-o", str(Path(build) / (Path(name).stem + ".olean"))]
-            output = run(command + [str(source_dir / name)], af, env)
-            yield name, output.replace(build, "<temporary-build>")
+            enqueue(name, command)
+        name = "SmoothWeightMoment.lean"
+        enqueue(name, [lake, "env", "lean", "--root=" + str(source_dir)])
+        for name in ("SmoothWindow.lean", "SmoothWindowLimit.lean", "WuUnsmoothing.lean",
+                     "PRZZLocalization.lean", "PRZZLocalizedError.lean", "SmoothEndpoint.lean", "WuEndpointTransfer.lean",
+                     "ExpandedGcd.lean", "ExpandedHeight.lean", "ExpandedRegularity.lean",
+                     "ExpandedMainTerm.lean", "ExpandedZetaIntegral.lean", "ExpandedZetaPolynomial.lean",
+                     "ExpandedMoment.lean", "WuLocalizedMoments.lean"):
+            enqueue(name, [lake, "env", "lean", "--root=" + str(source_dir),
+                           "-o", str(Path(build) / (Path(name).stem + ".olean"))])
+        for name, future in ordered:
+            yield name, future.result().replace(build, "<temporary-build>")
 
 
 def main():
@@ -145,7 +180,9 @@ def main():
     parser.add_argument("--af", type=Path, required=True, help="Pinned, already-built AF checkout")
     parser.add_argument("--lake", default=shutil.which("lake") or str(Path.home() / ".elan/bin/lake"))
     parser.add_argument("--output", type=Path, help="Optional generated JSON output; otherwise stdout")
+    parser.add_argument("--jobs", type=int, default=1, help="Concurrent Lean processes (dependencies are awaited)")
     args = parser.parse_args()
+    require(args.jobs >= 1, "--jobs must be positive")
     af = args.af.resolve()
     pins = json.loads((ROOT / "lean/dependencies.json").read_text())
     require(run(["git", "rev-parse", "HEAD"], af).strip() == pins["af_commit"], "AF commit mismatch")
@@ -156,12 +193,96 @@ def main():
             "Lean toolchain mismatch")
     run(["git", "diff", "--exit-code", pins["af_commit"], "--", *AF_PATHS], af)
     checks = {}
-    for name, output in compile_sources(args.lake, af, ROOT / "lean"):
+    for name, output in compile_sources(args.lake, af, ROOT / "lean", args.jobs):
         path = ROOT / "lean" / name
         require("sorryAx" not in output and "error:" not in output, f"Proof check failed: {name}")
         explicit = sum(line.startswith("axiom ") for line in path.read_text().splitlines())
         require(explicit == (1 if name == "PRZZInterface.lean" else 0),
                 f"Unexpected explicit axiom count: {name}")
+        if name in {"PRZZLocalization.lean", "PRZZLocalizedError.lean", "SmoothEndpoint.lean", "WuEndpointTransfer.lean",
+                    "ExpandedGcd.lean", "ExpandedHeight.lean", "ExpandedRegularity.lean", "ExpandedMainTerm.lean",
+                    "ExpandedZetaIntegral.lean", "ExpandedZetaPolynomial.lean", "ExpandedMoment.lean", "WuLocalizedMoments.lean"}:
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            expected_audits = {
+                "ExpandedGcd.lean": {"weighted_integral_restrict", "integrated_term", "gcdMainTerm_split", "normalized_gcd_split"},
+                "ExpandedHeight.lean": {"log_height_bound", "phase_error_bound", "rescale_integral", "mass_full", "heightFactor_uniform"},
+                "ExpandedRegularity.lean": {"twistedMoment_smooth"},
+                "ExpandedMainTerm.lean": {"weightMass_full", "normalized_gcd_uniform_of_arithmetic", "normalized_gcd_uniform",
+                    "normalized_witness_uniform", "normalizedMoment_uniform"},
+                "ExpandedZetaIntegral.lean": {"integral_left_deriv", "integral_right_deriv", "integral_zero", "integral_eq_full", "twistedMoment_mixed_deriv"},
+                "ExpandedZetaPolynomial.lean": {"moment_expansion", "normalized_jet₂", "contract₂_eq_moment"},
+                "ExpandedMoment.lean": {"normalizedMoment_uniform", "normalizedMoment_tendsto", "normalizedMoment_regular",
+                    "kernel_regular", "limit_regular", "normalizedMoment_jet₂_tendsto", "normalizedMoment_contract_tendsto",
+                    "normalizedMoment_exactEvaluator_tendsto"},
+                "WuLocalizedMoments.lean": {"normalizedMoment_contract_eq", "moment_exactEvaluator_tendsto", "squareMoment_exactEvaluator_tendsto",
+                    "smoothedMoment_tendsto", "derivativeMoments_bounded", "localizedUMoments", "majorantDerivativeBounds",
+                    "endpointTight", "fullMoment_tendsto", "fullMoment_eventually_lt"},
+                "PRZZLocalization.lean": {"old_weight_iff", "compact_support", "integrable",
+                    "fullMass_eq", "scaled_support", "weighted_integrable"},
+                "PRZZLocalizedError.lean": {"normalized_difference_bound", "normalized_difference_uniform",
+                    "normalized_difference_on_bidisc", "moment_uniform_limit_of_gcd_limit"},
+                "SmoothEndpoint.lean": {"cap_mass", "weight_smooth", "weight_mass",
+                    "endpoint_majorant", "fullCap_smooth", "fullCap_one"},
+                "WuEndpointTransfer.lean": {"broad_u_integrable", "broad_derivative_integrable",
+                    "full_error_integrable", "fullError_bound", "fullError_tendsto", "endpoint_bound",
+                    "endpointTight_of_localizedMoments", "fullMoment_tendsto_of_localizedMoments"},
+            }
+            require(audited == expected_audits[name], f"Localization audit coverage changed: {name}")
+            for theorem in audited:
+                key = "XiPrime8845." + path.stem + "." + theorem
+                require(key in dependencies, f"Missing localization audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem == "fullMoment_tendsto_of_localizedMoments" or (name == "WuLocalizedMoments.lean" and theorem in {"fullMoment_tendsto", "fullMoment_eventually_lt"}):
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected localization dependencies: {key}: {actual}")
+        if name in {"SmoothWindow.lean", "SmoothWindowLimit.lean", "WuUnsmoothing.lean"}:
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            expected_audits = {
+                "SmoothWindow.lean": {"bump_smooth", "bump_one", "bump_zero", "bump_mass", "integral_sandwich"},
+                "SmoothWindowLimit.lean": {"window_integrable", "windowMoment_tendsto"},
+                "WuUnsmoothing.lean": {"trimmedMoment_eq", "fullMoment_eq", "weighted_integrable",
+                    "trimmed_integrable", "trimmedMoment_tendsto", "trimmedMean_tendsto",
+                    "trimmed_counting_bound", "width_budget", "trimmed_budget_bound", "iterated_width_limit", "sequential_unsmoothing",
+                    "full_integrable", "full_split", "fullMoment_tendsto_of_endpointTight"},
+            }
+            require(audited == expected_audits[name], f"Unsmoothing audit coverage changed: {name}")
+            analytic = {"trimmedMoment_tendsto", "trimmedMean_tendsto", "trimmed_counting_bound",
+                        "trimmed_budget_bound", "iterated_width_limit", "sequential_unsmoothing", "fullMoment_tendsto_of_endpointTight"}
+            for theorem in audited:
+                key = "XiPrime8845." + path.stem + "." + theorem
+                require(key in dependencies, f"Missing unsmoothing audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if name == "WuUnsmoothing.lean" and theorem in analytic:
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected unsmoothing dependencies: {key}: {actual}")
+        if name == "SmoothWeightMoment.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            require(audited == {"plateau_mass_pos", "plateau_u_moment_bound", "plateau_v_moment_bound"},
+                    "Concrete moment audit coverage changed")
+            for theorem in audited:
+                key = "XiPrime8845.SmoothWeightMoment." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem != "plateau_mass_pos":
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected concrete moment dependencies: {key}: {actual}")
+        if name == "SmoothWeightWitness.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            require({"plateau_smooth", "plateau_mass_bounds", "positive_mass_witness"} <= audited,
+                    "Missing nonvacuity audit")
+            for theorem in audited:
+                key = "XiPrime8845.SmoothWeightWitness." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                require(actual == {"propext", "Classical.choice", "Quot.sound"},
+                        f"Nonvacuity must not depend on PRZZ: {key}: {actual}")
         if name == "PRZZInterface.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             standard = {"propext", "Classical.choice", "Quot.sound"}
@@ -206,6 +327,115 @@ def main():
                 expected = {"propext", "Classical.choice", "Quot.sound"}
                 if theorem == "normalized_mixed_error_tendsto":
                     expected.add("przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
+
+
+        if name == "WuMomentTransfer.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            elementary = {"square_difference", "weighted_square_difference", "u_integrable",
+                          "v_integrable", "vMoment_nonneg", "moment_difference_bound"}
+            analytic = {"moment_difference_rate", "moment_difference_tendsto", "vMoment_tendsto",
+                        "normalizedVMoment_tendsto", "normalizedVMoment_eventually_lt",
+                        "v_moment_bound", "unit_mass_vMoment_bound"}
+            require(audited == elementary | analytic, "Wu moment transfer audit coverage changed")
+            for theorem in audited:
+                key = "XiPrime8845.WuMomentTransfer." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem in analytic:
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
+        if name in ("WuStirling.lean", "WuGammaJets.lean", "WuStirlingTransfer.lean", "WuStirlingMoment.lean"):
+            coverage = {
+                "WuStirling.lean": {"H_ne_zero", "H_analytic", "H_deriv", "H_logDeriv", "xi_eq",
+                    "xi_leibniz", "V_expansion", "digamma_sub_log", "log_half_bound",
+                    "firstConstant_pos", "Lfn_stirling_bound", "jet_one_bound"},
+                "WuGammaJets.lean": {"H_iterated_analytic", "jet_analytic", "jet_recurrence",
+                    "disc_strip", "jetConstant_nonneg", "jet_bound"},
+                "WuStirlingTransfer.lean": {"U_expansion", "difference_expansion", "transferConstant_nonneg",
+                    "difference_bound", "leftPoint_strip", "difference_left_bound"},
+                "WuStirlingMoment.lean": {"weight_support", "weighted_integrable", "derivative_integrable",
+                    "error_integrable", "square_error_bound", "errorMoment_bound",
+                    "errorMoment_rate", "errorMoment_tendsto"},
+            }
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            require(audited == coverage[name], "Wu Stirling audit coverage changed")
+            for theorem in audited:
+                key = "XiPrime8845." + Path(name).stem + "." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if name == "WuStirlingMoment.lean" and theorem in {"errorMoment_rate", "errorMoment_tendsto"}:
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
+        if name == "WuAuxiliary.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            elementary = {"translated_polynomial", "operator_polynomial", "r_at_half",
+                          "linear_coefficient_pos", "xi_derivative_conj", "xi_derivative_one_sub",
+                          "xi_derivative_critical", "xi_even_im", "xi_odd_re", "eta_entire",
+                          "eta_im", "eta_im_zero_iff", "psi_entire", "psi_left",
+                          "smoothedMoment_eq", "single_operator", "derivativeMoment_eq"}
+            analytic = {"smoothedMoment_tendsto", "smoothedMoment_bound", "derivativeMoments_bounded"}
+            require(audited == elementary | analytic, "Wu auxiliary audit coverage changed")
+            for theorem in audited:
+                key = "XiPrime8845.WuAuxiliary." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem in analytic:
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
+        if name == "WitnessMomentBound.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            elementary = {"qReal_cast", "profiles_match", "radius_match", "evaluator_eq_actual",
+                          "weightMass_eq", "mass_nonneg", "witnessMoment_nonneg",
+                          "countingCap_lt_target", "countingCap_budget"}
+            analytic = {"witnessMoment_tendsto", "witnessMoment_eventually_lt",
+                        "normalizedMoment_tendsto", "normalizedMoment_eventually_lt",
+                        "witness_moment_bound", "unit_mass_moment_bound"}
+            require(audited == elementary | analytic, "Witness moment audit coverage changed")
+            for theorem in audited:
+                key = "XiPrime8845.WitnessMomentBound." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem in analytic:
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
+        if name == "ZetaMomentMainTerm.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            analytic = {"moment_exactEvaluator_tendsto", "squareMoment_exactEvaluator_tendsto"}
+            require(audited == analytic | {"normalizedMoment_contract_eq"},
+                    "Zeta derivative moment audit coverage changed")
+            for theorem in audited:
+                key = "XiPrime8845.ZetaMomentMainTerm." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem in analytic:
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
+        if name == "TwoPieceMoment.lean":
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            elementary = {"normalizedMoment_regular", "kernel_regular", "limit_regular"}
+            analytic = {"normalizedMoment_uniform", "normalizedMoment_tendsto",
+                        "normalizedMoment_jet₂_tendsto", "normalizedMoment_contract_tendsto",
+                        "normalizedMoment_exactEvaluator_tendsto"}
+            require(audited == elementary | analytic, "Two-piece moment audit coverage changed")
+            for theorem in audited:
+                key = "XiPrime8845.TwoPieceMoment." + theorem
+                require(key in dependencies, f"Missing axiom audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem in analytic:
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
         if name == "FiniteJet.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
@@ -264,7 +494,9 @@ def main():
                      "FengLogMainTerm.lean", "FengOutsideProfile.lean", "FengCrossAssembly.lean",
                      "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean",
                      "CoprimeEulerError.lean", "FengPrimeWindow.lean", "FengOutsideAverage.lean", "FengOutsideReplacement.lean",
-                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean"):
+                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean",
+                     "FengLogProducts.lean", "FengSquareAssembly.lean",
+                     "FengOutsidePartner.lean", "FengInverseProducts.lean", "FengOutsideSquare.lean", "FengOutsideShared.lean", "RawEuler.lean", "FengSharedShift.lean", "FengSquareCoefficient.lean", "FengSquareMainTerm.lean", "TwoPieceMainTerm.lean", "CauchyJetTransfer.lean", "ZetaMomentIntegral.lean", "ZetaMomentPolynomial.lean"):
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             audited = re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE)
             required = {"IntegralJet.lean": "K2_exact_evaluator",
@@ -367,7 +599,21 @@ def main():
                         "FengOutsideProxy.lean": "zeroModel_sub_profile_uniform",
                         "FengOutsideMainTerm.lean": "outsideAsymptotic",
                         "FengCrossCoefficient.lean": "scaledArithmetic20_twoBidiscs",
-                        "FengMixedMainTerm.lean": "normalized_cross_uniform"}[name]
+                        "FengMixedMainTerm.lean": "normalized_cross_uniform",
+                        "FengLogProducts.lean": "logarithmicSum_twoBidiscs",
+                        "FengSquareAssembly.lean": "fullSum_twoBidiscs_of_remaining",
+                        "FengOutsidePartner.lean": "outside_outside_sub_proxy",
+                        "FengInverseProducts.lean": "inverse_mixed_twoBidiscs",
+                        "FengOutsideSquare.lean": "outside_outside_twoBidiscs",
+                        "FengOutsideShared.lean": "outside_shared_twoBidiscs",
+                        "RawEuler.lean": "rawWeight_factor",
+                        "FengSharedShift.lean": "fullSum_twoBidiscs",
+                        "FengSquareCoefficient.lean": "scaledArithmetic22_twoBidiscs",
+                        "FengSquareMainTerm.lean": "normalized_gcd22_uniform",
+                        "TwoPieceMainTerm.lean": "normalized_witness_uniform",
+                        "CauchyJetTransfer.lean": "jet₂_tendsto",
+                        "ZetaMomentIntegral.lean": "twistedMoment_mixed_deriv",
+                        "ZetaMomentPolynomial.lean": "contract₂_eq_moment"}[name]
             require(required in audited, "Missing integrated evaluator/enclosure audit")
             for theorem in audited:
                 key = "XiPrime8845." + path.stem + "." + theorem
@@ -387,12 +633,39 @@ def main():
         "source_sha256": {name: sha(af / name) for name in AF_PATHS},
         "checks": checks, "runner_sha256": sha(Path(__file__)),
         "existing_build_used": True, "clean_upstream_build_performed": False,
+        "parallel_jobs": args.jobs,
+        "smoothWeight_explicit_C_infinity_not_analytic": True,
+        "positive_mass_smooth_plateau_without_PRZZ": True,
+        "concrete_positive_mass_U_and_V_moment_bounds_from_PRZZ": True,
+        "fixed_inner_window_unweighted_V_moment_limit": True,
+        "iterated_limit_height_before_endpoint_width": True,
+        "full_dyadic_V_moment_limit_requires_endpoint_tightness": True,
+        "endpoint_tightness_discharged": False,
+        "expanded_support_gcd_and_height_limits_proved": True,
+        "expanded_support_exact_zeta_derivative_jet_identity": True,
+        "localized_estimate_to_U_and_derivative_moment_suppliers": True,
+        "endpoint_tightness_from_explicit_LocalizedEstimate": True,
+        "full_dyadic_V_moment_limit_and_cap_from_LocalizedEstimate": True,
+        "localized_PRZZ_estimate_proved": False,
+        "localized_PRZZ_is_added_axiom": False,
         "coefficient_subpower_formal_proof_complete": True,
         "normalized_przz_error_envelope_tends_to_zero": True,
         "actual_przz_normalized_difference_uniform_on_bidisc": True,
         "mixed_przz_error_cauchy_transfer_with_explicit_regularity_premises": True,
         "arithmetic_shift_regularity_premises_discharged": True,
         "actual_mixed_przz_error_tends_to_zero_without_regularity_premises": True,
+        "fixed_witness_normalized_moment_uniform_from_PRZZ": True,
+        "all_finite_mixed_moment_jets_at_negative_R": True,
+        "moment_jet_regularity_premises_discharged": True,
+        "moment_contract_limit_is_exact_K2_evaluator": True,
+        "explicit_mixed_zeta_derivative_integral_identity": True,
+        "finite_operator_moment_integral_identity": True,
+        "real_operator_absolute_square_moment_limit": True,
+        "fixed_degree_six_witness_matches_numerical_functional": True,
+        "actual_mass_normalized_square_moment_eventually_lt_1_128202": True,
+        "eventual_moment_cap_has_strict_logarithmic_margin": True,
+        "moment_bound_requires_fixed_nonnegative_weight_of_positive_mass": True,
+        "moment_limit_uses_existing_PRZZ_external_axiom": True,
         "gcd_mainterm_exact_direct_dual_split_proved": True,
         "outer_zeta_poles_scaled_uniformly": True,
         "dual_height_factor_uniform_limit_proved": True,
@@ -481,6 +754,20 @@ def main():
         "mixed_PRZZ_scaledArithmetic_H02_H20_uniform_both_bidiscs": True,
         "mixed_theta_minus_two_finite_coefficient_bridge": True,
         "mixed_original_normalized_gcd_H02_H20_uniform": True,
+        "K22_five_actual_logarithmic_products_uniform": True,
+        "K22_exact_nine_product_shifted_decomposition": True,
+        "K22_remaining_four_shifted_products_discharged": True,
+        "K22_actual_shifted_outside_outside_limit_proved": True,
+        "K22_proxy_shared_signed_marked_profile_bridge_proved": True,
+        "K22_actual_ordered_outside_shared_limits_proved": True,
+        "K22_shared_shared_shifted_weight_limit_proved": True,
+        "K22_theta_minus_four_original_coefficient_bridge": True,
+        "K22_H22_arithmetic_limit_both_bidiscs": True,
+        "K22_original_normalized_gcd_uniform_on_witness_bidisc": True,
+        "two_piece_ordered_four_component_gcd_assembly": True,
+        "two_piece_original_arithmetic_uniform_both_bidiscs": True,
+        "two_piece_same_profile_limit_is_shiftedFunctional": True,
+        "fixed_witness_full_normalized_gcd_uniform": True,
         "Feng_outside_finite_mainProxy_inverse_profile_uniform_growing_g": True,
         "Feng_outside_mainProxy_includes_zero_endpoint_and_both_bidiscs": True,
         "Feng_outside_actual_inner_replacement_average_discharge": True,
@@ -495,7 +782,7 @@ def main():
         "Feng_shared_and_outside_prime_power_asymptotics_proved": False,
         "Feng_K20_K02_K22_uniform_asymptotics_proved": False,
         "coprimality_averaged_error_proved": False,
-        "gcd_mainterm_limit_proved": False,
+        "gcd_mainterm_limit_proved": True,
         "certified_logarithmic_budget_strictly_above_target": True,
         "wu_counting_adapter_proved": False,
         "witness_przz_coefficient_hypotheses_discharged": True,

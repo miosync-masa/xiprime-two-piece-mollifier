@@ -1,0 +1,319 @@
+{
+  "date": "2026-10-30",
+  "scope": "Fresh eight-module focused compilation with source-hash-verified corrected-C-infinity dependency cache. Not a full 148-module rebuild.",
+  "registered_modules": 148,
+  "new_fresh_compiled_modules": 8,
+  "baseline_verified_checks": {
+    "smooth-weight-verification": 133,
+    "wu-unsmoothing-verification": 3,
+    "wu-localized-endpoint-verification": 4
+  },
+  "baseline_records": {
+    "smooth-weight-verification": "06610735cce74ee5f51ed6dc1ce8b58e8c5e2ccc5d3b943f0e8353bfd4cbfcba",
+    "wu-unsmoothing-verification": "ca401e6afc985d70db0239f240a378a6ade249740bab95eae81deb2e72204d93",
+    "wu-localized-endpoint-verification": "bbce8a1b2c80365917f18f16c89bc375b47760d273c13525257962cb4e10a683"
+  },
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "runner_sha256": "da5670ef46a44906b97aece7348e1758624bc15c7c58440025c87444ec36cb01",
+  "checks": {
+    "ExpandedGcd.lean": {
+      "exit_code": 0,
+      "sha256": "c1e39796cfb5da00e1b3f34bba0d469a8c72cc79048adce5a163e7b976e72e9b",
+      "output": "'XiPrime8845.ExpandedGcd.weighted_integral_restrict' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedGcd.integrated_term' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedGcd.gcdMainTerm_split' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedGcd.normalized_gcd_split' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.ExpandedGcd.weighted_integral_restrict": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedGcd.integrated_term": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedGcd.gcdMainTerm_split": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedGcd.normalized_gcd_split": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "ExpandedHeight.lean": {
+      "exit_code": 0,
+      "sha256": "d61579cef4d6860c4e218ca4755a345bf0940cf5fa15541b912ddf0360bb5c6c",
+      "output": "'XiPrime8845.ExpandedHeight.log_height_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedHeight.phase_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedHeight.rescale_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedHeight.mass_full' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedHeight.heightFactor_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.ExpandedHeight.log_height_bound": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedHeight.phase_error_bound": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedHeight.rescale_integral": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedHeight.mass_full": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedHeight.heightFactor_uniform": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "ExpandedRegularity.lean": {
+      "exit_code": 0,
+      "sha256": "c197bdc4d19a9657161691ab7a0594217cfe4cc872d919b59c0991af62ca97ff",
+      "output": "'XiPrime8845.ExpandedRegularity.twistedMoment_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.ExpandedRegularity.twistedMoment_smooth": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "ExpandedMainTerm.lean": {
+      "exit_code": 0,
+      "sha256": "9eb6cc541c76e6cb0dc3912c2a1e6ecea5b07a28b8fb075e8014c7bf544fddbb",
+      "output": "'XiPrime8845.ExpandedMainTerm.weightMass_full' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedMainTerm.normalized_gcd_uniform_of_arithmetic' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.ExpandedMainTerm.normalized_gcd_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedMainTerm.normalized_witness_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedMainTerm.normalizedMoment_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.ExpandedMainTerm.weightMass_full": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMainTerm.normalized_gcd_uniform_of_arithmetic": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMainTerm.normalized_gcd_uniform": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMainTerm.normalized_witness_uniform": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMainTerm.normalizedMoment_uniform": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "ExpandedZetaIntegral.lean": {
+      "exit_code": 0,
+      "sha256": "e1fbbe42f3c238e936c9ed5cb712b2092443953058a67fb8dbf278ba1a2f772e",
+      "output": "'XiPrime8845.ExpandedZetaIntegral.integral_left_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedZetaIntegral.integral_right_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedZetaIntegral.integral_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedZetaIntegral.integral_eq_full' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedZetaIntegral.twistedMoment_mixed_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.ExpandedZetaIntegral.integral_left_deriv": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedZetaIntegral.integral_right_deriv": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedZetaIntegral.integral_zero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedZetaIntegral.integral_eq_full": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedZetaIntegral.twistedMoment_mixed_deriv": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "ExpandedZetaPolynomial.lean": {
+      "exit_code": 0,
+      "sha256": "25629dee47549eb44b88c1e650f47d036dee3fc8b932b2b16dbb634652d2f954",
+      "output": "'XiPrime8845.ExpandedZetaPolynomial.moment_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedZetaPolynomial.normalized_jet₂' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedZetaPolynomial.contract₂_eq_moment' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.ExpandedZetaPolynomial.moment_expansion": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedZetaPolynomial.normalized_jet₂": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedZetaPolynomial.contract₂_eq_moment": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "ExpandedMoment.lean": {
+      "exit_code": 0,
+      "sha256": "6f24eaf017010331b9f8a73d3e1f403dccf1df84716540f27e794f3b9cee162c",
+      "output": "'XiPrime8845.ExpandedMoment.normalizedMoment_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedMoment.normalizedMoment_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedMoment.normalizedMoment_regular' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedMoment.kernel_regular' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedMoment.limit_regular' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedMoment.normalizedMoment_jet₂_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ExpandedMoment.normalizedMoment_contract_tendsto' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.ExpandedMoment.normalizedMoment_exactEvaluator_tendsto' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.ExpandedMoment.normalizedMoment_uniform": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMoment.normalizedMoment_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMoment.normalizedMoment_regular": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMoment.kernel_regular": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMoment.limit_regular": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMoment.normalizedMoment_jet₂_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMoment.normalizedMoment_contract_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.ExpandedMoment.normalizedMoment_exactEvaluator_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "WuLocalizedMoments.lean": {
+      "exit_code": 0,
+      "sha256": "a74b35b4c33995422d91129075d3cb705bb458bcdc38c053a35cc559415d19f9",
+      "output": "'XiPrime8845.WuLocalizedMoments.normalizedMoment_contract_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLocalizedMoments.moment_exactEvaluator_tendsto' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.WuLocalizedMoments.squareMoment_exactEvaluator_tendsto' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.WuLocalizedMoments.smoothedMoment_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLocalizedMoments.derivativeMoments_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLocalizedMoments.localizedUMoments' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLocalizedMoments.majorantDerivativeBounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLocalizedMoments.endpointTight' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLocalizedMoments.fullMoment_tendsto' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuLocalizedMoments.fullMoment_eventually_lt' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuLocalizedMoments.normalizedMoment_contract_eq": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLocalizedMoments.moment_exactEvaluator_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLocalizedMoments.squareMoment_exactEvaluator_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLocalizedMoments.smoothedMoment_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLocalizedMoments.derivativeMoments_bounded": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLocalizedMoments.localizedUMoments": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLocalizedMoments.majorantDerivativeBounds": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLocalizedMoments.endpointTight": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLocalizedMoments.fullMoment_tendsto": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLocalizedMoments.fullMoment_eventually_lt": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    }
+  },
+  "source_sha256": {
+    "ExpandedGcd.lean": "c1e39796cfb5da00e1b3f34bba0d469a8c72cc79048adce5a163e7b976e72e9b",
+    "ExpandedHeight.lean": "d61579cef4d6860c4e218ca4755a345bf0940cf5fa15541b912ddf0360bb5c6c",
+    "ExpandedRegularity.lean": "c197bdc4d19a9657161691ab7a0594217cfe4cc872d919b59c0991af62ca97ff",
+    "ExpandedMainTerm.lean": "9eb6cc541c76e6cb0dc3912c2a1e6ecea5b07a28b8fb075e8014c7bf544fddbb",
+    "ExpandedZetaIntegral.lean": "e1fbbe42f3c238e936c9ed5cb712b2092443953058a67fb8dbf278ba1a2f772e",
+    "ExpandedZetaPolynomial.lean": "25629dee47549eb44b88c1e650f47d036dee3fc8b932b2b16dbb634652d2f954",
+    "ExpandedMoment.lean": "6f24eaf017010331b9f8a73d3e1f403dccf1df84716540f27e794f3b9cee162c",
+    "WuLocalizedMoments.lean": "a74b35b4c33995422d91129075d3cb705bb458bcdc38c053a35cc559415d19f9"
+  },
+  "new_audited_theorems": 41,
+  "new_axioms": false,
+  "sorryAx": false,
+  "localized_estimate_is_axiom": false,
+  "localized_estimate_proved": false,
+  "localized_estimate_to_moment_suppliers_connected": true,
+  "endpoint_tightness_conditional_on": "PRZZLocalization.LocalizedEstimate",
+  "full_moment_limit_uses_existing_PRZZ_axiom": true,
+  "full_dyadic_moment_eventually_below_countingCap": true,
+  "full_dyadic_moment_cap_conditional_on": "PRZZLocalization.LocalizedEstimate plus the existing PRZZ axiom",
+  "original_T_preserved": true,
+  "support": [
+    "1/2",
+    "5/2"
+  ],
+  "mass": "integral over the entire real line",
+  "stirling_used_only_on": "[T,2T]",
+  "full148_runner_invocation_performed": false,
+  "clean_af_build_performed": false,
+  "final_zero_proportion_theorem": false,
+  "standard_only_new_audits": 39,
+  "existing_PRZZ_dependent_new_audits": 2,
+  "runner_audit_replayed_on_all_148_recorded_outputs": true,
+  "runner_topological_registration_dry_run_passed": true
+}
+

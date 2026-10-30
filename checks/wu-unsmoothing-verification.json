@@ -1,0 +1,174 @@
+{
+  "date": "2026-10-30",
+  "scope": "Fresh focused unsmoothing verification after a fresh 133-module baseline cache build. This is NOT a single invocation of the full 136-module verification runner.",
+  "source_sha256": {
+    "SmoothWindow.lean": "969546b023770224b2c9d2c6fa7024e7397914e7d837f0d8aaff05edb58e1728",
+    "SmoothWindowLimit.lean": "8d24b8662aa86d3cf5262f0d2d2a816b0bc6e496bd31e7da2da6769309b03648",
+    "WuUnsmoothing.lean": "537c8a8a57e18617f8d3f2d691d4c668678cc4b7a97f72c8f4e7ae9dcb7f6a63"
+  },
+  "runner_sha256": "2216235e2abc636742be19fa6f5cafc83a2c27f06b2d13b81cbea8fc4661d506",
+  "baseline_record_sha256": "06610735cce74ee5f51ed6dc1ce8b58e8c5e2ccc5d3b943f0e8353bfd4cbfcba",
+  "baseline_source_hashes_unchanged": true,
+  "baseline_modules": 133,
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "lean_version": "Lean (version 4.33.0-rc2, arm64-apple-darwin24.6.0, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "baseline_record": "checks/smooth-weight-verification.json",
+  "baseline_fresh_recompiled_modules": 133,
+  "baseline_cache_build_exit_code": 0,
+  "fresh_package_import_artifacts": true,
+  "clean_af_build_performed": false,
+  "new_fresh_compiled_modules": 3,
+  "total_fresh_compiled_modules": 136,
+  "full136_runner_invocation_performed": false,
+  "checks": {
+    "SmoothWindow.lean": {
+      "exit_code": 0,
+      "sha256": "969546b023770224b2c9d2c6fa7024e7397914e7d837f0d8aaff05edb58e1728",
+      "output": "'XiPrime8845.SmoothWindow.bump_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothWindow.bump_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothWindow.bump_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothWindow.bump_mass' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothWindow.integral_sandwich' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.SmoothWindow.bump_smooth": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.SmoothWindow.bump_one": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.SmoothWindow.bump_zero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.SmoothWindow.bump_mass": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.SmoothWindow.integral_sandwich": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "SmoothWindowLimit.lean": {
+      "exit_code": 0,
+      "sha256": "8d24b8662aa86d3cf5262f0d2d2a816b0bc6e496bd31e7da2da6769309b03648",
+      "output": "'XiPrime8845.SmoothWindowLimit.window_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothWindowLimit.windowMoment_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.SmoothWindowLimit.window_integrable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.SmoothWindowLimit.windowMoment_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "WuUnsmoothing.lean": {
+      "exit_code": 0,
+      "sha256": "537c8a8a57e18617f8d3f2d691d4c668678cc4b7a97f72c8f4e7ae9dcb7f6a63",
+      "output": "'XiPrime8845.WuUnsmoothing.trimmedMoment_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuUnsmoothing.fullMoment_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuUnsmoothing.weighted_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuUnsmoothing.trimmed_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuUnsmoothing.trimmedMoment_tendsto' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuUnsmoothing.trimmedMean_tendsto' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuUnsmoothing.trimmed_counting_bound' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuUnsmoothing.width_budget' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuUnsmoothing.trimmed_budget_bound' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuUnsmoothing.iterated_width_limit' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuUnsmoothing.sequential_unsmoothing' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuUnsmoothing.full_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuUnsmoothing.full_split' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuUnsmoothing.fullMoment_tendsto_of_endpointTight' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuUnsmoothing.trimmedMoment_eq": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.fullMoment_eq": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.weighted_integrable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.trimmed_integrable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.trimmedMoment_tendsto": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.trimmedMean_tendsto": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.trimmed_counting_bound": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.width_budget": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.trimmed_budget_bound": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.iterated_width_limit": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.sequential_unsmoothing": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.full_integrable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.full_split": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuUnsmoothing.fullMoment_tendsto_of_endpointTight": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    }
+  },
+  "new_audited_theorems": 21,
+  "standard_only_new_audits": 14,
+  "PRZZ_dependent_new_audits": 7,
+  "new_axioms": false,
+  "sorryAx": false,
+  "external_axiom": "XiPrime8845.PRZZ.przz41_case3_K2_profiles",
+  "fixed_inner_window_moment_limit": true,
+  "original_T_mollifier_and_left_line_preserved": true,
+  "iterated_limit_order": "First T -> infinity at each fixed positive width, then width -> 0 from above",
+  "trimmed_mean_eventual_cap": "1.128202",
+  "width_adjusted_logarithmic_budget_strictly_above": "0.8845",
+  "endpoint_tightness_discharged": false,
+  "full_dyadic_moment_limit_conditional_on": "WuUnsmoothing.EndpointTight",
+  "zero_counting_adapter_complete": false,
+  "final_zero_proportion_theorem": false
+}

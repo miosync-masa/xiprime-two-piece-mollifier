@@ -58,8 +58,11 @@ def gcdMainTerm (P Q : Profiles) (theta T : ℝ) (Phi : ℝ → ℝ) (A B : ℂ)
     ∫ t : ℝ, (riemannZeta (1+alpha+beta) + riemannZeta (1-alpha-beta) *
       ((2*Real.pi*d*e/(t*(Nat.gcd d e)^2) : ℝ) : ℂ)^(alpha+beta)) * (Phi (t/T) : ℂ)
 
+/-- A fixed C-infinity weight, not a real-analytic weight. The explicit
+`ℕ∞` annotation matters: an untyped `⊤` has order omega in `ℕ∞ω`.
+Constants in the external estimate may depend on this fixed weight. -/
 def SmoothWeight (Phi : ℝ → ℝ) : Prop :=
-  ContDiff ℝ ⊤ Phi ∧ Function.support Phi ⊆ Set.Icc 1 2
+  ContDiff ℝ (⊤ : ℕ∞) Phi ∧ Function.support Phi ⊆ Set.Icc 1 2
 
 /-- External published analytic input, restricted to the coefficient family
 needed here. Cross terms use independently specified P and Q.
