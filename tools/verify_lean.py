@@ -18,6 +18,8 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 AF_PATHS = [
     "Zeta23/Defs.lean",
+    "Zeta23/Assembly.lean",
+    "Zeta23/Defs/Counting.lean",
     "Zeta23/Hypotheses.lean",
     "Zeta23/Chebyshev.lean",
     "Zeta23/FromPNTPlus/Mertens.lean",
@@ -32,6 +34,12 @@ AF_PATHS = [
     "Zeta23/GammaFacts/StirlingVert.lean",
     "Zeta23/Analytic/Stirling.lean",
     "Zeta23/XiPrime/ZeroCount/ArgBound.lean",
+    "Zeta23/RvM/ZetaGrowth.lean",
+    "Zeta23/WeilEF/Landau.lean",
+    "Zeta23/XiPrime/ZeroCount/Basic.lean",
+    "Zeta23/XiPrime/ZeroCount/Landau.lean",
+    "Zeta23/XiPrime/ZeroCount/Y.lean",
+    "Zeta23/XiPrime/ExplicitFormula/ZeroFree.lean",
     "Zeta23/XiPrime/ZeroCount/Generic.lean",
     "Zeta23/XiPrime/ZeroCount/GenericRvM.lean",
     "Zeta23/XiPrime/ZeroCount/Contour.lean",
@@ -168,7 +176,20 @@ def compile_sources(lake, af, source_dir, jobs=1):
                      "PRZZLocalization.lean", "PRZZLocalizedError.lean", "SmoothEndpoint.lean", "WuEndpointTransfer.lean",
                      "ExpandedGcd.lean", "ExpandedHeight.lean", "ExpandedRegularity.lean",
                      "ExpandedMainTerm.lean", "ExpandedZetaIntegral.lean", "ExpandedZetaPolynomial.lean",
-                     "ExpandedMoment.lean", "WuLocalizedMoments.lean"):
+                     "ExpandedMoment.lean", "WuLocalizedMoments.lean", "WuTrimmedLog.lean", "WuWindowTiling.lean",
+                     "WuLittlewood.lean", "WuEdgeLog.lean", "WuSafeEndpoints.lean",
+                     "WuIndependentWindows.lean", "WuSubintervalLog.lean",
+                     "WuXiBands.lean", "WuAuxiliaryBoundary.lean",
+                     "WuBoundaryZeros.lean", "WuAuxiliaryMultiplicity.lean", "WuLeftReturn.lean",
+                     "WuRightMollifier.lean", "WuRightBoundary.lean", "WuRightLittlewood.lean",
+                     "WuWideGamma.lean", "WuDiskGrowth.lean", "WuDiskCenter.lean",
+                     "WuHorizontalIntegral.lean", "WuHorizontalBound.lean", "WuCriticalMultiplicity.lean",
+                     "WuAuxiliaryHorizontal.lean", "WuFiniteDeflation.lean", "WuCriticalDeflation.lean",
+                     "WuDeflatedDetection.lean", "WuPhaseCrossings.lean", "WuDeflatedContour.lean",
+                     "WuBoundaryPhase.lean", "WuParallelReturn.lean", "WuContourCounting.lean",
+                     "WuGammaPhase.lean", "WuGammaCancellation.lean", "WuVHorizontal.lean",
+                     "WuEtaMainPhase.lean", "WuQuotientReturn.lean", "WuLocalCounting.lean",
+                     "WuDyadicCounting.lean", "WuTotalAsymptotic.lean", "WuProportion.lean"):
             enqueue(name, [lake, "env", "lean", "--root=" + str(source_dir),
                            "-o", str(Path(build) / (Path(name).stem + ".olean"))])
         for name, future in ordered:
@@ -199,6 +220,157 @@ def main():
         explicit = sum(line.startswith("axiom ") for line in path.read_text().splitlines())
         require(explicit == (1 if name == "PRZZInterface.lean" else 0),
                 f"Unexpected explicit axiom count: {name}")
+        if name in {"WuXiBands.lean", "WuAuxiliaryBoundary.lean", "WuBoundaryZeros.lean",
+                    "WuAuxiliaryMultiplicity.lean", "WuLeftReturn.lean", "WuRightMollifier.lean",
+                    "WuRightBoundary.lean", "WuRightLittlewood.lean", "WuWideGamma.lean",
+                    "WuDiskGrowth.lean", "WuDiskCenter.lean", "WuHorizontalIntegral.lean",
+                    "WuHorizontalBound.lean", "WuCriticalMultiplicity.lean", "WuAuxiliaryHorizontal.lean",
+                    "WuFiniteDeflation.lean", "WuCriticalDeflation.lean", "WuDeflatedDetection.lean",
+                    "WuPhaseCrossings.lean", "WuDeflatedContour.lean", "WuBoundaryPhase.lean",
+                    "WuParallelReturn.lean", "WuContourCounting.lean", "WuGammaPhase.lean",
+                    "WuGammaCancellation.lean", "WuVHorizontal.lean", "WuEtaMainPhase.lean",
+                    "WuQuotientReturn.lean", "WuLocalCounting.lean", "WuDyadicCounting.lean",
+                    "WuTotalAsymptotic.lean", "WuProportion.lean"}:
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms ([\w.]+)$", path.read_text(), re.MULTILINE))
+            expected_audits = {
+                "WuXiBands.lean": {"total_mono", "good_mono", "total_increment", "good_increment",
+                    "unit_count", "unit_increment_uniform", "inward_counting_transfer", "global_bound"},
+                "WuAuxiliaryBoundary.lean": {"auxiliary_entire", "eta_reflection_difference",
+                    "eta_not_identically_zero", "auxiliary_factor", "log_auxiliary", "log_auxiliary_left",
+                    "log_auxiliary_left_le", "H_left_eventually_nonzero", "left_log_integral_le",
+                    "left_log_eventually_le"},
+                "WuBoundaryZeros.lean": {"coefficient_one", "dirichletPolynomial_tendsto",
+                    "psi_tendsto_right", "psi_not_identically_zero", "auxiliary_not_identically_zero",
+                    "entire_zeros_countable", "auxiliary_zeros_countable", "safe_window_log_input",
+                    "vertical_log_integrable", "auxiliary_left_ae_nonzero", "left_log_integral_le",
+                    "left_log_eventually_le"},
+                "WuAuxiliaryMultiplicity.lean": {"entire_order_ne_top", "auxiliary_order",
+                    "eta_order_le_auxiliary", "oddPart_eq", "oddPart_order", "weighted_eta_le_auxiliary",
+                    "exists_safe_sides", "littlewood_perturbed"},
+                "WuLeftReturn.lean": {"integral_eventually_lt_of_upper_bound", "vertical_ae_nonzero",
+                    "vertical_log_eventually_lt", "auxiliary_left_return", "exists_safe_left",
+                    "littlewood_fixed_right", "weighted_sum_mono", "safe_left_budget_eventually"},
+                "WuRightMollifier.lean": {"coefficient_tendsto", "shift_tendsto", "shiftedCoefficient_tendsto",
+                    "shiftedCoefficient_bound", "error_term_bound", "errorMass_tendsto", "psi_eq_LSeries",
+                    "inverse_error_bound", "zeta_psi_uniform", "LSeries_bound", "psi_bound"},
+                "WuRightBoundary.lean": {"zeta_derivative_bound", "scaled_bound", "scaled_succ_bound",
+                    "U_sub_zeta_bound", "V_sub_zeta_bound", "product_uniform", "right_nonzero",
+                    "rightLog_uniform", "right_analytic", "right_real_pos", "rightLog_integrable",
+                    "rightLog_integral_bound", "normalized_rightLog_tendsto", "right_phase_bound"},
+                "WuRightLittlewood.lean": {"littlewood_eventually", "eta_count_le_weighted", "eta_count_le_boundary"},
+                "WuWideGamma.lean": {"jetConstant_nonneg", "jet_bound"},
+                "WuDiskGrowth.lean": {"zeta_halfPlane_bound", "center_derivative_bound", "disk_derivative_bound",
+                    "V_disk_bound", "psi_polynomial_bound", "product_disk_bound"},
+                "WuDiskCenter.lean": {"V_sub_zeta_bound", "product_uniform", "center_lower"},
+                "WuHorizontalIntegral.lean": {"horizontal_of_partial_fraction"},
+                "WuHorizontalBound.lean": {"product_analytic", "horizontal_bound", "phaseConstant_pos", "horizontal_safe"},
+                "WuCriticalMultiplicity.lean": {"eta_conj", "realtype_order", "reflected_order",
+                    "eta_order_le_xiDeriv", "critical_zero_budget"},
+                "WuAuxiliaryHorizontal.lean": {"logDeriv_factor", "logDeriv_integrable", "auxiliary_horizontal_safe"},
+                "WuFiniteDeflation.lean": {"divisor_order", "single_factor", "finite_factor", "order_restore"},
+                "WuCriticalDeflation.lean": {"exists_data", "Data.divisor_critical", "Data.curve_nonzero",
+                    "Data.xi_order_restore", "Data.count_restore", "Data.edgeLog"},
+                "WuDeflatedDetection.lean": {"Data.realDivisor_ne_zero", "Data.curve_im", "Data.remaining_re",
+                    "Data.curve_im_zero_iff", "Data.phase_zero_iff"},
+                "WuPhaseCrossings.lean": {"phase_count", "positive_order_at_zero", "phase_count_restored",
+                    "critical_phase_count"},
+                "WuDeflatedContour.lean": {"divisor_logDeriv", "eta_logDeriv", "detour_integral",
+                    "vertical_pole_bound", "vertical_comparison"},
+                "WuBoundaryPhase.lean": {"edge_increment", "boundary_horizontal_error", "boundaryLog_le",
+                    "auxiliary_boundaryLog_le"},
+                "WuParallelReturn.lean": {"nonzero_strip", "vertical_continuousAt", "parallel_phase_count"},
+                "WuContourCounting.lean": {"rectangle_phase", "argument_count", "phase_littlewood",
+                    "original_eta_phase_supplier", "actual_window_merger", "eventual_window_merger"},
+                "WuGammaPhase.lean": {"rectangle_regular", "otherPhase_eq", "boundary_zero",
+                    "vertical_main_bound", "otherPhase_main_bound"},
+                "WuGammaCancellation.lean": {"quotient_boundary", "auxiliary_cancellation",
+                    "gamma_free_boundary_bound"},
+                "WuVHorizontal.lean": {"V_analytic", "horizontal_bound", "phaseConstant_pos",
+                    "right_real_pos", "right_phase_bound"},
+                "WuEtaMainPhase.lean": {"eta_path_split", "otherPhase_split", "otherPhase_main",
+                    "gamma_free_merger"},
+                "WuQuotientReturn.lean": {"Hlog_continuous", "logDensity_integrable", "quotient_log_ae",
+                    "quotient_integral_eq", "logIntegral_return", "exists_safe_left", "original_budget"},
+                "WuLocalCounting.lean": {"divide_positive_budget", "closed_count_lower"},
+                "WuDyadicCounting.lean": {"proportion_gt", "closed_sum_le_dyadic", "countLower_eq",
+                    "budget_le", "budget_eventually_le", "budget_normalized_tendsto"},
+                "WuTotalAsymptotic.lean": {"rvm", "total_growth", "dyadic_normalized", "N0_add", "cumulative"},
+                "WuProportion.lean": {"dyadic_eventually", "cumulative_eventually", "strict_proportion",
+                    "ratio_eventually_gt"},
+            }
+            require(audited == expected_audits[name], f"Actual counting bridge audit coverage changed: {name}")
+            for theorem in audited:
+                namespace = "WuCriticalDeflation" if name == "WuDeflatedDetection.lean" else path.stem
+                key = "XiPrime8845." + namespace + "." + theorem
+                require(key in dependencies, f"Missing actual counting bridge audit: {key}")
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem in {"left_log_eventually_le", "safe_window_log_input", "safe_left_budget_eventually",
+                               "original_budget", "closed_count_lower", "budget_eventually_le",
+                               "dyadic_eventually", "cumulative_eventually", "strict_proportion", "ratio_eventually_gt"}:
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                require(actual == expected, f"Unexpected actual counting bridge dependencies: {key}: {actual}")
+            require("LocalizedEstimate" not in path.read_text(), f"Localization leaked into counting bridge: {name}")
+        if name in {"WuIndependentWindows.lean", "WuSubintervalLog.lean"}:
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            expected_audits = {
+                "WuIndependentWindows.lean": {"exists_inward_heights", "exists_independent_heights",
+                    "counting_transfer", "unit_band_transfer", "aggregate_independent", "number_cells_bound",
+                    "band_budget_bound", "band_budget_normalized_tendsto", "global_independent_bound"},
+                "WuSubintervalLog.lean": {"jensen_of_integral", "integral_density_subinterval",
+                    "subLogMean_le", "subLogMean_eventually_le", "safe_window_log_input"},
+            }
+            require(audited == expected_audits[name], f"Independent-window audit coverage changed: {name}")
+            for theorem in audited:
+                key = "XiPrime8845." + path.stem + "." + theorem
+                require(key in dependencies, f"Missing independent-window audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem in {"subLogMean_eventually_le", "safe_window_log_input"}:
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected independent-window dependencies: {key}: {actual}")
+            require("LocalizedEstimate" not in path.read_text(), f"Localization leaked into independent route: {name}")
+        if name in {"WuLittlewood.lean", "WuEdgeLog.lean", "WuSafeEndpoints.lean"}:
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms ([\w.]+)$", path.read_text(), re.MULTILINE))
+            expected_audits = {
+                "WuLittlewood.lean": {"EdgeLog.real_eq", "EdgeLog.parts", "contour_boundary", "littlewood"},
+                "WuEdgeLog.lean": {"path_log_exists", "edgeLog_exists", "boundaryLogs_exists", "littlewood_of_boundary_nonzero"},
+                "WuSafeEndpoints.lean": {"badTerminals_countable", "exists_safe_terminal", "badHeights_countable",
+                    "horizontal_nonzero", "boundary_nonzero", "exists_safe_geometric_family",
+                    "littlewood_of_safe_heights", "moving_endpoint_zero"},
+            }
+            require(audited == expected_audits[name], f"Littlewood audit coverage changed: {name}")
+            namespace = "WuSafeEndpoints" if name == "WuSafeEndpoints.lean" else "WuLittlewood"
+            for theorem in audited:
+                key = "XiPrime8845." + namespace + "." + theorem
+                require(key in dependencies, f"Missing Littlewood audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                require(actual == {"propext", "Classical.choice", "Quot.sound"},
+                        f"Unexpected Littlewood dependencies: {key}: {actual}")
+        if name in {"WuTrimmedLog.lean", "WuWindowTiling.lean"}:
+            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
+            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
+            expected_audits = {
+                "WuTrimmedLog.lean": {"density_continuous", "integral_density", "log_tangent",
+                    "logMean_le", "logMean_eventually_le"},
+                "WuWindowTiling.lean": {"ratio_mem", "boundary_antitone", "height_le", "exists_cut",
+                    "endpoints", "cell_eq", "cells_disjoint", "cells_union", "increments_telescope",
+                    "lengths_telescope", "sum_error_bound", "sum_error_of_local", "all_window_log_inputs",
+                    "aggregate_counting", "global_counting_bound"},
+            }
+            require(audited == expected_audits[name], f"Interior-window audit coverage changed: {name}")
+            for theorem in audited:
+                key = "XiPrime8845." + path.stem + "." + theorem
+                require(key in dependencies, f"Missing interior-window audit: {key}")
+                actual = {item.strip() for item in dependencies[key].split(",")}
+                expected = {"propext", "Classical.choice", "Quot.sound"}
+                if theorem in {"logMean_eventually_le", "all_window_log_inputs"}:
+                    expected.add("PRZZ.przz41_case3_K2_profiles")
+                require(actual == expected, f"Unexpected interior-window dependencies: {key}: {actual}")
+            require("LocalizedEstimate" not in path.read_text(), f"Localization leaked into interior route: {name}")
         if name in {"PRZZLocalization.lean", "PRZZLocalizedError.lean", "SmoothEndpoint.lean", "WuEndpointTransfer.lean",
                     "ExpandedGcd.lean", "ExpandedHeight.lean", "ExpandedRegularity.lean", "ExpandedMainTerm.lean",
                     "ExpandedZetaIntegral.lean", "ExpandedZetaPolynomial.lean", "ExpandedMoment.lean", "WuLocalizedMoments.lean"}:
@@ -648,6 +820,28 @@ def main():
         "full_dyadic_V_moment_limit_and_cap_from_LocalizedEstimate": True,
         "localized_PRZZ_estimate_proved": False,
         "localized_PRZZ_is_added_axiom": False,
+        "abstract_rectangle_Littlewood_proved": True,
+        "compatible_edge_logarithms_constructed": True,
+        "fixed_countable_family_geometric_endpoint_avoidance": True,
+        "independent_inward_safe_endpoints_proved": True,
+        "unit_band_counting_transfer_proved": True,
+        "conditional_total_band_budget_normalized_tends_to_zero": True,
+        "unit_trimmed_subinterval_log_cap_uniform": True,
+        "actual_xi_prime_unit_band_count_bound_proved": True,
+        "actual_xi_prime_cumulative_multiplicity_count_adapters": True,
+        "actual_xi_prime_global_transfer_requires_local_counting_gate": True,
+        "actual_eta_psi_left_log_bound_given_nonvanishing": True,
+        "actual_eta_not_identically_zero_proved": True,
+        "actual_Wu_horizontal_argument_bound_proved": True,
+        "actual_eta_psi_horizontal_bound_uniform_on_safe_subsegments": True,
+        "critical_eta_analytic_order_bounded_by_xi_prime": True,
+        "actual_eta_critical_divisor_removed_with_analytic_extension": True,
+        "deflated_curve_continuous_log_constructed": True,
+        "deflated_phase_to_full_xi_prime_multiplicity_count_proved": True,
+        "original_eta_phase_indentation_comparison_proved": False,
+        "phase_to_xi_prime_multiplicity_count_proved": True,
+        "moving_Wu_family_bad_terminal_countability_proved": False,
+        "actual_Wu_vertical_boundary_nonvanishing_proved": False,
         "coefficient_subpower_formal_proof_complete": True,
         "normalized_przz_error_envelope_tends_to_zero": True,
         "actual_przz_normalized_difference_uniform_on_bidisc": True,
@@ -784,7 +978,14 @@ def main():
         "coprimality_averaged_error_proved": False,
         "gcd_mainterm_limit_proved": True,
         "certified_logarithmic_budget_strictly_above_target": True,
-        "wu_counting_adapter_proved": False,
+        "wu_trimmed_regularized_log_integral_bound": True,
+        "wu_terminal_anchored_window_tiling": True,
+        "wu_all_height_transfer_from_explicit_local_counting_input": True,
+        "wu_interior_route_requires_localized_estimate": False,
+        "wu_actual_local_counting_inequality_proved": True,
+        "wu_counting_adapter_proved": True,
+        "wu_all_terminal_heights_fixed_strict_margin": True,
+        "wu_final_proportion_requires_localized_estimate": False,
         "witness_przz_coefficient_hypotheses_discharged": True,
         "finite_truncated_inverse_integral_and_jet_identities_proved": True,
         "beta_integral_and_finite_inverse_jet_coefficients_proved": True,
@@ -812,7 +1013,8 @@ def main():
         "swapped_dual_quotient_diagonal_identified_with_positive_W": True,
         "W_contracted_profile_swap_proved": True,
         "inverse_mellin_analytic_identification_proved": False,
-        "przz_external_axiom_count": 1, "final_proportion_formalized": False,
+        "przz_external_axiom_count": 1, "final_proportion_formalized": True,
+        "final_proportion_scope": "Actual xi-prime counts with multiplicity, conditional only on the existing PRZZ input beyond standard axioms",
     }
     content = json.dumps(result, indent=2, ensure_ascii=False) + "\n"
     if args.output:

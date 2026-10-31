@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-30",
+  "scope": "Three fresh modules and their fresh local imports against pinned existing AF build; not a full 153-module rebuild.",
+  "registered_modules": 153,
+  "registration_dry_run_passed": true,
+  "fresh_compiled_modules": 3,
+  "axiom_audits": 16,
+  "standard_only": true,
+  "PRZZ_used": false,
+  "LocalizedEstimate_used": false,
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "selected_AF_sources_match_pin": true,
+  "runner_sha256": "f5a28651009f5d1bfa45312cab29c0be9c9402f47e76012a24086895ce838aaa",
+  "checks": {
+    "WuLittlewood.lean": {
+      "exit_code": 0,
+      "sha256": "04bd256a0132ab0e06a06e2adfeb2944d1e676c8079eeeb8c30f97cf3bf5b56c",
+      "output": "'XiPrime8845.WuLittlewood.EdgeLog.real_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLittlewood.EdgeLog.parts' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLittlewood.contour_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLittlewood.littlewood' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuLittlewood.EdgeLog.real_eq": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLittlewood.EdgeLog.parts": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLittlewood.contour_boundary": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLittlewood.littlewood": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "WuEdgeLog.lean": {
+      "exit_code": 0,
+      "sha256": "e74adb7a65fc6d5679604946d1a4ba041354f11f2efd98e23898112aedc1dacf",
+      "output": "'XiPrime8845.WuLittlewood.path_log_exists' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLittlewood.edgeLog_exists' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLittlewood.boundaryLogs_exists' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuLittlewood.littlewood_of_boundary_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuLittlewood.path_log_exists": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLittlewood.edgeLog_exists": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLittlewood.boundaryLogs_exists": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuLittlewood.littlewood_of_boundary_nonzero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "WuSafeEndpoints.lean": {
+      "exit_code": 0,
+      "sha256": "a7bb1e16622ab8126d5d2278b12753a17a50caca8f94aaf0c140bc8fb7faf86e",
+      "output": "'XiPrime8845.WuSafeEndpoints.badTerminals_countable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuSafeEndpoints.exists_safe_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuSafeEndpoints.badHeights_countable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuSafeEndpoints.horizontal_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuSafeEndpoints.boundary_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuSafeEndpoints.exists_safe_geometric_family' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuSafeEndpoints.littlewood_of_safe_heights' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuSafeEndpoints.moving_endpoint_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuSafeEndpoints.badTerminals_countable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuSafeEndpoints.exists_safe_terminal": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuSafeEndpoints.badHeights_countable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuSafeEndpoints.horizontal_nonzero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuSafeEndpoints.boundary_nonzero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuSafeEndpoints.exists_safe_geometric_family": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuSafeEndpoints.littlewood_of_safe_heights": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuSafeEndpoints.moving_endpoint_zero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    }
+  },
+  "abstract_Littlewood_boundary_identity": true,
+  "logarithm_lift_existence_proved": true,
+  "fixed_countable_family_endpoint_avoidance": true,
+  "actual_moving_Wu_family_safe_endpoints_proved": false,
+  "actual_Wu_vertical_nonvanishing_proved": false,
+  "actual_Wu_counting_inequality_proved": false,
+  "full153_rebuild_performed": false,
+  "clean_AF_build_performed": false
+}

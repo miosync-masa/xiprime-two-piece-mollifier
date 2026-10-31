@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-30",
+  "scope": "Fresh two-module compilation against source-hash-verified corrected-C-infinity baseline. Not a full 150-module rebuild.",
+  "registered_modules": 150,
+  "fresh_compiled_modules": 2,
+  "baseline_source_hashes_verified": 148,
+  "baseline_records": {
+    "checks/smooth-weight-verification.json": "06610735cce74ee5f51ed6dc1ce8b58e8c5e2ccc5d3b943f0e8353bfd4cbfcba",
+    "checks/wu-unsmoothing-verification.json": "ca401e6afc985d70db0239f240a378a6ade249740bab95eae81deb2e72204d93",
+    "checks/wu-localized-endpoint-verification.json": "bbce8a1b2c80365917f18f16c89bc375b47760d273c13525257962cb4e10a683",
+    "checks/wu-localized-moments-verification.json": "7001458c93f2bb5d90c54fa9525c019388dcbf5a1b911d7ddc3a0a17dd2c04e1"
+  },
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "runner_sha256": "d8a370e41a8619e20089d037160715c5c6fe05cdbc5264199477f7b6801ea57b",
+  "checks": {
+    "WuTrimmedLog.lean": {
+      "exit_code": 0,
+      "sha256": "efbb66f016ee997e2cd0a4c82971c6763307233d4908d2d794fdef379e4e6931",
+      "output": "'XiPrime8845.WuTrimmedLog.density_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuTrimmedLog.integral_density' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuTrimmedLog.log_tangent' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuTrimmedLog.logMean_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuTrimmedLog.logMean_eventually_le' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuTrimmedLog.density_continuous": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuTrimmedLog.integral_density": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuTrimmedLog.log_tangent": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuTrimmedLog.logMean_le": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuTrimmedLog.logMean_eventually_le": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "WuWindowTiling.lean": {
+      "exit_code": 0,
+      "sha256": "88eafa81787360447be7d449db28d628b7873ef036f93b588458255d98a63ff8",
+      "output": "'XiPrime8845.WuWindowTiling.ratio_mem' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.boundary_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.height_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.exists_cut' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.cell_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.cells_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.cells_union' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.increments_telescope' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.lengths_telescope' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.sum_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.sum_error_of_local' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.all_window_log_inputs' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuWindowTiling.aggregate_counting' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuWindowTiling.global_counting_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuWindowTiling.ratio_mem": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.boundary_antitone": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.height_le": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.exists_cut": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.endpoints": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.cell_eq": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.cells_disjoint": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.cells_union": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.increments_telescope": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.lengths_telescope": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.sum_error_bound": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.sum_error_of_local": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.all_window_log_inputs": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.aggregate_counting": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuWindowTiling.global_counting_bound": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    }
+  },
+  "axiom_audits": 20,
+  "new_axioms": false,
+  "sorryAx": false,
+  "localized_estimate_used": false,
+  "local_import_closure_excludes_localization": true,
+  "regularized_log_integral_bound_proved": true,
+  "terminal_anchored_disjoint_tiling_proved": true,
+  "finite_low_height_remainder_retained": true,
+  "all_height_transfer_from_explicit_local_counting_input_proved": true,
+  "actual_local_Littlewood_phase_counting_inequality_proved": false,
+  "unregularized_log_zero_handling_discharged": false,
+  "final_zero_proportion_proved": false,
+  "full150_rebuild_performed": false,
+  "clean_af_build_performed": false,
+  "registration_dry_run_passed": true,
+  "all150_recorded_axiom_outputs_replayed": true
+}

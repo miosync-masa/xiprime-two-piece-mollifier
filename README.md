@@ -1,8 +1,10 @@
 # Two-piece mollification of xi prime
 
-An explicit Conrey–Feng two-component mollifier for a proposed **88.45%** lower bound on the proportion of zeros of the derivative of the Riemann xi-function on the critical line, **counted with multiplicity**.
+An explicit Conrey–Feng two-component mollifier giving a **strictly greater than 88.45%** asymptotic lower bound for zeros of the derivative of the Riemann xi-function on the critical line, **counted with multiplicity**, conditional on the stated PRZZ input.
 
-This repository contains a proof draft for specialist review, a reproducible finite numerical certificate, and partial Lean formalizations. The numerical certificate verifies a finite main-term inequality; it does not certify the analytic transplantation. The full zero-proportion theorem is not yet formalized in Lean.
+This repository contains a proof draft for specialist review, a reproducible finite numerical certificate, and a Lean derivation of the zero-proportion conclusion. `WuProportion.strict_proportion` proves a fixed margin: there exists `b > 0.8845` such that `b * Ncount 0 X ≤ N0 0 X` for every sufficiently large real `X`. Its printed dependencies are the three standard axioms and the existing `PRZZ.przz41_case3_K2_profiles` input; the PRZZ input itself is not proved here. No simplicity, localized PRZZ, or counting-gate assumption is added.
+
+The [latest verification record](checks/wu-proportion-verification.json) freshly compiles the five final modules and replays all 187 registered axiom outputs after checking the 182 baseline source hashes. This is not a fresh rebuild of all 187 modules or of upstream AF. The unchanged manuscript predates the completed Lean chain; the numerical certificate alone still proves only a finite inequality.
 
 [日本語の案内](README.ja.md) · [Manuscript PDF](paper/manuscript.pdf) · [LaTeX source](paper/manuscript.tex) · [Expert audit questions](paper/README.md#questions-requiring-analytic-review)
 
@@ -24,9 +26,9 @@ This repository contains a proof draft for specialist review, a reproducible fin
 | PRZZ shifted-moment input | One explicit external axiom in a separate Lean file |
 | Actual normalized PRZZ residual on a fixed bidisc | Uniform convergence and arbitrary finite mixed-derivative convergence to zero, relative only to the existing PRZZ axiom |
 | Regularity of the actual zeta integral and gcd main term | Joint complex smoothness proved for T > 1 and negative real parts of both shifts; Cauchy regularity premises discharged |
-| Outer factors of the literal gcd main term | Exact direct/dual separation, uniform scaled zeta-pole limits and uniform normalized height-factor limit proved; the arithmetic-sum-to-H-kernel limit remains open |
+| Literal arithmetic gcd main term and moments | All four 00/02/20/22 limits, zeta/height composition, Cauchy jets and concrete zeta-derivative moments connected |
 | Logarithmic numerical budget | Lean proof of `1 - log(1.128201)/R > 0.8845`; not a zero-counting theorem |
-| Leading-pole asymptotics, analytic Mellin identification and Wu counting adapter | Proof draft; formalization incomplete |
+| Actual Wu counting and all-height proportion | `WuProportion.strict_proportion` and `ratio_eventually_gt`; only the existing PRZZ input beyond standard axioms |
 | New simple-zero bound or publication-priority claim | Not claimed |
 
 The candidate uses $R=1.04440033$, $\theta=4/7-10^{-6}$, and the unrestricted Dirichlet convolution $\mu*\Lambda*\Lambda$. The unchanged Python certificate encloses
@@ -36,7 +38,7 @@ $$
 <\exp\{R(1-0.8845)\}.
 $$
 
-The Lean certificate uses a separate, coarser enclosure: the real part of the differentiated K2 functional is at most **1.128201**, while the target exponential is greater than **1.1282054105**. It proves the finite inequality, not the arithmetic asymptotic or the zero-counting conclusion.
+The Lean certificate uses a separate, coarser enclosure: the real part of the differentiated K2 functional is at most **1.128201**, while the target exponential is greater than **1.1282054105**. The counting transfer uses the slightly larger cap **1.128202**. The finite certificate is one component of the subsequent arithmetic, moment and counting proofs, not a replacement for them.
 
 ## Reproduce the finite certificate
 
@@ -57,7 +59,7 @@ For optional Lean checks and manuscript rebuilding, see [reproduction instructio
 
 ```text
 paper/       Five-page manuscript and unchanged standalone numerical bundle
-lean/        Sixteen Lean modules and pinned dependency information
+lean/        187 registered Lean modules and pinned dependency information
 tools/       Portable package and Lean verification commands
 checks/      Captured packaging and Lean verification output
 docs/        Proof status and reproduction instructions

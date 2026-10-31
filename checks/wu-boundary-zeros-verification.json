@@ -1,0 +1,207 @@
+{
+  "date": "2026-10-30",
+  "scope": "Fresh compilation of two new modules; 157 baseline source hashes checked against prior verification records. Existing local and pinned AF build artifacts used. Not a full 159-module or clean upstream rebuild.",
+  "registered_modules": 159,
+  "all159_recorded_axiom_outputs_replayed": true,
+  "baseline_source_hashes_verified": 157,
+  "baseline_records": {
+    "checks/smooth-weight-verification.json": "06610735cce74ee5f51ed6dc1ce8b58e8c5e2ccc5d3b943f0e8353bfd4cbfcba",
+    "checks/wu-unsmoothing-verification.json": "ca401e6afc985d70db0239f240a378a6ade249740bab95eae81deb2e72204d93",
+    "checks/wu-localized-endpoint-verification.json": "bbce8a1b2c80365917f18f16c89bc375b47760d273c13525257962cb4e10a683",
+    "checks/wu-localized-moments-verification.json": "7001458c93f2bb5d90c54fa9525c019388dcbf5a1b911d7ddc3a0a17dd2c04e1",
+    "checks/wu-interior-window-verification.json": "d19a4d916a7c1b04db1caf92133ca462b5f82f92ccb3ef210fbfa88e27a59cfb",
+    "checks/wu-littlewood-verification.json": "05273c5ab19db19d58a97ced2518f067c650f30c0a097a96e14602053ef275fc",
+    "checks/wu-independent-window-verification.json": "2ab4f34d6d9b0ff4b0493ba9aa38422fb4759edb210c86dfc71757eb8b08c3ef",
+    "checks/wu-actual-counting-bridge-verification.json": "0f49f0e3dade841ba5c6782c90fcc1d02fe28c7a72da560034718fa38fa6aaa3"
+  },
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "selected_AF_sources_match_pin": true,
+  "af_source_sha256": {
+    "Zeta23/Defs.lean": "216b34de76394522aea610c57d342f3dfe8aa1c3d9d6b2ec11509de92f1c6bb0",
+    "Zeta23/Hypotheses.lean": "b64911caaf69328e0ca4fced1fd1f80fdca02d57bce390db34843b9849ccb4e2",
+    "Zeta23/Chebyshev.lean": "daa9a056ca00730d6318fc12f6587cb420c31b8c0426b3b851c993731e47c270",
+    "Zeta23/FromPNTPlus/Mertens.lean": "8df79fab65cdc6b9f28c4f2e5f39e0d8d284ac17ac4e06b3cb1f5d4cb8ae3be4",
+    "Zeta23/XiPrime/Coeff/Basic.lean": "34a844316e064603c7f63e2b9a164417b966875dbadaeb48de923014affc25d4",
+    "Zeta23/XiPrime/Coeff/Abel.lean": "8eda53f464fbd2ebf358761049ca1f696e50bd270a59487ae1e4a42e850bf9c0",
+    "Zeta23/XiPrime/Coeff/PowerSums.lean": "57fa5f449b4d5d34fb53f38d50d3788f6b5d58c0f7e7114bf21fc49b1b71c7f2",
+    "Zeta23/XiPrime/Coeff/NonSquarefree.lean": "5fca90be3694f30495895b5c864850514e5c4a69d10a594a9d4c3ba3060cc4a9",
+    "Zeta23/XiPrime/Coeff/PrimeSums.lean": "62bfd85e79fe6c63ba409d84604adf770df5feaca885565a445f44c35ce9c8d8",
+    "Zeta23/Analytic/RectangleLogDeriv.lean": "6606f32e30fe5f7a5c0660e2c9ecb8bb041144e52b090fe880d2c0e4734f5755",
+    "Zeta23/XiPrime/Defs.lean": "e3c6ad6f1ad96a6022a7632576f071312dcede283c043c44454435472b20bc39",
+    "Zeta23/XiPrime/Seam.lean": "0c6268e5023d870abb1f157c4fd74388902bbf2e115266e30da0f63a88a4c760",
+    "Zeta23/GammaFacts/StirlingVert.lean": "c982dc94e4193d2b3c69fd1f939b9055b6368332fd24d38bdf5bad37c487b661",
+    "Zeta23/Analytic/Stirling.lean": "db1638101a09faf22aac70ae379c3f37df5b7767e123bf4f6b6f2892d75d999d",
+    "Zeta23/XiPrime/ZeroCount/ArgBound.lean": "351bae368ba1d236d4572d52132913006ba8cf873001e309c6c1d92c18adf7c8",
+    "Zeta23/XiPrime/ZeroCount/Basic.lean": "673c62c5d7189a18e426f442ae3e5cd89dc42a9b2297e6c6853ff5af9e45a221",
+    "Zeta23/XiPrime/ZeroCount/Landau.lean": "7ab18cc766bc42eb6216acd7ab83fdceb831f1269481b78d66efa3a54ad13e12",
+    "Zeta23/XiPrime/ZeroCount/Y.lean": "9e6fb6384838ce6d32b8498810ea51040bccfba226a1fc03c58bcb7815a5f8f2",
+    "Zeta23/XiPrime/ExplicitFormula/ZeroFree.lean": "f6c02ad70463cf479e015ea9f02ab44d1f90027b5ffe4a9b03097cf16e0ecf54",
+    "Zeta23/XiPrime/ZeroCount/Generic.lean": "67476c8a323fe1e1273885600c511963552cad1a85f06036411c096908936378",
+    "Zeta23/XiPrime/ZeroCount/GenericRvM.lean": "e44f1a2059e9dfeb3900aa5acdf9b9cc9a7fb3199d408f3919c075d83da8b4f8",
+    "Zeta23/XiPrime/ZeroCount/Contour.lean": "b2e4236c117f1857fd1c79185114d322b1f808b6675e50c74e42d102409fba8e",
+    "Zeta23/XiPrime/ZeroCount.lean": "fd34ac4514e46abbcb001ce9031d3723c4ba5e004bc5b851fd7773391cbc3016",
+    "Zeta23/XiPrime/Final.lean": "57e722729934f01f4f108ddde3c330ddb487f0edc7c0b9bc2f38f10505586553",
+    "Zeta23/FromPNTPlus/Auxiliary.lean": "8852b7ebc572ae4eda1f3c3e94f4cc072b1c744c2b71ae297bec3ebb74b00069",
+    "Zeta23/FromPNTPlus/EulerMaclaurin.lean": "0e2b201e2a99db8650c565f14c2d4c65ff54a59a29f81137a63a00f2d1776ab6",
+    "Zeta23/FromPNTPlus/Fourier.lean": "8d53e47135861fd5afaa2ff273737e09353dc9ae0ba8b6875baa16f3a167b1bc",
+    "Zeta23/FromPNTPlus/MediumPNT.lean": "3ce679cd409b134f5c8f3068ed46daad75236cdb79e02dcb230949315002b7cb",
+    "Zeta23/FromPNTPlus/MellinCalculus.lean": "010a74544650e8daeb2124aa0aefa218b5a437e9dba80b4d7b2752e456e93b02",
+    "Zeta23/FromPNTPlus/Rectangle.lean": "6cf1dfca9dd3bbe3db9c58acf135a5ea20669808418ad994ed27f67931ea53d9",
+    "Zeta23/FromPNTPlus/ResidueCalcOnRectangles.lean": "081d38aa0c5eec725a1582eea3bdf4e51d604f6c2ebb3c9729d91df3aa092956",
+    "Zeta23/FromPNTPlus/SmoothExistence.lean": "db308bf757a7b51bdbc835872445266c51f9c2c60708f6e5aae068fc628b9c9b",
+    "Zeta23/FromPNTPlus/Sobolev.lean": "e3f254f6e772ebf941f67b4ad978858b6355b00433a943a4e318c22425959062",
+    "Zeta23/FromPNTPlus/ZetaBounds.lean": "62ab370e278be47e7fbd03ab74b1442010da1fc17b9dec96ea952e9259bfcd06",
+    "Zeta23/FromPNTPlus/ZetaConj.lean": "6160b5a4e5cbcc346a67f973a4ed7d68f535eb79d803c10882eef74a6c2b8fb5",
+    "Zeta23/FromPNTPlus/Mathlib/Algebra/Notation/Support.lean": "7ed4ffe0a99975eb901063cf90f338dd8376d0abde5fdac95983fea1f93be1fb",
+    "Zeta23/FromPNTPlus/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean": "b345f59bff825700221040fb575823d6902383ff1ab340b2ff849d8382460954",
+    "Zeta23/FromPNTPlus/Tactic/AdditiveCombination.lean": "0c59de0160092cc7eb521c09de7b9a35719d5a33b4fee0795bd312a5c9c3d200"
+  },
+  "runner_sha256": "43329a73858995adf67e7068f7391f17df315d78acab01b55d71a92486e9b1c1",
+  "new_modules": [
+    "WuBoundaryZeros.lean",
+    "WuAuxiliaryMultiplicity.lean"
+  ],
+  "fresh_compiled_modules": [
+    "WuBoundaryZeros.lean",
+    "WuAuxiliaryMultiplicity.lean"
+  ],
+  "checks": {
+    "WuBoundaryZeros.lean": {
+      "exit_code": 0,
+      "sha256": "feb281da046b72e26be1b5ba163e0d2355354e06a624aa051dadf87c94305894",
+      "output": "'XiPrime8845.WuBoundaryZeros.coefficient_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryZeros.dirichletPolynomial_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryZeros.psi_tendsto_right' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryZeros.psi_not_identically_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryZeros.auxiliary_not_identically_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryZeros.entire_zeros_countable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryZeros.auxiliary_zeros_countable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryZeros.safe_window_log_input' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuBoundaryZeros.vertical_log_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryZeros.auxiliary_left_ae_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryZeros.left_log_integral_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryZeros.left_log_eventually_le' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuBoundaryZeros.coefficient_one": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.dirichletPolynomial_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.psi_tendsto_right": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.psi_not_identically_zero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.auxiliary_not_identically_zero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.entire_zeros_countable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.auxiliary_zeros_countable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.safe_window_log_input": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.vertical_log_integrable": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.auxiliary_left_ae_nonzero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.left_log_integral_le": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryZeros.left_log_eventually_le": [
+          "Classical.choice",
+          "PRZZ.przz41_case3_K2_profiles",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "WuAuxiliaryMultiplicity.lean": {
+      "exit_code": 0,
+      "sha256": "b1b8ac9aa32f49d0eb42ac9a3a5f6825148b932384371e991a933b86c0f4537f",
+      "output": "'XiPrime8845.WuAuxiliaryMultiplicity.entire_order_ne_top' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuAuxiliaryMultiplicity.auxiliary_order' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuAuxiliaryMultiplicity.eta_order_le_auxiliary' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuAuxiliaryMultiplicity.oddPart_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuAuxiliaryMultiplicity.oddPart_order' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuAuxiliaryMultiplicity.weighted_eta_le_auxiliary' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.WuAuxiliaryMultiplicity.exists_safe_sides' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuAuxiliaryMultiplicity.littlewood_perturbed' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuAuxiliaryMultiplicity.entire_order_ne_top": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuAuxiliaryMultiplicity.auxiliary_order": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuAuxiliaryMultiplicity.eta_order_le_auxiliary": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuAuxiliaryMultiplicity.oddPart_eq": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuAuxiliaryMultiplicity.oddPart_order": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuAuxiliaryMultiplicity.weighted_eta_le_auxiliary": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuAuxiliaryMultiplicity.exists_safe_sides": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuAuxiliaryMultiplicity.littlewood_perturbed": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    }
+  },
+  "new_axiom_audits": 20,
+  "standard_only_new_audits": 18,
+  "existing_PRZZ_dependent_new_audits": 2,
+  "new_axioms": false,
+  "sorryAx": false,
+  "LocalizedEstimate_used": false,
+  "actual_auxiliary_nontriviality_proved": true,
+  "actual_safe_horizontal_endpoints_supplied": true,
+  "left_log_bound_allows_zeros_on_line": true,
+  "actual_safe_vertical_perturbations_proved": true,
+  "Littlewood_on_perturbed_rectangle_proved": true,
+  "auxiliary_multiplicity_additivity_proved": true,
+  "odd_part_xi_prime_multiplicity_identity_proved": true,
+  "right_limit_is_fixed_T_only": true,
+  "Littlewood_original_boundary_limit_proved": false,
+  "actual_Wu_horizontal_argument_bound_proved": false,
+  "uniform_right_boundary_log_estimate_proved": false,
+  "actual_local_counting_inequality_proved": false,
+  "full159_rebuild_performed": false,
+  "clean_AF_build_performed": false
+}

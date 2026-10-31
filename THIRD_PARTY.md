@@ -1,6 +1,8 @@
 # External dependencies and attribution
 
-No AF, mathlib, mpmath or third-party action implementation is included in this distribution. Their licenses and notices remain with their respective upstream projects.
+Except for the explicitly attributed adaptation below, no AF, mathlib, mpmath or third-party action implementation is included in this distribution. Their licenses and notices remain with their respective upstream projects.
+
+`lean/WuHorizontalIntegral.lean` adapts the horizontal partial-fraction integration proof from AF's `Zeta23/XiPrime/ZeroCount/Generic.lean` at the pin below. The adaptation permits arbitrary endpoints and separates the zero-mass and remainder constants. The source copyright notice (2026 Anthropic, PBC) is retained; this adapted file is distributed under Apache-2.0, whose text is included in `licenses/AF-Apache-2.0.txt`. This does not change the license status of other original project material.
 
 | Dependency | Role | Pin or source |
 | --- | --- | --- |

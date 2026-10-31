@@ -1,6 +1,20 @@
 # Proof status
 
-Updated: 28 October 2026. The fixed witness is unchanged. This status describes the mathematical claims, not a promise of a completed theorem.
+Updated: 31 October 2026. The fixed witness is unchanged.
+
+## Current conclusion: strict proportion under the existing PRZZ input
+
+[`WuProportion.strict_proportion`](../lean/WuProportion.lean) proves that there exists a fixed real `b > 0.8845` such that, for every sufficiently large real height `X`, `b * Ncount 0 X ≤ N0 0 X`. These are AF's actual xi-prime zero counts, with analytic multiplicity. `ratio_eventually_gt` gives the literal quotient inequality; the fixed-margin theorem also gives a strict asymptotic lower bound, not merely a pointwise strict inequality converging to 0.8845.
+
+The final chain returns the quotient logarithm to the original left line via reverse Fatou and the regular H factor, supplies actual safe contours and their finite zero sets, proves the local count, includes retained zeros in `(T, 2*T]`, and uses AF's dyadic-to-cumulative theorem for all terminal heights. Thus an arbitrary-window Riemann--von Mangoldt adapter is not needed and is not claimed proved here. No `LocalizedEstimate`, `EndpointTight`, supplied counting gate, or simplicity premise enters the headline theorem.
+
+Printed dependencies of the final theorem are exactly `propext`, `Classical.choice`, `Quot.sound`, and `PRZZ.przz41_case3_K2_profiles`. This closes the Lean derivation **relative to that existing external PRZZ input**, not a Lean proof of PRZZ itself or independent validation of its translation from the literature.
+
+The [verification record](../checks/wu-proportion-verification.json) covers five fresh compilations, 182 unchanged baseline source hashes, and strict replay of all 187 registered axiom outputs. Its 24 new audits comprise 17 standard-only and seven additionally using the existing PRZZ input, with no `sorryAx`. It is not a full clean rebuild of all local modules or AF. The manuscript remains the older audit draft; no new simple-zero or priority claim is made.
+
+## Historical ledger (28 October 2026)
+
+The module descriptions below preserve the earlier development ledger. Its statements about then-missing arithmetic and counting connections are superseded by the current conclusion above; descriptions of individual modules' narrower scope remain useful.
 
 ## Verification levels
 

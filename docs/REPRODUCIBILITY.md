@@ -19,7 +19,9 @@ The wrapper checks the root manifest, rejects unexpected distributable files, ru
 
 The finite verifier performs exact rational checks and interval runs at precision/order pairs (40,20), (45,24), (55,24), (70,24). No optimizer or random-number generator is used.
 
-## Optional Lean probes
+## Lean verification
+
+The current entry point is [`WuProportion.lean`](../lean/WuProportion.lean). The [latest record](../checks/wu-proportion-verification.json) freshly compiles five final modules and audits all 187 recorded outputs after checking 182 baseline source hashes. To freshly compile **all** local modules, use the full runner below. Neither that incremental record nor the numerical CI is a clean upstream AF rebuild.
 
 The Lean files deliberately use AF as an external environment rather than vendoring its source and build products. Obtain and build the pinned upstream tree using its own instructions:
 
@@ -28,16 +30,20 @@ git clone https://github.com/anthropics/formal-math.git af
 git -C af switch --detach 3635e74826a4c1fcece7d1cd2b6fa75e43a00510
 ```
 
-The pinned tag has the project at its root; newer upstream layouts need not match it. The required pins are recorded in [lean/dependencies.json](../lean/dependencies.json). Build the three import targets and their dependencies in that checkout, following upstream toolchain/cache setup:
+The pinned commit has the project at its root; newer upstream layouts need not match it. The required pins are recorded in [lean/dependencies.json](../lean/dependencies.json). Build the pinned upstream project following its toolchain/cache setup:
 
 ```sh
 cd af
-lake build Zeta23.Analytic.RectangleLogDeriv Zeta23.XiPrime.Seam Zeta23.XiPrime.ZeroCount.Contour
+lake build
 cd ..
 python3 tools/verify_lean.py --af af
 ```
 
-If `lake` is not on PATH, add `--lake /path/to/lake`. The runner checks AF and mathlib commit identities and the selected AF source files, then invokes `lake env lean` for each of the nineteen supplied files. It freshly compiles all local import dependencies into a temporary directory, including `PRZZAsymptotic`, `CompactShiftIntegral`, `ArithmeticRegularity` and `GcdDecomposition`. No stale local import artifact is used for these modules. It performs no fetch, reset, checkout or package installation and does not write build products into AF. An existing modified dependency tree is not certified as a clean upstream build.
+If `lake` is not on PATH, add `--lake /path/to/lake`. The runner checks AF and mathlib commit identities and the selected AF source files, then invokes `lake env lean` for each of the 187 registered files. It freshly compiles all local import dependencies into a temporary directory. It performs no fetch, reset, checkout or package installation and does not write build products into AF. An existing modified dependency tree is not certified as a clean upstream build.
+
+### Earlier module-level records
+
+The descriptions below concern earlier verification stages and individual modules, not remaining premises of the final proportion theorem. The final axiom boundary is the existing PRZZ input only, beyond the three standard axioms.
 
 The `NumericalGate` audit covers the fixed exponential bounds and aggregate Taylor error. `RationalEvaluator` proves equality between executable rational arithmetic and the existing coefficient expression. `RationalBounds` checks the actual rational inequalities by `decide +kernel`, without `native_decide` or imported numerical data. `FixedCertificate.fixed_functional_gate` discharges the coefficient premise of the earlier scalar helper. Its axiom audit permits only `propext`, `Classical.choice` and `Quot.sound`; it has no numerical or analytic premise. This completes the finite-functional inequality, not the arithmetic asymptotic or the final zero-proportion theorem.
 

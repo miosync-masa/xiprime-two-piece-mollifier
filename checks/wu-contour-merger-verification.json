@@ -1,0 +1,221 @@
+{
+  "date": "2026-10-31",
+  "scope": "Fresh compilation of four new modules; 174 baseline source hashes verified against prior records, all 178 recorded axiom outputs replayed. Existing local and pinned AF artifacts used. Not a full 178-module or clean upstream rebuild.",
+  "registered_modules": 178,
+  "all178_recorded_axiom_outputs_replayed": true,
+  "baseline_source_hashes_verified": 174,
+  "baseline_records": {
+    "checks/smooth-weight-verification.json": "06610735cce74ee5f51ed6dc1ce8b58e8c5e2ccc5d3b943f0e8353bfd4cbfcba",
+    "checks/wu-unsmoothing-verification.json": "ca401e6afc985d70db0239f240a378a6ade249740bab95eae81deb2e72204d93",
+    "checks/wu-localized-endpoint-verification.json": "bbce8a1b2c80365917f18f16c89bc375b47760d273c13525257962cb4e10a683",
+    "checks/wu-localized-moments-verification.json": "7001458c93f2bb5d90c54fa9525c019388dcbf5a1b911d7ddc3a0a17dd2c04e1",
+    "checks/wu-interior-window-verification.json": "d19a4d916a7c1b04db1caf92133ca462b5f82f92ccb3ef210fbfa88e27a59cfb",
+    "checks/wu-littlewood-verification.json": "05273c5ab19db19d58a97ced2518f067c650f30c0a097a96e14602053ef275fc",
+    "checks/wu-independent-window-verification.json": "2ab4f34d6d9b0ff4b0493ba9aa38422fb4759edb210c86dfc71757eb8b08c3ef",
+    "checks/wu-actual-counting-bridge-verification.json": "0f49f0e3dade841ba5c6782c90fcc1d02fe28c7a72da560034718fa38fa6aaa3",
+    "checks/wu-boundary-zeros-verification.json": "7f6965671bdb6fa51ebc7fa3d962757d2e20123de6477150be9a52b276d31059",
+    "checks/wu-left-return-verification.json": "bb4b0f3faf787a940b5cb28d9a3aeaf945e6fde7b350c018b9affa18b6afdf03",
+    "checks/wu-right-boundary-verification.json": "63f986b96b050fb661f822897173afa58ef5b2f010a6916b72c3f5814d8e112b",
+    "checks/wu-horizontal-verification.json": "a7dae0fc33fc9bf0411936aad808e598de0da07ac79cb0d7ec736e413dc62c63",
+    "checks/wu-deflation-verification.json": "9f329db9735d6390336197c08562e0cb298c05281378b3d36dd4934253954805"
+  },
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "selected_AF_sources_match_pin": true,
+  "af_source_sha256": {
+    "Zeta23/Defs.lean": "216b34de76394522aea610c57d342f3dfe8aa1c3d9d6b2ec11509de92f1c6bb0",
+    "Zeta23/Hypotheses.lean": "b64911caaf69328e0ca4fced1fd1f80fdca02d57bce390db34843b9849ccb4e2",
+    "Zeta23/Chebyshev.lean": "daa9a056ca00730d6318fc12f6587cb420c31b8c0426b3b851c993731e47c270",
+    "Zeta23/FromPNTPlus/Mertens.lean": "8df79fab65cdc6b9f28c4f2e5f39e0d8d284ac17ac4e06b3cb1f5d4cb8ae3be4",
+    "Zeta23/XiPrime/Coeff/Basic.lean": "34a844316e064603c7f63e2b9a164417b966875dbadaeb48de923014affc25d4",
+    "Zeta23/XiPrime/Coeff/Abel.lean": "8eda53f464fbd2ebf358761049ca1f696e50bd270a59487ae1e4a42e850bf9c0",
+    "Zeta23/XiPrime/Coeff/PowerSums.lean": "57fa5f449b4d5d34fb53f38d50d3788f6b5d58c0f7e7114bf21fc49b1b71c7f2",
+    "Zeta23/XiPrime/Coeff/NonSquarefree.lean": "5fca90be3694f30495895b5c864850514e5c4a69d10a594a9d4c3ba3060cc4a9",
+    "Zeta23/XiPrime/Coeff/PrimeSums.lean": "62bfd85e79fe6c63ba409d84604adf770df5feaca885565a445f44c35ce9c8d8",
+    "Zeta23/Analytic/RectangleLogDeriv.lean": "6606f32e30fe5f7a5c0660e2c9ecb8bb041144e52b090fe880d2c0e4734f5755",
+    "Zeta23/XiPrime/Defs.lean": "e3c6ad6f1ad96a6022a7632576f071312dcede283c043c44454435472b20bc39",
+    "Zeta23/XiPrime/Seam.lean": "0c6268e5023d870abb1f157c4fd74388902bbf2e115266e30da0f63a88a4c760",
+    "Zeta23/GammaFacts/StirlingVert.lean": "c982dc94e4193d2b3c69fd1f939b9055b6368332fd24d38bdf5bad37c487b661",
+    "Zeta23/Analytic/Stirling.lean": "db1638101a09faf22aac70ae379c3f37df5b7767e123bf4f6b6f2892d75d999d",
+    "Zeta23/XiPrime/ZeroCount/ArgBound.lean": "351bae368ba1d236d4572d52132913006ba8cf873001e309c6c1d92c18adf7c8",
+    "Zeta23/RvM/ZetaGrowth.lean": "91a33dcf908921bfaa05ec64f4c20f40d83593228f956d945cd71c272a98ef44",
+    "Zeta23/WeilEF/Landau.lean": "f1f4ac5dffd80092c8e27481e3cd177b2c83937125130c16b1ee56d31c4d89fb",
+    "Zeta23/XiPrime/ZeroCount/Basic.lean": "673c62c5d7189a18e426f442ae3e5cd89dc42a9b2297e6c6853ff5af9e45a221",
+    "Zeta23/XiPrime/ZeroCount/Landau.lean": "7ab18cc766bc42eb6216acd7ab83fdceb831f1269481b78d66efa3a54ad13e12",
+    "Zeta23/XiPrime/ZeroCount/Y.lean": "9e6fb6384838ce6d32b8498810ea51040bccfba226a1fc03c58bcb7815a5f8f2",
+    "Zeta23/XiPrime/ExplicitFormula/ZeroFree.lean": "f6c02ad70463cf479e015ea9f02ab44d1f90027b5ffe4a9b03097cf16e0ecf54",
+    "Zeta23/XiPrime/ZeroCount/Generic.lean": "67476c8a323fe1e1273885600c511963552cad1a85f06036411c096908936378",
+    "Zeta23/XiPrime/ZeroCount/GenericRvM.lean": "e44f1a2059e9dfeb3900aa5acdf9b9cc9a7fb3199d408f3919c075d83da8b4f8",
+    "Zeta23/XiPrime/ZeroCount/Contour.lean": "b2e4236c117f1857fd1c79185114d322b1f808b6675e50c74e42d102409fba8e",
+    "Zeta23/XiPrime/ZeroCount.lean": "fd34ac4514e46abbcb001ce9031d3723c4ba5e004bc5b851fd7773391cbc3016",
+    "Zeta23/XiPrime/Final.lean": "57e722729934f01f4f108ddde3c330ddb487f0edc7c0b9bc2f38f10505586553",
+    "Zeta23/FromPNTPlus/Auxiliary.lean": "8852b7ebc572ae4eda1f3c3e94f4cc072b1c744c2b71ae297bec3ebb74b00069",
+    "Zeta23/FromPNTPlus/EulerMaclaurin.lean": "0e2b201e2a99db8650c565f14c2d4c65ff54a59a29f81137a63a00f2d1776ab6",
+    "Zeta23/FromPNTPlus/Fourier.lean": "8d53e47135861fd5afaa2ff273737e09353dc9ae0ba8b6875baa16f3a167b1bc",
+    "Zeta23/FromPNTPlus/MediumPNT.lean": "3ce679cd409b134f5c8f3068ed46daad75236cdb79e02dcb230949315002b7cb",
+    "Zeta23/FromPNTPlus/MellinCalculus.lean": "010a74544650e8daeb2124aa0aefa218b5a437e9dba80b4d7b2752e456e93b02",
+    "Zeta23/FromPNTPlus/Rectangle.lean": "6cf1dfca9dd3bbe3db9c58acf135a5ea20669808418ad994ed27f67931ea53d9",
+    "Zeta23/FromPNTPlus/ResidueCalcOnRectangles.lean": "081d38aa0c5eec725a1582eea3bdf4e51d604f6c2ebb3c9729d91df3aa092956",
+    "Zeta23/FromPNTPlus/SmoothExistence.lean": "db308bf757a7b51bdbc835872445266c51f9c2c60708f6e5aae068fc628b9c9b",
+    "Zeta23/FromPNTPlus/Sobolev.lean": "e3f254f6e772ebf941f67b4ad978858b6355b00433a943a4e318c22425959062",
+    "Zeta23/FromPNTPlus/ZetaBounds.lean": "62ab370e278be47e7fbd03ab74b1442010da1fc17b9dec96ea952e9259bfcd06",
+    "Zeta23/FromPNTPlus/ZetaConj.lean": "6160b5a4e5cbcc346a67f973a4ed7d68f535eb79d803c10882eef74a6c2b8fb5",
+    "Zeta23/FromPNTPlus/Mathlib/Algebra/Notation/Support.lean": "7ed4ffe0a99975eb901063cf90f338dd8376d0abde5fdac95983fea1f93be1fb",
+    "Zeta23/FromPNTPlus/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean": "b345f59bff825700221040fb575823d6902383ff1ab340b2ff849d8382460954",
+    "Zeta23/FromPNTPlus/Tactic/AdditiveCombination.lean": "0c59de0160092cc7eb521c09de7b9a35719d5a33b4fee0795bd312a5c9c3d200"
+  },
+  "runner_sha256": "e40b7231e7f4e7e9bc7f1093b782d9046fd97f876fccaac4381f4449027fc3ad",
+  "new_modules": [
+    "WuDeflatedContour.lean",
+    "WuBoundaryPhase.lean",
+    "WuParallelReturn.lean",
+    "WuContourCounting.lean"
+  ],
+  "fresh_compiled_modules": [
+    "WuDeflatedContour.lean",
+    "WuBoundaryPhase.lean",
+    "WuParallelReturn.lean",
+    "WuContourCounting.lean"
+  ],
+  "checks": {
+    "WuDeflatedContour.lean": {
+      "exit_code": 0,
+      "sha256": "0f96f078a8867576f4fc4eb24987c57754127c7665a3a2feb97eda08bb451151",
+      "output": "'XiPrime8845.WuDeflatedContour.divisor_logDeriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuDeflatedContour.eta_logDeriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuDeflatedContour.detour_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuDeflatedContour.vertical_pole_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuDeflatedContour.vertical_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuDeflatedContour.divisor_logDeriv": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuDeflatedContour.eta_logDeriv": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuDeflatedContour.detour_integral": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuDeflatedContour.vertical_pole_bound": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuDeflatedContour.vertical_comparison": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "WuBoundaryPhase.lean": {
+      "exit_code": 0,
+      "sha256": "0a3341fa10afc169ff70607c3397cd20fc4e35449a44f06d20efe08dc5422c41",
+      "output": "'XiPrime8845.WuBoundaryPhase.edge_increment' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryPhase.boundary_horizontal_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryPhase.boundaryLog_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuBoundaryPhase.auxiliary_boundaryLog_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuBoundaryPhase.edge_increment": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryPhase.boundary_horizontal_error": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryPhase.boundaryLog_le": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuBoundaryPhase.auxiliary_boundaryLog_le": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "WuParallelReturn.lean": {
+      "exit_code": 0,
+      "sha256": "5bea0d9486fde8c34a7fb9f1ee03b8fc8894a4ddf968cf47ff93fee67916af64",
+      "output": "'XiPrime8845.WuParallelReturn.nonzero_strip' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuParallelReturn.vertical_continuousAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuParallelReturn.parallel_phase_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuParallelReturn.nonzero_strip": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuParallelReturn.vertical_continuousAt": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuParallelReturn.parallel_phase_count": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    "WuContourCounting.lean": {
+      "exit_code": 0,
+      "sha256": "ecb56fc258ebc171fe23f0095232180c7abac989a0a6b149c570dbb10799297e",
+      "output": "'XiPrime8845.WuContourCounting.rectangle_phase' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuContourCounting.argument_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuContourCounting.phase_littlewood' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuContourCounting.original_eta_phase_supplier' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuContourCounting.actual_window_merger' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.WuContourCounting.eventual_window_merger' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "audited_axioms": {
+        "XiPrime8845.WuContourCounting.rectangle_phase": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuContourCounting.argument_count": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuContourCounting.phase_littlewood": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuContourCounting.original_eta_phase_supplier": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuContourCounting.actual_window_merger": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "XiPrime8845.WuContourCounting.eventual_window_merger": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    }
+  },
+  "new_axiom_audits": 18,
+  "standard_only_new_audits": 18,
+  "new_axioms": false,
+  "sorryAx": false,
+  "LocalizedEstimate_used": false,
+  "exact_original_eta_detour_integral_decomposition": true,
+  "removed_divisor_vertical_phase_pi_per_multiplicity": true,
+  "frozen_window_parallel_nonvanishing_supplied": true,
+  "original_eta_parallel_phase_full_xi_multiplicity_bound": true,
+  "compatible_boundary_horizontal_O_log_T_supplied": true,
+  "actual_eta_rectangle_zero_set_constructed": true,
+  "finite_argument_principle_Littlewood_merger": true,
+  "eventual_merger_constructs_both_rectangles": true,
+  "other_eta_boundary_phase_remains_explicit": true,
+  "signed_pi_times_order_limit_claimed": false,
+  "specific_circular_indentation_constructed": false,
+  "uniform_zero_free_strip_in_T_claimed": false,
+  "actual_normalized_local_counting_inequality_proved": false,
+  "full178_rebuild_performed": false,
+  "clean_AF_build_performed": false,
+  "build": "/var/folders/1x/t61x4pf15zl6qkj59kdc845w0000gn/T/xiprime-independent-fresh-d9yaughq"
+}

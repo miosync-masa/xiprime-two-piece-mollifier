@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-31",
+  "scope": "Fresh compilation of WuProportion.lean against previously verified dependency artifacts; all 187 source hashes checked and recorded axiom outputs replayed with the updated runner. Not a full clean rebuild.",
+  "fresh_compiled_modules": [
+    "WuProportion.lean"
+  ],
+  "lean_exit_code": 0,
+  "compiler_output": "'XiPrime8845.WuProportion.dyadic_eventually' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuProportion.cumulative_eventually' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuProportion.strict_proportion' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n'XiPrime8845.WuProportion.ratio_eventually_gt' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]\n",
+  "ratio_eventually_gt_full_axiom_output": "'XiPrime8845.WuProportion.ratio_eventually_gt' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n PRZZ.przz41_case3_K2_profiles]",
+  "exact_expected_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+  ],
+  "sorryAx": false,
+  "new_axioms": false,
+  "registered_modules": 187,
+  "all_source_hashes_match_records": true,
+  "all_recorded_axiom_outputs_replayed": true,
+  "runner_sha256": "6c296e1baca468700a45b18c7cce6020fdf46f236ef663020d8d40fac4996d2b",
+  "final_proportion_formalized": true
+}
