@@ -4,9 +4,22 @@ An explicit Conrey–Feng two-component mollifier giving a **strictly greater th
 
 This repository contains a proof draft for specialist review, a reproducible finite numerical certificate, and a Lean derivation of the zero-proportion conclusion. `WuProportion.strict_proportion` proves a fixed margin: there exists `b > 0.8845` such that `b * Ncount 0 X ≤ N0 0 X` for every sufficiently large real `X`. Its printed dependencies are the three standard axioms and the existing `PRZZ.przz41_case3_K2_profiles` input; the PRZZ input itself is not proved here. No simplicity, localized PRZZ, or counting-gate assumption is added.
 
-The [latest verification record](checks/wu-proportion-verification.json) freshly compiles the five final modules and replays all 187 registered axiom outputs after checking the 182 baseline source hashes. This is not a fresh rebuild of all 187 modules or of upstream AF. The unchanged manuscript predates the completed Lean chain; the numerical certificate alone still proves only a finite inequality.
+The [five-module verification record](checks/wu-proportion-verification.json) freshly compiles the five final modules and replays all 187 registered axiom outputs after checking the 182 baseline source hashes. The [final audit](checks/wu-proportion-final-audit.json) separately recompiles `WuProportion.lean` and confirms the exact axiom list below. These are not fresh rebuilds of all 187 modules or of upstream AF. The unchanged manuscript predates the completed Lean chain; the numerical certificate alone still proves only a finite inequality.
 
 [日本語の案内](README.ja.md) · [Manuscript PDF](paper/manuscript.pdf) · [LaTeX source](paper/manuscript.tex) · [Expert audit questions](paper/README.md#questions-requiring-analytic-review)
+
+## Final theorem and axiom audit
+
+The complete compiler output for `#print axioms ratio_eventually_gt` is:
+
+```text
+'XiPrime8845.WuProportion.ratio_eventually_gt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ PRZZ.przz41_case3_K2_profiles]
+```
+
+Thus the only nonstandard axiom is the stated PRZZ input; `sorryAx` is absent. The proof has a fixed margin above 0.8845 for all sufficiently large real heights, with multiplicity. See the [release notes](docs/RELEASE_NOTES.md) for the completed counting connections and precise verification scope, and the [theorem source](lean/WuProportion.lean) for both the fixed-margin and quotient statements.
 
 ## What is checked
 

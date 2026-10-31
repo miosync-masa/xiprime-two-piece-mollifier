@@ -3,10 +3,23 @@
 ξ′の臨界線上零点の割合が、**既存のPRZZ入力の下で、重複度込みで88.45%より真に大きい**ことを導くプロジェクトです。
 `WuProportion.strict_proportion` は、ある固定 `b > 0.8845` に対し、十分大きいすべての実数高さ `X` で `b * Ncount 0 X ≤ N0 0 X` を証明します。`ratio_eventually_gt` は実際の比率の不等式です。追加公理は既存の `PRZZ.przz41_case3_K2_profiles` のみで、PRZZ自体の証明は本リポジトリの外部入力です。`LocalizedEstimate`・未証明の計数仮定・単純零点仮定は主定理にありません。
 
-[最新検証記録](checks/wu-proportion-verification.json)は新規五モジュールを再コンパイルし、既存182モジュールのソースハッシュ照合後に全187モジュールの記録済み公理出力を再監査しています。全187モジュールやAFのクリーン再ビルドとは区別します。五頁原稿と数値bundleは変更していません。
+[五モジュールの検証記録](checks/wu-proportion-verification.json)は新規五モジュールを再コンパイルし、既存182モジュールのソースハッシュ照合後に全187モジュールの記録済み公理出力を再監査しています。[最終監査](checks/wu-proportion-final-audit.json)では `WuProportion.lean` を改めてコンパイルし、下記の公理一覧との完全一致を確認しています。全187モジュールやAFのクリーン再ビルドとは区別します。五頁原稿と数値bundleは変更していません。
 
 最初に [原稿PDF](paper/manuscript.pdf)、[証明状態](docs/STATUS.md)、[監査ガイド](paper/README.md)をご覧ください。
 数値検証の成功と、解析的移植の証明・最終定理のLean化は区別します。simple+on-lineの改善は主張していません。
+
+## 主定理の公理監査
+
+`#print axioms ratio_eventually_gt` の出力全文を、省略せず掲載します。
+
+```text
+'XiPrime8845.WuProportion.ratio_eventually_gt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ PRZZ.przz41_case3_K2_profiles]
+```
+
+通常三公理以外は既存PRZZ一公理だけで、`sorryAx` はありません。結論は重複度込み・十分大きいすべての実数高さに対する固定の余白です。[リリースノート](docs/RELEASE_NOTES.md)に接続内容と検証範囲を、[主定理のソース](lean/WuProportion.lean)に厳密な定理文を掲載しています。
 
 ## 再実行
 
