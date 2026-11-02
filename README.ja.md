@@ -21,6 +21,20 @@
 
 通常三公理以外は既存PRZZ一公理だけで、`sorryAx` はありません。結論は重複度込み・十分大きいすべての実数高さに対する固定の余白です。[リリースノート](docs/RELEASE_NOTES.md)に接続内容と検証範囲を、[主定理のソース](lean/WuProportion.lean)に厳密な定理文を掲載しています。
 
+## PRZZ入力の分解：2026年11月2日
+
+[`PRZZActiveRows.literal_absorbed`](lean/PRZZActiveRows.lean) で、空の元行を除外し、非空行ごとの外側質量を保持したまま、元のliteralなA-starを次の形で評価しました。
+
+$$
+|A^*|\le C T^{\delta+\gamma}\frac{\lambda}{d}
+\bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr)
+\int_{\mathbb R}(1+|t|)|\operatorname{mellin}\Phi(it)|\,dt.
+$$
+
+Weilの不完全和評価とDI Lemma 1は、新しい公理ではなく明示的な`Prop`仮定です。Type I・Type II・小スケールの三場合、allocation和、dyadic多重度の吸収を接続しました。周波数・スケール条件、シフトの分離、損失指数の厳密な余白は仮定に残しています。定数は後から量化する高さ・行データに一様ですが、cutoff関数は定数より先に固定します。詳細は[証明状態](docs/STATUS.md#przz-decomposition-milestone-2-november-2026)をご覧ください。
+
+**PRZZ公理そのものの置換完了ではありません。** 別工程L1の近似関数等式本体・切断除去・実際のPoisson核とA-starの同定は未完です。主定理の依存公理は上記のまま変わりません。
+
 ## 再実行
 
 このディレクトリで実行します。

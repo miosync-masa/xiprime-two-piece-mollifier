@@ -78,6 +78,47 @@ theorem second_coefficient (js : List ℕ) (eta S : ℝ) (heta : 0 < eta) (hS : 
   · simp only [norm_zero]
     positivity
 
+/-- One constant for the entire scaled cutoff family, chosen before Q2, QM.
+The original arithmetic coefficient and both finite masks are retained. -/
+theorem second_coefficient_scaled (js : List ℕ) (eta S : ℝ) (heta : 0 < eta) (hS : 0 ≤ S)
+    (F2 FM : ℝ → ℂ) (hF : Continuous F2) (hcF : HasCompactSupport F2)
+    (hM : Continuous FM) (hcM : HasCompactSupport FM) :
+    ∃ C : ℝ, 0 < C ∧ ∀ Q2 QM : ℝ, ∀ N d l : ℕ, 1 ≤ N → 1 ≤ d →
+      ∀ T x t : ℝ, 1 < T → (N:ℝ) ≤ T → ∀ beta : ℂ,
+      |beta.re| ≤ S/Real.log T → ∀ n : ℕ,
+      ‖secondCoeff N d l (fun m => (PRZZGCoefficient.coefficient js m:ℂ))
+        (scaledCutoff F2 Q2) (scaledCutoff FM QM) beta x t n‖ ≤ C*T^eta := by
+  obtain ⟨C0,h0⟩ := hcF.exists_bound_of_continuous hF
+  obtain ⟨C1,h1⟩ := hcM.exists_bound_of_continuous hM
+  have hC0 : 0 ≤ C0 := (norm_nonneg _).trans (h0 0)
+  have hC1 : 0 ≤ C1 := (norm_nonneg _).trans (h1 0)
+  obtain ⟨D,hD,hd⟩ := PRZZGAbsorption.log_pow_bound (PRZZGCoefficient.degree js) eta heta
+  refine ⟨D*C0*C1*Real.exp S+1,by positivity,?_⟩
+  intro Q2 QM N d l hN hd0 T x t hT hNT beta hb n
+  unfold secondCoeff
+  split_ifs with hn
+  · have hnN := (PRZZDyadic.mem_cell N l n).mp hn.1
+    have hn1 := (mem_Icc.mp hnN.1).1
+    have hnT : (n:ℝ) ≤ T := (by exact_mod_cast (mem_Icc.mp hnN.1).2 : (n:ℝ) ≤ N).trans hNT
+    have hc := PRZZGCoefficient.coefficient_bound js N hN (d*n) (by nlinarith) hn.2
+    have hl : (Real.log N)^PRZZGCoefficient.degree js ≤ (Real.log T)^PRZZGCoefficient.degree js :=
+      pow_le_pow_left₀ (Real.log_nonneg (by exact_mod_cast hN))
+        (Real.log_le_log (by exact_mod_cast (show 0 < N by omega)) hNT) _
+    have ha : ‖star (PRZZGCoefficient.coefficient js (d*n):ℂ)‖ ≤ D*T^eta := by
+      simpa only [norm_star,Complex.norm_real,Real.norm_eq_abs] using hc.trans (hl.trans (hd T hT.le))
+    rw [div_eq_mul_inv,norm_mul,norm_mul,norm_mul,norm_mul,
+      twist_norm _ _ (by exact_mod_cast (show 0 < n by omega)),mul_one]
+    have hp := inverse_shift T S n beta hT hS ⟨by exact_mod_cast hn1,hnT⟩ hb
+    calc
+      _ ≤ (D*T^eta)*C0*C1*Real.exp S := by gcongr <;> first | exact ha | exact h0 _ | exact h1 _ | exact hp
+      _ ≤ _ := by
+        have ht : 0 ≤ T^eta := Real.rpow_nonneg (by linarith) _
+        nlinarith
+  · simp only [norm_zero]
+    positivity
+
+#print axioms second_coefficient_scaled
+
 /-- Substitute the literal r and both literal nu signs into the sharp
 seven-term bound. The equality identifying a source branch with this
 block is separate; this theorem does not assume that equality. -/

@@ -1,6 +1,6 @@
 # Proof status
 
-Updated: 31 October 2026. The fixed witness is unchanged.
+Updated: 2 November 2026. The fixed witness is unchanged.
 
 ## Current conclusion: strict proportion under the existing PRZZ input
 
@@ -11,6 +11,50 @@ The final chain returns the quotient logarithm to the original left line via rev
 Printed dependencies of the final theorem are exactly `propext`, `Classical.choice`, `Quot.sound`, and `PRZZ.przz41_case3_K2_profiles`. This closes the Lean derivation **relative to that existing external PRZZ input**, not a Lean proof of PRZZ itself or independent validation of its translation from the literature.
 
 The [verification record](../checks/wu-proportion-verification.json) covers five fresh compilations, 182 unchanged baseline source hashes, and strict replay of all 187 registered axiom outputs. Its 24 new audits comprise 17 standard-only and seven additionally using the existing PRZZ input, with no `sorryAx`. It is not a full clean rebuild of all local modules or AF. The manuscript remains the older audit draft; no new simple-zero or priority claim is made.
+
+## PRZZ decomposition milestone (2 November 2026)
+
+[`PRZZActiveRows.literal_absorbed`](../lean/PRZZActiveRows.lean) proves a bound for the **original literal A-star**, with explicit Weil and DI hypotheses:
+
+$$
+|A^*|\le C T^{\delta+\gamma}\frac{\lambda}{d}
+\bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr)
+\int_{\mathbb R}(1+|t|)|\operatorname{mellin}\Phi(it)|\,dt.
+$$
+
+The connection is no longer a sum of unidentified row budgets:
+
+- [`PRZZLiteralRows`](../lean/PRZZLiteralRows.lean) identifies the original literal integral with its complete dyadic row sum and windowed Mellin/Heath–Brown expansion.
+- [`PRZZRowIntegralBudget`](../lean/PRZZRowIntegralBudget.lean) supplies the row integral bound and arithmetic branch/allocation bounds from Weil and DI. Original row masses remain inside the dyadic sum.
+- [`PRZZNonemptyRowBudget`](../lean/PRZZNonemptyRowBudget.lean) obtains cutoff witnesses from nonzero source rows, combines their local frequency bounds with original outer masses, and absorbs the three-case losses. It compares scalar masses, not an asserted inclusion of differently scaled boxes.
+- [`PRZZActiveRows`](../lean/PRZZActiveRows.lean) splits on nonvanishing of the **original signed row** before taking branch envelopes. Inactive original integrals vanish; active rows supply the witness needed by `nonempty_row_absorbed`. Labelled allocation multiplicities and both complete dyadic grids are then absorbed.
+
+### Explicit conditions and remaining scope
+
+`WeilIncomplete` and `DeshouillersIwaniecLemma1` are `Prop` parameters, not new axiom declarations. The result does not assume `CellBound`, a decomposition equality, or a Fubini premise. It retains the following source conditions (the linked Lean statement is authoritative):
+
+- Positive integer sizes, `N+1 ≤ T`, `d ≤ T`, and `1 ≤ log T`.
+- With `F = frequencyBound d D H`, `1 ≤ F ≤ T^rho` and `F ≤ lam * Q1 * Q2 / (d^2*T)`, with `1 ≤ lam`. These do not follow for arbitrary `D,H`.
+- The two arithmetic cutoff supports lie in `[Q1,2*Q1]` and `[Q2,2*Q2]`; the outer cutoff lies in `[M/2,3*M]`. The required logarithmic scale bound holds for every retained dyadic index.
+- The stated small-shift bounds and positive separation `r ≤ norm(A+B)` for `sourceW ((A+B)/log T)`.
+- Nonnegative loss parameters with `(6+rho)*eta + (3+rho)*eps + b < delta`, and positive `gamma` for the final dyadic absorption.
+
+Constants precede the variable sizes, heights and row data, but the cutoff functions `F0,F2,FM` are fixed before the constants. This statement must not be read as an already supplied uniform theorem for arbitrary height-varying `F2,FM` families. Instantiating all source-scale conditions and any required scaled-cutoff families remains distinct from this conditional bound.
+
+The L1 files [`PRZZL1Finite`](../lean/PRZZL1Finite.lean), [`PRZZL1Truncation`](../lean/PRZZL1Truncation.lean) and [`PRZZL1Poisson`](../lean/PRZZL1Poisson.lean) provide preliminary finite/truncation interfaces and exact Poisson summation for smooth compact weights, including its Jacobian and residue phase. They do **not** supply the full AFE, its actual-kernel summability and truncation removal, or the actual Poisson-to-A-star reduction. Consequently `PRZZ.przz41_case3_K2_profiles` is still the external input of the headline proportion theorem.
+
+### Verification of this milestone
+
+The new modules were individually compiled against the existing pinned dependency caches. The final module's printed audit is:
+
+```text
+'XiPrime8845.PRZZActiveRows.active_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'XiPrime8845.PRZZActiveRows.inactive_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'XiPrime8845.PRZZActiveRows.active_budget_absorbed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'XiPrime8845.PRZZActiveRows.literal_absorbed' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+These standard-only axiom lists do **not** discharge the explicit Weil/DI theorem hypotheses. The modules and expected audits are registered in `tools/verify_lean.py`; distribution hashes and the independent finite Python certificate are checked by `tools/verify_release.py`. Individual compilation and the Python release check are not a fresh whole-DAG or upstream AF rebuild. The earlier 187-module proportion audit above remains a historical verification record, not the size of the expanded module set.
 
 ## Historical ledger (28 October 2026)
 

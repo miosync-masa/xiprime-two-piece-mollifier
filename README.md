@@ -21,6 +21,20 @@ The complete compiler output for `#print axioms ratio_eventually_gt` is:
 
 Thus the only nonstandard axiom is the stated PRZZ input; `sorryAx` is absent. The proof has a fixed margin above 0.8845 for all sufficiently large real heights, with multiplicity. See the [release notes](docs/RELEASE_NOTES.md) for the completed counting connections and precise verification scope, and the [theorem source](lean/WuProportion.lean) for both the fixed-margin and quotient statements.
 
+## PRZZ input decomposition: 2 November 2026
+
+[`PRZZActiveRows.literal_absorbed`](lean/PRZZActiveRows.lean) now bounds the original literal A-star, after removing empty original rows and retaining each nonempty row's outer mass:
+
+$$
+|A^*|\le C T^{\delta+\gamma}\frac{\lambda}{d}
+\bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr)
+\int_{\mathbb R}(1+|t|)|\operatorname{mellin}\Phi(it)|\,dt.
+$$
+
+Weil's incomplete-sum estimate and DI Lemma 1 are explicit `Prop` hypotheses, not new axioms. The theorem supplies the three arithmetic cases, allocation sum and dyadic absorption; source frequency/scale conditions, shift separation and a strict loss-exponent margin remain explicit. Constants are uniform in the subsequently quantified height and row data, with the cutoff functions fixed beforehand. See [proof status](docs/STATUS.md#przz-decomposition-milestone-2-november-2026) for the conditions and verification scope.
+
+This is a conditional arithmetic A-star bound, **not yet a replacement for the PRZZ axiom**. The separate L1 approximate-functional-equation reduction, removal of truncations and identification of the actual Poisson kernel with A-star remain unfinished.
+
 ## What is checked
 
 | Component | Current status |
@@ -72,7 +86,7 @@ For optional Lean checks and manuscript rebuilding, see [reproduction instructio
 
 ```text
 paper/       Five-page manuscript and unchanged standalone numerical bundle
-lean/        187 registered Lean modules and pinned dependency information
+lean/        Lean modules and pinned dependency information
 tools/       Portable package and Lean verification commands
 checks/      Captured packaging and Lean verification output
 docs/        Proof status and reproduction instructions

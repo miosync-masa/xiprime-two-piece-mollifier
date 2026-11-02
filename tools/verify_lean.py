@@ -244,7 +244,13 @@ def compile_sources(lake, af, source_dir, jobs=1):
                      "PRZZSourceWOuter.lean", "PRZZPositiveMellin.lean",
                      "PRZZBalancedCellEnvelope.lean", "PRZZActualBudgetLayout.lean", "PRZZActualTypeI.lean",
                      "PRZZActualSmall.lean", "PRZZActualCases.lean", "PRZZActualCaseSum.lean",
-                     "PRZZActualAggregate.lean", "PRZZPositiveOuter.lean", "PRZZActualAStar.lean"):
+                     "PRZZActualAggregate.lean", "PRZZPositiveOuter.lean", "PRZZActualAStar.lean",
+                     "PRZZOptimalPowers.lean", "PRZZL1Finite.lean", "PRZZOptimalOuter.lean",
+                     "PRZZL1Truncation.lean", "PRZZL1Poisson.lean", "PRZZActualCasePowers.lean",
+                     "PRZZActualRowOuter.lean", "PRZZOriginalRowWindow.lean",
+                     "PRZZActualLoss.lean", "PRZZRowMellinBranches.lean",
+                     "PRZZLiteralRows.lean", "PRZZThreeCaseLoss.lean", "PRZZNonemptyRowBudget.lean",
+                     "PRZZRowIntegralBudget.lean", "PRZZActiveRows.lean"):
             enqueue(name, [lake, "env", "lean", "--root=" + str(source_dir),
                            "-o", str(Path(build) / (Path(name).stem + ".olean"))])
         for name, future in ordered:
@@ -329,7 +335,13 @@ def main():
                     "PRZZSourceWOuter.lean", "PRZZPositiveMellin.lean",
                     "PRZZBalancedCellEnvelope.lean", "PRZZActualBudgetLayout.lean", "PRZZActualTypeI.lean",
                     "PRZZActualSmall.lean", "PRZZActualCases.lean", "PRZZActualCaseSum.lean",
-                    "PRZZActualAggregate.lean", "PRZZPositiveOuter.lean", "PRZZActualAStar.lean"}:
+                    "PRZZActualAggregate.lean", "PRZZPositiveOuter.lean", "PRZZActualAStar.lean",
+                    "PRZZOptimalPowers.lean", "PRZZL1Finite.lean", "PRZZOptimalOuter.lean",
+                    "PRZZL1Truncation.lean", "PRZZL1Poisson.lean", "PRZZActualCasePowers.lean",
+                    "PRZZActualRowOuter.lean", "PRZZOriginalRowWindow.lean",
+                    "PRZZActualLoss.lean", "PRZZRowMellinBranches.lean",
+                    "PRZZLiteralRows.lean", "PRZZThreeCaseLoss.lean", "PRZZNonemptyRowBudget.lean",
+                    "PRZZRowIntegralBudget.lean", "PRZZActiveRows.lean"}:
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             audited = set(re.findall(r"^#print axioms ([\w.]+)$", path.read_text(), re.MULTILINE))
             expected_audits = {
@@ -408,7 +420,7 @@ def main():
                 "PRZZBranchDegrees.lean": {"weighted_degrees", "branches_degrees", "branch_large_free_degrees", "branches_length"},
                 "PRZZBranchEnvelope.lean": {"bounded_atom", "bounded_product", "all_branch_subgroups", "masked_branch_subgroups", "branch_rectangle"},
                 "PRZZBranchSeven.lean": {"signed_branch_seven"},
-                "PRZZSourceCoefficients.lean": {"signed_nu", "inverse_shift", "second_coefficient", "source_branch_seven"},
+                "PRZZSourceCoefficients.lean": {"signed_nu", "inverse_shift", "second_coefficient", "second_coefficient_scaled", "source_branch_seven"},
                 "PRZZBranchMass.lean": {"weighted_weights", "branches_weights", "mass_eq", "sum_bound", "mixed_unscaled", "pair_sum_bound"},
                 "PRZZDyadicBudget.lean": {"cell_count", "grids_absorbed", "grid_card", "support_inflation", "branch_pair_grids"},
                 "PRZZLiteralBranches.lean": {"literal_branches"},
@@ -464,7 +476,7 @@ def main():
                 "PRZZBareFactors.lean": {"branches_bare", "large_log_power", "large_piece", "classify"},
                 "PRZZFreeCoefficient.lean": {"modulusBudget_nonneg", "slice_bound", "nu_slice_bound", "signed_slice_bound"},
                 "PRZZFreeCell.lean": {"real_convolution", "cell_eq", "signed_cell_bound"},
-                "PRZZAllocationMass.lean": {"grid_mass", "allocation_mass"},
+                "PRZZAllocationMass.lean": {"grid_mass", "allocation_mass", "weighted_allocation_mass"},
                 "PRZZModulusBudget.lean": {"weighted_gcd", "positive_budget", "signed_budget", "source_range", "source_budget", "averaged_absorbed", "signed_cell_averaged"},
                 "PRZZFreeLength.lean": {"vanishes", "restrict_eq", "supported_bound", "transformed_bound"},
                 "PRZZFreeLengthCoefficient.lean": {"budget_nonneg", "budget_mono", "endpoint_le", "slice_bound", "nu_slice_bound", "signed_slice_bound"},
@@ -505,6 +517,24 @@ def main():
                 "PRZZActualAggregate.lean": {"row_nonneg", "actual_blocks", "totalBudget_nonneg", "signedSum_bound"},
                 "PRZZPositiveOuter.lean": {"common_integrable_positive", "literal_linear_positive"},
                 "PRZZActualAStar.lean": {"literal_sourceW_bound"},
+                "PRZZOptimalPowers.lean": {"scale_identity", "mixed_power", "seven_term_bound", "seven_bound",
+                    "typeI_bound", "combined_bound", "frequency_bound", "source_frequency_bound",
+                    "small_frequency_bound", "clipped_frequency_bound"},
+                "PRZZActualCasePowers.lean": {"row_normalized", "cutoff_row_scale", "cutoff_frequency",
+                    "row_nonzero_cutoffs", "nonzero_row_frequency"},
+                "PRZZActualRowOuter.lean": {"mass_row_bound"},
+                "PRZZL1Finite.lean": {"direct_expansion", "diagonal_split"},
+                "PRZZOptimalOuter.lean": {"source_mass_budget", "finite_source_mass_budget", "power_log_absorbed"},
+                "PRZZOriginalRowWindow.lean": {"row_indicator", "row_integral_window", "row_mellin_window", "row_iterated_eq"},
+                "PRZZActualLoss.lean": {"common_power", "common_absorbed", "common_aggregation_absorbed"},
+                "PRZZRowMellinBranches.lean": {"signedRow_blocks", "row_amplitude", "row_localized", "row_mellin_blocks"},
+                "PRZZLiteralRows.lean": {"index_partition", "literal_rows", "literal_windowed_blocks"},
+                "PRZZThreeCaseLoss.lean": {"typeI_absorbed", "small_absorbed", "three_case_absorbed", "normalized_row_absorbed"},
+                "PRZZNonemptyRowBudget.lean": {"original_mass", "nonempty_row_absorbed", "allocation_dyadic_absorbed"},
+                "PRZZRowIntegralBudget.lean": {"row_integral_bound", "rowBudget_nonneg", "signedRow_bound", "literal_row_budgets", "literal_sourceW_rows"},
+                "PRZZActiveRows.lean": {"active_witness", "inactive_integral", "active_budget_absorbed", "literal_absorbed"},
+                "PRZZL1Truncation.lean": {"positive_sum", "rectangles_tendsto", "directSum_tendsto"},
+                "PRZZL1Poisson.lean": {"progression", "scaled_fourier", "progression_normalized"},
                 "PRZZDyadicEnvelope.lean": {"inverse_power", "dyadic_log_bound", "scaled_cutoffs",
                     "annihilator_bound", "annihilator_scaled", "common_integrable", "common_mass",
                     "arithmetic_integral_bound"},

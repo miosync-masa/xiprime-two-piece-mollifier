@@ -66,4 +66,38 @@ theorem allocation_mass (K : ℕ) (js : List ℕ) (eta : ℝ) (heta : 0 < eta) :
 
 #print axioms grid_mass
 #print axioms allocation_mass
+
+/-- Fixed allocation-dependent constants (including inflated box widths)
+are absorbed together with labelled branch and grid multiplicities. The
+weight is fixed before height; repeated allocations are still counted. -/
+theorem weighted_allocation_mass (K : ℕ) (js : List ℕ) (eta : ℝ)
+    (heta : 0 < eta) (w : (List ℕ × List ℕ) → ℝ) (hw : ∀ q, 0 ≤ w q) :
+    ∃ C : ℝ, 0 < C ∧ ∀ N : ℕ, 1 ≤ N → ∀ T : ℝ,
+      (N:ℝ) ≤ T → 1 ≤ Real.log T →
+      ∀ y : List ℕ × List ℕ → ℕ,
+      ((PRZZCoefficientSeparation.allocations js).map (fun q =>
+        w q*gridMass N (y q) K q.2)).sum ≤ C*T^eta := by
+  choose c hc hb using fun q : List ℕ × List ℕ => grid_mass K q.2 eta heta
+  let C := ((PRZZCoefficientSeparation.allocations js).map (fun q => w q*c q)).sum
+  have hC : 0 ≤ C := by
+    apply List.sum_nonneg
+    intro a ha
+    obtain ⟨q,hq,rfl⟩ := List.mem_map.mp ha
+    exact mul_nonneg (hw q) (hc q).le
+  refine ⟨C+1,by positivity,?_⟩
+  intro N hN T hNT hL y
+  have hsum (qs : List (List ℕ × List ℕ)) :
+      (qs.map (fun q => w q*gridMass N (y q) K q.2)).sum ≤
+        (qs.map (fun q => w q*c q)).sum*T^eta := by
+    induction qs with
+    | nil => simp
+    | cons q qs ih =>
+      simp only [List.map_cons,List.sum_cons,add_mul]
+      exact add_le_add ((mul_le_mul_of_nonneg_left (hb q N (y q) hN T hNT hL)
+        (hw q)).trans_eq (by ring)) ih
+  have ht : 0 ≤ T^eta := Real.rpow_nonneg
+    ((Nat.cast_nonneg N).trans hNT) _
+  exact (hsum _).trans (by change C*T^eta ≤ (C+1)*T^eta; nlinarith)
+
+#print axioms weighted_allocation_mass
 end XiPrime8845.PRZZAllocationMass
