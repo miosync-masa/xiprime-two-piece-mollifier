@@ -1,0 +1,8084 @@
+{
+ "root": "WuProportion",
+ "root_file": "lean/WuProportion.lean",
+ "edge_direction": "A -> B means A imports B",
+ "record": {
+  "path": "checks/clean-project-verification-2026-11-07.json",
+  "sha256": "3745206bb49918e581c0b5d78e429ffad794359edb180c959480d7266f29a2ed"
+ },
+ "layer_rules": [
+  {
+   "layer": "数値証明書",
+   "rule": "モジュール名が次の固定集合に一致: KernelAlgebra, FiniteJet, BetaKernel, IntegralJet, TaylorEnvelope, CoefficientEvaluator, NumericalGate, RationalEvaluator, RationalBounds, FixedCertificate"
+  },
+  {
+   "layer": "PRZZ 入力",
+   "rule": "モジュール名が次の固定集合に一致（PRZZ 公理とその直接の帰結）: PRZZInterface, PRZZAsymptotic"
+  },
+  {
+   "layer": "計数（Wu）",
+   "rule": "接頭辞 `Wu`"
+  },
+  {
+   "layer": "PRZZ 4.1 の証明",
+   "rule": "接頭辞 `PRZZ`（上の固定集合を除く）。細分は `PRZZ` を除いた残りの接頭辞で: L0 入力（Weil / DI の仕様） = KloostermanInputs; L1 近似関数等式と Poisson = AFE, Poisson, CoupledAFE, ContourAFE, SeriesAFE, IntegratedAFE, IntegratedFreezeAFE, ReconstructedAFE, ExhaustiveAFE, PrunedAFE, LiteralAFE, DiscardedAFE, AllPoisson, Congruence, L1, Moment, BodyTail; L2 算術分解（A*, Type I/II, Weil–DI） = AStar, Actual, Active, TypeI, TypeII, Weil, DI, Sharp, HeathBrown, HB, Kloosterman, Cases, Allocation, Lambda, Nu, Gcd, Arithmetic, Mobius; それ以外 = 細分未割当"
+  },
+  {
+   "layer": "主項",
+   "rule": "接頭辞が次のいずれか: Conrey, Feng, Gcd, ElementaryGcd, Coprime, Totient, Mobius, Euler, BareEuler, RawEuler, Shifted, Shift, Smooth, Expanded, TwoPiece, ZetaMoment, ZetaPole, Height, Arithmetic, CompactShift, Outer, LogProfile, Multiplicative, Support, Weight, Endpoint, Witness, Cauchy"
+  },
+  {
+   "layer": "その他",
+   "rule": "上のどれにも当たらないローカルモジュール（一覧に列挙）"
+  },
+  {
+   "layer": "Mathlib",
+   "rule": "`import Mathlib...` をまとめた外部ノード"
+  },
+  {
+   "layer": "AF",
+   "rule": "`import Zeta23...`（固定コミットの AF ライブラリ）をまとめた外部ノード"
+  }
+ ],
+ "counts": {
+  "local_modules": 698,
+  "reachable": 171,
+  "unreached": 527,
+  "edges": 269
+ },
+ "modules": [
+  {
+   "name": "ArithmeticRegularity",
+   "file": "lean/ArithmeticRegularity.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 17,
+   "imports": [
+    "CompactShiftIntegral",
+    "PRZZAsymptotic"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.ArithmeticRegularity.normalized_mixed_error_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "BareEuler",
+   "file": "lean/BareEuler.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "CoprimeEulerCompletion"
+   ],
+   "external": [],
+   "summary_group": "g02",
+   "representative": "XiPrime8845.BareEuler.ratio_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "BareEulerUniform",
+   "file": "lean/BareEulerUniform.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 22,
+   "imports": [
+    "BareEuler"
+   ],
+   "external": [],
+   "summary_group": "g02",
+   "representative": "XiPrime8845.BareEulerUniform.weighted_Euler_error_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "BetaKernel",
+   "file": "lean/BetaKernel.lean",
+   "layer": "数値証明書",
+   "sublayer": null,
+   "depth": 18,
+   "imports": [],
+   "external": [
+    "Mathlib"
+   ],
+   "summary_group": "g23",
+   "representative": "XiPrime8845.BetaKernel.shifted_q_coefficient",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CauchyJetTransfer",
+   "file": "lean/CauchyJetTransfer.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 16,
+   "imports": [
+    "ArithmeticRegularity",
+    "IntegralJet"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.CauchyJetTransfer.shiftedFunctional_regular",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CoefficientEvaluator",
+   "file": "lean/CoefficientEvaluator.lean",
+   "layer": "数値証明書",
+   "sublayer": null,
+   "depth": 19,
+   "imports": [
+    "TaylorEnvelope"
+   ],
+   "external": [],
+   "summary_group": "g23",
+   "representative": "XiPrime8845.CoefficientEvaluator.K2_cached_enclosure",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CompactShiftIntegral",
+   "file": "lean/CompactShiftIntegral.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 18,
+   "imports": [],
+   "external": [
+    "Mathlib"
+   ],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.CompactShiftIntegral.compact_integral_smooth",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ConreyCoefficientBridge",
+   "file": "lean/ConreyCoefficientBridge.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 20,
+   "imports": [
+    "ConreyOuter"
+   ],
+   "external": [],
+   "summary_group": "g03",
+   "representative": "XiPrime8845.ConreyCoefficientBridge.normalized_gcdMainTerm_eq",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ConreyMainTerm",
+   "file": "lean/ConreyMainTerm.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 19,
+   "imports": [
+    "ConreyCoefficientBridge",
+    "HeightScaling",
+    "ZetaPoleScaling"
+   ],
+   "external": [],
+   "summary_group": "g03",
+   "representative": "XiPrime8845.ConreyMainTerm.normalized_gcdMainTerm_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ConreyOuter",
+   "file": "lean/ConreyOuter.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 21,
+   "imports": [
+    "BareEulerUniform",
+    "CoprimeGluing"
+   ],
+   "external": [],
+   "summary_group": "g03",
+   "representative": "XiPrime8845.ConreyOuter.actualSum_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CoprimeApproximation",
+   "file": "lean/CoprimeApproximation.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "CoprimeHead"
+   ],
+   "external": [],
+   "summary_group": "g04",
+   "representative": "XiPrime8845.CoprimeApproximation.errorCoeff_rootBound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CoprimeEndpoint",
+   "file": "lean/CoprimeEndpoint.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "CoprimeEulerCompletion",
+    "EndpointAverage"
+   ],
+   "external": [],
+   "summary_group": "g04",
+   "representative": "XiPrime8845.CoprimeEndpoint.endpoint_error_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CoprimeEulerCompletion",
+   "file": "lean/CoprimeEulerCompletion.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "CoprimeApproximation",
+    "EulerHead",
+    "OuterProfile"
+   ],
+   "external": [],
+   "summary_group": "g04",
+   "representative": "XiPrime8845.CoprimeEulerCompletion.actual_product_completion",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CoprimeEulerError",
+   "file": "lean/CoprimeEulerError.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "CoprimeEulerCompletion",
+    "FengSharedInterior"
+   ],
+   "external": [],
+   "summary_group": "g04",
+   "representative": "XiPrime8845.CoprimeEulerError.innerError_average",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CoprimeGluing",
+   "file": "lean/CoprimeGluing.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 22,
+   "imports": [
+    "CoprimeEndpoint"
+   ],
+   "external": [],
+   "summary_group": "g04",
+   "representative": "XiPrime8845.CoprimeGluing.averageError_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CoprimeHead",
+   "file": "lean/CoprimeHead.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "ShiftedEndpoint"
+   ],
+   "external": [],
+   "summary_group": "g04",
+   "representative": "XiPrime8845.CoprimeHead.finite_head_eventually",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CoprimeShift",
+   "file": "lean/CoprimeShift.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "ShiftedMobius"
+   ],
+   "external": [],
+   "summary_group": "g04",
+   "representative": "XiPrime8845.CoprimeShift.inner_eq_weightedSum",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "CoprimeSingleGluing",
+   "file": "lean/CoprimeSingleGluing.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 22,
+   "imports": [
+    "CoprimeEulerError",
+    "FengLogEndpoint"
+   ],
+   "external": [],
+   "summary_group": "g04",
+   "representative": "XiPrime8845.CoprimeSingleGluing.average_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ElementaryGcd",
+   "file": "lean/ElementaryGcd.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 22,
+   "imports": [
+    "GcdDecomposition",
+    "SmoothMobius"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.ElementaryGcd.conrey_inner_expansion",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "EndpointAverage",
+   "file": "lean/EndpointAverage.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "CoprimeApproximation"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.EndpointAverage.harmonic_log_window_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "EulerHead",
+   "file": "lean/EulerHead.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "CoprimeHead",
+    "TotientWeight"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.EulerHead.full_tail_product",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengArithmetic",
+   "file": "lean/FengArithmetic.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 21,
+   "imports": [
+    "ElementaryGcd"
+   ],
+   "external": [],
+   "summary_group": "g14",
+   "representative": "XiPrime8845.FengArithmetic.weighted_feng_expansion",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengAtG",
+   "file": "lean/FengAtG.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "FengShift"
+   ],
+   "external": [],
+   "summary_group": "g14",
+   "representative": "XiPrime8845.FengAtG.logBlock_derivatives",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengCoefficientBridge",
+   "file": "lean/FengCoefficientBridge.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 20,
+   "imports": [
+    "ConreyCoefficientBridge",
+    "FengArithmetic"
+   ],
+   "external": [],
+   "summary_group": "g14",
+   "representative": "XiPrime8845.FengCoefficientBridge.scaledArithmetic_diagonal",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengCrossAssembly",
+   "file": "lean/FengCrossAssembly.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "FengLogMainTerm",
+    "FengOutsideProfile"
+   ],
+   "external": [],
+   "summary_group": "g05",
+   "representative": "XiPrime8845.FengCrossAssembly.fullSum_reflected_of_outside",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengCrossCoefficient",
+   "file": "lean/FengCrossCoefficient.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 19,
+   "imports": [
+    "FengCoefficientBridge",
+    "FengOutsideMainTerm"
+   ],
+   "external": [],
+   "summary_group": "g05",
+   "representative": "XiPrime8845.FengCrossCoefficient.scaledArithmetic20_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengInverseProducts",
+   "file": "lean/FengInverseProducts.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 22,
+   "imports": [
+    "FengOutsidePartner"
+   ],
+   "external": [],
+   "summary_group": "g06",
+   "representative": "XiPrime8845.FengInverseProducts.inverse_mixed_twoBidiscs",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengInverseProfile",
+   "file": "lean/FengInverseProfile.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 22,
+   "imports": [
+    "FengOutsidePrime",
+    "OuterProfile"
+   ],
+   "external": [],
+   "summary_group": "g06",
+   "representative": "XiPrime8845.FengInverseProfile.zero_profile_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengLogBounds",
+   "file": "lean/FengLogBounds.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "CoprimeEndpoint",
+    "FengAtG"
+   ],
+   "external": [],
+   "summary_group": "g07",
+   "representative": "XiPrime8845.FengLogBounds.logBlock_twoBidiscs",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengLogEndpoint",
+   "file": "lean/FengLogEndpoint.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "FengLogBounds"
+   ],
+   "external": [],
+   "summary_group": "g07",
+   "representative": "XiPrime8845.FengLogEndpoint.logBlock_product_endpoint_twoBidiscs",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengLogMainTerm",
+   "file": "lean/FengLogMainTerm.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "ConreyOuter",
+    "FengMixedShift"
+   ],
+   "external": [],
+   "summary_group": "g07",
+   "representative": "XiPrime8845.FengLogMainTerm.actualSum_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengLogProducts",
+   "file": "lean/FengLogProducts.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 21,
+   "imports": [
+    "FengOutsideMainTerm"
+   ],
+   "external": [],
+   "summary_group": "g07",
+   "representative": "XiPrime8845.FengLogProducts.logarithmicSum_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMarkedAbel",
+   "file": "lean/FengMarkedAbel.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "FengMarkedProfile"
+   ],
+   "external": [],
+   "summary_group": "g08",
+   "representative": "XiPrime8845.FengMarkedAbel.weighted_error_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMarkedArithmetic",
+   "file": "lean/FengMarkedArithmetic.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 29,
+   "imports": [
+    "FengMarkedAbel",
+    "FengResidual",
+    "TotientCoprime"
+   ],
+   "external": [],
+   "summary_group": "g08",
+   "representative": "XiPrime8845.FengMarkedArithmetic.diagonal_reindex",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMarkedCross",
+   "file": "lean/FengMarkedCross.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "FengMarkedDiagonal"
+   ],
+   "external": [],
+   "summary_group": "g08",
+   "representative": "XiPrime8845.FengMarkedCross.cross_point_error",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMarkedCrossLimit",
+   "file": "lean/FengMarkedCrossLimit.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "FengMarkedCross",
+    "FengMarkedLimit"
+   ],
+   "external": [],
+   "summary_group": "g08",
+   "representative": "XiPrime8845.FengMarkedCrossLimit.marked_profile_twoBidiscs",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMarkedDecomposition",
+   "file": "lean/FengMarkedDecomposition.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 28,
+   "imports": [
+    "FengMarkedArithmetic"
+   ],
+   "external": [],
+   "summary_group": "g08",
+   "representative": "XiPrime8845.FengMarkedDecomposition.summatory_decomposition",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMarkedDiagonal",
+   "file": "lean/FengMarkedDiagonal.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "FengMarkedTail",
+    "FengMertensModels"
+   ],
+   "external": [],
+   "summary_group": "g08",
+   "representative": "XiPrime8845.FengMarkedDiagonal.diagonal_limit",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMarkedLimit",
+   "file": "lean/FengMarkedLimit.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "FengMarkedAbel",
+    "OuterProfile"
+   ],
+   "external": [],
+   "summary_group": "g08",
+   "representative": "XiPrime8845.FengMarkedLimit.profile_family_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMarkedProfile",
+   "file": "lean/FengMarkedProfile.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 27,
+   "imports": [
+    "FengSharedInterior"
+   ],
+   "external": [],
+   "summary_group": "g08",
+   "representative": "XiPrime8845.FengMarkedProfile.primeMoment_square",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMarkedTail",
+   "file": "lean/FengMarkedTail.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 27,
+   "imports": [
+    "FengMarkedDecomposition"
+   ],
+   "external": [
+    "Zeta23.XiPrime.Coeff.PrimeSums"
+   ],
+   "summary_group": "g08",
+   "representative": "XiPrime8845.FengMarkedTail.higherPowers_normalized",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMertensModels",
+   "file": "lean/FengMertensModels.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 27,
+   "imports": [
+    "BetaKernel"
+   ],
+   "external": [
+    "Zeta23.XiPrime.Coeff.PrimeSums"
+   ],
+   "summary_group": "g14",
+   "representative": "XiPrime8845.FengMertensModels.model_total_limit",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMixedAbel",
+   "file": "lean/FengMixedAbel.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "FengMixedMoment"
+   ],
+   "external": [],
+   "summary_group": "g09",
+   "representative": "XiPrime8845.FengMixedAbel.weighted_error_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMixedInterior",
+   "file": "lean/FengMixedInterior.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "FengSharedInterior"
+   ],
+   "external": [],
+   "summary_group": "g09",
+   "representative": "XiPrime8845.FengMixedInterior.averageRemainder_twoBidiscs",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMixedLimit",
+   "file": "lean/FengMixedLimit.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "FengMixedAbel"
+   ],
+   "external": [],
+   "summary_group": "g09",
+   "representative": "XiPrime8845.FengMixedLimit.mixed_profile_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMixedMainTerm",
+   "file": "lean/FengMixedMainTerm.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 18,
+   "imports": [
+    "ConreyMainTerm",
+    "FengCrossCoefficient",
+    "IntegralJet"
+   ],
+   "external": [],
+   "summary_group": "g09",
+   "representative": "XiPrime8845.FengMixedMainTerm.normalized_gcd20_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMixedMoment",
+   "file": "lean/FengMixedMoment.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "FengMarkedCrossLimit"
+   ],
+   "external": [],
+   "summary_group": "g09",
+   "representative": "XiPrime8845.FengMixedMoment.mixed_scalar_limit",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMixedProduct",
+   "file": "lean/FengMixedProduct.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 22,
+   "imports": [
+    "FengMixedInterior",
+    "FengMixedLimit",
+    "FengSharedLimit"
+   ],
+   "external": [],
+   "summary_group": "g09",
+   "representative": "XiPrime8845.FengMixedProduct.actualSum_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengMixedShift",
+   "file": "lean/FengMixedShift.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 21,
+   "imports": [
+    "BareEulerUniform",
+    "FengMixedProduct"
+   ],
+   "external": [],
+   "summary_group": "g09",
+   "representative": "XiPrime8845.FengMixedShift.kernel02_target",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutside",
+   "file": "lean/FengOutside.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "CoprimeEulerCompletion",
+    "FengAtG"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutside.outside_error_average",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutsideAverage",
+   "file": "lean/FengOutsideAverage.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "CoprimeEulerError",
+    "FengOutsideBounds",
+    "FengOutsidePrime",
+    "FengPrimeWindow"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutsideAverage.rowBudget_average",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutsideBounds",
+   "file": "lean/FengOutsideBounds.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "FengLogEndpoint",
+    "FengPrimeMass"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutsideBounds.outsideBlock_twoBidiscs",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutsideMainTerm",
+   "file": "lean/FengOutsideMainTerm.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 20,
+   "imports": [
+    "FengOutsideProxy"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutsideMainTerm.fullSum_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutsidePartner",
+   "file": "lean/FengOutsidePartner.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "FengLogProducts"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutsidePartner.outside_outside_sub_proxy",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutsidePrime",
+   "file": "lean/FengOutsidePrime.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "FengPrimeExclusion",
+    "FengPrimeProfile"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutsidePrime.mainProxy_twoBidiscs",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutsideProfile",
+   "file": "lean/FengOutsideProfile.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "BetaKernel",
+    "FengOutside",
+    "WeightDerivatives"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutsideProfile.outer_integral",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutsideProxy",
+   "file": "lean/FengOutsideProxy.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 21,
+   "imports": [
+    "CoprimeSingleGluing",
+    "FengInverseProfile",
+    "FengOutsideReplacement"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutsideProxy.zeroModel_sub_profile_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutsideReplacement",
+   "file": "lean/FengOutsideReplacement.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 22,
+   "imports": [
+    "FengCrossAssembly",
+    "FengOutsideAverage"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutsideReplacement.outside_sub_proxy_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutsideShared",
+   "file": "lean/FengOutsideShared.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 20,
+   "imports": [
+    "FengOutsideSquare"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutsideShared.shared_outside_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengOutsideSquare",
+   "file": "lean/FengOutsideSquare.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 21,
+   "imports": [
+    "FengInverseProducts"
+   ],
+   "external": [],
+   "summary_group": "g10",
+   "representative": "XiPrime8845.FengOutsideSquare.outside_outside_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengPrimeCancellation",
+   "file": "lean/FengPrimeCancellation.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 30,
+   "imports": [
+    "FengAtG"
+   ],
+   "external": [],
+   "summary_group": "g11",
+   "representative": "XiPrime8845.FengPrimeCancellation.shared_local_norm_le",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengPrimeExclusion",
+   "file": "lean/FengPrimeExclusion.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "FengSharedTail"
+   ],
+   "external": [
+    "Zeta23.XiPrime.Coeff.PrimeSums"
+   ],
+   "summary_group": "g11",
+   "representative": "XiPrime8845.FengPrimeExclusion.excluded_mass_scaled",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengPrimeMass",
+   "file": "lean/FengPrimeMass.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "FengOutside"
+   ],
+   "external": [],
+   "summary_group": "g11",
+   "representative": "XiPrime8845.FengPrimeMass.scaled_mass_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengPrimeProfile",
+   "file": "lean/FengPrimeProfile.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "FengOutsideProfile"
+   ],
+   "external": [
+    "Zeta23.XiPrime.Coeff.PrimeSums"
+   ],
+   "summary_group": "g11",
+   "representative": "XiPrime8845.FengPrimeProfile.profileTransform_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengPrimeWindow",
+   "file": "lean/FengPrimeWindow.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "FengPrimeExclusion",
+    "FengPrimeMass"
+   ],
+   "external": [],
+   "summary_group": "g11",
+   "representative": "XiPrime8845.FengPrimeWindow.endpoint_mass",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengResidual",
+   "file": "lean/FengResidual.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 27,
+   "imports": [
+    "FengSharedBlock"
+   ],
+   "external": [],
+   "summary_group": "g14",
+   "representative": "XiPrime8845.FengResidual.residual_scaled_geometric",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengShared",
+   "file": "lean/FengShared.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 29,
+   "imports": [
+    "FengPrimeCancellation"
+   ],
+   "external": [],
+   "summary_group": "g12",
+   "representative": "XiPrime8845.FengShared.shared_norm_le",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengSharedApproximation",
+   "file": "lean/FengSharedApproximation.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "CoprimeEulerCompletion",
+    "FengResidual"
+   ],
+   "external": [],
+   "summary_group": "g12",
+   "representative": "XiPrime8845.FengSharedApproximation.shared_error_average",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengSharedBlock",
+   "file": "lean/FengSharedBlock.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 28,
+   "imports": [
+    "FengShared"
+   ],
+   "external": [],
+   "summary_group": "g12",
+   "representative": "XiPrime8845.FengSharedBlock.sharedBlock_norm",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengSharedBounds",
+   "file": "lean/FengSharedBounds.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "FengLogEndpoint",
+    "FengResidual"
+   ],
+   "external": [],
+   "summary_group": "g12",
+   "representative": "XiPrime8845.FengSharedBounds.sharedBlock_twoBidiscs",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengSharedInterior",
+   "file": "lean/FengSharedInterior.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "CoprimeGluing",
+    "FengSharedTail"
+   ],
+   "external": [],
+   "summary_group": "g12",
+   "representative": "XiPrime8845.FengSharedInterior.averageRemainder_twoBidiscs",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengSharedLimit",
+   "file": "lean/FengSharedLimit.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "FengMarkedCrossLimit"
+   ],
+   "external": [],
+   "summary_group": "g12",
+   "representative": "XiPrime8845.FengSharedLimit.actualSum_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengSharedShift",
+   "file": "lean/FengSharedShift.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 19,
+   "imports": [
+    "FengOutsideShared",
+    "FengSquareAssembly",
+    "RawEuler"
+   ],
+   "external": [],
+   "summary_group": "g12",
+   "representative": "XiPrime8845.FengSharedShift.fullSum_reflected",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengSharedTail",
+   "file": "lean/FengSharedTail.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "FengSharedApproximation",
+    "FengSharedBounds"
+   ],
+   "external": [],
+   "summary_group": "g12",
+   "representative": "XiPrime8845.FengSharedTail.mark_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengShift",
+   "file": "lean/FengShift.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "CoprimeShift",
+    "FengArithmetic"
+   ],
+   "external": [],
+   "summary_group": "g14",
+   "representative": "XiPrime8845.FengShift.shifted_feng_derivative",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengSquareAssembly",
+   "file": "lean/FengSquareAssembly.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 20,
+   "imports": [
+    "FengLogProducts"
+   ],
+   "external": [],
+   "summary_group": "g13",
+   "representative": "XiPrime8845.FengSquareAssembly.fullSum_reflected_of_remaining",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengSquareCoefficient",
+   "file": "lean/FengSquareCoefficient.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 18,
+   "imports": [
+    "FengCrossCoefficient",
+    "FengSharedShift"
+   ],
+   "external": [],
+   "summary_group": "g13",
+   "representative": "XiPrime8845.FengSquareCoefficient.normalized_gcd22_eq",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FengSquareMainTerm",
+   "file": "lean/FengSquareMainTerm.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 17,
+   "imports": [
+    "FengMixedMainTerm",
+    "FengSquareCoefficient"
+   ],
+   "external": [],
+   "summary_group": "g13",
+   "representative": "XiPrime8845.FengSquareMainTerm.normalized_gcd22_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FiniteJet",
+   "file": "lean/FiniteJet.lean",
+   "layer": "数値証明書",
+   "sublayer": null,
+   "depth": 18,
+   "imports": [],
+   "external": [
+    "Mathlib"
+   ],
+   "summary_group": "g23",
+   "representative": "XiPrime8845.FiniteJet.inverseShiftPoly_jet",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "FixedCertificate",
+   "file": "lean/FixedCertificate.lean",
+   "layer": "数値証明書",
+   "sublayer": null,
+   "depth": 15,
+   "imports": [
+    "RationalBounds"
+   ],
+   "external": [],
+   "summary_group": "g23",
+   "representative": "XiPrime8845.FixedCertificate.fixed_functional_gate",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "GcdDecomposition",
+   "file": "lean/GcdDecomposition.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 21,
+   "imports": [
+    "ArithmeticRegularity"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.GcdDecomposition.normalized_gcd_split",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "HeightScaling",
+   "file": "lean/HeightScaling.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 20,
+   "imports": [
+    "GcdDecomposition"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.HeightScaling.heightFactor_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "IntegralJet",
+   "file": "lean/IntegralJet.lean",
+   "layer": "数値証明書",
+   "sublayer": null,
+   "depth": 17,
+   "imports": [
+    "BetaKernel",
+    "FiniteJet"
+   ],
+   "external": [],
+   "summary_group": "g23",
+   "representative": "XiPrime8845.IntegralJet.inverse_operator_jet",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "KernelAlgebra",
+   "file": "lean/KernelAlgebra.lean",
+   "layer": "数値証明書",
+   "sublayer": null,
+   "depth": 19,
+   "imports": [],
+   "external": [
+    "Mathlib"
+   ],
+   "summary_group": "g23",
+   "representative": "XiPrime8845.length_margin",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "LogProfileSum",
+   "file": "lean/LogProfileSum.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 24,
+   "imports": [
+    "ShiftedEulerUniform",
+    "TotientAbel"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.LogProfileSum.zeroSum_error",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "LogarithmicBudget",
+   "file": "lean/LogarithmicBudget.lean",
+   "layer": "その他",
+   "sublayer": null,
+   "depth": 14,
+   "imports": [
+    "FixedCertificate"
+   ],
+   "external": [],
+   "summary_group": "g24",
+   "representative": "XiPrime8845.LogarithmicBudget.positive_moment_gate",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "MobiusHarmonic",
+   "file": "lean/MobiusHarmonic.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 29,
+   "imports": [],
+   "external": [
+    "Mathlib"
+   ],
+   "summary_group": "g15",
+   "representative": "XiPrime8845.MobiusHarmonic.linearProfile_uniform_of_mu_pnt_alt",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "MobiusPNT",
+   "file": "lean/MobiusPNT.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 29,
+   "imports": [],
+   "external": [
+    "Mathlib",
+    "Zeta23.FromPNTPlus.MediumPNT"
+   ],
+   "summary_group": "g15",
+   "representative": "XiPrime8845.MobiusPNT.mu_pnt_alt",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "MobiusPNTBridge",
+   "file": "lean/MobiusPNTBridge.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 28,
+   "imports": [
+    "MobiusHarmonic",
+    "MobiusPNT"
+   ],
+   "external": [],
+   "summary_group": "g15",
+   "representative": "XiPrime8845.MobiusPNTBridge.linearProfile_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "MultiplicativeSummability",
+   "file": "lean/MultiplicativeSummability.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 28,
+   "imports": [],
+   "external": [
+    "Mathlib"
+   ],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.MultiplicativeSummability.summable_of_local_mass",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "NumericalGate",
+   "file": "lean/NumericalGate.lean",
+   "layer": "数値証明書",
+   "sublayer": null,
+   "depth": 18,
+   "imports": [
+    "CoefficientEvaluator",
+    "KernelAlgebra"
+   ],
+   "external": [],
+   "summary_group": "g23",
+   "representative": "XiPrime8845.NumericalGate.fixed_finite_gate",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "OuterProfile",
+   "file": "lean/OuterProfile.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [
+    "BetaKernel",
+    "CoprimeHead",
+    "LogProfileSum"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.OuterProfile.eulerMain_product_weight",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "PRZZAsymptotic",
+   "file": "lean/PRZZAsymptotic.lean",
+   "layer": "PRZZ 入力",
+   "sublayer": null,
+   "depth": 18,
+   "imports": [
+    "KernelAlgebra",
+    "PRZZInterface"
+   ],
+   "external": [],
+   "summary_group": "g01",
+   "representative": "XiPrime8845.PRZZAsymptotic.normalized_mixed_error_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "PRZZInterface",
+   "file": "lean/PRZZInterface.lean",
+   "layer": "PRZZ 入力",
+   "sublayer": null,
+   "depth": 10,
+   "imports": [],
+   "external": [
+    "Mathlib"
+   ],
+   "summary_group": "g01",
+   "representative": "XiPrime8845.PRZZ.przz41_case3_K2_profiles",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "RationalBounds",
+   "file": "lean/RationalBounds.lean",
+   "layer": "数値証明書",
+   "sublayer": null,
+   "depth": 16,
+   "imports": [
+    "RationalEvaluator"
+   ],
+   "external": [],
+   "summary_group": "g23",
+   "representative": "XiPrime8845.RationalBounds.rational_bounds",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "RationalEvaluator",
+   "file": "lean/RationalEvaluator.lean",
+   "layer": "数値証明書",
+   "sublayer": null,
+   "depth": 17,
+   "imports": [
+    "NumericalGate"
+   ],
+   "external": [],
+   "summary_group": "g23",
+   "representative": "XiPrime8845.RationalEvaluator.beta_correct",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "RawEuler",
+   "file": "lean/RawEuler.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 20,
+   "imports": [
+    "FengMixedShift"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.RawEuler.rawWeight_factor",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ShiftWeights",
+   "file": "lean/ShiftWeights.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "ElementaryGcd"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.ShiftWeights.weight_shift_modulus",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ShiftedEndpoint",
+   "file": "lean/ShiftedEndpoint.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "CoprimeShift",
+    "SupportProductTail"
+   ],
+   "external": [],
+   "summary_group": "g16",
+   "representative": "XiPrime8845.ShiftedEndpoint.scaled_coprime_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ShiftedEulerLocal",
+   "file": "lean/ShiftedEulerLocal.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "ShiftedTotient"
+   ],
+   "external": [],
+   "summary_group": "g16",
+   "representative": "XiPrime8845.ShiftedEulerLocal.prime_defect_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ShiftedEulerUniform",
+   "file": "lean/ShiftedEulerUniform.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "ShiftedEulerLocal",
+    "ShiftedMobius",
+    "TotientHarmonic"
+   ],
+   "external": [],
+   "summary_group": "g16",
+   "representative": "XiPrime8845.ShiftedEulerUniform.ratio_uniform_growing",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ShiftedMobius",
+   "file": "lean/ShiftedMobius.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "FiniteJet",
+    "WeightDerivatives",
+    "WeightedMobius"
+   ],
+   "external": [],
+   "summary_group": "g16",
+   "representative": "XiPrime8845.ShiftedMobius.shifted_main_term_twoBidiscs",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ShiftedTotient",
+   "file": "lean/ShiftedTotient.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 27,
+   "imports": [
+    "TotientWeight"
+   ],
+   "external": [],
+   "summary_group": "g16",
+   "representative": "XiPrime8845.ShiftedTotient.local_ratio_defect",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "SmoothMobius",
+   "file": "lean/SmoothMobius.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 23,
+   "imports": [],
+   "external": [
+    "Mathlib"
+   ],
+   "summary_group": "g17",
+   "representative": "XiPrime8845.SmoothMobius.moebius_mul_indicator",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "SmoothWeightWitness",
+   "file": "lean/SmoothWeightWitness.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 9,
+   "imports": [
+    "PRZZInterface"
+   ],
+   "external": [
+    "Mathlib.Analysis.Calculus.BumpFunction.InnerProduct"
+   ],
+   "summary_group": "g17",
+   "representative": "XiPrime8845.SmoothWeightWitness.derivative_log_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "SmoothWindow",
+   "file": "lean/SmoothWindow.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 8,
+   "imports": [
+    "SmoothWeightWitness"
+   ],
+   "external": [],
+   "summary_group": "g17",
+   "representative": "XiPrime8845.SmoothWindow.integral_sandwich",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "SmoothWindowLimit",
+   "file": "lean/SmoothWindowLimit.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 7,
+   "imports": [
+    "SmoothWindow"
+   ],
+   "external": [],
+   "summary_group": "g17",
+   "representative": "XiPrime8845.SmoothWindowLimit.windowMoment_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "SupportProductTail",
+   "file": "lean/SupportProductTail.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "SupportTail"
+   ],
+   "external": [],
+   "summary_group": "g18",
+   "representative": "XiPrime8845.SupportProductTail.supported_product_average_le",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "SupportTail",
+   "file": "lean/SupportTail.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 27,
+   "imports": [
+    "ElementaryGcd"
+   ],
+   "external": [],
+   "summary_group": "g18",
+   "representative": "XiPrime8845.SupportTail.normalizedTail_uniform_zero",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "TaylorEnvelope",
+   "file": "lean/TaylorEnvelope.lean",
+   "layer": "数値証明書",
+   "sublayer": null,
+   "depth": 20,
+   "imports": [
+    "IntegralJet"
+   ],
+   "external": [],
+   "summary_group": "g23",
+   "representative": "XiPrime8845.TaylorEnvelope.K2_Taylor_enclosure",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "TotientAbel",
+   "file": "lean/TotientAbel.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "TotientHarmonic"
+   ],
+   "external": [],
+   "summary_group": "g19",
+   "representative": "XiPrime8845.TotientAbel.weighted_error_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "TotientConvolution",
+   "file": "lean/TotientConvolution.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 28,
+   "imports": [
+    "MobiusHarmonic",
+    "TotientWeight"
+   ],
+   "external": [],
+   "summary_group": "g19",
+   "representative": "XiPrime8845.TotientConvolution.correction_prime_pow",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "TotientCoprime",
+   "file": "lean/TotientCoprime.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 30,
+   "imports": [
+    "TotientHarmonic"
+   ],
+   "external": [],
+   "summary_group": "g19",
+   "representative": "XiPrime8845.TotientCoprime.two_prime_exclusion_log",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "TotientHarmonic",
+   "file": "lean/TotientHarmonic.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "TotientSummability"
+   ],
+   "external": [],
+   "summary_group": "g19",
+   "representative": "XiPrime8845.TotientHarmonic.normalized_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "TotientSummability",
+   "file": "lean/TotientSummability.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 27,
+   "imports": [
+    "MultiplicativeSummability",
+    "TotientConvolution"
+   ],
+   "external": [],
+   "summary_group": "g19",
+   "representative": "XiPrime8845.TotientSummability.correction_mass_one",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "TotientWeight",
+   "file": "lean/TotientWeight.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 26,
+   "imports": [
+    "SupportTail"
+   ],
+   "external": [],
+   "summary_group": "g19",
+   "representative": "XiPrime8845.TotientWeight.zero_shift_weight",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "TwoPieceMainTerm",
+   "file": "lean/TwoPieceMainTerm.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 16,
+   "imports": [
+    "FengSquareMainTerm"
+   ],
+   "external": [],
+   "summary_group": "g20",
+   "representative": "XiPrime8845.TwoPieceMainTerm.normalized_witness_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "TwoPieceMoment",
+   "file": "lean/TwoPieceMoment.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 15,
+   "imports": [
+    "CauchyJetTransfer",
+    "TwoPieceMainTerm"
+   ],
+   "external": [],
+   "summary_group": "g20",
+   "representative": "XiPrime8845.TwoPieceMoment.normalizedMoment_exactEvaluator_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WeightDerivatives",
+   "file": "lean/WeightDerivatives.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 25,
+   "imports": [
+    "ShiftWeights"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.WeightDerivatives.first_zero",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WeightedMobius",
+   "file": "lean/WeightedMobius.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 27,
+   "imports": [
+    "MobiusPNTBridge"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.WeightedMobius.weighted_family_uniform",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WitnessMomentBound",
+   "file": "lean/WitnessMomentBound.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 13,
+   "imports": [
+    "LogarithmicBudget",
+    "ZetaMomentMainTerm"
+   ],
+   "external": [],
+   "summary_group": "g22",
+   "representative": "XiPrime8845.WitnessMomentBound.unit_mass_moment_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuAuxiliary",
+   "file": "lean/WuAuxiliary.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 12,
+   "imports": [
+    "WitnessMomentBound"
+   ],
+   "external": [
+    "Zeta23.XiPrime.Seam"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuAuxiliary.derivativeMoments_bounded",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuAuxiliaryBoundary",
+   "file": "lean/WuAuxiliaryBoundary.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 16,
+   "imports": [
+    "WuSubintervalLog"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuAuxiliaryBoundary.left_log_eventually_le",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuAuxiliaryHorizontal",
+   "file": "lean/WuAuxiliaryHorizontal.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 10,
+   "imports": [
+    "WuHorizontalBound"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuAuxiliaryHorizontal.auxiliary_horizontal_safe",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuAuxiliaryMultiplicity",
+   "file": "lean/WuAuxiliaryMultiplicity.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 14,
+   "imports": [
+    "WuBoundaryZeros"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuAuxiliaryMultiplicity.littlewood_perturbed",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuBoundaryPhase",
+   "file": "lean/WuBoundaryPhase.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 9,
+   "imports": [
+    "WuAuxiliaryHorizontal",
+    "WuRightLittlewood"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuBoundaryPhase.auxiliary_boundaryLog_le",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuBoundaryZeros",
+   "file": "lean/WuBoundaryZeros.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 15,
+   "imports": [
+    "WuAuxiliaryBoundary"
+   ],
+   "external": [
+    "Mathlib.Analysis.SpecialFunctions.Integrability.LogMeromorphic"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuBoundaryZeros.left_log_eventually_le",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuContourCounting",
+   "file": "lean/WuContourCounting.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 7,
+   "imports": [
+    "WuParallelReturn"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuContourCounting.eventual_window_merger",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuCriticalDeflation",
+   "file": "lean/WuCriticalDeflation.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 12,
+   "imports": [
+    "WuFiniteDeflation"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuCriticalDeflation.Data.edgeLog",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuCriticalMultiplicity",
+   "file": "lean/WuCriticalMultiplicity.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 14,
+   "imports": [
+    "WuAuxiliaryMultiplicity"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuCriticalMultiplicity.critical_zero_budget",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuDeflatedContour",
+   "file": "lean/WuDeflatedContour.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 9,
+   "imports": [
+    "WuAuxiliaryHorizontal",
+    "WuPhaseCrossings"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuDeflatedContour.vertical_comparison",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuDeflatedDetection",
+   "file": "lean/WuDeflatedDetection.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 11,
+   "imports": [
+    "WuCriticalDeflation"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuCriticalDeflation.Data.phase_zero_iff",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuDiskCenter",
+   "file": "lean/WuDiskCenter.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 12,
+   "imports": [
+    "WuDiskGrowth"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuDiskCenter.center_lower",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuDiskGrowth",
+   "file": "lean/WuDiskGrowth.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 13,
+   "imports": [
+    "WuWideGamma"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuDiskGrowth.product_disk_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuDyadicCounting",
+   "file": "lean/WuDyadicCounting.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 1,
+   "imports": [
+    "WuLocalCounting",
+    "WuXiBands"
+   ],
+   "external": [
+    "Zeta23.XiPrime.ZeroCount"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuDyadicCounting.budget_normalized_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuEdgeLog",
+   "file": "lean/WuEdgeLog.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 5,
+   "imports": [
+    "WuLittlewood"
+   ],
+   "external": [
+    "Mathlib.Topology.Order.ProjIcc"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuLittlewood.littlewood_of_boundary_nonzero",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuEtaMainPhase",
+   "file": "lean/WuEtaMainPhase.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 4,
+   "imports": [
+    "WuGammaCancellation",
+    "WuVHorizontal"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuEtaMainPhase.gamma_free_merger",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuFiniteDeflation",
+   "file": "lean/WuFiniteDeflation.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 13,
+   "imports": [
+    "WuCriticalMultiplicity"
+   ],
+   "external": [
+    "Mathlib.Analysis.Complex.RemovableSingularity"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuFiniteDeflation.order_restore",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuGammaCancellation",
+   "file": "lean/WuGammaCancellation.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 5,
+   "imports": [
+    "WuGammaPhase"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuGammaCancellation.gamma_free_boundary_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuGammaJets",
+   "file": "lean/WuGammaJets.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 10,
+   "imports": [
+    "WuStirling"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuGammaJets.jet_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuGammaPhase",
+   "file": "lean/WuGammaPhase.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 6,
+   "imports": [
+    "WuContourCounting"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuGammaPhase.otherPhase_main_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuHorizontalBound",
+   "file": "lean/WuHorizontalBound.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 11,
+   "imports": [
+    "WuDiskCenter",
+    "WuHorizontalIntegral"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuHorizontalBound.horizontal_safe",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuHorizontalIntegral",
+   "file": "lean/WuHorizontalIntegral.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 12,
+   "imports": [
+    "WuDiskGrowth"
+   ],
+   "external": [
+    "Zeta23.XiPrime.ZeroCount.Generic"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuHorizontalIntegral.horizontal_of_partial_fraction",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuIndependentWindows",
+   "file": "lean/WuIndependentWindows.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 3,
+   "imports": [
+    "WuSafeEndpoints",
+    "WuWindowTiling"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuIndependentWindows.global_independent_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuLeftReturn",
+   "file": "lean/WuLeftReturn.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 13,
+   "imports": [
+    "WuAuxiliaryMultiplicity"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuLeftReturn.safe_left_budget_eventually",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuLittlewood",
+   "file": "lean/WuLittlewood.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 6,
+   "imports": [],
+   "external": [
+    "Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts",
+    "Zeta23.Analytic.RectangleLogDeriv"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuLittlewood.littlewood",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuLocalCounting",
+   "file": "lean/WuLocalCounting.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 2,
+   "imports": [
+    "WuQuotientReturn"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuLocalCounting.closed_count_lower",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuMomentTransfer",
+   "file": "lean/WuMomentTransfer.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 7,
+   "imports": [
+    "WuStirlingMoment"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuMomentTransfer.unit_mass_vMoment_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuParallelReturn",
+   "file": "lean/WuParallelReturn.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 8,
+   "imports": [
+    "WuBoundaryPhase",
+    "WuDeflatedContour"
+   ],
+   "external": [
+    "Mathlib.MeasureTheory.Integral.DominatedConvergence"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuParallelReturn.parallel_phase_count",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuPhaseCrossings",
+   "file": "lean/WuPhaseCrossings.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 10,
+   "imports": [
+    "WuDeflatedDetection"
+   ],
+   "external": [
+    "Mathlib.Data.Int.Interval",
+    "Mathlib.Topology.Order.IntermediateValue"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuPhaseCrossings.critical_phase_count",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuProportion",
+   "file": "lean/WuProportion.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 0,
+   "imports": [
+    "WuDyadicCounting",
+    "WuTotalAsymptotic"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuProportion.ratio_eventually_gt",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuQuotientReturn",
+   "file": "lean/WuQuotientReturn.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 3,
+   "imports": [
+    "WuEtaMainPhase"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuQuotientReturn.original_budget",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuRightBoundary",
+   "file": "lean/WuRightBoundary.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 11,
+   "imports": [
+    "WuRightMollifier"
+   ],
+   "external": [
+    "Zeta23.XiPrime.ZeroCount.ArgBound"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuRightBoundary.right_phase_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuRightLittlewood",
+   "file": "lean/WuRightLittlewood.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 10,
+   "imports": [
+    "WuRightBoundary"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuRightLittlewood.eta_count_le_boundary",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuRightMollifier",
+   "file": "lean/WuRightMollifier.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 12,
+   "imports": [
+    "WuLeftReturn"
+   ],
+   "external": [
+    "Zeta23.RvM.ZetaGrowth"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuRightMollifier.psi_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuSafeEndpoints",
+   "file": "lean/WuSafeEndpoints.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 4,
+   "imports": [
+    "WuEdgeLog"
+   ],
+   "external": [
+    "Mathlib.Topology.Algebra.Module.Cardinality"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuSafeEndpoints.moving_endpoint_zero",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuStirling",
+   "file": "lean/WuStirling.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 11,
+   "imports": [
+    "WuAuxiliary"
+   ],
+   "external": [
+    "Mathlib.Analysis.Complex.Liouville",
+    "Zeta23.GammaFacts.StirlingVert"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuStirling.jet_one_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuStirlingMoment",
+   "file": "lean/WuStirlingMoment.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 8,
+   "imports": [
+    "WuStirlingTransfer"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuStirlingMoment.errorMoment_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuStirlingTransfer",
+   "file": "lean/WuStirlingTransfer.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 9,
+   "imports": [
+    "WuGammaJets"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuStirlingTransfer.difference_left_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuSubintervalLog",
+   "file": "lean/WuSubintervalLog.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 17,
+   "imports": [
+    "WuIndependentWindows"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuSubintervalLog.safe_window_log_input",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuTotalAsymptotic",
+   "file": "lean/WuTotalAsymptotic.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 1,
+   "imports": [
+    "WuXiBands"
+   ],
+   "external": [
+    "Zeta23.Assembly",
+    "Zeta23.XiPrime.ZeroCount"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuTotalAsymptotic.cumulative",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuTrimmedLog",
+   "file": "lean/WuTrimmedLog.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 5,
+   "imports": [
+    "WuUnsmoothing"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuTrimmedLog.logMean_eventually_le",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuUnsmoothing",
+   "file": "lean/WuUnsmoothing.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 6,
+   "imports": [
+    "SmoothWindowLimit",
+    "WuMomentTransfer"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuUnsmoothing.fullMoment_tendsto_of_endpointTight",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "WuVHorizontal",
+   "file": "lean/WuVHorizontal.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 5,
+   "imports": [
+    "WuGammaPhase"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuVHorizontal.right_phase_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuWideGamma",
+   "file": "lean/WuWideGamma.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 14,
+   "imports": [
+    "WuRightLittlewood"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuWideGamma.jet_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuWindowTiling",
+   "file": "lean/WuWindowTiling.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 4,
+   "imports": [
+    "WuTrimmedLog"
+   ],
+   "external": [],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuWindowTiling.global_counting_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "WuXiBands",
+   "file": "lean/WuXiBands.lean",
+   "layer": "計数（Wu）",
+   "sublayer": null,
+   "depth": 2,
+   "imports": [
+    "WuIndependentWindows"
+   ],
+   "external": [
+    "Zeta23.XiPrime.ExplicitFormula.ZeroFree",
+    "Zeta23.XiPrime.ZeroCount.Landau"
+   ],
+   "summary_group": "g00",
+   "representative": "XiPrime8845.WuXiBands.global_bound",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ZetaMomentIntegral",
+   "file": "lean/ZetaMomentIntegral.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 16,
+   "imports": [
+    "ArithmeticRegularity"
+   ],
+   "external": [],
+   "summary_group": "g21",
+   "representative": "XiPrime8845.ZetaMomentIntegral.twistedMoment_mixed_deriv",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ZetaMomentMainTerm",
+   "file": "lean/ZetaMomentMainTerm.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 14,
+   "imports": [
+    "TwoPieceMoment",
+    "ZetaMomentPolynomial"
+   ],
+   "external": [],
+   "summary_group": "g21",
+   "representative": "XiPrime8845.ZetaMomentMainTerm.squareMoment_exactEvaluator_tendsto",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "PRZZ.przz41_case3_K2_profiles"
+   ]
+  },
+  {
+   "name": "ZetaMomentPolynomial",
+   "file": "lean/ZetaMomentPolynomial.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 15,
+   "imports": [
+    "CauchyJetTransfer",
+    "ZetaMomentIntegral"
+   ],
+   "external": [],
+   "summary_group": "g21",
+   "representative": "XiPrime8845.ZetaMomentPolynomial.moment_eq_square",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "ZetaPoleScaling",
+   "file": "lean/ZetaPoleScaling.lean",
+   "layer": "主項",
+   "sublayer": null,
+   "depth": 20,
+   "imports": [
+    "PRZZAsymptotic"
+   ],
+   "external": [],
+   "summary_group": "g21",
+   "representative": "XiPrime8845.ZetaPoleScaling.dual_pole_on_bidisc",
+   "representative_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  }
+ ],
+ "edges": [
+  [
+   "ArithmeticRegularity",
+   "CompactShiftIntegral"
+  ],
+  [
+   "ArithmeticRegularity",
+   "PRZZAsymptotic"
+  ],
+  [
+   "BareEuler",
+   "CoprimeEulerCompletion"
+  ],
+  [
+   "BareEulerUniform",
+   "BareEuler"
+  ],
+  [
+   "BetaKernel",
+   "Mathlib"
+  ],
+  [
+   "CauchyJetTransfer",
+   "ArithmeticRegularity"
+  ],
+  [
+   "CauchyJetTransfer",
+   "IntegralJet"
+  ],
+  [
+   "CoefficientEvaluator",
+   "TaylorEnvelope"
+  ],
+  [
+   "CompactShiftIntegral",
+   "Mathlib"
+  ],
+  [
+   "ConreyCoefficientBridge",
+   "ConreyOuter"
+  ],
+  [
+   "ConreyMainTerm",
+   "ConreyCoefficientBridge"
+  ],
+  [
+   "ConreyMainTerm",
+   "HeightScaling"
+  ],
+  [
+   "ConreyMainTerm",
+   "ZetaPoleScaling"
+  ],
+  [
+   "ConreyOuter",
+   "BareEulerUniform"
+  ],
+  [
+   "ConreyOuter",
+   "CoprimeGluing"
+  ],
+  [
+   "CoprimeApproximation",
+   "CoprimeHead"
+  ],
+  [
+   "CoprimeEndpoint",
+   "CoprimeEulerCompletion"
+  ],
+  [
+   "CoprimeEndpoint",
+   "EndpointAverage"
+  ],
+  [
+   "CoprimeEulerCompletion",
+   "CoprimeApproximation"
+  ],
+  [
+   "CoprimeEulerCompletion",
+   "EulerHead"
+  ],
+  [
+   "CoprimeEulerCompletion",
+   "OuterProfile"
+  ],
+  [
+   "CoprimeEulerError",
+   "CoprimeEulerCompletion"
+  ],
+  [
+   "CoprimeEulerError",
+   "FengSharedInterior"
+  ],
+  [
+   "CoprimeGluing",
+   "CoprimeEndpoint"
+  ],
+  [
+   "CoprimeHead",
+   "ShiftedEndpoint"
+  ],
+  [
+   "CoprimeShift",
+   "ShiftedMobius"
+  ],
+  [
+   "CoprimeSingleGluing",
+   "CoprimeEulerError"
+  ],
+  [
+   "CoprimeSingleGluing",
+   "FengLogEndpoint"
+  ],
+  [
+   "ElementaryGcd",
+   "GcdDecomposition"
+  ],
+  [
+   "ElementaryGcd",
+   "SmoothMobius"
+  ],
+  [
+   "EndpointAverage",
+   "CoprimeApproximation"
+  ],
+  [
+   "EulerHead",
+   "CoprimeHead"
+  ],
+  [
+   "EulerHead",
+   "TotientWeight"
+  ],
+  [
+   "FengArithmetic",
+   "ElementaryGcd"
+  ],
+  [
+   "FengAtG",
+   "FengShift"
+  ],
+  [
+   "FengCoefficientBridge",
+   "ConreyCoefficientBridge"
+  ],
+  [
+   "FengCoefficientBridge",
+   "FengArithmetic"
+  ],
+  [
+   "FengCrossAssembly",
+   "FengLogMainTerm"
+  ],
+  [
+   "FengCrossAssembly",
+   "FengOutsideProfile"
+  ],
+  [
+   "FengCrossCoefficient",
+   "FengCoefficientBridge"
+  ],
+  [
+   "FengCrossCoefficient",
+   "FengOutsideMainTerm"
+  ],
+  [
+   "FengInverseProducts",
+   "FengOutsidePartner"
+  ],
+  [
+   "FengInverseProfile",
+   "FengOutsidePrime"
+  ],
+  [
+   "FengInverseProfile",
+   "OuterProfile"
+  ],
+  [
+   "FengLogBounds",
+   "CoprimeEndpoint"
+  ],
+  [
+   "FengLogBounds",
+   "FengAtG"
+  ],
+  [
+   "FengLogEndpoint",
+   "FengLogBounds"
+  ],
+  [
+   "FengLogMainTerm",
+   "ConreyOuter"
+  ],
+  [
+   "FengLogMainTerm",
+   "FengMixedShift"
+  ],
+  [
+   "FengLogProducts",
+   "FengOutsideMainTerm"
+  ],
+  [
+   "FengMarkedAbel",
+   "FengMarkedProfile"
+  ],
+  [
+   "FengMarkedArithmetic",
+   "FengMarkedAbel"
+  ],
+  [
+   "FengMarkedArithmetic",
+   "FengResidual"
+  ],
+  [
+   "FengMarkedArithmetic",
+   "TotientCoprime"
+  ],
+  [
+   "FengMarkedCross",
+   "FengMarkedDiagonal"
+  ],
+  [
+   "FengMarkedCrossLimit",
+   "FengMarkedCross"
+  ],
+  [
+   "FengMarkedCrossLimit",
+   "FengMarkedLimit"
+  ],
+  [
+   "FengMarkedDecomposition",
+   "FengMarkedArithmetic"
+  ],
+  [
+   "FengMarkedDiagonal",
+   "FengMarkedTail"
+  ],
+  [
+   "FengMarkedDiagonal",
+   "FengMertensModels"
+  ],
+  [
+   "FengMarkedLimit",
+   "FengMarkedAbel"
+  ],
+  [
+   "FengMarkedLimit",
+   "OuterProfile"
+  ],
+  [
+   "FengMarkedProfile",
+   "FengSharedInterior"
+  ],
+  [
+   "FengMarkedTail",
+   "AF"
+  ],
+  [
+   "FengMarkedTail",
+   "FengMarkedDecomposition"
+  ],
+  [
+   "FengMertensModels",
+   "AF"
+  ],
+  [
+   "FengMertensModels",
+   "BetaKernel"
+  ],
+  [
+   "FengMixedAbel",
+   "FengMixedMoment"
+  ],
+  [
+   "FengMixedInterior",
+   "FengSharedInterior"
+  ],
+  [
+   "FengMixedLimit",
+   "FengMixedAbel"
+  ],
+  [
+   "FengMixedMainTerm",
+   "ConreyMainTerm"
+  ],
+  [
+   "FengMixedMainTerm",
+   "FengCrossCoefficient"
+  ],
+  [
+   "FengMixedMainTerm",
+   "IntegralJet"
+  ],
+  [
+   "FengMixedMoment",
+   "FengMarkedCrossLimit"
+  ],
+  [
+   "FengMixedProduct",
+   "FengMixedInterior"
+  ],
+  [
+   "FengMixedProduct",
+   "FengMixedLimit"
+  ],
+  [
+   "FengMixedProduct",
+   "FengSharedLimit"
+  ],
+  [
+   "FengMixedShift",
+   "BareEulerUniform"
+  ],
+  [
+   "FengMixedShift",
+   "FengMixedProduct"
+  ],
+  [
+   "FengOutside",
+   "CoprimeEulerCompletion"
+  ],
+  [
+   "FengOutside",
+   "FengAtG"
+  ],
+  [
+   "FengOutsideAverage",
+   "CoprimeEulerError"
+  ],
+  [
+   "FengOutsideAverage",
+   "FengOutsideBounds"
+  ],
+  [
+   "FengOutsideAverage",
+   "FengOutsidePrime"
+  ],
+  [
+   "FengOutsideAverage",
+   "FengPrimeWindow"
+  ],
+  [
+   "FengOutsideBounds",
+   "FengLogEndpoint"
+  ],
+  [
+   "FengOutsideBounds",
+   "FengPrimeMass"
+  ],
+  [
+   "FengOutsideMainTerm",
+   "FengOutsideProxy"
+  ],
+  [
+   "FengOutsidePartner",
+   "FengLogProducts"
+  ],
+  [
+   "FengOutsidePrime",
+   "FengPrimeExclusion"
+  ],
+  [
+   "FengOutsidePrime",
+   "FengPrimeProfile"
+  ],
+  [
+   "FengOutsideProfile",
+   "BetaKernel"
+  ],
+  [
+   "FengOutsideProfile",
+   "FengOutside"
+  ],
+  [
+   "FengOutsideProfile",
+   "WeightDerivatives"
+  ],
+  [
+   "FengOutsideProxy",
+   "CoprimeSingleGluing"
+  ],
+  [
+   "FengOutsideProxy",
+   "FengInverseProfile"
+  ],
+  [
+   "FengOutsideProxy",
+   "FengOutsideReplacement"
+  ],
+  [
+   "FengOutsideReplacement",
+   "FengCrossAssembly"
+  ],
+  [
+   "FengOutsideReplacement",
+   "FengOutsideAverage"
+  ],
+  [
+   "FengOutsideShared",
+   "FengOutsideSquare"
+  ],
+  [
+   "FengOutsideSquare",
+   "FengInverseProducts"
+  ],
+  [
+   "FengPrimeCancellation",
+   "FengAtG"
+  ],
+  [
+   "FengPrimeExclusion",
+   "AF"
+  ],
+  [
+   "FengPrimeExclusion",
+   "FengSharedTail"
+  ],
+  [
+   "FengPrimeMass",
+   "FengOutside"
+  ],
+  [
+   "FengPrimeProfile",
+   "AF"
+  ],
+  [
+   "FengPrimeProfile",
+   "FengOutsideProfile"
+  ],
+  [
+   "FengPrimeWindow",
+   "FengPrimeExclusion"
+  ],
+  [
+   "FengPrimeWindow",
+   "FengPrimeMass"
+  ],
+  [
+   "FengResidual",
+   "FengSharedBlock"
+  ],
+  [
+   "FengShared",
+   "FengPrimeCancellation"
+  ],
+  [
+   "FengSharedApproximation",
+   "CoprimeEulerCompletion"
+  ],
+  [
+   "FengSharedApproximation",
+   "FengResidual"
+  ],
+  [
+   "FengSharedBlock",
+   "FengShared"
+  ],
+  [
+   "FengSharedBounds",
+   "FengLogEndpoint"
+  ],
+  [
+   "FengSharedBounds",
+   "FengResidual"
+  ],
+  [
+   "FengSharedInterior",
+   "CoprimeGluing"
+  ],
+  [
+   "FengSharedInterior",
+   "FengSharedTail"
+  ],
+  [
+   "FengSharedLimit",
+   "FengMarkedCrossLimit"
+  ],
+  [
+   "FengSharedShift",
+   "FengOutsideShared"
+  ],
+  [
+   "FengSharedShift",
+   "FengSquareAssembly"
+  ],
+  [
+   "FengSharedShift",
+   "RawEuler"
+  ],
+  [
+   "FengSharedTail",
+   "FengSharedApproximation"
+  ],
+  [
+   "FengSharedTail",
+   "FengSharedBounds"
+  ],
+  [
+   "FengShift",
+   "CoprimeShift"
+  ],
+  [
+   "FengShift",
+   "FengArithmetic"
+  ],
+  [
+   "FengSquareAssembly",
+   "FengLogProducts"
+  ],
+  [
+   "FengSquareCoefficient",
+   "FengCrossCoefficient"
+  ],
+  [
+   "FengSquareCoefficient",
+   "FengSharedShift"
+  ],
+  [
+   "FengSquareMainTerm",
+   "FengMixedMainTerm"
+  ],
+  [
+   "FengSquareMainTerm",
+   "FengSquareCoefficient"
+  ],
+  [
+   "FiniteJet",
+   "Mathlib"
+  ],
+  [
+   "FixedCertificate",
+   "RationalBounds"
+  ],
+  [
+   "GcdDecomposition",
+   "ArithmeticRegularity"
+  ],
+  [
+   "HeightScaling",
+   "GcdDecomposition"
+  ],
+  [
+   "IntegralJet",
+   "BetaKernel"
+  ],
+  [
+   "IntegralJet",
+   "FiniteJet"
+  ],
+  [
+   "KernelAlgebra",
+   "Mathlib"
+  ],
+  [
+   "LogProfileSum",
+   "ShiftedEulerUniform"
+  ],
+  [
+   "LogProfileSum",
+   "TotientAbel"
+  ],
+  [
+   "LogarithmicBudget",
+   "FixedCertificate"
+  ],
+  [
+   "MobiusHarmonic",
+   "Mathlib"
+  ],
+  [
+   "MobiusPNT",
+   "AF"
+  ],
+  [
+   "MobiusPNT",
+   "Mathlib"
+  ],
+  [
+   "MobiusPNTBridge",
+   "MobiusHarmonic"
+  ],
+  [
+   "MobiusPNTBridge",
+   "MobiusPNT"
+  ],
+  [
+   "MultiplicativeSummability",
+   "Mathlib"
+  ],
+  [
+   "NumericalGate",
+   "CoefficientEvaluator"
+  ],
+  [
+   "NumericalGate",
+   "KernelAlgebra"
+  ],
+  [
+   "OuterProfile",
+   "BetaKernel"
+  ],
+  [
+   "OuterProfile",
+   "CoprimeHead"
+  ],
+  [
+   "OuterProfile",
+   "LogProfileSum"
+  ],
+  [
+   "PRZZAsymptotic",
+   "KernelAlgebra"
+  ],
+  [
+   "PRZZAsymptotic",
+   "PRZZInterface"
+  ],
+  [
+   "PRZZInterface",
+   "Mathlib"
+  ],
+  [
+   "RationalBounds",
+   "RationalEvaluator"
+  ],
+  [
+   "RationalEvaluator",
+   "NumericalGate"
+  ],
+  [
+   "RawEuler",
+   "FengMixedShift"
+  ],
+  [
+   "ShiftWeights",
+   "ElementaryGcd"
+  ],
+  [
+   "ShiftedEndpoint",
+   "CoprimeShift"
+  ],
+  [
+   "ShiftedEndpoint",
+   "SupportProductTail"
+  ],
+  [
+   "ShiftedEulerLocal",
+   "ShiftedTotient"
+  ],
+  [
+   "ShiftedEulerUniform",
+   "ShiftedEulerLocal"
+  ],
+  [
+   "ShiftedEulerUniform",
+   "ShiftedMobius"
+  ],
+  [
+   "ShiftedEulerUniform",
+   "TotientHarmonic"
+  ],
+  [
+   "ShiftedMobius",
+   "FiniteJet"
+  ],
+  [
+   "ShiftedMobius",
+   "WeightDerivatives"
+  ],
+  [
+   "ShiftedMobius",
+   "WeightedMobius"
+  ],
+  [
+   "ShiftedTotient",
+   "TotientWeight"
+  ],
+  [
+   "SmoothMobius",
+   "Mathlib"
+  ],
+  [
+   "SmoothWeightWitness",
+   "Mathlib"
+  ],
+  [
+   "SmoothWeightWitness",
+   "PRZZInterface"
+  ],
+  [
+   "SmoothWindow",
+   "SmoothWeightWitness"
+  ],
+  [
+   "SmoothWindowLimit",
+   "SmoothWindow"
+  ],
+  [
+   "SupportProductTail",
+   "SupportTail"
+  ],
+  [
+   "SupportTail",
+   "ElementaryGcd"
+  ],
+  [
+   "TaylorEnvelope",
+   "IntegralJet"
+  ],
+  [
+   "TotientAbel",
+   "TotientHarmonic"
+  ],
+  [
+   "TotientConvolution",
+   "MobiusHarmonic"
+  ],
+  [
+   "TotientConvolution",
+   "TotientWeight"
+  ],
+  [
+   "TotientCoprime",
+   "TotientHarmonic"
+  ],
+  [
+   "TotientHarmonic",
+   "TotientSummability"
+  ],
+  [
+   "TotientSummability",
+   "MultiplicativeSummability"
+  ],
+  [
+   "TotientSummability",
+   "TotientConvolution"
+  ],
+  [
+   "TotientWeight",
+   "SupportTail"
+  ],
+  [
+   "TwoPieceMainTerm",
+   "FengSquareMainTerm"
+  ],
+  [
+   "TwoPieceMoment",
+   "CauchyJetTransfer"
+  ],
+  [
+   "TwoPieceMoment",
+   "TwoPieceMainTerm"
+  ],
+  [
+   "WeightDerivatives",
+   "ShiftWeights"
+  ],
+  [
+   "WeightedMobius",
+   "MobiusPNTBridge"
+  ],
+  [
+   "WitnessMomentBound",
+   "LogarithmicBudget"
+  ],
+  [
+   "WitnessMomentBound",
+   "ZetaMomentMainTerm"
+  ],
+  [
+   "WuAuxiliary",
+   "AF"
+  ],
+  [
+   "WuAuxiliary",
+   "WitnessMomentBound"
+  ],
+  [
+   "WuAuxiliaryBoundary",
+   "WuSubintervalLog"
+  ],
+  [
+   "WuAuxiliaryHorizontal",
+   "WuHorizontalBound"
+  ],
+  [
+   "WuAuxiliaryMultiplicity",
+   "WuBoundaryZeros"
+  ],
+  [
+   "WuBoundaryPhase",
+   "WuAuxiliaryHorizontal"
+  ],
+  [
+   "WuBoundaryPhase",
+   "WuRightLittlewood"
+  ],
+  [
+   "WuBoundaryZeros",
+   "Mathlib"
+  ],
+  [
+   "WuBoundaryZeros",
+   "WuAuxiliaryBoundary"
+  ],
+  [
+   "WuContourCounting",
+   "WuParallelReturn"
+  ],
+  [
+   "WuCriticalDeflation",
+   "WuFiniteDeflation"
+  ],
+  [
+   "WuCriticalMultiplicity",
+   "WuAuxiliaryMultiplicity"
+  ],
+  [
+   "WuDeflatedContour",
+   "WuAuxiliaryHorizontal"
+  ],
+  [
+   "WuDeflatedContour",
+   "WuPhaseCrossings"
+  ],
+  [
+   "WuDeflatedDetection",
+   "WuCriticalDeflation"
+  ],
+  [
+   "WuDiskCenter",
+   "WuDiskGrowth"
+  ],
+  [
+   "WuDiskGrowth",
+   "WuWideGamma"
+  ],
+  [
+   "WuDyadicCounting",
+   "AF"
+  ],
+  [
+   "WuDyadicCounting",
+   "WuLocalCounting"
+  ],
+  [
+   "WuDyadicCounting",
+   "WuXiBands"
+  ],
+  [
+   "WuEdgeLog",
+   "Mathlib"
+  ],
+  [
+   "WuEdgeLog",
+   "WuLittlewood"
+  ],
+  [
+   "WuEtaMainPhase",
+   "WuGammaCancellation"
+  ],
+  [
+   "WuEtaMainPhase",
+   "WuVHorizontal"
+  ],
+  [
+   "WuFiniteDeflation",
+   "Mathlib"
+  ],
+  [
+   "WuFiniteDeflation",
+   "WuCriticalMultiplicity"
+  ],
+  [
+   "WuGammaCancellation",
+   "WuGammaPhase"
+  ],
+  [
+   "WuGammaJets",
+   "WuStirling"
+  ],
+  [
+   "WuGammaPhase",
+   "WuContourCounting"
+  ],
+  [
+   "WuHorizontalBound",
+   "WuDiskCenter"
+  ],
+  [
+   "WuHorizontalBound",
+   "WuHorizontalIntegral"
+  ],
+  [
+   "WuHorizontalIntegral",
+   "AF"
+  ],
+  [
+   "WuHorizontalIntegral",
+   "WuDiskGrowth"
+  ],
+  [
+   "WuIndependentWindows",
+   "WuSafeEndpoints"
+  ],
+  [
+   "WuIndependentWindows",
+   "WuWindowTiling"
+  ],
+  [
+   "WuLeftReturn",
+   "WuAuxiliaryMultiplicity"
+  ],
+  [
+   "WuLittlewood",
+   "AF"
+  ],
+  [
+   "WuLittlewood",
+   "Mathlib"
+  ],
+  [
+   "WuLocalCounting",
+   "WuQuotientReturn"
+  ],
+  [
+   "WuMomentTransfer",
+   "WuStirlingMoment"
+  ],
+  [
+   "WuParallelReturn",
+   "Mathlib"
+  ],
+  [
+   "WuParallelReturn",
+   "WuBoundaryPhase"
+  ],
+  [
+   "WuParallelReturn",
+   "WuDeflatedContour"
+  ],
+  [
+   "WuPhaseCrossings",
+   "Mathlib"
+  ],
+  [
+   "WuPhaseCrossings",
+   "WuDeflatedDetection"
+  ],
+  [
+   "WuProportion",
+   "WuDyadicCounting"
+  ],
+  [
+   "WuProportion",
+   "WuTotalAsymptotic"
+  ],
+  [
+   "WuQuotientReturn",
+   "WuEtaMainPhase"
+  ],
+  [
+   "WuRightBoundary",
+   "AF"
+  ],
+  [
+   "WuRightBoundary",
+   "WuRightMollifier"
+  ],
+  [
+   "WuRightLittlewood",
+   "WuRightBoundary"
+  ],
+  [
+   "WuRightMollifier",
+   "AF"
+  ],
+  [
+   "WuRightMollifier",
+   "WuLeftReturn"
+  ],
+  [
+   "WuSafeEndpoints",
+   "Mathlib"
+  ],
+  [
+   "WuSafeEndpoints",
+   "WuEdgeLog"
+  ],
+  [
+   "WuStirling",
+   "AF"
+  ],
+  [
+   "WuStirling",
+   "Mathlib"
+  ],
+  [
+   "WuStirling",
+   "WuAuxiliary"
+  ],
+  [
+   "WuStirlingMoment",
+   "WuStirlingTransfer"
+  ],
+  [
+   "WuStirlingTransfer",
+   "WuGammaJets"
+  ],
+  [
+   "WuSubintervalLog",
+   "WuIndependentWindows"
+  ],
+  [
+   "WuTotalAsymptotic",
+   "AF"
+  ],
+  [
+   "WuTotalAsymptotic",
+   "WuXiBands"
+  ],
+  [
+   "WuTrimmedLog",
+   "WuUnsmoothing"
+  ],
+  [
+   "WuUnsmoothing",
+   "SmoothWindowLimit"
+  ],
+  [
+   "WuUnsmoothing",
+   "WuMomentTransfer"
+  ],
+  [
+   "WuVHorizontal",
+   "WuGammaPhase"
+  ],
+  [
+   "WuWideGamma",
+   "WuRightLittlewood"
+  ],
+  [
+   "WuWindowTiling",
+   "WuTrimmedLog"
+  ],
+  [
+   "WuXiBands",
+   "AF"
+  ],
+  [
+   "WuXiBands",
+   "WuIndependentWindows"
+  ],
+  [
+   "ZetaMomentIntegral",
+   "ArithmeticRegularity"
+  ],
+  [
+   "ZetaMomentMainTerm",
+   "TwoPieceMoment"
+  ],
+  [
+   "ZetaMomentMainTerm",
+   "ZetaMomentPolynomial"
+  ],
+  [
+   "ZetaMomentPolynomial",
+   "CauchyJetTransfer"
+  ],
+  [
+   "ZetaMomentPolynomial",
+   "ZetaMomentIntegral"
+  ],
+  [
+   "ZetaPoleScaling",
+   "PRZZAsymptotic"
+  ]
+ ],
+ "external_nodes": [
+  "AF",
+  "Mathlib"
+ ],
+ "unreached": [
+  {
+   "name": "AFProbe",
+   "layer": "その他",
+   "sublayer": null
+  },
+  {
+   "name": "ExpandedGcd",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "ExpandedHeight",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "ExpandedMainTerm",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "ExpandedMoment",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "ExpandedRegularity",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "ExpandedZetaIntegral",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "ExpandedZetaPolynomial",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "FengOutsideEndpoint",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "FengSharedEndpoint",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "PRZZAFEDual",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZAFEGamma",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZAFEIndices",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZAFEOuterAssembly",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZAFEProgression",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZAStar",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAStarFrequency",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAStarFubini",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAStarIntegrability",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAStarIntegralBound",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAStarMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAStarNu",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAStarRectangles",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAStarTransform",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAStarWindow",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAbsorbedFourierTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZActiveFreezeBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActiveRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualAStar",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualAggregate",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualBranchCells",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualBranchDI",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualBudgetLayout",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualCasePowers",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualCaseSum",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualCases",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualDirectSum",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualLocalReplacement",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualLoss",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualPoissonError",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualRowOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualRowRectangle",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualRowSmooth",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualSignedBranches",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualSmall",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualSmallReplacement",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualSupportBoxes",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualTailCollector",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualTailNative",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualTypeI",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZActualZeroReflection",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAllBranchCells",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZAllCellsBound",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZAllOffDiagonalRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZAllPoissonAFE",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZAllPoissonRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZAllSignedSources",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZAllocatedCells",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZAllocationMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZAmplitudeFreeze",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZArithmeticBoundaryFamily",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZArithmeticCutoffPartition",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZArithmeticFourierTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZArithmeticMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZArithmeticTailLimit",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZArithmeticTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZArithmeticWindowCutoff",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZBalancedCellEnvelope",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZBandOuterMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZBareFactors",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZBodyTailCollector",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZBodyTailMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZBodyTailOptimal",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZBodyTailTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZBranchDegrees",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZBranchEnvelope",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZBranchGrouping",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZBranchMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZBranchSeven",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCellAggregation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCellMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCentralArithmeticJoin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCentralFubini",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCentralGridWeilDI",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCentralIntegral",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCentralMainAssembly",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCentralTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCoefficientSeparation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCombinedBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCommonCellBound",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCommonCutMoment",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCommonResidualJoin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCommonSignedWindow",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCommonWindowCollector",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCompatibleTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCompletedStrip",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCongruencePoisson",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZContourAFE",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZContourKernel",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZConvolutionSplit",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCoprimeAllocation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineAbel",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineDerivativeMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineDominated",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineFiniteFubini",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineGapCorrection",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineGapMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineImproper",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineMellinCore",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineMovingWindow",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineSpatialBoundary",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineSpatialImproper",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineSpatialJets",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineTimeDomination",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCosineTimeMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCoupledAFE",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZCutoffJets",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZCutoffPhase",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDIExpansion",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZDISeven",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZDeltaDecay",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDiagonalAssembly",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDiagonalContour",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDiagonalMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDiagonalMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDifferenceContour",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDifferenceDecay",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDifferenceRegular",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDiscardedAFEBridge",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZDiscardedOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDiscardedPartition",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDiscardedSuppliers",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDiscardedTimePair",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDisjointSpatialJoin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualDiscardedBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualDiscardedIBP",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualError",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualFirstJet",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualHigherJets",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualJetMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualJetTransfer",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualMellinUniform",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualNativeFreeze",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualProfileUniform",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualSmooth",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualTimeIBP",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDualWindowErrorJoin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDyadic",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDyadicArithmetic",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDyadicArithmeticMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDyadicBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDyadicCellBound",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDyadicEnvelope",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDyadicModulus",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDyadicSupport",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZDyadicWindow",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZEffectiveAverage",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZEffectiveBalance",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZEmptyArithmeticMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZEmptyFrequencyDecay",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZEmptyMomentMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZEmptyMomentScalar",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZEmptyScaleAbsorption",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZEnvelopeMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZEulerSubpower",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZExhaustiveAFEError",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZExpandedCutoff",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZExplicitDomain",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZExplicitTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZExtendedTailDomain",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFilteredResidual",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFiniteContour",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFiniteFreezeBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFourierExhaustion",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFourierTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreeCell",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreeCoefficient",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreeDyadic",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreeLength",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreeLengthCell",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreeLengthCoefficient",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreeLogCoprime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreeLogRow",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreeSource",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreezeErrorBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreezeMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreezeRemovedLiteral",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFreezeScales",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFrozenFamilyCutoff",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFrozenProfileBound",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFrozenTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFullFreezeBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFullHeathBrown",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFullLiteralBound",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFullWeightJets",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZFullWeightSmooth",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGAbsorption",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGCoefficient",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGammaBudgetAbsorption",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGammaCentral",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGammaFar",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGammaLaplace",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGammaMain",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGammaPath",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGammaUniform",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGaussianCorrection",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGaussianDerivatives",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGaussianLine",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGaussianTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGcdAverage",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZGroupBounds",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGroupedConvolution",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGroupedDI",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGroupedSeven",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZGroupedTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZHBAtomSupply",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZHBBranches",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZHBRectangles",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZHeathBrown",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZHeightMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZHiAllocatedCells",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZHorizontalDecay",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZIndexedCaps",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZInfiniteContour",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZInfiniteTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZInflatedOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZInflatedSeven",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZIntegratedAFE",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZIntegratedDefect",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZIntegratedFreezeAFE",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZInversePhase",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZInverseProfile",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZJetUniform",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZKeptLiteral",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZKernelDifference",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZKernelTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZKernelUniform",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZKloostermanInputs",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L0 入力（Weil / DI の仕様）"
+  },
+  {
+   "name": "PRZZL1Finite",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZL1Poisson",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZL1Residue",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZL1Truncation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZLambda",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZLargeResolvedPruning",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLargeSpatialFamily",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLargeSpatialHeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLargeSpatialKernel",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLeftCentral",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLeftFar",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLeftUniform",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLengthBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLinearOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLiteralAFEJoin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZLiteralBranches",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLiteralComplement",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLiteralExhaustion",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLiteralFourierLimit",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLiteralRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLiteralTotalBound",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLocalCentralTransfer",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLocalFrequencyLoss",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLocalReexpansion",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLocalReplacement",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLocalTailBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLocalization",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLocalizedError",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZLogDerivatives",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMaskedAbsorption",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMaskedSource",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMaskedVariation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMeanSquare",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMellinMoment",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMellinSeminorm",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMellinSeparation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMellinTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMellinTypeII",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMixedOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMobiusHeathBrown",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZModulusBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZModulusScale",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMollifiedTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZMomentOptimal",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZNativeCentralLiteral",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNativeComponents",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNativeFamily",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNativeFreezeEnvelope",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNativeFreezeTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNativeGcdGrid",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNativeTailRectangle",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeActiveRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeArithmetic",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeGrid",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeLiteralRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeLocalRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeOuterGrid",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeRowIntegral",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeRowWindow",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNegativeWindowCell",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNoncentralResidues",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNonemptyRowBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNormalizedTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZNuBounds",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZNuCoefficient",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZOptimalOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZOptimalPowers",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZOriginalDiagonal",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZOriginalRowWindow",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZOriginalSpatialLimit",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZOuterLogBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZOuterMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPartitionDiscrepancy",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPartitionMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPhaseDegree",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPhaseError",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPoissonActualWeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZPoissonAnalyticMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZPoissonSpatial",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZPoissonTimeChange",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZPoissonWDerivative",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZPolygammaSeries",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPositiveMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPositiveOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPositiveOuterGrid",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPositiveRow",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPowerJets",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPrefactorMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZProductMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZProductSummation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZProductTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZProfileTimeBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZPrunedAFEError",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZPrunedTailRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZQuadraticJets",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZQuotientMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZReciprocalJets",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZReconstructedAFE",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZReflectedContour",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZReflectedEnvelope",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZRejectedExhaustion",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZRemainderAbsorption",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZRemainderBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZReplacementHeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZReplacementIntegral",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZReplacementMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResidualBoxes",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResidualCoprime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResidualPartition",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResidualRow",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResidualWeighted",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResidueAbsorption",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResidueEnvelope",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResidueTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResolvedBoundary",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResolvedComplement",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResolvedTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZResolvedTailMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZRetainedNative",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZRetainedScale",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZRowCellLayout",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZRowIntegralBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZRowMellinBranches",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZRowPlacement",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZRowWindow",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSameMaskFreezeBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSameMaskResidual",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZScaledReplacement",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSelectedDiscarded",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSelectedDiscardedFamily",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSelectedLocalFourier",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSeriesAFE",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L1 近似関数等式と Poisson"
+  },
+  {
+   "name": "PRZZSharpAggregation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZSharpCost",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZSharpCutoff",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZSharpDI",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZSharpGrouped",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZSharpPoisson",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZSignedCellsAggregate",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSignedCentral",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSignedMomentBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSignedSourceCell",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSignedTypeII",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSignedUniformGrid",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSmallCentralLiteral",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSmallRowVariation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSmoothMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSmoothWeights",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceAbsorption",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceBoundaryDecay",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceCoefficients",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceCutoffs",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceDecay",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceEnvelope",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceFrequency",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceGroupDI",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceLattice",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceMaskFamily",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceScales",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceTailBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceTailMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceTypeII",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceW",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceWDerivatives",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceWLine",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceWOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceWSums",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSourceWindowCutoff",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSpatialErrorJoin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSpatialFreezeBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSpatialReconstruction",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSplitScaleOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSplitScaleSum",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZStrictSmallTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSubunitFourier",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSubunitWindowMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSupportedAllocation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSupportedBranches",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSupportedSource",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZSupportedSplit",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZTailRowIntegrable",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZTailSourceFamily",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZTailTimeSum",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZThreeCaseLoss",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZTimeAmplitude",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZTimeDiscarded",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZTimeJets",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZTransformedSourceBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZTruncatedProgression",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZTypeI",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZTypeICoprime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZTypeICost",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZTypeIFrequency",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZTypeII",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZTypeIScaleSupplier",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZTypeIVariation",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZTypeIWeights",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZTypedClassification",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZUnfrozenPoisson",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZUniformAggregate",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZUniformCases",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZUniformGrid",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZUniformOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZUniformTypeI",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZUnitModulusBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZUnitTailMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZValuedCutoffs",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZValuedSourceDiscarded",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWArithmeticCutoff",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWRowLimit",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWRowReindex",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWeightFourier",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWeightTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWeightedDI",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWeightedHeathBrown",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWeightedSourcePoisson",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWeilDIErrorJoin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZWeilDIMainBound",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZWeilDIZeroJoin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "L2 算術分解（A*, Type I/II, Weil–DI）"
+  },
+  {
+   "name": "PRZZWholeRowsSum",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWideActiveRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWideRowBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowBandMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowBoundary",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowCentralAssembly",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowComposition",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowDominance",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowErrorJoin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowGrids",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowMoment",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowNativeTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowOptimalCell",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowScaleSupply",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowSpatialJoin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowTailMass",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowTailTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZWindowWeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroArithmeticPartition",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroBoundaryHeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroBoundaryIdentity",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroBoundarySum",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroCompleteCell",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroCosine",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroCoupled",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroCross",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroCutoffLimit",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroDualBoundary",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroDualExhaustion",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroDualGaps",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroDualHeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroDualNativeTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroDualOuter",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroExhaustionCross",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroExtension",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroFourierReduction",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroGammaBound",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroGap",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroGapExchange",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroGapTime",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroIntegerReindex",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroMellinLimit",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroMellinSpace",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroMismatchHeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroMismatchLimit",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroNativeCompletion",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroNativeTail",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroNormalization",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroOmittedGaps",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroOuterHeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroOuterMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroPhaseBudget",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroReciprocal",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroReciprocalRows",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroReflection",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroRowMellin",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroSourceHeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroSpatialHeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroSpatialLimit",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroSpatialPrefix",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "PRZZZeroUniformHeight",
+   "layer": "PRZZ 4.1 の証明",
+   "sublayer": "細分未割当"
+  },
+  {
+   "name": "SmoothEndpoint",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "SmoothWeightMoment",
+   "layer": "主項",
+   "sublayer": null
+  },
+  {
+   "name": "WuEndpointTransfer",
+   "layer": "計数（Wu）",
+   "sublayer": null
+  },
+  {
+   "name": "WuLocalizedMoments",
+   "layer": "計数（Wu）",
+   "sublayer": null
+  }
+ ],
+ "summary": {
+  "grouping_rules": [
+   "Assign each reachable module to a summary group. Rules (documented in the .md):",
+   "    1. Layers other than 主項/計数 form one group each.",
+   "    2. 主項 and 計数 are grouped by the first CamelCase word of the module name.",
+   "    3. A first-word group with >= SPLIT_MIN members is split by its first two words",
+   "       when that gives <= SPLIT_MAX_SUBGROUPS subgroups of size >= 2 and the",
+   "       leftover singletons are fewer than half of the group.",
+   "    4. Within a layer, groups with exactly one module merge into \"<layer>: 単独\"."
+  ],
+  "nodes": [
+   {
+    "id": "g00",
+    "label": "Wu",
+    "layer": "計数（Wu）",
+    "count": 46,
+    "modules": [
+     "WuAuxiliary",
+     "WuAuxiliaryBoundary",
+     "WuAuxiliaryHorizontal",
+     "WuAuxiliaryMultiplicity",
+     "WuBoundaryPhase",
+     "WuBoundaryZeros",
+     "WuContourCounting",
+     "WuCriticalDeflation",
+     "WuCriticalMultiplicity",
+     "WuDeflatedContour",
+     "WuDeflatedDetection",
+     "WuDiskCenter",
+     "WuDiskGrowth",
+     "WuDyadicCounting",
+     "WuEdgeLog",
+     "WuEtaMainPhase",
+     "WuFiniteDeflation",
+     "WuGammaCancellation",
+     "WuGammaJets",
+     "WuGammaPhase",
+     "WuHorizontalBound",
+     "WuHorizontalIntegral",
+     "WuIndependentWindows",
+     "WuLeftReturn",
+     "WuLittlewood",
+     "WuLocalCounting",
+     "WuMomentTransfer",
+     "WuParallelReturn",
+     "WuPhaseCrossings",
+     "WuProportion",
+     "WuQuotientReturn",
+     "WuRightBoundary",
+     "WuRightLittlewood",
+     "WuRightMollifier",
+     "WuSafeEndpoints",
+     "WuStirling",
+     "WuStirlingMoment",
+     "WuStirlingTransfer",
+     "WuSubintervalLog",
+     "WuTotalAsymptotic",
+     "WuTrimmedLog",
+     "WuUnsmoothing",
+     "WuVHorizontal",
+     "WuWideGamma",
+     "WuWindowTiling",
+     "WuXiBands"
+    ],
+    "min_depth": 0,
+    "representative_module": "WuProportion",
+    "representative": "XiPrime8845.WuProportion.ratio_eventually_gt",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound",
+     "PRZZ.przz41_case3_K2_profiles"
+    ]
+   },
+   {
+    "id": "g01",
+    "label": "PRZZ 入力",
+    "layer": "PRZZ 入力",
+    "count": 2,
+    "modules": [
+     "PRZZAsymptotic",
+     "PRZZInterface"
+    ],
+    "min_depth": 10,
+    "representative_module": "PRZZInterface",
+    "representative": "XiPrime8845.PRZZ.przz41_case3_K2_profiles",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound",
+     "przz41_case3_K2_profiles"
+    ]
+   },
+   {
+    "id": "g02",
+    "label": "BareEuler",
+    "layer": "主項",
+    "count": 2,
+    "modules": [
+     "BareEuler",
+     "BareEulerUniform"
+    ],
+    "min_depth": 22,
+    "representative_module": "BareEulerUniform",
+    "representative": "XiPrime8845.BareEulerUniform.weighted_Euler_error_uniform",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g03",
+    "label": "Conrey",
+    "layer": "主項",
+    "count": 3,
+    "modules": [
+     "ConreyCoefficientBridge",
+     "ConreyMainTerm",
+     "ConreyOuter"
+    ],
+    "min_depth": 19,
+    "representative_module": "ConreyMainTerm",
+    "representative": "XiPrime8845.ConreyMainTerm.normalized_gcdMainTerm_tendsto",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g04",
+    "label": "Coprime",
+    "layer": "主項",
+    "count": 8,
+    "modules": [
+     "CoprimeApproximation",
+     "CoprimeEndpoint",
+     "CoprimeEulerCompletion",
+     "CoprimeEulerError",
+     "CoprimeGluing",
+     "CoprimeHead",
+     "CoprimeShift",
+     "CoprimeSingleGluing"
+    ],
+    "min_depth": 22,
+    "representative_module": "CoprimeGluing",
+    "representative": "XiPrime8845.CoprimeGluing.averageError_uniform",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g05",
+    "label": "FengCross",
+    "layer": "主項",
+    "count": 2,
+    "modules": [
+     "FengCrossAssembly",
+     "FengCrossCoefficient"
+    ],
+    "min_depth": 19,
+    "representative_module": "FengCrossCoefficient",
+    "representative": "XiPrime8845.FengCrossCoefficient.scaledArithmetic20_reflected",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g06",
+    "label": "FengInverse",
+    "layer": "主項",
+    "count": 2,
+    "modules": [
+     "FengInverseProducts",
+     "FengInverseProfile"
+    ],
+    "min_depth": 22,
+    "representative_module": "FengInverseProducts",
+    "representative": "XiPrime8845.FengInverseProducts.inverse_mixed_twoBidiscs",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g07",
+    "label": "FengLog",
+    "layer": "主項",
+    "count": 4,
+    "modules": [
+     "FengLogBounds",
+     "FengLogEndpoint",
+     "FengLogMainTerm",
+     "FengLogProducts"
+    ],
+    "min_depth": 21,
+    "representative_module": "FengLogProducts",
+    "representative": "XiPrime8845.FengLogProducts.logarithmicSum_reflected",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g08",
+    "label": "FengMarked",
+    "layer": "主項",
+    "count": 9,
+    "modules": [
+     "FengMarkedAbel",
+     "FengMarkedArithmetic",
+     "FengMarkedCross",
+     "FengMarkedCrossLimit",
+     "FengMarkedDecomposition",
+     "FengMarkedDiagonal",
+     "FengMarkedLimit",
+     "FengMarkedProfile",
+     "FengMarkedTail"
+    ],
+    "min_depth": 24,
+    "representative_module": "FengMarkedCrossLimit",
+    "representative": "XiPrime8845.FengMarkedCrossLimit.marked_profile_twoBidiscs",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g09",
+    "label": "FengMixed",
+    "layer": "主項",
+    "count": 7,
+    "modules": [
+     "FengMixedAbel",
+     "FengMixedInterior",
+     "FengMixedLimit",
+     "FengMixedMainTerm",
+     "FengMixedMoment",
+     "FengMixedProduct",
+     "FengMixedShift"
+    ],
+    "min_depth": 18,
+    "representative_module": "FengMixedMainTerm",
+    "representative": "XiPrime8845.FengMixedMainTerm.normalized_gcd20_tendsto",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g10",
+    "label": "FengOutside",
+    "layer": "主項",
+    "count": 11,
+    "modules": [
+     "FengOutside",
+     "FengOutsideAverage",
+     "FengOutsideBounds",
+     "FengOutsideMainTerm",
+     "FengOutsidePartner",
+     "FengOutsidePrime",
+     "FengOutsideProfile",
+     "FengOutsideProxy",
+     "FengOutsideReplacement",
+     "FengOutsideShared",
+     "FengOutsideSquare"
+    ],
+    "min_depth": 20,
+    "representative_module": "FengOutsideMainTerm",
+    "representative": "XiPrime8845.FengOutsideMainTerm.fullSum_reflected",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g11",
+    "label": "FengPrime",
+    "layer": "主項",
+    "count": 5,
+    "modules": [
+     "FengPrimeCancellation",
+     "FengPrimeExclusion",
+     "FengPrimeMass",
+     "FengPrimeProfile",
+     "FengPrimeWindow"
+    ],
+    "min_depth": 24,
+    "representative_module": "FengPrimeExclusion",
+    "representative": "XiPrime8845.FengPrimeExclusion.excluded_mass_scaled",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g12",
+    "label": "FengShared",
+    "layer": "主項",
+    "count": 8,
+    "modules": [
+     "FengShared",
+     "FengSharedApproximation",
+     "FengSharedBlock",
+     "FengSharedBounds",
+     "FengSharedInterior",
+     "FengSharedLimit",
+     "FengSharedShift",
+     "FengSharedTail"
+    ],
+    "min_depth": 19,
+    "representative_module": "FengSharedShift",
+    "representative": "XiPrime8845.FengSharedShift.fullSum_reflected",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g13",
+    "label": "FengSquare",
+    "layer": "主項",
+    "count": 3,
+    "modules": [
+     "FengSquareAssembly",
+     "FengSquareCoefficient",
+     "FengSquareMainTerm"
+    ],
+    "min_depth": 17,
+    "representative_module": "FengSquareMainTerm",
+    "representative": "XiPrime8845.FengSquareMainTerm.normalized_gcd22_tendsto",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g14",
+    "label": "Feng（その他）",
+    "layer": "主項",
+    "count": 6,
+    "modules": [
+     "FengArithmetic",
+     "FengAtG",
+     "FengCoefficientBridge",
+     "FengMertensModels",
+     "FengResidual",
+     "FengShift"
+    ],
+    "min_depth": 20,
+    "representative_module": "FengCoefficientBridge",
+    "representative": "XiPrime8845.FengCoefficientBridge.scaledArithmetic_diagonal",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g15",
+    "label": "Mobius",
+    "layer": "主項",
+    "count": 3,
+    "modules": [
+     "MobiusHarmonic",
+     "MobiusPNT",
+     "MobiusPNTBridge"
+    ],
+    "min_depth": 28,
+    "representative_module": "MobiusPNTBridge",
+    "representative": "XiPrime8845.MobiusPNTBridge.linearProfile_uniform",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g16",
+    "label": "Shifted",
+    "layer": "主項",
+    "count": 5,
+    "modules": [
+     "ShiftedEndpoint",
+     "ShiftedEulerLocal",
+     "ShiftedEulerUniform",
+     "ShiftedMobius",
+     "ShiftedTotient"
+    ],
+    "min_depth": 25,
+    "representative_module": "ShiftedEndpoint",
+    "representative": "XiPrime8845.ShiftedEndpoint.scaled_coprime_bound",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g17",
+    "label": "Smooth",
+    "layer": "主項",
+    "count": 4,
+    "modules": [
+     "SmoothMobius",
+     "SmoothWeightWitness",
+     "SmoothWindow",
+     "SmoothWindowLimit"
+    ],
+    "min_depth": 7,
+    "representative_module": "SmoothWindowLimit",
+    "representative": "XiPrime8845.SmoothWindowLimit.windowMoment_tendsto",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g18",
+    "label": "Support",
+    "layer": "主項",
+    "count": 2,
+    "modules": [
+     "SupportProductTail",
+     "SupportTail"
+    ],
+    "min_depth": 26,
+    "representative_module": "SupportProductTail",
+    "representative": "XiPrime8845.SupportProductTail.supported_product_average_le",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g19",
+    "label": "Totient",
+    "layer": "主項",
+    "count": 6,
+    "modules": [
+     "TotientAbel",
+     "TotientConvolution",
+     "TotientCoprime",
+     "TotientHarmonic",
+     "TotientSummability",
+     "TotientWeight"
+    ],
+    "min_depth": 25,
+    "representative_module": "TotientAbel",
+    "representative": "XiPrime8845.TotientAbel.weighted_error_bound",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g20",
+    "label": "TwoPiece",
+    "layer": "主項",
+    "count": 2,
+    "modules": [
+     "TwoPieceMainTerm",
+     "TwoPieceMoment"
+    ],
+    "min_depth": 15,
+    "representative_module": "TwoPieceMoment",
+    "representative": "XiPrime8845.TwoPieceMoment.normalizedMoment_exactEvaluator_tendsto",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound",
+     "PRZZ.przz41_case3_K2_profiles"
+    ]
+   },
+   {
+    "id": "g21",
+    "label": "Zeta",
+    "layer": "主項",
+    "count": 4,
+    "modules": [
+     "ZetaMomentIntegral",
+     "ZetaMomentMainTerm",
+     "ZetaMomentPolynomial",
+     "ZetaPoleScaling"
+    ],
+    "min_depth": 14,
+    "representative_module": "ZetaMomentMainTerm",
+    "representative": "XiPrime8845.ZetaMomentMainTerm.squareMoment_exactEvaluator_tendsto",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound",
+     "PRZZ.przz41_case3_K2_profiles"
+    ]
+   },
+   {
+    "id": "g22",
+    "label": "主項: 単独モジュール群",
+    "layer": "主項",
+    "count": 16,
+    "modules": [
+     "ArithmeticRegularity",
+     "CauchyJetTransfer",
+     "CompactShiftIntegral",
+     "ElementaryGcd",
+     "EndpointAverage",
+     "EulerHead",
+     "GcdDecomposition",
+     "HeightScaling",
+     "LogProfileSum",
+     "MultiplicativeSummability",
+     "OuterProfile",
+     "RawEuler",
+     "ShiftWeights",
+     "WeightDerivatives",
+     "WeightedMobius",
+     "WitnessMomentBound"
+    ],
+    "min_depth": 13,
+    "representative_module": "WitnessMomentBound",
+    "representative": "XiPrime8845.WitnessMomentBound.unit_mass_moment_bound",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound",
+     "PRZZ.przz41_case3_K2_profiles"
+    ]
+   },
+   {
+    "id": "g23",
+    "label": "数値証明書",
+    "layer": "数値証明書",
+    "count": 10,
+    "modules": [
+     "BetaKernel",
+     "CoefficientEvaluator",
+     "FiniteJet",
+     "FixedCertificate",
+     "IntegralJet",
+     "KernelAlgebra",
+     "NumericalGate",
+     "RationalBounds",
+     "RationalEvaluator",
+     "TaylorEnvelope"
+    ],
+    "min_depth": 15,
+    "representative_module": "FixedCertificate",
+    "representative": "XiPrime8845.FixedCertificate.fixed_functional_gate",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "g24",
+    "label": "その他",
+    "layer": "その他",
+    "count": 1,
+    "modules": [
+     "LogarithmicBudget"
+    ],
+    "min_depth": 14,
+    "representative_module": "LogarithmicBudget",
+    "representative": "XiPrime8845.LogarithmicBudget.positive_moment_gate",
+    "representative_axioms": [
+     "propext",
+     "Classical.choice",
+     "Quot.sound"
+    ]
+   },
+   {
+    "id": "xAF",
+    "label": "AF",
+    "layer": "AF",
+    "count": null,
+    "modules": [],
+    "min_depth": null,
+    "representative_module": null,
+    "representative": null,
+    "representative_axioms": null
+   },
+   {
+    "id": "xMathlib",
+    "label": "Mathlib",
+    "layer": "Mathlib",
+    "count": null,
+    "modules": [],
+    "min_depth": null,
+    "representative_module": null,
+    "representative": null,
+    "representative_axioms": null
+   }
+  ],
+  "edges": [
+   {
+    "from": "g00",
+    "to": "g17",
+    "count": 1
+   },
+   {
+    "from": "g00",
+    "to": "g22",
+    "count": 1
+   },
+   {
+    "from": "g00",
+    "to": "xAF",
+    "count": 9
+   },
+   {
+    "from": "g00",
+    "to": "xMathlib",
+    "count": 8
+   },
+   {
+    "from": "g01",
+    "to": "g23",
+    "count": 1
+   },
+   {
+    "from": "g01",
+    "to": "xMathlib",
+    "count": 1
+   },
+   {
+    "from": "g02",
+    "to": "g04",
+    "count": 1
+   },
+   {
+    "from": "g03",
+    "to": "g02",
+    "count": 1
+   },
+   {
+    "from": "g03",
+    "to": "g04",
+    "count": 1
+   },
+   {
+    "from": "g03",
+    "to": "g21",
+    "count": 1
+   },
+   {
+    "from": "g03",
+    "to": "g22",
+    "count": 1
+   },
+   {
+    "from": "g04",
+    "to": "g07",
+    "count": 1
+   },
+   {
+    "from": "g04",
+    "to": "g12",
+    "count": 1
+   },
+   {
+    "from": "g04",
+    "to": "g16",
+    "count": 2
+   },
+   {
+    "from": "g04",
+    "to": "g22",
+    "count": 3
+   },
+   {
+    "from": "g05",
+    "to": "g07",
+    "count": 1
+   },
+   {
+    "from": "g05",
+    "to": "g10",
+    "count": 2
+   },
+   {
+    "from": "g05",
+    "to": "g14",
+    "count": 1
+   },
+   {
+    "from": "g06",
+    "to": "g10",
+    "count": 2
+   },
+   {
+    "from": "g06",
+    "to": "g22",
+    "count": 1
+   },
+   {
+    "from": "g07",
+    "to": "g03",
+    "count": 1
+   },
+   {
+    "from": "g07",
+    "to": "g04",
+    "count": 1
+   },
+   {
+    "from": "g07",
+    "to": "g09",
+    "count": 1
+   },
+   {
+    "from": "g07",
+    "to": "g10",
+    "count": 1
+   },
+   {
+    "from": "g07",
+    "to": "g14",
+    "count": 1
+   },
+   {
+    "from": "g08",
+    "to": "g12",
+    "count": 1
+   },
+   {
+    "from": "g08",
+    "to": "g14",
+    "count": 2
+   },
+   {
+    "from": "g08",
+    "to": "g19",
+    "count": 1
+   },
+   {
+    "from": "g08",
+    "to": "g22",
+    "count": 1
+   },
+   {
+    "from": "g08",
+    "to": "xAF",
+    "count": 1
+   },
+   {
+    "from": "g09",
+    "to": "g02",
+    "count": 1
+   },
+   {
+    "from": "g09",
+    "to": "g03",
+    "count": 1
+   },
+   {
+    "from": "g09",
+    "to": "g05",
+    "count": 1
+   },
+   {
+    "from": "g09",
+    "to": "g08",
+    "count": 1
+   },
+   {
+    "from": "g09",
+    "to": "g12",
+    "count": 2
+   },
+   {
+    "from": "g09",
+    "to": "g23",
+    "count": 1
+   },
+   {
+    "from": "g10",
+    "to": "g04",
+    "count": 3
+   },
+   {
+    "from": "g10",
+    "to": "g05",
+    "count": 1
+   },
+   {
+    "from": "g10",
+    "to": "g06",
+    "count": 2
+   },
+   {
+    "from": "g10",
+    "to": "g07",
+    "count": 2
+   },
+   {
+    "from": "g10",
+    "to": "g11",
+    "count": 4
+   },
+   {
+    "from": "g10",
+    "to": "g14",
+    "count": 1
+   },
+   {
+    "from": "g10",
+    "to": "g22",
+    "count": 1
+   },
+   {
+    "from": "g10",
+    "to": "g23",
+    "count": 1
+   },
+   {
+    "from": "g11",
+    "to": "g10",
+    "count": 2
+   },
+   {
+    "from": "g11",
+    "to": "g12",
+    "count": 1
+   },
+   {
+    "from": "g11",
+    "to": "g14",
+    "count": 1
+   },
+   {
+    "from": "g11",
+    "to": "xAF",
+    "count": 2
+   },
+   {
+    "from": "g12",
+    "to": "g04",
+    "count": 2
+   },
+   {
+    "from": "g12",
+    "to": "g07",
+    "count": 1
+   },
+   {
+    "from": "g12",
+    "to": "g08",
+    "count": 1
+   },
+   {
+    "from": "g12",
+    "to": "g10",
+    "count": 1
+   },
+   {
+    "from": "g12",
+    "to": "g11",
+    "count": 1
+   },
+   {
+    "from": "g12",
+    "to": "g13",
+    "count": 1
+   },
+   {
+    "from": "g12",
+    "to": "g14",
+    "count": 2
+   },
+   {
+    "from": "g12",
+    "to": "g22",
+    "count": 1
+   },
+   {
+    "from": "g13",
+    "to": "g05",
+    "count": 1
+   },
+   {
+    "from": "g13",
+    "to": "g07",
+    "count": 1
+   },
+   {
+    "from": "g13",
+    "to": "g09",
+    "count": 1
+   },
+   {
+    "from": "g13",
+    "to": "g12",
+    "count": 1
+   },
+   {
+    "from": "g14",
+    "to": "g03",
+    "count": 1
+   },
+   {
+    "from": "g14",
+    "to": "g04",
+    "count": 1
+   },
+   {
+    "from": "g14",
+    "to": "g12",
+    "count": 1
+   },
+   {
+    "from": "g14",
+    "to": "g22",
+    "count": 1
+   },
+   {
+    "from": "g14",
+    "to": "g23",
+    "count": 1
+   },
+   {
+    "from": "g14",
+    "to": "xAF",
+    "count": 1
+   },
+   {
+    "from": "g15",
+    "to": "xAF",
+    "count": 1
+   },
+   {
+    "from": "g15",
+    "to": "xMathlib",
+    "count": 2
+   },
+   {
+    "from": "g16",
+    "to": "g04",
+    "count": 1
+   },
+   {
+    "from": "g16",
+    "to": "g18",
+    "count": 1
+   },
+   {
+    "from": "g16",
+    "to": "g19",
+    "count": 2
+   },
+   {
+    "from": "g16",
+    "to": "g22",
+    "count": 2
+   },
+   {
+    "from": "g16",
+    "to": "g23",
+    "count": 1
+   },
+   {
+    "from": "g17",
+    "to": "g01",
+    "count": 1
+   },
+   {
+    "from": "g17",
+    "to": "xMathlib",
+    "count": 2
+   },
+   {
+    "from": "g18",
+    "to": "g22",
+    "count": 1
+   },
+   {
+    "from": "g19",
+    "to": "g15",
+    "count": 1
+   },
+   {
+    "from": "g19",
+    "to": "g18",
+    "count": 1
+   },
+   {
+    "from": "g19",
+    "to": "g22",
+    "count": 1
+   },
+   {
+    "from": "g20",
+    "to": "g13",
+    "count": 1
+   },
+   {
+    "from": "g20",
+    "to": "g22",
+    "count": 1
+   },
+   {
+    "from": "g21",
+    "to": "g01",
+    "count": 1
+   },
+   {
+    "from": "g21",
+    "to": "g20",
+    "count": 1
+   },
+   {
+    "from": "g21",
+    "to": "g22",
+    "count": 2
+   },
+   {
+    "from": "g22",
+    "to": "g01",
+    "count": 1
+   },
+   {
+    "from": "g22",
+    "to": "g04",
+    "count": 3
+   },
+   {
+    "from": "g22",
+    "to": "g09",
+    "count": 1
+   },
+   {
+    "from": "g22",
+    "to": "g15",
+    "count": 1
+   },
+   {
+    "from": "g22",
+    "to": "g16",
+    "count": 1
+   },
+   {
+    "from": "g22",
+    "to": "g17",
+    "count": 1
+   },
+   {
+    "from": "g22",
+    "to": "g19",
+    "count": 2
+   },
+   {
+    "from": "g22",
+    "to": "g21",
+    "count": 1
+   },
+   {
+    "from": "g22",
+    "to": "g23",
+    "count": 2
+   },
+   {
+    "from": "g22",
+    "to": "g24",
+    "count": 1
+   },
+   {
+    "from": "g22",
+    "to": "xMathlib",
+    "count": 2
+   },
+   {
+    "from": "g23",
+    "to": "xMathlib",
+    "count": 3
+   },
+   {
+    "from": "g24",
+    "to": "g23",
+    "count": 1
+   }
+  ]
+ }
+}

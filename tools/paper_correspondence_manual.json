@@ -1,0 +1,36 @@
+{
+  "lem:count": {
+    "lean": "",
+    "candidates": [],
+    "note": ""
+  },
+  "lem:finite": {
+    "lean": "",
+    "candidates": [
+      {
+        "name": "XiPrime8845.FixedCertificate.fixed_functional_gate",
+        "reason": "README「Executable rational evaluator and fixed finite gate」行。ただし Lean の囲いは 1.128201 で、原稿 (eq:interval) の Python 区間とは別物"
+      }
+    ],
+    "note": "Python 区間（paper/verify.py）と Lean 有限ゲートは独立の確認"
+  },
+  "prop:mainterm": {
+    "lean": "",
+    "candidates": [],
+    "note": ""
+  },
+  "thm:main": {
+    "lean": "",
+    "candidates": [
+      {
+        "name": "XiPrime8845.WuProportion.ratio_eventually_gt",
+        "reason": "README「Final theorem and axiom audit」節が主定理として掲載"
+      },
+      {
+        "name": "XiPrime8845.WuProportion.strict_proportion",
+        "reason": "README 冒頭。固定余白 b > 0.8845 の形"
+      }
+    ],
+    "note": "Lean 版は PRZZ.przz41_case3_K2_profiles を公理として仮定した条件付き"
+  }
+}

@@ -1,5 +1,12 @@
 # ξ′の二枚mollifierと重複度込み零点割合
 
+> **主定理と外部入力（三行要約）**
+> 1. `XiPrime8845.WuProportion.ratio_eventually_gt`：十分大きいすべての実数 `X` で `0.8845 < N0 0 X / Ncount 0 X`。`N0` は ξ′ の臨界線上零点の重複度込みの個数、`Ncount` は ξ′ の全零点の個数（AF の `Zeta23.XiPrime` の計数）。
+> 2. その `#print axioms` 出力は `propext`・`Classical.choice`・`Quot.sound`・`PRZZ.przz41_case3_K2_profiles` の四つだけで、`sorryAx` はありません。
+> 3. 主定理の外部入力はこの PRZZ Theorem 4.1 の特殊化一つです。`WeilIncomplete` と `DeshouillersIwaniecLemma1` は別定理 `PRZZMomentOptimal.moment_bound` の明示的仮定で、主定理の import 閉包の外にあります。
+>
+> 読み方の資料（`import` 行とコンパイラ出力から `tools/generate_readability_docs.py` で自動生成）：[依存グラフ](docs/dependency-graph.md) · [モジュール表](docs/modules.md) · [論文 ↔ Lean 対応表](docs/paper-correspondence.md) · [信頼の基盤](docs/trust-base.md)。10 月 28 日以前の開発台帳は [docs/history.md](docs/history.md) に移しました。
+
 ξ′の臨界線上零点の割合が、**既存のPRZZ入力の下で、重複度込みで88.45%より真に大きい**ことを導くプロジェクトです。
 `WuProportion.strict_proportion` は、ある固定 `b > 0.8845` に対し、十分大きいすべての実数高さ `X` で `b * Ncount 0 X ≤ N0 0 X` を証明します。`ratio_eventually_gt` は実際の比率の不等式です。追加公理は既存の `PRZZ.przz41_case3_K2_profiles` のみで、PRZZ自体の証明は本リポジトリの外部入力です。`LocalizedEstimate`・未証明の計数仮定・単純零点仮定は主定理にありません。
 

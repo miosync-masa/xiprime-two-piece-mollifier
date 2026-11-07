@@ -1,5 +1,12 @@
 # Two-piece mollification of xi prime
 
+> **Main theorem and external input, in three lines.**
+> 1. `XiPrime8845.WuProportion.ratio_eventually_gt`: for every sufficiently large real `X`, `0.8845 < N0 0 X / Ncount 0 X`, where `N0` counts critical-line zeros of ξ′ with multiplicity and `Ncount` all zeros of ξ′ (AF's `Zeta23.XiPrime` counts).
+> 2. Its `#print axioms` output is exactly `propext`, `Classical.choice`, `Quot.sound` and `PRZZ.przz41_case3_K2_profiles`; `sorryAx` is absent.
+> 3. The only external input of the main theorem is that PRZZ Theorem 4.1 specialization. `WeilIncomplete` and `DeshouillersIwaniecLemma1` are explicit hypotheses of the separate `PRZZMomentOptimal.moment_bound`, which lies outside the main theorem's import closure.
+>
+> Reading aids (generated from `import` lines and compiler output by `tools/generate_readability_docs.py`): [dependency graph](docs/dependency-graph.md) · [module table](docs/modules.md) · [paper ↔ Lean correspondence](docs/paper-correspondence.md) · [trust base](docs/trust-base.md). The pre-28-October development ledger is in [docs/history.md](docs/history.md).
+
 An explicit Conrey–Feng two-component mollifier giving a **strictly greater than 88.45%** asymptotic lower bound for zeros of the derivative of the Riemann xi-function on the critical line, **counted with multiplicity**, conditional on the stated PRZZ input.
 
 This repository contains a proof draft for specialist review, a reproducible finite numerical certificate, and a Lean derivation of the zero-proportion conclusion. `WuProportion.strict_proportion` proves a fixed margin: there exists `b > 0.8845` such that `b * Ncount 0 X ≤ N0 0 X` for every sufficiently large real `X`. Its printed dependencies are the three standard axioms and the existing `PRZZ.przz41_case3_K2_profiles` input; the PRZZ input itself is not proved here. No simplicity, localized PRZZ, or counting-gate assumption is added.

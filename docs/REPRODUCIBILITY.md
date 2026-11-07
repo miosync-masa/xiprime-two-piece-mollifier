@@ -59,6 +59,26 @@ python3 tools/verify_lean.py --af af --output build/lean-verification.json
 
 The committed [Lean check record](../checks/lean-verification.json) describes a successful existing-build run, not the full 88.45% theorem.
 
+## Readability documents
+
+Generate the dependency graph, module table, paper correspondence and trust base with the same pinned AF checkout used for the library-manifest comparison:
+
+```sh
+python3 -B tools/generate_readability_docs.py --af /path/to/pinned-af
+python3 -B tools/generate_readability_docs.py --check --af /path/to/pinned-af
+python3 -B tools/test_readability_docs.py
+```
+
+Generation first checks the complete local Lean source set and its SHA-256 hashes against the captured compiler record, successful exit codes, and absence of `sorryAx` / compiler errors. Stale, missing or failed records stop generation; this consistency check is not a new Lean rebuild. `--check` writes only temporary output, not repository files or human correspondence input. Running it without the same `--af` option produces different trust-base content and fails the byte comparison.
+
+The human-maintained `tools/paper_correspondence_manual.json` is read-only during ordinary rendering and checking. To explicitly add new manuscript labels (preserving existing entries), run:
+
+```sh
+python3 -B tools/gen_paper_correspondence.py --sync-manual
+```
+
+Review any such input changes and regenerate the documents before deliberately updating `SHA256SUMS`. The regression tests operate on temporary copies and cover read-only checks, stale/missing/failed evidence, explicit manual synchronization, and SVG label bounds. They require only the Python standard library.
+
 ## Manuscript
 
 The PDF and LaTeX source are unchanged copies of the five-page audit draft. To rebuild:
@@ -72,9 +92,9 @@ Alternatively run `pdflatex manuscript.tex` twice. Standard packages may require
 
 ## Continuous integration
 
-The [workflow](../.github/workflows/verify.yml) runs numerical and packaging checks on Python 3.10 and 3.12. Its third-party actions are pinned to commit hashes. It does not claim an AF build or a Lean proof of the final theorem.
+The [workflow](../.github/workflows/verify.yml) runs numerical, packaging and readability-generator regression checks on Python 3.10 and 3.12. Its third-party actions are pinned to commit hashes. The readability tests use temporary fixtures and need no AF installation. The workflow does not claim an AF build or a Lean proof of the final theorem.
 
-The CI command is tested locally, but GitHub-hosted execution awaits an actual repository upload. Action configuration follows the official [checkout](https://github.com/actions/checkout) and [setup-python](https://github.com/actions/setup-python) documentation.
+The commands are tested locally; GitHub-hosted job results are separate evidence and are not implied by adding a workflow step. Action configuration follows the official [checkout](https://github.com/actions/checkout) and [setup-python](https://github.com/actions/setup-python) documentation.
 
 The [packaging check record](../checks/package-verification.json) records a clean archive extraction, installation into a fresh virtual environment, and reproduction from an unrelated working directory. Local execution used Python 3.12.4; the Python 3.10 CI job has not yet run. Synthetic hash tampering and Python optimization were both rejected by the wrapper.
 
