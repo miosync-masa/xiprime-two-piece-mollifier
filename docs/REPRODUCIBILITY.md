@@ -21,7 +21,7 @@ The finite verifier performs exact rational checks and interval runs at precisio
 
 ## Lean verification
 
-The current entry point is [`WuProportion.lean`](../lean/WuProportion.lean). The [latest record](../checks/wu-proportion-verification.json) freshly compiles five final modules and audits all 187 recorded outputs after checking 182 baseline source hashes. To freshly compile **all** local modules, use the full runner below. Neither that incremental record nor the numerical CI is a clean upstream AF rebuild.
+The zero-proportion entry point is [`WuProportion.lean`](../lean/WuProportion.lean); the explicit Weil/DI moment entry point is [`PRZZMomentOptimal.lean`](../lean/PRZZMomentOptimal.lean). The [7 November full local record](../checks/clean-project-verification-2026-11-07.json) contains fresh compiler outputs for all 698 local modules, with 3,971 axiom audits; the [paired scope record](../checks/clean-af-verification-2026-11-07.json) describes the fresh 101-module AF closure and post-compilation registry corrections/re-audit. Mathlib/package caches were reused. The earlier [187-module record](../checks/wu-proportion-verification.json) remains a historical incremental/replay record. To freshly compile **all** local modules directly with the corrected registry, use the full runner below.
 
 The Lean files deliberately use AF as an external environment rather than vendoring its source and build products. Obtain and build the pinned upstream tree using its own instructions:
 
@@ -39,7 +39,9 @@ cd ..
 python3 tools/verify_lean.py --af af
 ```
 
-If `lake` is not on PATH, add `--lake /path/to/lake`. The runner checks AF and mathlib commit identities and the selected AF source files, then invokes `lake env lean` for each of the 187 registered files. It freshly compiles all local import dependencies into a temporary directory. It performs no fetch, reset, checkout or package installation and does not write build products into AF. An existing modified dependency tree is not certified as a clean upstream build.
+If `lake` is not on PATH, add `--lake /path/to/lake`. The runner checks AF and mathlib commit identities and the selected AF source files, then invokes `lake env lean` for all 698 currently registered local files. It freshly compiles all local import dependencies into a temporary directory. It performs no fetch, reset, checkout or package installation and does not write build products into AF. An existing modified dependency tree is not certified as a clean upstream build. Unset inherited `LEAN_PATH` to exclude unrelated local build caches; `--jobs 3` enables dependency-aware parallel compilation.
+
+For a clean AF dependency rebuild with fixed Mathlib caches, use a detached worktree at the pinned AF commit, starting without its own `.lake/build`. Reuse only the pinned `.lake/packages` directory, not the old AF outputs. Build the 16 AF roots imported by local sources using `lake build Module:olean ...`; their transitive AF source closure contains 101 modules. Then run the full verifier against that isolated AF tree with `LEAN_PATH` unset. This is a fresh AF dependency-closure build, not a source rebuild of Mathlib or of unrelated AF targets. The original AF working tree need not be reset or cleaned.
 
 ### Earlier module-level records
 

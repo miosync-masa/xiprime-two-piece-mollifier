@@ -1,6 +1,25 @@
 # Proof status
 
-Updated: 2 November 2026. The fixed witness is unchanged.
+Updated: 7 November 2026. The fixed witness is unchanged.
+
+## Original moment estimate (7 November 2026)
+
+[`PRZZMomentOptimal.moment_bound`](../lean/PRZZMomentOptimal.lean) proves, under the explicit `WeilIncomplete` and `DeshouillersIwaniecLemma1` hypotheses,
+
+$$\left|\mathrm{moment}-\mathrm{diagonalMain}\right|
+\le C T^\tau\bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr).$$
+
+Here `moment` is the actual weighted mollifier/zeta-product time integral, not merely a literal proxy; `diagonalMain` is the stated coupled two-branch main term. The theorem fixes `K ≥ 4`, coefficient labels `js`, `tau > 0`, bounded-shift radius `S`, separation `r > 0`, a smooth monotone plateau seed `P` taking values in `[0,1]` (one below `1/2`, zero above `1`), and a smooth compact time cutoff `Phi` supported in `[1,2]`. Its constant precedes height, `N` and the shifts. The conclusion holds eventually in height for `1 ≤ N ≤ T^(4/7)`, `N+1 ≤ T`, `log T ≥ 1`, `‖A‖, ‖B‖ ≤ S` and `r ≤ ‖A+B‖`, with shifts `A/log T`, `B/log T`.
+
+`PRZZBodyTailMass`, `PRZZBodyTailTime`, `PRZZTailRowIntegrable`, `PRZZNativeTailRectangle`, `PRZZBodyTailCollector` and `PRZZBodyTailOptimal` connect the actual `bodyCut` tail, transfer-band/subunit corrections, native residual masses and finite row/time integration. In particular the final moment theorem no longer assumes an unevaluated `actualTail` bound. The printed audit of `moment_bound` is standard-only (`propext`, `Classical.choice`, `Quot.sound`); Weil and DI are theorem parameters, not proved deep inputs.
+
+**Boundary:** this separated logarithmic-shift moment theorem is not yet a substitution for the public `PRZZ.przz41_case3_K2_profiles` interface in `WuProportion`. The headline proportion theorem below still has its existing external axiom. The manuscript and numerical witness are unchanged. Earlier development entries describing unfinished connections are historical, not the current scope of `moment_bound`.
+
+### Clean dependency verification
+
+The [AF clean-build record](../checks/clean-af-verification-2026-11-07.json) checks the pinned, unmodified transitive source closure of all 16 AF imports: 101 AF modules rebuilt in a detached worktree with no initial AF output directory. Only fixed Mathlib/package caches were reused; inherited `LEAN_PATH` and old AF outputs were excluded. Lake's 3,788 job total includes cached package jobs and must not be read as 3,788 source rebuilds. Unrelated AF working-tree edits were preserved.
+
+The [full local verification record](../checks/clean-project-verification-2026-11-07.json) covers all 698 local Lean sources and 3,971 printed axiom audits. Every source was freshly compiled in a new temporary local output directory against the freshly built AF closure (six worker slots). Successful compiler diagnostics were saved with source hashes. Clean verification exposed audit-registry defects: one non-topological module ordering, three misplaced coverage entries, and several exact axiom sets that unnecessarily expected `Classical.choice` or `Quot.sound`. After correcting the registry, the final verifier rechecked all 698 source hashes and those same fresh compiler outputs successfully. This is not replay of the historical baseline records. No mathematical Lean source was changed for these registry corrections, and `sorryAx` is absent. The sole explicit local axiom declaration remains the existing public PRZZ input; `moment_bound` itself prints only the standard three axioms.
 
 ## Current conclusion: strict proportion under the existing PRZZ input
 

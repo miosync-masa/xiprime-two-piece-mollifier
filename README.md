@@ -8,6 +8,8 @@ The [five-module verification record](checks/wu-proportion-verification.json) fr
 
 [日本語の案内](README.ja.md) · [Manuscript PDF](paper/manuscript.pdf) · [LaTeX source](paper/manuscript.tex) · [Expert audit questions](paper/README.md#questions-requiring-analytic-review)
 
+**7 November clean verification:** all 698 local modules were freshly compiled, followed by 3,971 axiom-output checks with the corrected audit registry. The 101-module required AF source closure was rebuilt in an isolated pinned worktree; Mathlib/package caches remained fixed. The [full local record](checks/clean-project-verification-2026-11-07.json) and [clean-build scope/method record](checks/clean-af-verification-2026-11-07.json) distinguish fresh compilation from the subsequent source-hash-checked re-audit of those same outputs. They supersede the narrower historical verification scope above, not its mathematical axiom boundary.
+
 ## Final theorem and axiom audit
 
 The complete compiler output for `#print axioms ratio_eventually_gt` is:
@@ -21,7 +23,17 @@ The complete compiler output for `#print axioms ratio_eventually_gt` is:
 
 Thus the only nonstandard axiom is the stated PRZZ input; `sorryAx` is absent. The proof has a fixed margin above 0.8845 for all sufficiently large real heights, with multiplicity. See the [release notes](docs/RELEASE_NOTES.md) for the completed counting connections and precise verification scope, and the [theorem source](lean/WuProportion.lean) for both the fixed-margin and quotient statements.
 
-## PRZZ input decomposition: 2 November 2026
+## Original moment estimate: 7 November 2026
+
+[`PRZZMomentOptimal.moment_bound`](lean/PRZZMomentOptimal.lean) now connects the actual zeta moment to `PRZZCoupledAFE.diagonalMain`, with error
+
+$$C T^\tau\bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr).$$
+
+Weil's incomplete-sum bound and DI Lemma 1 remain explicit hypotheses. For fixed coefficient labels, a smooth monotone plateau seed and a smooth time cutoff supported in `[1,2]`, the constant is uniform for sufficiently large heights, `1 ≤ N ≤ T^(4/7)`, `N+1 ≤ T`, and bounded logarithmically scaled shifts separated by `r ≤ ‖A+B‖`, with `r > 0`. The actual paired Fourier tail is evaluated; no tail-budget premise remains in this theorem. See [current proof status](docs/STATUS.md#original-moment-estimate-7-november-2026).
+
+This theorem does **not** by itself replace `PRZZ.przz41_case3_K2_profiles` in the headline zero-proportion theorem. Its stated coefficient/cutoff/shift family and the public PRZZ interface must still be distinguished. No unconditional zero-proportion or simplicity claim is added.
+
+## Historical PRZZ input decomposition: 2 November 2026
 
 [`PRZZActiveRows.literal_absorbed`](lean/PRZZActiveRows.lean) now bounds the original literal A-star, after removing empty original rows and retaining each nonempty row's outer mass:
 
@@ -33,7 +45,7 @@ $$
 
 Weil's incomplete-sum estimate and DI Lemma 1 are explicit `Prop` hypotheses, not new axioms. The theorem supplies the three arithmetic cases, allocation sum and dyadic absorption; source frequency/scale conditions, shift separation and a strict loss-exponent margin remain explicit. Constants are uniform in the subsequently quantified height and row data, with the cutoff functions fixed beforehand. See [proof status](docs/STATUS.md#przz-decomposition-milestone-2-november-2026) for the conditions and verification scope.
 
-This is a conditional arithmetic A-star bound, **not yet a replacement for the PRZZ axiom**. The separate L1 approximate-functional-equation reduction, removal of truncations and identification of the actual Poisson kernel with A-star remain unfinished.
+This historical arithmetic A-star milestone was not a replacement for the PRZZ axiom. Its then-unfinished AFE, truncation and actual-kernel connections have since been developed through the original-moment theorem above, within that theorem's explicit scope.
 
 ## What is checked
 

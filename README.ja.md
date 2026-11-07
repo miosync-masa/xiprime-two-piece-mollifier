@@ -8,6 +8,8 @@
 最初に [原稿PDF](paper/manuscript.pdf)、[証明状態](docs/STATUS.md)、[監査ガイド](paper/README.md)をご覧ください。
 数値検証の成功と、解析的移植の証明・最終定理のLean化は区別します。simple+on-lineの改善は主張していません。
 
+**11月7日のクリーン検証：本体698モジュールを全件新規コンパイルし、修正後の監査器で3,971件の公理出力を照合しました。** AFの必須依存101モジュールも固定コミットの隔離worktreeで再ビルドし、Mathlib・packageの固定版キャッシュだけを再利用しています。[本体の全検証記録](checks/clean-project-verification-2026-11-07.json)と[ビルド範囲・手法の記録](checks/clean-af-verification-2026-11-07.json)に、新規コンパイルと、その同じ出力のソースハッシュ照合付き再監査を区別して記載しました。過去の限定的な検証範囲を更新するもので、主定理の依存公理は変わりません。
+
 ## 主定理の公理監査
 
 `#print axioms ratio_eventually_gt` の出力全文を、省略せず掲載します。
@@ -21,7 +23,17 @@
 
 通常三公理以外は既存PRZZ一公理だけで、`sorryAx` はありません。結論は重複度込み・十分大きいすべての実数高さに対する固定の余白です。[リリースノート](docs/RELEASE_NOTES.md)に接続内容と検証範囲を、[主定理のソース](lean/WuProportion.lean)に厳密な定理文を掲載しています。
 
-## PRZZ入力の分解：2026年11月2日
+## 元のmoment評価：2026年11月7日
+
+[`PRZZMomentOptimal.moment_bound`](lean/PRZZMomentOptimal.lean) で、実際のζのmomentから `PRZZCoupledAFE.diagonalMain` を引いた誤差を
+
+$$C T^\tau\bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr)$$
+
+へ接続しました。Weil不完全和評価・DI Lemma 1は明示的仮定です。係数ラベル、滑らかな単調plateau seed、支持が `[1,2]` の滑らかな時間cutoffを固定し、十分大きい高さ、`1 ≤ N ≤ T^(4/7)`、`N+1 ≤ T`、有界な対数スケールシフトと正の分離 `r ≤ ‖A+B‖` に対して定数を一様化しています。実際の両枝Fourier尾部も評価済みで、この定理に尾部予算の仮定は残りません。[現在の証明状態](docs/STATUS.md#original-moment-estimate-7-november-2026)を参照してください。
+
+ただし、この定理文の係数・cutoff・シフト族と公開PRZZインターフェースは区別します。主定理の `PRZZ.przz41_case3_K2_profiles` を自動的に置き換えたものではなく、無条件の零点割合や単純零点の新主張はありません。
+
+## PRZZ入力の分解：2026年11月2日（履歴）
 
 [`PRZZActiveRows.literal_absorbed`](lean/PRZZActiveRows.lean) で、空の元行を除外し、非空行ごとの外側質量を保持したまま、元のliteralなA-starを次の形で評価しました。
 
@@ -33,7 +45,7 @@ $$
 
 Weilの不完全和評価とDI Lemma 1は、新しい公理ではなく明示的な`Prop`仮定です。Type I・Type II・小スケールの三場合、allocation和、dyadic多重度の吸収を接続しました。周波数・スケール条件、シフトの分離、損失指数の厳密な余白は仮定に残しています。定数は後から量化する高さ・行データに一様ですが、cutoff関数は定数より先に固定します。詳細は[証明状態](docs/STATUS.md#przz-decomposition-milestone-2-november-2026)をご覧ください。
 
-**PRZZ公理そのものの置換完了ではありません。** 別工程L1の近似関数等式本体・切断除去・実際のPoisson核とA-starの同定は未完です。主定理の依存公理は上記のまま変わりません。
+この段階はPRZZ公理そのものの置換完了ではありませんでした。当時未完だったAFE・切断除去・実核の接続は、現在は上記の元のmoment評価まで発展しています。ただしその定理の明示的範囲内の結論であり、主定理の依存公理は上記のままです。
 
 ## 再実行
 
