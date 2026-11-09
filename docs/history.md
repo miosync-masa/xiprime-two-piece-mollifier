@@ -1,4 +1,8 @@
+> **Current-status notice (9 November 2026):** this file preserves development history, not current proof obligations. The current headline takes explicit Weil/DI hypotheses and has standard-only axiom audits; the former PRZZ axiom is removed. See [REVIEW_GUIDE.md](REVIEW_GUIDE.md) and [STATUS.md](STATUS.md). Dated older annotations below describe their own snapshots, even where they say “current”.
+
 # 開発台帳（履歴）
+
+**以下は2026年11月7日当時の編集注です。現状を示すものではありません。**
 
 **この文書は履歴です。** 2026 年 10 月 28 日時点の開発台帳（旧 `docs/STATUS.md` の「Historical ledger」節）を、当時の記述のまま移したものです。ここで「未完」「残る」「still unproved」とされている接続は、現在は [lean/WuProportion.lean](../lean/WuProportion.lean) の `XiPrime8845.WuProportion.ratio_eventually_gt` まで接続済みで、その `#print axioms` 出力は標準三公理と `PRZZ.przz41_case3_K2_profiles` のみです（[trust-base.md](trust-base.md) §1、[checks/clean-project-verification-2026-11-07.json](../checks/clean-project-verification-2026-11-07.json)）。現状は [STATUS.md](STATUS.md) と [modules.md](modules.md) を優先してください。
 
@@ -362,3 +366,98 @@ Both bounds are now Lean theorems. The coefficient bound holds uniformly for eve
 The verifier audits the printed axiom sets of the convolution, profile, coefficient, Subpower and normalized-error theorems: only `propext`, `Classical.choice` and `Quot.sound` are allowed. It separately checks the additional PRZZ axiom in `witness_przz_estimate`.
 
 The target numerator would be AF's `Zeta23.XiPrime.N0`, not `N0simple`; the manuscript denominator is the zeta zero count.
+
+## Archived Japanese README module notes
+
+Archived during the 9 November documentation review. The following is the previous README catalog, with its old scope descriptions preserved; it is not the current proof status.
+
+## 収録範囲と初期段階の記録
+
+以下は初期モジュールの役割を記した履歴です。「未完」「残る」とした接続は、現在は後続の算術・moment・Wu計数モジュールから主定理へ接続済みです。現時点の結論と検証範囲は上記および [証明状態](STATUS.md) の最新節を優先してください。
+
+- `paper/`：原稿・数値検証器・出力。既存の監査用bundleを内容変更せず収録。
+- `lean/`：kernel恒等式、dual、候補の基本条件、係数の一様上界・Subpower・正規化誤差の極限、明示的なPRZZ公理、AFのAPI検査。
+- `tools/`・`checks/`：可搬な再実行scriptと検証記録。
+- `docs/`：未形式化部分、再現手順。
+- `.github/`：数値検証CI。
+
+`lean/IntegralJet.lean`では、逆作用素・外側積分との微分交換を証明し、元のK2積分functionalの微分を未打切りの`W`評価式へ接続しました。交差項を二倍にまとめる操作も微分・縮約後に証明しています。
+
+`lean/TaylorEnvelope.lean`では、微分後にTaylor打切りした式との差を、逆作用素・積・外側積分・四つのkernel・`W`縮約を通して明示的に囲みました。主定理は`K2_Taylor_enclosure`で、新たな解析公理や未証明の剰余仮定を置きません。
+
+`lean/CoefficientEvaluator.lean`では、その多項式積分を有限beta係数和へ落とし、既存評価器の厳密演算モデルへ接続しました。`finiteEvaluator_cached`は、`fs`の係数加算、積の次数加算、`W`先行縮約、交差項の二倍化、二符号のdual合成を含む同値定理です。`K2_cached_enclosure`は元の微分functionalとこの係数評価式との差を囲みます。
+
+`lean/NumericalGate.lean`では、目標指数関数の下界 `1.1282054105`、dual指数関数の上下界、24次打切りの合成誤差 `10^-6` 以下をLeanで証明しています。元の固定候補との一致も検査します。
+
+`lean/RationalEvaluator.lean`は実行可能な有理数係数リストを既存の係数式へ同定し、`lean/RationalBounds.lean`は固定された負側・正側の有理数上界を `decide +kernel` で検査します。これらを合成した `lean/FixedCertificate.lean` の `fixed_functional_gate` は、**数値条件を仮定せず**、元の微分functionalの実部が目標指数関数を下回ることを証明しました。Leanでの上界は `1.128201`、目標の下界は `1.1282054105` です。`native_decide`、数値公理、外部JSONへの信頼は使いません。
+
+この合成誤差上界はPython検証器の次数別上界と同一ではなく、Python実行やmpmathの丸めを形式検証したものでもありません。算術主項・零点計数への接続も別の未完部分です。
+
+`lean/PRZZAsymptotic.lean`では、PRZZ公理の実際のmomentとgcd主項の差をTで割り、`(-R,-R)`を中心とする各半径`R/4`の双円板で一様に0へ収束することを証明しました。gcd主項の極限からmomentの極限へ移す定理では、未証明のgcd主項の評価を引数に明示しています。
+
+`lean/CompactShiftIntegral.lean`はコンパクトな実区間上の複素パラメータ積分の微分交換と任意階の滑らかさを証明します。`lean/ArithmeticRegularity.lean`は実際のζ積分・gcd和へ適用し、`T > 1`、両shiftの実部が負の領域で二変数の正則性を証明しました。重みの台の制限、ζの極回避、複素冪の枝、混合微分後の正則性を含みます。これにより `ArithmeticRegularity.normalized_mixed_error_tendsto` は、**正則性を仮定に残さず**、任意の有限混合微分の正規化PRZZ誤差が0へ収束することを証明します。正則性部分は通常三公理のみ、誤差収束で追加するのは既存のPRZZ一公理のみです。gcd和から有限kernelへの主項同定・Wu計数はまだ別の未完部分です。
+
+`lean/LogarithmicBudget.lean`は、有限証明書の上界から `1 - log(1.128201)/R > 0.8845` を証明します。正のmomentがこの上界以下と証明できれば同じ余白を使えますが、そのmomentとの同定・Wuの計数不等式そのものはまだ証明していません。
+
+`lean/GcdDecomposition.lean`はliteralなgcd主項をdirect／dualへ厳密に分離し、反射shift `(-B,-A)` と必要な `log T` 正規化を保持します。`lean/ZetaPoleScaling.lean`は外側のζ極の一様極限、`lean/HeightScaling.lean`は `t=Tu` の厳密変数変換と正規化高さ積分の一様極限 `exp(-S)∫Φ` を証明します。これらは通常三公理のみで、新しい解析公理を置きません。**残る核心は `log T × 算術gcd和 → 四つのH項` の一様評価**であり、Euler積・Mellin輪郭移動・剰余の証明は未完です。
+
+元の研究台帳、私的なセッションID、依存ライブラリ本体、作業用キャッシュは含めません。
+
+
+## Archived module-level verification notes
+
+Archived from REPRODUCIBILITY during the 9 November documentation review. These paragraphs describe individual historical stages, not current missing connections. Old commands naming committed checks/ outputs are documentary: for new runs use build/ output paths and never overwrite historical records.
+
+### Quantitative Mellin-class verification
+
+Use the scoped runner above with `--target PRZZMellinInterval` or `--target PRZZProfileMellin` and distinct `--output` paths. The records [mellin-interval-verification.json](../checks/mellin-interval-verification.json) and [profile-mellin-verification.json](../checks/profile-mellin-verification.json) audit the general-support estimate and the common-jet DI class supplier. Constants precede the varying profile and support scale; the full profile-family moment estimate is still a separate obligation. Older records retain their original hashes, including before the documentation-only pole warning added to `PRZZInterface`.
+
+For the actual class-uniform HB small-source, residual-variation and signed DI suppliers, use `--target PRZZClassDI`. The [class-hb-verification.json](../checks/class-hb-verification.json) record covers the three new modules and their exact import closure; it is not a full profile-family moment or whole-project rebuild.
+
+For class-uniform free Type I, the original three-case classifier and independent-label mixed dyadic row aggregation, use `--target PRZZClassRows`. The [class-rows-verification.json](../checks/class-rows-verification.json) record retains the complete dependency and compiler-output provenance. The finite row budget has not yet been substituted into a full mixed-profile moment bound.
+
+For the integrated mixed literal budget and its optimal dyadic absorption, use `--target PRZZClassLiteral`; [class-literal-verification.json](../checks/class-literal-verification.json) checks its 328-module closure. For the actual direct replacement and complete zeta-to-W defect integral, use `--target PRZZMixedReplacement` and `--target PRZZMixedDefect`; their [replacement](../checks/mixed-replacement-verification.json) and [defect](../checks/mixed-defect-verification.json) records check 233 and 234 modules. All seventeen audits in the four new modules are standard-three-only. Fixed AF/Mathlib outputs and source/fingerprint-verified local caches are reused, with freshly compiled targets recorded separately. These estimates do not yet supply the full mixed post-Poisson moment bound or discharge the witness axiom.
+
+For the complete mixed Poisson model and its insertion into the original mixed moment equation, use `--target PRZZMixedMoment`. The [mixed-poisson-moment-verification.json](../checks/mixed-poisson-moment-verification.json) record covers its 342-module closure. The two new modules have thirteen standard-only audits, including actual defect integrability, identification of the limiting error integral, the complete collective-field limit and the height-dependent witness-family substitution. This is an evaluated AFE error limit, not a bound for the retained collective Poisson field or a full mixed moment theorem.
+
+For the actual mixed positive Poisson-cell identification and its class-uniform Weil/DI bound at every prescribed positive height-loss exponent, use `--target PRZZClassPoisson`. The [class-poisson-verification.json](../checks/class-poisson-verification.json) record audits eight standard-only theorems, including the actual spatial-partition class supplier. The source-scale and arithmetic-support premises remain explicit. This positive-cell verification does not establish the optimal bound for the full collective Poisson field.
+
+For width-six mixed positive cells, actual rounded/body cutoffs and the outer `d,Q,V,M` aggregation, use `--target PRZZClassPositiveGrid`. For the same two positive AFE branches with the genuine Gamma-multiplied dual time profile, use `--target PRZZClassPairedGrid`. Their records are [class-positive-grid-verification.json](../checks/class-positive-grid-verification.json) and [class-paired-grid-verification.json](../checks/class-paired-grid-verification.json). The five new modules have twelve standard-only theorem audits. The fixed-profile width-six frequency estimate was already present; these modules connect it to the varying mixed cutoff class. The paired positive-body bound does not estimate all remaining negative, tail, boundary, freezing or zero-frequency components.
+
+For mixed negative cells and both signs in both AFE branches, use `--target PRZZClassPairedSignedGrid`. The [class-paired-signed-grid-verification.json](../checks/class-paired-signed-grid-verification.json) record includes the ten new spatial-cap, negative-literal/cell/grid and signed/paired-grid modules, with 29 standard-only audits. Arithmetic suppliers require only the spatial norm cap; reflected spatial support is not falsely asserted positive. The physical integral retains its positive-support class. Rounded/body cutoffs and both frequency signs are included, but mixed tails, boundary/freezing and zero-frequency corrections are not yet bounded by this central-body result.
+
+For the actual original mixed `zeroMismatch`, including primal/dual spatial boundaries and omitted-gap grids, use `--target PRZZClassZeroCorrection`. The [class-zero-correction-verification.json](../checks/class-zero-correction-verification.json) record audits four new modules and sixteen standard-only outputs. `family_power` supplies the true height-dependent witness basis and covers all 49 ordered pairs with the common coefficient cap 84; `arithmetic_bound` inserts the evaluated correction into the original arithmetic residual. The nonzero Fourier/freezing remainders and complete moment estimate are not supplied by this zero-frequency result.
+
+For common-cap nonzero Fourier tails and actual active freezing row integrals, use `--target PRZZCappedWindowField` and `--target PRZZCappedFreezeBudget`, with separate outputs. The [window-field](../checks/capped-window-field-verification.json) and [freezing-budget](../checks/capped-freeze-budget-verification.json) records check the seven new modules and 24 standard-only audits. Constants precede the arbitrary coefficient slots; the physical cutoff profiles remain fixed. The true Gamma-weighted dual freezing branch is supplied by `paired_mixed_bound`. This is not yet the strict-mask/common-body-cutoff identification with the whole exhaustive remainder.
+
+For the exact strict-mask/source-tail identification and evaluated transfer to the common Fourier cutoff, use `--target PRZZCappedTailBand`. The [capped-tail-band-verification.json](../checks/capped-tail-band-verification.json) record checks five new modules and 26 standard-only compiler audits. `mixed_tailBand_target` evaluates the actual reconstructed paired tailBand; `original_moment_split` returns the exact residual sum to the original mixed moment/literal-model equation. The strict freezing, discarded and collective large-spatial terms are retained there, not declared bounded by that equality.
+
+For the original reconstructed residual with common-cap mixed coefficients, use `--target PRZZCappedRemainder`. The [capped-remainder-verification.json](../checks/capped-remainder-verification.json) record covers the strict native freezing identification and outer grids, valued selected discarded IBP (including genuine Gamma jets), collective large-spatial pruning and their actual `remainderPair` bound. The exact moment equation retains the separate AFE model defect; this check does not discharge the public witness input.
+
+For the actual AFE replacement/residual combination, both exhaustion removals and density-oriented main-kernel comparison, use `--target PRZZCappedMainTerm`. The [capped-main-term-verification.json](../checks/capped-main-term-verification.json) record includes `PRZZCappedMomentBridge`. The final reduction retains the original nonzero central collectors and the separate integrated `gammaDefect`; it does not claim their identification with class-uniform Weil/DI grids or discharge the public witness axiom.
+
+For the exact original mixed nonzero collector to signed body-grid identity, use `--target PRZZCentralGridIdentity` and a separate `--output checks/central-grid-identity-verification.json`. Its seven audits retain the actual common-to-row cutoff transfer and Fourier tail, with both original AFE branches and unchanged coefficient order. This identifies the arithmetic-label body with the evaluated grid; it does not yet supply the witness-profile absorption or bounds for the retained corrections.
+
+For actual height-dependent basis absorption and the common 49-pair Weil/DI body bound, use `--target PRZZBasisGridBound --output checks/basis-grid-bound-verification.json`. The closure includes `PRZZBasisGridCutoff`. This supplies smooth normalized profiles for all windows through `Q<=2Y` and the original signed-body bound for every positive loss exponent. The common-J tail convergence is fixed-height only; the exact transfer-plus-tail body remainder is retained and is not asserted to satisfy a uniform bound by this check.
+
+For the evaluated actual paired body tail with common-cap coefficients, use `--target PRZZCappedBodyTail --output checks/capped-body-tail-verification.json`. Its closure includes the common-cap window-transfer, subunit and native body-mass suppliers. `mixed_bound` retains both true Gamma branches and the strict original masks; `family_bound` substitutes the height-dependent seven-vector boxes, and `nonzero_reduction` returns the bound to the original nonzero collector for every common Fourier cutoff. This closes the body-tail obligation of the preceding scoped stage, not the full moment/public witness-input bridge.
+
+For the complete actual height-dependent finite-family moment estimate, use `--target PRZZFamilyMomentOptimal --output checks/family-moment-optimal-verification.json`. The closure includes `PRZZBasisPairedBody` and `PRZZCappedGammaDefect`. `moment_bound` supplies every positive final loss under explicit Weil/DI hypotheses, before both independent radius-two profile vectors. `witness_uniform_normalized` uses the actual floor cutoff and tau=1/4000000. That scoped stage did not yet rewire the public input; the dependency-switch check at the top of this page now covers the replacement and headline chain.
+
+### Earlier module-level records
+
+For the exact 49-pair moment assembly and evaluated density-oriented main-kernel defect, run the scoped checker with `--target PRZZFamilyMoment` and `--target PRZZKernelComparison`, respectively, using the same `--af`, `--build`, `--output` options as above. The target is freshly compiled; dependency-cache reuse requires matching source hashes, direct dependency fingerprints and artifact hashes. The current records are [family-moment-verification.json](../checks/family-moment-verification.json) and [kernel-comparison-verification.json](../checks/kernel-comparison-verification.json). Run `python3 -B tools/test_polarization_audit.py` to exercise exact audit coverage, analytic-axiom/error rejection and the complete topological local-source registry. These checks do not supply the remaining all-mixed-pair moment bound.
+
+The descriptions below concern earlier verification stages and individual modules. Their then-current witness-only axiom boundary is historical. The current final theorems instead take explicit Weil/DI hypotheses and have standard-only axiom audits.
+
+The `NumericalGate` audit covers the fixed exponential bounds and aggregate Taylor error. `RationalEvaluator` proves equality between executable rational arithmetic and the existing coefficient expression. `RationalBounds` checks the actual rational inequalities by `decide +kernel`, without `native_decide` or imported numerical data. `FixedCertificate.fixed_functional_gate` discharges the coefficient premise of the earlier scalar helper. Its axiom audit permits only `propext`, `Classical.choice` and `Quot.sound`; it has no numerical or analytic premise. This completes the finite-functional inequality, not the arithmetic asymptotic or the final zero-proportion theorem.
+
+In the historical 698-module record, the `PRZZAsymptotic` audit distinguished its five elementary theorems from the six theorems that additionally use the existing PRZZ axiom. Its generic Cauchy-transfer theorem retains explicit regularity premises, now discharged by `ArithmeticRegularity`. The latter has twelve standard-three-only audits and one audit permitting exactly the existing PRZZ axiom in addition. `CompactShiftIntegral` has three standard-three-only audits; `LogarithmicBudget` has six. `GcdDecomposition`, `ZetaPoleScaling` and `HeightScaling` add eight, four and nine standard-three-only audits, respectively. The main-term transfer theorems still retain their explicit gcd-limit premise: exact direct/dual separation and outer-factor limits do not prove the arithmetic-sum-to-H-kernel asymptotic or the zero-counting conclusion.
+
+To save fresh output in an ignored location:
+
+```sh
+python3 tools/verify_lean.py --af af --output build/lean-verification.json
+```
+
+The committed [Lean check record](../checks/lean-verification.json) describes a successful existing-build run, not the full 88.45% theorem.

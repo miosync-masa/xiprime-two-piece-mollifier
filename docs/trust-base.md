@@ -451,7 +451,7 @@ Python の区間証明書は Lean の `FixedCertificate` と独立の確認で�
 
 ```sh
 python3 -m pip install -r requirements.txt
-python3 tools/verify_release.py
+python3 -B tools/verify_release.py
 ```
 
 ```sh
@@ -465,25 +465,22 @@ python3 -B paper/verify.py --manifest
 [docs/REPRODUCIBILITY.md](REPRODUCIBILITY.md) の手順:
 
 ```sh
-python3 -B tools/verify_finite_family_rows.py --target WuProportion --all-local \
-  --af /path/to/pinned-af --build /path/to/new-empty-scratch \
-  --output /path/to/weil-di-proportion-verification.json --jobs 6
-```
-
-```sh
 git clone https://github.com/anthropics/formal-math.git af
 git -C af switch --detach 3635e74826a4c1fcece7d1cd2b6fa75e43a00510
-```
-
-```sh
 cd af
 lake build
 cd ..
-python3 tools/verify_lean.py --af af
 ```
 
 ```sh
-python3 tools/verify_lean.py --af af --output build/lean-verification.json
+python3 -B tools/verify_finite_family_rows.py --target WuProportion --all-local \
+  --af /absolute/path/to/pinned-af --build /absolute/path/to/new-empty-scratch \
+  --output build/review-verification.json --jobs 6
+```
+
+```sh
+python3 -B tools/verify_lean.py --af /absolute/path/to/pinned-af \
+  --output build/full-lean-verification.json --jobs 6
 ```
 
 現在の記録: 全 778 ローカルソースを照合、主定理閉包 730 モジュール。この実行での新規コンパイル 1、残りはソース・直接依存・成果物ハッシュを照合したキャッシュです。`full_project_rebuilt: false`。

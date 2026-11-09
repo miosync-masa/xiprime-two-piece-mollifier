@@ -21,6 +21,16 @@ The LaTeX source includes the erratum note; the PDF is still the pre-note versio
 
 **Pre-erratum 7 November clean verification:** the [698-module local record](checks/clean-project-verification-2026-11-07.json) and [101-module AF record](checks/clean-af-verification-2026-11-07.json) remain unchanged historical records. They do not certify the subsequent witness-only or current Weil/DI interface changes.
 
+## For reviewers
+
+Start with the [review guide](docs/REVIEW_GUIDE.md): exact conditional claim,
+reading order, evidence levels and remaining independent-review questions.
+The authoritative current statement is the Lean theorem, not the older PDF.
+The TeX includes the shift-placement erratum but has not been fully revised
+to describe the new Weil/DI-based proof; the PDF predates that erratum.
+The [paper correspondence table](docs/paper-correspondence.md) remains a
+candidate mapping, not a completed declaration-by-declaration audit.
+
 ## Final theorem and axiom audit
 
 The complete compiler output for `#print axioms ratio_eventually_gt` is:
@@ -113,11 +123,11 @@ docs/        Proof status and reproduction instructions
 .github/     Numerical-verification workflow
 ```
 
-The paper bundle is preserved byte-for-byte. [Provenance](provenance.json) records its source hashes. No upstream AF or mathlib source tree is vendored.
+The numerical algorithms, fixed witness and interval results are unchanged. The TeX erratum, its certificate provenance hash, paper README and manifests have been revised; the paper bundle as a whole is therefore **not** byte-identical to the initial draft. [Provenance](provenance.json) retains historical snapshots; current file integrity is specified by the manifests. No upstream AF or mathlib source tree is vendored.
 
 ## Proof boundaries
 
-See [proof status](docs/STATUS.md) before interpreting a passing test. In particular, PRZZ's gcd/lcm main term and the finite Mellin-pole functional are separate objects; the latter is not smuggled into the PRZZ axiom.
+See [proof status](docs/STATUS.md) before interpreting a passing test. In particular, the actual moment, density-oriented gcd/lcm main term and finite Mellin-pole functional are separate objects connected by proved theorems. The remaining external hypotheses are the exact Weil/DI propositions in `PRZZKloostermanInputs`, not a PRZZ axiom. Independent review must check these specifications and the interpretation of the final statement.
 
 ## Copyright and license
 

@@ -2,6 +2,8 @@
 
 Updated: 9 November 2026. The fixed witness is unchanged.
 
+Reviewer entry point: [REVIEW_GUIDE.md](REVIEW_GUIDE.md). Dated milestones below are historical; the mathematical source is unchanged by this documentation refresh. The manuscript TeX and PDF have separate, older scopes, described in the guide.
+
 ## Current dependency switch: explicit Weil and DI (9 November 2026)
 
 The public witness input is now a **proved theorem**, not an axiom.

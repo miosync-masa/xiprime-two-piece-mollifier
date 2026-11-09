@@ -31,6 +31,6 @@
         "reason": "README 冒頭。固定余白 b > 0.8845 の形"
       }
     ],
-    "note": "Lean 版は PRZZ.przz41_case3_K2_profiles を公理として仮定した条件付き"
+    "note": "現行Lean版は WeilIncomplete・DeshouillersIwaniecLemma1 を明示的に仮定し、公理一覧は標準三公理のみ。原稿は旧解析入力の説明を含むため、この候補欄は原稿との完全な同値性の監査完了を意味しない。"
   }
 }

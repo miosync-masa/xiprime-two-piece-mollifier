@@ -1,18 +1,26 @@
-# Publication checklist
+# Publication and reviewer checklist
 
-This is a local project prepared for a later GitHub upload. No remote repository, release, commit, push or expert submission was performed during preparation.
+Updated: 9 November 2026. The mathematical-source baseline is commit
+[`2418fd5`](https://github.com/miosync-masa/xiprime-two-piece-mollifier/commit/2418fd5d334dbd7b4d99baaba5d8c9f41681884a),
+pushed to `main` at [the repository](https://github.com/miosync-masa/xiprime-two-piece-mollifier).
+This page does not certify a journal submission, acceptance, release or priority.
 
-Before publication, the maintainer needs to choose:
+## Existing package decisions
 
-- Repository owner and public or private visibility.
-- Author names, affiliations, acknowledgements and citation metadata.
-- License terms for original code and for the manuscript. No license has been assigned here.
-- Whether this snapshot should be shared privately for expert audit before public release.
+- [LICENSE.md](../LICENSE.md) supplies the MIT license and copyright notice for MASAMICHI IIZUMI. This page assigns no new license or manuscript authorship.
+- The [current conditional theorem and audit boundary](REVIEW_GUIDE.md) use explicit Weil/DI hypotheses, not a PRZZ analytic axiom.
+- Historical tags, compiler records and development reports are retained. Their old analytic inputs are not current assumptions.
+- The numerical verifier and fixed witness remain unchanged; updated documentation and TeX provenance mean the entire paper bundle is not byte-identical to its initial snapshot.
 
-Do not add a citation file with invented authors or a guessed repository URL. Once those decisions are made, a valid citation file and license texts can be added deliberately.
+## Before sending to reviewers
 
-Before committing, run the reproduction commands, inspect `docs/STATUS.md`, check the staged file list, and confirm that no local dependency checkout, credentials, build cache, private transcript or unrelated research file is included. If publication metadata changes, update the root manifest in the same reviewed change.
+1. Read [REVIEW_GUIDE.md](REVIEW_GUIDE.md) and state the explicit hypotheses and multiplicity convention in the cover letter.
+2. Choose the exact source commit or archive being sent and include its manifests and [verification scope](REPRODUCIBILITY.md). A passing numerical CI is not a Lean-build or peer-review badge.
+3. Treat the PDF as a historical reading copy: it predates the shift-placement note. The TeX has that note but still needs a full narrative update for the current Weil/DI proof and a separately checked rebuild.
+4. Complete the independent specification/source correspondence review and the candidate paper-to-Lean mapping. Neither is certified by a standard-only axiom list.
+5. Confirm author names, affiliations, acknowledgements, citation metadata and submission venue with the maintainer. Do not infer authorship from a copyright notice or invent metadata.
+6. Inspect the staged files: no credentials, dependency checkout, private transcript, unrelated research material or build cache. Review manifest updates separately from mathematical changes.
 
-The numerical workflow is configured for read-only repository access. A passing workflow means the numerical package reproduced; it is not an analytic peer-review badge.
-
-The underlying claim remains the multiplicity-counted on-line proportion. Keep simple-zero statements, priority assertions and human-review status separate from the numerical candidate.
+This documentation update makes no submission, announcement, new tag or release.
+The claimed conclusion remains a conditional, multiplicity-counted proportion
+strictly above 88.45%, not a simple-zero or global-optimality result.

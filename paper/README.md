@@ -2,7 +2,7 @@
 
 This package fixes one explicit two-component mollifier. It contains no optimizer and needs no CUE sample, zero table, private repository, or earlier internal report.
 
-The claim submitted for verification is
+The older manuscript states its intended claim in the following notation:
 
 \[
 \liminf_{T\to\infty}N_{\xi',c}(T)/N(T)>.8845.
@@ -10,14 +10,35 @@ The claim submitted for verification is
 
 Both counts include multiplicity. This is not a simple-zero claim. The manuscript is a proof draft for expert review, not a declaration of peer-reviewed validity or publication priority. Authorship and affiliations are intentionally not assigned in this package.
 
-## Read first
+## Current scope and reading order
 
-**7 November 2026 erratum:** `manuscript.tex` now includes the shift-placement note linked from [STATUS](../docs/STATUS.md#v010-erratum-shift-placement-7-november-2026). `manuscript.pdf` is still the pre-note version; rebuilding and visual inspection of the revised PDF are pending. The numerical interval results are unchanged. The certificate's manuscript source hash and package manifests are updated for the revised TeX; the historical tag is preserved.
+Updated: 9 November 2026. This directory is the **manuscript and numerical**
+part of the repository; it is not the authoritative current Lean proof guide.
+For the current formal theorem, begin with [REVIEW_GUIDE.md](../docs/REVIEW_GUIDE.md)
+and [trust-base.md](../docs/trust-base.md).
 
-1. `manuscript.pdf` or `manuscript.tex`: definitions, exact witness, counting lemma, published moment input, specialized kernel, and finite certificate.
-2. `numerical_interval.py`: the compact interval evaluator, copied without numerical changes from the previously checked fixed-witness evaluator.
-3. `verify.py`: exact rational admissibility, the four complete Laurent kernel identities, four interval runs, and optional package-integrity checking.
-4. `certificate.json`: captured output of `verify.py`. The certificate covers the displayed finite functional, not the analytic reduction.
+The current `WuProportion` theorems prove the proportion for AF's actual
+xi-prime zero counts under explicit `WeilIncomplete` and
+`DeshouillersIwaniecLemma1` hypotheses. The former PRZZ witness input is
+now a proved theorem. Neither deep input is proved here, and the exact
+specifications still require independent source correspondence review.
+
+The display above uses the manuscript's notation. It must not be treated
+as a declaration-by-declaration match with the Lean statement: compare
+the denominator, window conventions and asymptotic normalization using
+the [candidate correspondence table](../docs/paper-correspondence.md).
+
+| Artifact | Current role and limitation |
+| --- | --- |
+| `manuscript.tex` | Older audit draft plus the 7 November shift-placement note; not fully rewritten for the current Weil/DI-based proof. |
+| `manuscript.pdf` | Historical PDF predating that note; not a render of the current TeX. Rebuild and page-by-page visual inspection remain pending. |
+| `numerical_interval.py`, `verify.py` | Unchanged finite-functional calculation; no optimizer or formal verification of mpmath. |
+| `certificate.json` | Saved finite enclosure. The TeX provenance hash was updated for the erratum; interval results are unchanged. |
+| `SHA256SUMS` | Current paper-directory file integrity, not evidence of mathematical validity or a PDF rebuild. |
+
+Read the TeX for the witness and original argument, then inspect the numerical
+code and certificate. Use the root Lean source and current verification
+record for formal claims. Authorship/submission decisions are separate.
 
 The main-term inequalities in the manuscript are outward decimal weakenings of the computed intervals. They are not rounded midpoints treated as bounds.
 
@@ -46,11 +67,15 @@ The pre-note PDF was built with Tectonic 0.17.0 and visually inspected page by p
 
 ## Questions requiring analytic review
 
+These are independent interpretation/specification checks, not a claim that
+the corresponding Lean connections are still unimplemented. The current
+proof route and its actual remaining assumptions are in the review guide.
+
 | Location in manuscript | Exact question |
 | --- | --- |
 | Lemma 2, phase-counting step | Does the direct auxiliary function, with only a nonzero linear odd term in its centered polynomial, give the stated multiplicity-counted inequality with the specified boundary convention? |
 | Lemma 2, right boundary and exact V | Are the absolute-convergence normalization and L2 comparison adequate before Jensen, without importing a negative-log-tail estimate? |
-| Section 3, PRZZ Theorem 4.1 | Does the third coefficient case and its profile extension cover all four pairings of the unrestricted convolution at the fixed length, uniformly in the required complex shifts? |
+| Section 3 and the current deep inputs | Do the exact Weil completion and DI specifications match the cited results, with their quantified constants and full parameter ranges? Does the revised witness bridge implement the intended density and coefficient family? |
 | Proposition 3 | Does the published Euler-factor/contour analysis give precisely the four expanded kernels, including inverse Mellin powers and the dual shift exchange? |
 | Lemma 4 | Are the interval tail propagation and outward bounds sufficient? The full code is supplied for reimplementation. |
 | Lemma 2, globalization | Is the fixed-window-then-finite-dyadic-sum limiting order adequate for the claimed liminf? |
@@ -67,4 +92,4 @@ The preceding literature search, including 2026 materials, did not locate a scho
 
 ## Boundaries of the package
 
-No RH assumption, root-Palm estimate, high-moment small-value hypothesis, simple-zero theorem, or global numerical optimality assertion is used. The interval library itself is not formally verified. The analytic conclusions are not certified by running the Python script. Nothing has been sent to a third party.
+No RH assumption, root-Palm estimate, high-moment small-value hypothesis, simple-zero theorem, or global numerical optimality assertion is used. The interval library itself is not formally verified. The analytic conclusions are not certified by running the Python script. The repository has been pushed to GitHub. This document records no expert submission or human peer-review outcome.
