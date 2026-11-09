@@ -8,6 +8,7 @@ noncomputable section
 open scoped BigOperators
 open Complex Filter Topology
 namespace XiPrime8845.WuFiniteDeflation
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliaryMultiplicity
 set_option maxHeartbeats 2000000
 

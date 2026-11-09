@@ -9,6 +9,7 @@ noncomputable section
 open scoped BigOperators
 open Set Filter Topology
 namespace XiPrime8845.WuXiBands
+variable [PRZZProvedInput.DeepInputs]
 open Zeta23 (ZeroConfig)
 open Zeta23.XiPrime
 set_option maxHeartbeats 1000000

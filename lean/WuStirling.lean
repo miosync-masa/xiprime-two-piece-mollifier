@@ -8,6 +8,7 @@ noncomputable section
 open scoped BigOperators
 open Filter Topology Finset
 namespace XiPrime8845.WuStirling
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliary Zeta23.XiPrime
 set_option maxHeartbeats 2000000
 

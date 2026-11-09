@@ -1,0 +1,656 @@
+{
+  "scope": "Exact local closure; source-checked local and pinned external caches reused",
+  "full_project_rebuilt": false,
+  "full_moment_square_uniformity_proved": false,
+  "target": "PRZZMellinInterval",
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "lean_toolchain": "leanprover/lean4:v4.33.0-rc2",
+  "runner_sha256": "bfb7d1a6f28118a9d9c10d684d9df959532c90d75ba24668bb5a1f81d0c605b7",
+  "audit_runner_sha256": "e2abd038ebf6a3dea14201680cb0b18390314286ca4f7ad419d6496473afc900",
+  "historical_baseline_sha256": "3745206bb49918e581c0b5d78e429ffad794359edb180c959480d7266f29a2ed",
+  "fresh_module_count": 1,
+  "prebuilt_conflicts_resolved_by_verified_fresh_cache": [],
+  "module_count": 61,
+  "checks": {
+    "PRZZKloostermanInputs.lean": {
+      "exit_code": 0,
+      "sha256": "8d9ee44cea3b7ccef26e7d673e97ff18d070ecc89e319cc55e89228524aed6ac",
+      "output": "'XiPrime8845.PRZZKloostermanInputs.WeilPrime' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZKloostermanInputs.WeilIncomplete' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZKloostermanInputs.DeshouillersIwaniecLemma1' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "4be522bce00ab7607d1f716b3a6c0edc7075f5a930c6d919f90bddb02d0b3e76",
+      "dependency_fingerprints": {},
+      "reused_this_run": true
+    },
+    "PRZZTypeII.lean": {
+      "exit_code": 0,
+      "sha256": "1701fc7ba137bc1d82e5bc20f5ecfb2d4a54596f114d7e9897279944044e0280",
+      "output": "'XiPrime8845.PRZZTypeII.diSum_const_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZTypeII.di_bound_scaled' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZTypeII.block_le_diSum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZTypeII.block_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZTypeII.negativeBlock_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZTypeII.two_sided_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "049a915771eb56dcbd49f8f00db9b92e88b13aa97fc5ddbebc797c6061ad59d7",
+      "dependency_fingerprints": {
+        "PRZZKloostermanInputs": "4be522bce00ab7607d1f716b3a6c0edc7075f5a930c6d919f90bddb02d0b3e76"
+      },
+      "reused_this_run": true
+    },
+    "PRZZMellinSeparation.lean": {
+      "exit_code": 0,
+      "sha256": "36076768b506866d3097e7cc1b3bbde61276290de942dae3a041ebced9a5ae82",
+      "output": "'XiPrime8845.PRZZMellinSeparation.twist_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeparation.inversion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeparation.separate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeparation.sum_separate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeparation.integral_budget' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeparation.scaled_mellin' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeparation.scaled_verticalIntegrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeparation.scaled_mellin_mass' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "0a046b391a4ff0a06a4b87a27506d689f7104f266757be2f88d1f344ee881521",
+      "dependency_fingerprints": {},
+      "reused_this_run": true
+    },
+    "PRZZMellinTypeII.lean": {
+      "exit_code": 0,
+      "sha256": "bb63ffd1f754703e1f421a58b444aff1b507793ba714d9e412ee5e62f7b6ad0c",
+      "output": "'XiPrime8845.PRZZMellinTypeII.sum_indices' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinTypeII.separated_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinTypeII.twisted_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinTypeII.coupled_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinTypeII.coupled_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "5117258a8041e2f5b8f299807be0e93e9e85c8cde5f72431fc88b4ae4005aa88",
+      "dependency_fingerprints": {
+        "PRZZTypeII": "049a915771eb56dcbd49f8f00db9b92e88b13aa97fc5ddbebc797c6061ad59d7",
+        "PRZZMellinSeparation": "0a046b391a4ff0a06a4b87a27506d689f7104f266757be2f88d1f344ee881521"
+      },
+      "reused_this_run": true
+    },
+    "PRZZSmoothMellin.lean": {
+      "exit_code": 0,
+      "sha256": "00f069a5bbafcb9b356c1fcf07e08bc82d8a001f279cd8e4e01e8f9b68493017",
+      "output": "'XiPrime8845.PRZZSmoothMellin.logPull_support' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSmoothMellin.logPull_compact' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSmoothMellin.vertical_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSmoothMellin.mellin_convergent' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSmoothMellin.rapid_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSmoothMellin.scaled_rapid_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSmoothMellin.scaled_suppliers' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSmoothMellin.coupled_bound_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "3e9c2ffbc7443b56922531618380370e4571a9cd3f43c105ef0ef806350e5359",
+      "dependency_fingerprints": {
+        "PRZZMellinTypeII": "5117258a8041e2f5b8f299807be0e93e9e85c8cde5f72431fc88b4ae4005aa88"
+      },
+      "reused_this_run": true
+    },
+    "PRZZMellinMoment.lean": {
+      "exit_code": 0,
+      "sha256": "1a77042609e259e4fc5cba5e1b1819a13b20e319249d6f1760feb418e4409461",
+      "output": "'XiPrime8845.PRZZMellinMoment.polynomial_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinMoment.linear_mass' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "8fc20d154f41f36fecbd193e2dff16aef89ea4a012740494e48e0f6fa4bc150d",
+      "dependency_fingerprints": {
+        "PRZZSmoothMellin": "3e9c2ffbc7443b56922531618380370e4571a9cd3f43c105ef0ef806350e5359"
+      },
+      "reused_this_run": true
+    },
+    "PRZZAStar.lean": {
+      "exit_code": 0,
+      "sha256": "c0cd37b7c7eb9bf4f23cbf659d7817371d72e565f0403a667a8b91932c6a393e",
+      "output": "'XiPrime8845.PRZZAStar.literal_eq_sum_integrals' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStar.literal_eq_integral_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStar.innerKernel_zero_of_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStar.delta_cutoff_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStar.h_cutoff_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "b5e1aed11190e54f940ced74ba0c54933661a0796dde31962c4df2e9acfa428e",
+      "dependency_fingerprints": {
+        "PRZZKloostermanInputs": "4be522bce00ab7607d1f716b3a6c0edc7075f5a930c6d919f90bddb02d0b3e76"
+      },
+      "reused_this_run": true
+    },
+    "PRZZAStarIntegrability.lean": {
+      "exit_code": 0,
+      "sha256": "b4c11c2988e85c067bd170e48a8b3bc4d1190bf1642574a9b1a41f41f66f226c",
+      "output": "'XiPrime8845.PRZZAStarIntegrability.inner_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarIntegrability.kernel_integrable_y' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarIntegrability.literal_eq_integral_sum_of_cutoff' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "6d0ac5d1b2d2c252ec2439b46d76f56f26dfda1d02bd3ceabc14f7e9d469e810",
+      "dependency_fingerprints": {
+        "PRZZAStar": "b5e1aed11190e54f940ced74ba0c54933661a0796dde31962c4df2e9acfa428e"
+      },
+      "reused_this_run": true
+    },
+    "PRZZAStarFubini.lean": {
+      "exit_code": 0,
+      "sha256": "4bf064fb4ceaf4cbff899f9278897f0299d9c72bc00f462791dc13deaca84523",
+      "output": "'XiPrime8845.PRZZAStarFubini.kernel_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarFubini.outer_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarFubini.kernel_integral_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarFubini.literal_eq_integral_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "0468aa93f2ea1c6ded08c13ae085a489fb1836a716de439f9a074e858240ad08",
+      "dependency_fingerprints": {
+        "PRZZAStarIntegrability": "6d0ac5d1b2d2c252ec2439b46d76f56f26dfda1d02bd3ceabc14f7e9d469e810"
+      },
+      "reused_this_run": true
+    },
+    "PRZZAStarMellin.lean": {
+      "exit_code": 0,
+      "sha256": "cba7238be2e66325006aab2243176f5d1fc879f8ea45a3c6998d8a60645842c0",
+      "output": "'XiPrime8845.PRZZAStarMellin.kernel_amplitude' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarMellin.finite_integrand_mellin' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "73946fb6e9895c5a76c77d7894d7635f40139fb2fade26ed3015c10697260aa7",
+      "dependency_fingerprints": {
+        "PRZZAStarIntegrability": "6d0ac5d1b2d2c252ec2439b46d76f56f26dfda1d02bd3ceabc14f7e9d469e810",
+        "PRZZSmoothMellin": "3e9c2ffbc7443b56922531618380370e4571a9cd3f43c105ef0ef806350e5359"
+      },
+      "reused_this_run": true
+    },
+    "PRZZWindowWeight.lean": {
+      "exit_code": 0,
+      "sha256": "b82361a5e35873fd60dc29fcffb6c0dc29d7e8a805320e658fa9c4f09946b843",
+      "output": "'XiPrime8845.PRZZWindowWeight.window_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWindowWeight.twisted_window_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "3b3ae4f665d3c80e0afa748509950c74620be96d343d1749b1e347323d33fdd4",
+      "dependency_fingerprints": {
+        "PRZZAStarMellin": "73946fb6e9895c5a76c77d7894d7635f40139fb2fade26ed3015c10697260aa7"
+      },
+      "reused_this_run": true
+    },
+    "PRZZAStarWindow.lean": {
+      "exit_code": 0,
+      "sha256": "ee1e3013323adcc6e8bcdb37658c803b0cf2256db4c452420617530a5cb6c6b8",
+      "output": "'XiPrime8845.PRZZAStarWindow.support_window' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarWindow.indicator_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarWindow.literal_window' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "264e71db375a459edfff5dc8c90414275d52e28d3fe5c0aaa34499ef4c51be8d",
+      "dependency_fingerprints": {
+        "PRZZAStarFubini": "0468aa93f2ea1c6ded08c13ae085a489fb1836a716de439f9a074e858240ad08",
+        "PRZZWindowWeight": "3b3ae4f665d3c80e0afa748509950c74620be96d343d1749b1e347323d33fdd4"
+      },
+      "reused_this_run": true
+    },
+    "PRZZWindowDominance.lean": {
+      "exit_code": 0,
+      "sha256": "d2cf1d1cd37ece5e2a8eb6312ca2dbca42475ccdea21bc1245946b88e267da54",
+      "output": "'XiPrime8845.PRZZWindowDominance.joint_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWindowDominance.mellin_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "c8d4b13b35a209ffe9be2b46b833017c7c121f2bb24d3c24b05bfe7932559f2d",
+      "dependency_fingerprints": {
+        "PRZZAStarWindow": "264e71db375a459edfff5dc8c90414275d52e28d3fe5c0aaa34499ef4c51be8d"
+      },
+      "reused_this_run": true
+    },
+    "PRZZActualMellin.lean": {
+      "exit_code": 0,
+      "sha256": "abeade2d5204cbf9cb23d0df7b4f9dc5a4e0b47907f7bebb4c288a3e64bf61ca",
+      "output": "'XiPrime8845.PRZZActualMellin.amplitude_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZActualMellin.localized_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZActualMellin.localized_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZActualMellin.finite_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZActualMellin.localized_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "37c8f8639868937660ff652144c1988178e5bc16d2ff4fb7a51c52a5c7e848d6",
+      "dependency_fingerprints": {
+        "PRZZWindowDominance": "c8d4b13b35a209ffe9be2b46b833017c7c121f2bb24d3c24b05bfe7932559f2d"
+      },
+      "reused_this_run": true
+    },
+    "PRZZDyadicWindow.lean": {
+      "exit_code": 0,
+      "sha256": "3728652e06545cf9fb5ca441668ff0ae63994d8d8f1a1d06b6b1d4e172e699db",
+      "output": "'XiPrime8845.PRZZDyadicWindow.support_box' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicWindow.indicator_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicWindow.support_box_of_cutoffs' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicWindow.literal_box' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicWindow.volume_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicWindow.mass_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicWindow.dyadic_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "ba18b19295c31661ffc7ff15a7f271641bd42c61c447692e01db9c355994bcc1",
+      "dependency_fingerprints": {
+        "PRZZActualMellin": "37c8f8639868937660ff652144c1988178e5bc16d2ff4fb7a51c52a5c7e848d6"
+      },
+      "reused_this_run": true
+    },
+    "PRZZTypeI.lean": {
+      "exit_code": 0,
+      "sha256": "21ef7a6e06bc47cb587254e172378420fefdd1df964ad85df220f209c887dbcf",
+      "output": "'XiPrime8845.PRZZTypeI.incomplete_eq_range' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZTypeI.abel_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZTypeI.weighted_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "4d433ca3b6d8877c1f76001b52a3745974d207dc4d23e8942962abf997414138",
+      "dependency_fingerprints": {
+        "PRZZKloostermanInputs": "4be522bce00ab7607d1f716b3a6c0edc7075f5a930c6d919f90bddb02d0b3e76"
+      },
+      "reused_this_run": true
+    },
+    "PRZZTypeIWeights.lean": {
+      "exit_code": 0,
+      "sha256": "1ece034321ad2c22f7e22e31c0abaed2dd805ecfda65385852fae2a6dfdf4454",
+      "output": "'XiPrime8845.PRZZTypeIWeights.source_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZTypeIWeights.source_derivative_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZTypeIWeights.variation_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZTypeIWeights.sampled_step' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "d32fd91bcf0b565a5c460413c822100b0d4cf6588eeb99dc56d170e0a5e60cf8",
+      "dependency_fingerprints": {
+        "PRZZTypeI": "4d433ca3b6d8877c1f76001b52a3745974d207dc4d23e8942962abf997414138"
+      },
+      "reused_this_run": true
+    },
+    "PRZZSmoothWeights.lean": {
+      "exit_code": 0,
+      "sha256": "a311789920864f3a217905f8868a70dae1f0e61d3a9213b4c9efac5e9918be7f",
+      "output": "'XiPrime8845.PRZZSmoothWeights.scaled_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSmoothWeights.scaled_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSmoothWeights.cutoff_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSmoothWeights.source_bound_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "c921c3b362fee02fc85eeb24b46d57f8ab0eb634d1ef57cbeadb03a45edf7bd0",
+      "dependency_fingerprints": {
+        "PRZZSmoothMellin": "3e9c2ffbc7443b56922531618380370e4571a9cd3f43c105ef0ef806350e5359",
+        "PRZZTypeIWeights": "d32fd91bcf0b565a5c460413c822100b0d4cf6588eeb99dc56d170e0a5e60cf8"
+      },
+      "reused_this_run": true
+    },
+    "PRZZAStarTransform.lean": {
+      "exit_code": 0,
+      "sha256": "5f5846374a06eba67fac062f4473a8abce352ca862c172ab964606522ef339ca",
+      "output": "'XiPrime8845.PRZZAStarTransform.kernel_inversion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarTransform.literal_mellin' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "f0cd850ba8dbfc9bd0d8fabb0aa0ebed7f1d693131619ded96805a6f1b7f04f3",
+      "dependency_fingerprints": {
+        "PRZZActualMellin": "37c8f8639868937660ff652144c1988178e5bc16d2ff4fb7a51c52a5c7e848d6"
+      },
+      "reused_this_run": true
+    },
+    "PRZZAStarFrequency.lean": {
+      "exit_code": 0,
+      "sha256": "7c22ee53dc12b56607200821a5ec7bcfc1434de2ba168db3382c58976d274ad9",
+      "output": "'XiPrime8845.PRZZAStarFrequency.kernel_phase' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarFrequency.regroup' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarFrequency.literal_regroup' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarFrequency.residual_separated' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "9c15f131c161eaaea21ed201b79ed72e2a75d2031f357f567ad2c870abc5e0bc",
+      "dependency_fingerprints": {
+        "PRZZAStarFubini": "0468aa93f2ea1c6ded08c13ae085a489fb1836a716de439f9a074e858240ad08"
+      },
+      "reused_this_run": true
+    },
+    "PRZZNuCoefficient.lean": {
+      "exit_code": 0,
+      "sha256": "d697327f28fd8cbb9b935f34554fb87d005f40a35e1d6b2871f7017bd274b1bd",
+      "output": "'XiPrime8845.PRZZNuCoefficient.separate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZNuCoefficient.oscillation_norm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZNuCoefficient.nu_norm_le_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZNuCoefficient.fiber_card_le_divisors' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZNuCoefficient.nu_norm_le_divisors' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "8b25191414f74e2f3ff4926e7115c7846cbf51ecb3a1f7ab9bc4593a558a7efb",
+      "dependency_fingerprints": {
+        "PRZZAStarFrequency": "9c15f131c161eaaea21ed201b79ed72e2a75d2031f357f567ad2c870abc5e0bc"
+      },
+      "reused_this_run": true
+    },
+    "CompactShiftIntegral.lean": {
+      "sha256": "788010f507aad45d4abed063621f915e070529784a6ad67a86fa01f37a045e83",
+      "exit_code": 0,
+      "output": "'XiPrime8845.CompactShiftIntegral.rightIterated_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.CompactShiftIntegral.compact_integral_hasFDerivAt' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.CompactShiftIntegral.compact_integral_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "d91b6dd438ba0f26e2664061b8639ef933606e36fe345837dc63f384a9258fa5",
+      "dependency_fingerprints": {},
+      "reused_this_run": true
+    },
+    "PRZZInterface.lean": {
+      "sha256": "f588b787a4e67b14fe1eb142f444666ad980842715802ced6abc5c44e10fdbb7",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZ.witness_normalized_error_tendsto_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_przz_estimate' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n'XiPrime8845.PRZZ.witness_coefficient_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_subpower' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_profile_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.abs_fengArithmetic_le_log_sq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.coefficient_star' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.gcdMainTerm_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_densityGcdMainTerm_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.przz41_case3_K2_witness' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n",
+      "olean_sha256": "dadc04d29e844e4c019da52f71eba5a2cd6e4bdd173f046d8c421780ba003067",
+      "dependency_fingerprints": {},
+      "reused_this_run": true
+    },
+    "KernelAlgebra.lean": {
+      "sha256": "eadb0577a36db859613190b12a8f7dba28c6d1339a29e0c1f2ea44e3f964927d",
+      "exit_code": 0,
+      "output": "'XiPrime8845.kernel22' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.dual_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.centered_q' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.length_margin' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "c2236e608fbae77abf934ad23dc9a1b14ee23dbaa04be0726c26f0db98bd8cc0",
+      "dependency_fingerprints": {},
+      "reused_this_run": true
+    },
+    "PRZZAsymptotic.lean": {
+      "sha256": "a52c07e49c4983696e247abe4e279ecf1111afe424a993bd8300864211d38e09",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZAsymptotic.errorEnvelope_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAsymptotic.normalized_difference_bound' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n'XiPrime8845.PRZZAsymptotic.normalized_difference_uniform' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n'XiPrime8845.PRZZAsymptotic.radius_pos' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAsymptotic.witnessBidisc_subset' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAsymptotic.witnessBidisc_sum_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAsymptotic.normalized_difference_on_bidisc' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n'XiPrime8845.PRZZAsymptotic.moment_limit_of_gcd_limit' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n'XiPrime8845.PRZZAsymptotic.moment_uniform_limit_of_gcd_limit' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n'XiPrime8845.PRZZAsymptotic.mixed_cauchy_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAsymptotic.normalized_mixed_error_tendsto' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n",
+      "olean_sha256": "45f3176c57af67b4b8d5d889b8395e73978cb6837c679ca7881e28221e09fac6",
+      "dependency_fingerprints": {
+        "PRZZInterface": "dadc04d29e844e4c019da52f71eba5a2cd6e4bdd173f046d8c421780ba003067",
+        "KernelAlgebra": "c2236e608fbae77abf934ad23dc9a1b14ee23dbaa04be0726c26f0db98bd8cc0"
+      },
+      "reused_this_run": true
+    },
+    "ArithmeticRegularity.lean": {
+      "sha256": "d00df824f6e8eadb83d6de4b87c3511635a55a2419ab92e8d72c246e7a193902",
+      "exit_code": 0,
+      "output": "'XiPrime8845.ArithmeticRegularity.momentCore_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ArithmeticRegularity.zeta_shift_ne_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ArithmeticRegularity.gcd_zeta_ne_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ArithmeticRegularity.closed_disc_re_neg' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ArithmeticRegularity.weighted_integral_restrict' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ArithmeticRegularity.twistedMoment_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ArithmeticRegularity.gcdCore_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ArithmeticRegularity.gcd_integral_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ArithmeticRegularity.gcdMainTerm_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ArithmeticRegularity.normalizedError_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ArithmeticRegularity.normalizedError_right_regular' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.ArithmeticRegularity.normalizedError_left_mixed_regular' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.ArithmeticRegularity.normalized_mixed_error_tendsto' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n",
+      "olean_sha256": "9bfa62d429569cc27bac5462f7c5cab51162563ed217777881811ab3949a1b8c",
+      "dependency_fingerprints": {
+        "CompactShiftIntegral": "d91b6dd438ba0f26e2664061b8639ef933606e36fe345837dc63f384a9258fa5",
+        "PRZZAsymptotic": "45f3176c57af67b4b8d5d889b8395e73978cb6837c679ca7881e28221e09fac6"
+      },
+      "reused_this_run": true
+    },
+    "GcdDecomposition.lean": {
+      "sha256": "1e0c0df8e3e64ee9a753b27cf6048b7cfedc2936c6d1902b44b12db2ae38c91d",
+      "exit_code": 0,
+      "output": "'XiPrime8845.GcdDecomposition.positive_cpow' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.GcdDecomposition.gcdWeight_exp' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.GcdDecomposition.dual_weight' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.GcdDecomposition.weight_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.GcdDecomposition.phase_weight_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.GcdDecomposition.integrated_term' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.GcdDecomposition.gcdMainTerm_split' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.GcdDecomposition.normalized_gcd_split' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "5f5f1ab09c2fab468f96e0c9e43642186caf65b75ff4bc0945ca020166d7abe9",
+      "dependency_fingerprints": {
+        "ArithmeticRegularity": "9bfa62d429569cc27bac5462f7c5cab51162563ed217777881811ab3949a1b8c"
+      },
+      "reused_this_run": true
+    },
+    "SmoothMobius.lean": {
+      "sha256": "e28dc83da59b5071edef94544837df78a2ff41af516a522db3f9546ba7ff98b4",
+      "exit_code": 0,
+      "output": "'XiPrime8845.SmoothMobius.supported_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.supported_prime_pow' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.restricted_multiplicative' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.supportedWeight_prime_pow' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.supportedWeight_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.restricted_convolution' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.restricted_divisor_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SmoothMobius.moebius_mul_indicator' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "b62aa4a6496e4f76e9cdf1d18ec6fd7e501aa44998e0bf23ad5198f7af531c00",
+      "dependency_fingerprints": {},
+      "reused_this_run": true
+    },
+    "ElementaryGcd.lean": {
+      "sha256": "9010ffad13c9afe2e1761a6ab91fba92599845cf46a18d8f19d88a272fc52308",
+      "exit_code": 0,
+      "output": "'XiPrime8845.ElementaryGcd.reflect_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.reflectedBidisc_center' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.reflect_mem_twoBidiscs' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.uniform_reflected' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.sum_generalizedTotient' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.finite_diagonalization' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.arithmeticSum_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.sum_multiples' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.arithmeticSum_diagonal_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.weighted_divisor_reindex' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.coprime_weighted_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.ElementaryGcd.conrey_inner_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "390829f7db8db4528e2bfefe677233bd5ffd10cab27cb9e30d0ea47d5c57c9dd",
+      "dependency_fingerprints": {
+        "GcdDecomposition": "5f5f1ab09c2fab468f96e0c9e43642186caf65b75ff4bc0945ca020166d7abe9",
+        "SmoothMobius": "b62aa4a6496e4f76e9cdf1d18ec6fd7e501aa44998e0bf23ad5198f7af531c00"
+      },
+      "reused_this_run": true
+    },
+    "FengArithmetic.lean": {
+      "sha256": "7d844609675bfeca2b2a0b93a7811f967ee0377a1896c78aa6ad04b2fe3fe2a6",
+      "exit_code": 0,
+      "output": "'XiPrime8845.FengArithmetic.logWeight_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengArithmetic.logWeight_mu_zeta' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengArithmetic.logWeight_mu' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengArithmetic.mu_vonMangoldt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengArithmetic.feng_log_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengArithmetic.feng_divisor_formula' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengArithmetic.feng_prime' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengArithmetic.feng_prime_square' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.FengArithmetic.weighted_feng_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "2db5f38e09e0d1f39ba3839c11f4ce96aba6c418dc64c31695014257e8489eca",
+      "dependency_fingerprints": {
+        "ElementaryGcd": "390829f7db8db4528e2bfefe677233bd5ffd10cab27cb9e30d0ea47d5c57c9dd"
+      },
+      "reused_this_run": true
+    },
+    "PRZZLambda.lean": {
+      "sha256": "2acb955891d80ba8b911abb25c54459f203f28c6945fe7687ebff79f872d1b09",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZLambda.generalizedLambda_succ' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLambda.generalizedLambda_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLambda.generalizedLambda_two' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "76d32927f56f39b7b71d705d6b8b1e3b830f0b88ca65184c79bdaf20dfdc19cd",
+      "dependency_fingerprints": {
+        "FengArithmetic": "2db5f38e09e0d1f39ba3839c11f4ce96aba6c418dc64c31695014257e8489eca"
+      },
+      "reused_this_run": true
+    },
+    "SupportTail.lean": {
+      "sha256": "3b065176d8f019637e5cd1046c7e7281d719fc09f9d04516605af12573173ab8",
+      "exit_code": 0,
+      "output": "'XiPrime8845.SupportTail.supported_factored' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_hasSum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.rankin_point' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.rankin_finite' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_iff_rad_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_harmonic' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_average' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_average_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.supported_rankin_tail' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.averaged_rankin_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.squarefree_dvd_rad' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.summable_rad_weight' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.averaged_tail_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.normalizedTail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.SupportTail.normalizedTail_uniform_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "636dbb9fbced354abc8a1eba689fd3e69a6c378e6be9958608bc821cc001c122",
+      "dependency_fingerprints": {
+        "ElementaryGcd": "390829f7db8db4528e2bfefe677233bd5ffd10cab27cb9e30d0ea47d5c57c9dd"
+      },
+      "reused_this_run": true
+    },
+    "PRZZDISeven.lean": {
+      "exit_code": 0,
+      "sha256": "da1cb66e4cc6cff15438a8ce74f99d80aa122541d5b597ef547a161a7bb2a5cb",
+      "output": "'XiPrime8845.PRZZDISeven.seven_expand' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDISeven.balanced_exponents' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDISeven.balance_power' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDISeven.seven_balanced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDISeven.h_power_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDISeven.decay_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDISeven.decay_lower' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDISeven.balanced_h_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDISeven.seven_h_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDISeven.finite_h_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "e38ed0ae772609b267419ddda01763bb9ce89ba96c392414203508a4d838ee4f",
+      "dependency_fingerprints": {},
+      "reused_this_run": true
+    },
+    "PRZZGCoefficient.lean": {
+      "sha256": "ad4ea74de1ae330f1ee83763b8c4f6171a50f6ecc001795b602fcb58ed38f7d7",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZGCoefficient.coefficient_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGCoefficient.coefficient_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGCoefficient.sourceG_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGCoefficient.sourceG_average' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGCoefficient.sourceG_seven_average' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "84e78824dd3bf4a8aa66ac9e58f86d02071809c64d86af7d556c1d401ed1eeb2",
+      "dependency_fingerprints": {
+        "PRZZLambda": "76d32927f56f39b7b71d705d6b8b1e3b830f0b88ca65184c79bdaf20dfdc19cd",
+        "SupportTail": "636dbb9fbced354abc8a1eba689fd3e69a6c378e6be9958608bc821cc001c122",
+        "PRZZDISeven": "e38ed0ae772609b267419ddda01763bb9ce89ba96c392414203508a4d838ee4f"
+      },
+      "reused_this_run": true
+    },
+    "PRZZEulerSubpower.lean": {
+      "sha256": "179f8523feb8b2767ab7464d141a31af5de586abe7194a794bf26b86eed1dbb5",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZEulerSubpower.local_eventually' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZEulerSubpower.eulerMass_subpower' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZEulerSubpower.sourceG_average_subpower' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZEulerSubpower.sourceG_seven_subpower' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "d20d764eb5dcb1386cbad179f369d9cedc259fae5e3b2f72ac115a2077e3c2c6",
+      "dependency_fingerprints": {
+        "PRZZGCoefficient": "84e78824dd3bf4a8aa66ac9e58f86d02071809c64d86af7d556c1d401ed1eeb2"
+      },
+      "reused_this_run": true
+    },
+    "PRZZSourceTypeII.lean": {
+      "exit_code": 0,
+      "sha256": "6b243586fcff2a7c218729251ba17929b0b5e7091004cc93fe5907d4d5199f8e",
+      "output": "<package>/lean/PRZZSourceTypeII.lean:54:11: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n<package>/lean/PRZZSourceTypeII.lean:54:23: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'XiPrime8845.PRZZSourceTypeII.coprimeCoeff_norm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceTypeII.sourceSum_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceTypeII.sourceSum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "4789f00852aa1d6e3eb11129d5db24045f8a9bfb420cd53f12185937b01fb8bf",
+      "dependency_fingerprints": {
+        "PRZZTypeII": "049a915771eb56dcbd49f8f00db9b92e88b13aa97fc5ddbebc797c6061ad59d7"
+      },
+      "reused_this_run": true
+    },
+    "PRZZNuBounds.lean": {
+      "sha256": "eb94b6e9952da034b3bc43d2273dc9e0e70d63b06eb342069b850eeb04f16a3d",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZNuBounds.divisors_subpower' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZNuBounds.nu_subpower' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZNuBounds.positive_rectangle_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "47b38e2a9eb32b30d2d51be712abbb40db74b06b16551196f17e38affbd4951f",
+      "dependency_fingerprints": {
+        "PRZZNuCoefficient": "8b25191414f74e2f3ff4926e7115c7846cbf51ecb3a1f7ab9bc4593a558a7efb",
+        "PRZZEulerSubpower": "d20d764eb5dcb1386cbad179f369d9cedc259fae5e3b2f72ac115a2077e3c2c6",
+        "PRZZSourceTypeII": "4789f00852aa1d6e3eb11129d5db24045f8a9bfb420cd53f12185937b01fb8bf"
+      },
+      "reused_this_run": true
+    },
+    "PRZZAStarNu.lean": {
+      "sha256": "d0c4609525c8a2fb89854293dfc9de6ea76bf0f3d081ff605f1b28e157f95291",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZAStarNu.amplitude_nu' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarNu.localized_nu' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarNu.literal_mellin_nu' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarNu.frequency_positive_h' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarNu.frequency_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarNu.source_nu_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarNu.source_positive_rectangle_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "ac2c429dd48448f81ce53fc203fb56b11e6f4b6952c93a4470b26ca12a64b15b",
+      "dependency_fingerprints": {
+        "PRZZAStarTransform": "f0cd850ba8dbfc9bd0d8fabb0aa0ebed7f1d693131619ded96805a6f1b7f04f3",
+        "PRZZNuCoefficient": "8b25191414f74e2f3ff4926e7115c7846cbf51ecb3a1f7ab9bc4593a558a7efb",
+        "PRZZNuBounds": "47b38e2a9eb32b30d2d51be712abbb40db74b06b16551196f17e38affbd4951f"
+      },
+      "reused_this_run": true
+    },
+    "PRZZDyadic.lean": {
+      "exit_code": 0,
+      "sha256": "36f9213fd681cf13f982342543a84e44d693c36ffb4bfc00ddce5c3cb9ff37aa",
+      "output": "'XiPrime8845.PRZZDyadic.mem_cell' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadic.sum_partition' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadic.crossing' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadic.classify' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadic.box_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "explicit_axiom_declarations": 0,
+      "olean_sha256": "688fa7c5ccb507aed98b03619ef9c3d551342e007d2c7e6fdb48be82f1441f34",
+      "dependency_fingerprints": {},
+      "reused_this_run": true
+    },
+    "PRZZAStarRectangles.lean": {
+      "sha256": "0d12f2cc08cdfe3cb3910cba00c82d510aef000ad517e7535e39bff299bec516",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZAStarRectangles.pair_partition' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarRectangles.rectangle_separated' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarRectangles.signedSum_rectangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "464dcc34cf136308062e00a86e0799284dddc81d51b6d80040fd92d04b2e3887",
+      "dependency_fingerprints": {
+        "PRZZAStarNu": "ac2c429dd48448f81ce53fc203fb56b11e6f4b6952c93a4470b26ca12a64b15b",
+        "PRZZDyadic": "688fa7c5ccb507aed98b03619ef9c3d551342e007d2c7e6fdb48be82f1441f34"
+      },
+      "reused_this_run": true
+    },
+    "PRZZAStarIntegralBound.lean": {
+      "sha256": "e8cf4c475c6831e06463b5029c2996c85d9a9700b8aec35e2f3c69210be5e13f",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZAStarIntegralBound.common_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarIntegralBound.literal_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZAStarIntegralBound.literal_bound_of_rectangles' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "olean_sha256": "44fb374e4bfa7da5a119bdd5d6e8fe6358c337d41727a2e62d31388926f66514",
+      "dependency_fingerprints": {
+        "PRZZAStarRectangles": "464dcc34cf136308062e00a86e0799284dddc81d51b6d80040fd92d04b2e3887"
+      },
+      "reused_this_run": true
+    },
+    "PRZZOuterMass.lean": {
+      "sha256": "da2297540011739e74373aecfa75f6972fd9d47d694e447ade1f61210f947d0d",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZOuterMass.ratio_mem' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZOuterMass.log_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZOuterMass.inv_power_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZOuterMass.window_volume_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZOuterMass.common_mass_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZOuterMass.literal_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "8c4b904a6ad3befbc0e2a54e53e3c99307a63d21593d0a1ac3d0ba77605e03e5",
+      "dependency_fingerprints": {
+        "PRZZAStarIntegralBound": "44fb374e4bfa7da5a119bdd5d6e8fe6358c337d41727a2e62d31388926f66514"
+      },
+      "reused_this_run": true
+    },
+    "PRZZDyadicEnvelope.lean": {
+      "sha256": "6f161a326256d9711250bf44ed299757c39f6486bdd4d74d02f5da23069dab9d",
+      "exit_code": 0,
+      "output": "/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZDyadicEnvelope.lean:152:5: warning: Variable name `hB` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _hB\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\n'XiPrime8845.PRZZDyadicEnvelope.inverse_power' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicEnvelope.dyadic_log_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicEnvelope.scaled_cutoffs' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicEnvelope.annihilator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicEnvelope.annihilator_scaled' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicEnvelope.common_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicEnvelope.common_mass' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZDyadicEnvelope.arithmetic_integral_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "41543f0781151d4afdf801abbc7683acfe7e27b8530f1b5e93d67ab83ee10c00",
+      "dependency_fingerprints": {
+        "PRZZDyadicWindow": "ba18b19295c31661ffc7ff15a7f271641bd42c61c447692e01db9c355994bcc1",
+        "PRZZSmoothWeights": "c921c3b362fee02fc85eeb24b46d57f8ab0eb634d1ef57cbeadb03a45edf7bd0",
+        "PRZZOuterMass": "8c4b904a6ad3befbc0e2a54e53e3c99307a63d21593d0a1ac3d0ba77605e03e5",
+        "PRZZMellinMoment": "8fc20d154f41f36fecbd193e2dff16aef89ea4a012740494e48e0f6fa4bc150d"
+      },
+      "reused_this_run": true
+    },
+    "PRZZGaussianLine.lean": {
+      "sha256": "c168e4c7aa4acc5e796e66d78938c97bf22b23433ed20723afc65f2388f14ae0",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZGaussianLine.gaussian_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianLine.gaussian_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianLine.power_exp' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianLine.mellin_gaussian_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "548bd1b651f5c5bce4d4c06fb941816d81a9efeb203c1e27afe2197f7b12787f",
+      "dependency_fingerprints": {
+        "PRZZDyadicEnvelope": "41543f0781151d4afdf801abbc7683acfe7e27b8530f1b5e93d67ab83ee10c00"
+      },
+      "reused_this_run": true
+    },
+    "PRZZGaussianTail.lean": {
+      "sha256": "511c6b9a6606202934bfae1527baff59e5e2b80ee65b8ba7b7f31251c7486167",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZGaussianTail.laplace_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianTail.joint_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianTail.pole_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianTail.pole_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "074895325330e071b1ba0f142d04646fe4fefd42531604a10513e629f9e1a8bf",
+      "dependency_fingerprints": {
+        "PRZZGaussianLine": "548bd1b651f5c5bce4d4c06fb941816d81a9efeb203c1e27afe2197f7b12787f"
+      },
+      "reused_this_run": true
+    },
+    "PRZZGaussianCorrection.lean": {
+      "sha256": "de5db11e90c9c34a913bed85d58f479ab391327aab813bd31f02e6ceaea98a86",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZGaussianCorrection.moment_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianCorrection.moment_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "dba7e2dd1f83874d0e25a350d2f7ac7f61d822804c4dd8724672323fc78d2dc1",
+      "dependency_fingerprints": {
+        "PRZZGaussianTail": "074895325330e071b1ba0f142d04646fe4fefd42531604a10513e629f9e1a8bf"
+      },
+      "reused_this_run": true
+    },
+    "PRZZSourceW.lean": {
+      "sha256": "26b16c536e01a6e4e8e9b7becababe44e634ee9ca2b94b4182d110d340981650",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZSourceW.source_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceW.sourceW_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceW.tail_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceW.correction_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceW.sourceW_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceW.sourceW_scaled_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "2daa8ba72bafd7d5fafab3752a01797a844d9b392fc774d5e63689e80744b30a",
+      "dependency_fingerprints": {
+        "PRZZGaussianCorrection": "dba7e2dd1f83874d0e25a350d2f7ac7f61d822804c4dd8724672323fc78d2dc1"
+      },
+      "reused_this_run": true
+    },
+    "PRZZSourceDecay.lean": {
+      "sha256": "b83ea5571b75032f0230d33811db7a7f9475d463ebfe581dd0c6eb3ca25c7d78",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZSourceDecay.tail_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceDecay.sourceW_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceDecay.gaussian_linear_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceDecay.tail_exp_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceDecay.correction_exp_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "d534cac4e4604aff2f5b3db88cf8901c63ed7e7f4538777f0486bbd15982cd8b",
+      "dependency_fingerprints": {
+        "PRZZSourceW": "2daa8ba72bafd7d5fafab3752a01797a844d9b392fc774d5e63689e80744b30a"
+      },
+      "reused_this_run": true
+    },
+    "PRZZGaussianDerivatives.lean": {
+      "sha256": "b5d2251e70b6fc906e1953edf633487475e1508fc6f47caf48a1aa71369894d3",
+      "exit_code": 0,
+      "output": "/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZGaussianDerivatives.lean:21:50: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'XiPrime8845.PRZZGaussianDerivatives.weighted_cutoff_removed' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianDerivatives.weighted_integral' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianDerivatives.weighted_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianDerivatives.tail_derivatives_integrable' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZGaussianDerivatives.correction_derivatives_integrable' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZGaussianDerivatives.weighted_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianDerivatives.weighted_iterated' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianDerivatives.tail_iterated' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZGaussianDerivatives.correction_iterated' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "f9612f84d06269bbf469f84bb868f9f5cfb69f13dbae986b8db09c395b6df846",
+      "dependency_fingerprints": {
+        "PRZZSourceDecay": "d534cac4e4604aff2f5b3db88cf8901c63ed7e7f4538777f0486bbd15982cd8b"
+      },
+      "reused_this_run": true
+    },
+    "PRZZLogDerivatives.lean": {
+      "sha256": "bd46f560786c3f07597b069a15989649d252fe8a06ab10e4fac6ad4f98c653cf",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZLogDerivatives.tail_ordinary' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLogDerivatives.tail_ordinary_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLogDerivatives.monomial_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLogDerivatives.weighted_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLogDerivatives.ordinary_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLogDerivatives.scaled_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZLogDerivatives.ordinary_iterated' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "a1974e0593b0d97632452adabde9dd200c59f8f8a24a9d0d03f475e841a56cf6",
+      "dependency_fingerprints": {
+        "PRZZGaussianDerivatives": "f9612f84d06269bbf469f84bb868f9f5cfb69f13dbae986b8db09c395b6df846"
+      },
+      "reused_this_run": true
+    },
+    "PRZZSourceWDerivatives.lean": {
+      "sha256": "b58b6bb4b5094df927646d0320075d4d72b34d85e2749f5ae062b6752bef7d67",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZSourceWDerivatives.source_scaled_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceWDerivatives.source_derivative_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceWDerivatives.source_all_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceWDerivatives.source_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceWDerivatives.jet_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZSourceWDerivatives.source_iterated' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "8757e309c36358ebc791ad85b2cc77dfe42c89998354644d01146d7295174678",
+      "dependency_fingerprints": {
+        "PRZZLogDerivatives": "a1974e0593b0d97632452adabde9dd200c59f8f8a24a9d0d03f475e841a56cf6"
+      },
+      "reused_this_run": true
+    },
+    "PRZZPoissonWDerivative.lean": {
+      "sha256": "e313e423faede9d8189cb9ee085a92440fe855b5b5414459bfdb9d54571cd648",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZPoissonWDerivative.quadratic_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZPoissonWDerivative.quadratic_scaled_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZPoissonWDerivative.cutoff_scaled_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "9fbd3fbb41ebc0fa193b73fbd8a2cf46750ddfff5051270cfbf2a42541a4feee",
+      "dependency_fingerprints": {
+        "PRZZSourceWDerivatives": "8757e309c36358ebc791ad85b2cc77dfe42c89998354644d01146d7295174678",
+        "PRZZSmoothWeights": "c921c3b362fee02fc85eeb24b46d57f8ab0eb634d1ef57cbeadb03a45edf7bd0"
+      },
+      "reused_this_run": true
+    },
+    "PRZZFullWeightSmooth.lean": {
+      "sha256": "dd89e609cf69a7554787a140c67388c16a18907cfda34512e9dda89f51101f57",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZFullWeightSmooth.source_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZFullWeightSmooth.weight_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZFullWeightSmooth.weight_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZFullWeightSmooth.weight_iterated_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZFullWeightSmooth.weight_derivative_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "7325671bf0f024824890548647d03ca2fc3acc3aab88141cfacd7aa109209499",
+      "dependency_fingerprints": {
+        "PRZZPoissonWDerivative": "9fbd3fbb41ebc0fa193b73fbd8a2cf46750ddfff5051270cfbf2a42541a4feee"
+      },
+      "reused_this_run": true
+    },
+    "PRZZCutoffJets.lean": {
+      "sha256": "f42a8509044275b85caddada1b0ba51d92c0e83f68b238e32683fc78236b8671",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZCutoffJets.scaled_leibniz' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCutoffJets.jet_support' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCutoffJets.scaled_jet' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCutoffJets.ordinary_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCutoffJets.scaled_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "8e0174e7460e320a663870ad1c7fccc8d5d0668f782c9cdb6e9b602ac45f1153",
+      "dependency_fingerprints": {
+        "PRZZFullWeightSmooth": "7325671bf0f024824890548647d03ca2fc3acc3aab88141cfacd7aa109209499"
+      },
+      "reused_this_run": true
+    },
+    "PRZZPowerJets.lean": {
+      "sha256": "3b96c18eb5aae9a6ff4dbfc04715199a7c69caf860fdef18fabde5df65b20f66",
+      "exit_code": 0,
+      "output": "/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZPowerJets.lean:21:29: warning: This simp argument is unused:\n  Complex.real_smul\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [jet, coeff, power, Function.comp_apply, Complex.ofRealCLM_apply, Pi.pow_apply, Pi.mul_apply,\n    Complex.ofReal_one]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZPowerJets.lean:21:47: warning: This simp argument is unused:\n  Function.comp_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [jet, coeff, power, Complex.real_smul, Complex.ofRealCLM_apply, Pi.pow_apply, Pi.mul_apply,\n    Complex.ofReal_one]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZPowerJets.lean:22:41: warning: This simp argument is unused:\n  Pi.mul_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [jet, coeff, power, Complex.real_smul, Function.comp_apply, Complex.ofRealCLM_apply, Pi.pow_apply,\n    Complex.ofReal_one]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZPowerJets.lean:27:33: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZPowerJets.lean:27:33: warning: 'ring' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n'XiPrime8845.PRZZPowerJets.jet_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZPowerJets.iterated' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZPowerJets.scaled_norm' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "0c6317a699cc1da22120c573faec7b083d1f46e14884987a2a2224aaeaa42058",
+      "dependency_fingerprints": {
+        "PRZZCutoffJets": "8e0174e7460e320a663870ad1c7fccc8d5d0668f782c9cdb6e9b602ac45f1153"
+      },
+      "reused_this_run": true
+    },
+    "PRZZReciprocalJets.lean": {
+      "sha256": "3e18fcefdf81745413c6c766c40301426b7a216f96be3aa00c87ba42434ac043",
+      "exit_code": 0,
+      "output": "/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZReciprocalJets.lean:34:23: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'XiPrime8845.PRZZReciprocalJets.scaled_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZReciprocalJets.envelope_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZReciprocalJets.term_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZReciprocalJets.iterated' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZReciprocalJets.phase_norm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZReciprocalJets.bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "92a520b3b7ea8b6004d45cb9e1459c3c113f069f2a2a462947d926d929e3d672",
+      "dependency_fingerprints": {
+        "PRZZFullWeightSmooth": "7325671bf0f024824890548647d03ca2fc3acc3aab88141cfacd7aa109209499"
+      },
+      "reused_this_run": true
+    },
+    "PRZZQuadraticJets.lean": {
+      "sha256": "3db3fa8a2747e994d4597f8e836a7af020a6d2148589a693fa367c3b45f77efd",
+      "exit_code": 0,
+      "output": "/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZQuadraticJets.lean:29:23: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZQuadraticJets.lean:46:6: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZQuadraticJets.lean:40:21: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZQuadraticJets.lean:40:25: warning: 'first\n| rfl\n| skip' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZQuadraticJets.lean:44:2: warning: 'push_cast' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZQuadraticJets.lean:46:6: warning: 'ring' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n'XiPrime8845.PRZZQuadraticJets.scaled_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZQuadraticJets.all_decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZQuadraticJets.scaled_shifts' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZQuadraticJets.term_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZQuadraticJets.first_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZQuadraticJets.jet_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZQuadraticJets.iterated' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZQuadraticJets.term_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZQuadraticJets.decay' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "164ad299d37c4902abf75c3746c77fffad7e74902c0aaf15cd146a349e24a8ad",
+      "dependency_fingerprints": {
+        "PRZZFullWeightSmooth": "7325671bf0f024824890548647d03ca2fc3acc3aab88141cfacd7aa109209499"
+      },
+      "reused_this_run": true
+    },
+    "PRZZFullWeightJets.lean": {
+      "sha256": "4e381efedc8cc96253b0736d9732719f5e2d91261fa1f6fbd648fa7f8b936836",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZFullWeightJets.product_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZFullWeightJets.uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZFullWeightJets.ordinary_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "9fd4563cdf2863d72fbed47319e9f4003cd0c1c5651e20036941a0146f4b60f6",
+      "dependency_fingerprints": {
+        "PRZZPowerJets": "0c6317a699cc1da22120c573faec7b083d1f46e14884987a2a2224aaeaa42058",
+        "PRZZReciprocalJets": "92a520b3b7ea8b6004d45cb9e1459c3c113f069f2a2a462947d926d929e3d672",
+        "PRZZQuadraticJets": "164ad299d37c4902abf75c3746c77fffad7e74902c0aaf15cd146a349e24a8ad"
+      },
+      "reused_this_run": true
+    },
+    "PRZZWeightFourier.lean": {
+      "sha256": "45a07ba622594cb99b0cd743c09f066db215a2db08c2d7103b45cb6508aaf348",
+      "exit_code": 0,
+      "output": "/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZWeightFourier.lean:13:36: warning: Variable name `hlo` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _hlo\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZWeightFourier.lean:88:55: warning: This simp argument is unused:\n  norm_smul\n\nHint: Omit it from the simp argument list.\n  [apply] simp [Complex.norm_exp]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'XiPrime8845.PRZZWeightFourier.mass_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWeightFourier.norm_fourier_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWeightFourier.mass_on_support' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWeightFourier.fourier_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWeightFourier.support_subset' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWeightFourier.compact' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWeightFourier.smooth' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWeightFourier.jet_support' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWeightFourier.jet_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWeightFourier.jet_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZWeightFourier.fourier_jet' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "7769a16170e9eed6e9c816ba20a2654e28705f5a70b85794f9056f920ce85c44",
+      "dependency_fingerprints": {
+        "PRZZFullWeightJets": "9fd4563cdf2863d72fbed47319e9f4003cd0c1c5651e20036941a0146f4b60f6"
+      },
+      "reused_this_run": true
+    },
+    "PRZZMellinSeminorm.lean": {
+      "sha256": "cc8a0104e7fbd8f22a266819bcbbe83c11c10f18a499697e0986a71777943f6b",
+      "exit_code": 0,
+      "output": "/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZMellinSeminorm.lean:36:40: warning: This simp argument is unused:\n  Pi.mul_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [Pi.pow_apply, Nat.add_sub_cancel, pow_succ]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZMellinSeminorm.lean:53:26: warning: '(try simp only [Pi.neg_apply, pow_one, Nat.cast_one, one_mul])' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZMellinSeminorm.lean:70:26: warning: '(try simp only [Pi.add_apply, pow_one, Nat.cast_one, Nat.cast_ofNat, one_mul])' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/iizumimamichi/C-Weil-Hunt/xiprime-two-piece-mollifier/lean/PRZZMellinSeminorm.lean:165:8: warning: This simp argument is unused:\n  setIntegral_const\n\nHint: Omit it from the simp argument list.\n  [apply] simp [Measure.real, Real.volume_Icc, smul_eq_mul, Real.log_nonneg (by norm_num : (1 : \u211d) \u2264 2)]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'XiPrime8845.PRZZMellinSeminorm.xlog_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.pull_jet_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.piece_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.log_first' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.log_second' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.log_third' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.frequency_power' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.linear_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.linear_mass_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.log_jet_support' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.mass_from_jets' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinSeminorm.uniform_mass_from_jets' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "olean_sha256": "db688e89e49f36389aed9d353b5a099c27c9abc2a49765d7b4708174f1799d6a",
+      "dependency_fingerprints": {
+        "PRZZMellinMoment": "8fc20d154f41f36fecbd193e2dff16aef89ea4a012740494e48e0f6fa4bc150d",
+        "PRZZWeightFourier": "7769a16170e9eed6e9c816ba20a2654e28705f5a70b85794f9056f920ce85c44"
+      },
+      "reused_this_run": true
+    },
+    "PRZZMellinInterval.lean": {
+      "sha256": "3453637bf12202052ebd5a19b4cf96aa0dc11aed7194683439e0942caaa1f0ea",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZMellinInterval.mass_from_jets' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinInterval.uniform_mass_from_jets' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinInterval.linear_mass_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinInterval.frequency_power' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinInterval.log_jet_support' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinInterval.mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinInterval.mass_from_scaled_jets' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinInterval.linear_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZMellinInterval.uniform_mass_from_scaled_jets' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "olean_sha256": "07b3a02ff47cd4f5e9a3e8ebb4485977966fd723d5e155a508918ac39d9d954d",
+      "dependency_fingerprints": {
+        "PRZZMellinSeminorm": "db688e89e49f36389aed9d353b5a099c27c9abc2a49765d7b4708174f1799d6a"
+      },
+      "reused_this_run": false
+    }
+  }
+}

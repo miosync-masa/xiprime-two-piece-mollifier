@@ -7,6 +7,7 @@ noncomputable section
 open scoped BigOperators
 open Set Filter Topology MeasureTheory
 namespace XiPrime8845.WuAuxiliaryBoundary
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliary WuStirling WuUnsmoothing WuLittlewood WuSubintervalLog
 open Zeta23.XiPrime (xiDeriv)
 set_option maxHeartbeats 2000000

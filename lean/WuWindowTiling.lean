@@ -7,6 +7,7 @@ noncomputable section
 open scoped BigOperators
 open Filter Topology Finset
 namespace XiPrime8845.WuWindowTiling
+variable [PRZZProvedInput.DeepInputs]
 set_option maxHeartbeats 1000000
 
 def ratio (δ : ℝ) : ℝ := (1+δ)/(2-δ)

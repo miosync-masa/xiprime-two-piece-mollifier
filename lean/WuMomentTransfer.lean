@@ -7,6 +7,7 @@ noncomputable section
 open scoped BigOperators
 open Filter Topology MeasureTheory Finset
 namespace XiPrime8845.WuMomentTransfer
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliary WuStirling WuStirlingTransfer WuStirlingMoment WitnessMomentBound
 set_option maxHeartbeats 2000000
 

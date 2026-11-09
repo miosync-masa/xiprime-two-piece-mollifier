@@ -9,6 +9,7 @@ noncomputable section
 open scoped BigOperators
 open Set Finset Filter Topology
 namespace XiPrime8845.WuIndependentWindows
+variable [PRZZProvedInput.DeepInputs]
 open WuSafeEndpoints WuLittlewood WuWindowTiling
 set_option maxHeartbeats 1000000
 

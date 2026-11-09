@@ -8,6 +8,7 @@ noncomputable section
 open scoped BigOperators
 open Filter Topology Set Metric Complex
 namespace XiPrime8845.WuHorizontalBound
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliary WuStirling WuGammaJets WuDiskGrowth WuLittlewood
 set_option maxHeartbeats 2000000
 

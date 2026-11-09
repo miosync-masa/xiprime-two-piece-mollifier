@@ -26,7 +26,7 @@ class ReadabilityTests(unittest.TestCase):
                             ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
         for name in ("README.md", "docs/REPRODUCIBILITY.md", "paper/manuscript.tex",
                      "paper/verify.py", ".github/workflows/verify.yml",
-                     "checks/clean-project-verification-2026-11-07.json",
+                     "checks/weil-di-proportion-verification.json",
                      "checks/clean-af-verification-2026-11-07.json"):
             target = cls.base / name
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -59,7 +59,7 @@ class ReadabilityTests(unittest.TestCase):
                 for p in self.repo.rglob("*") if p.is_file()}
 
     def record(self):
-        return self.repo / "checks/clean-project-verification-2026-11-07.json"
+        return self.repo / "checks/weil-di-proportion-verification.json"
 
     def test_check_preserves_manual_bytes_and_all_repository_files(self):
         manual = self.repo / "tools/paper_correspondence_manual.json"
@@ -146,7 +146,9 @@ class ReadabilityTests(unittest.TestCase):
         ns = {"s": "http://www.w3.org/2000/svg"}
         svg = ET.parse(self.repo / "docs/dependency-graph.svg").getroot()
         groups = svg.findall("s:g", ns)
-        self.assertEqual(len(groups), 27)
+        graph = json.loads((self.repo / "docs/dependency-graph.json").read_text())
+        self.assertEqual(len(groups), len(graph["summary"]["nodes"]))
+        self.assertGreater(len(groups), 0)
         for group in groups:
             rect = group.find("s:rect", ns)
             w, h, y = (float(rect.attrib[k]) for k in ("width", "height", "y"))

@@ -7,6 +7,7 @@ depend on the single, explicitly named external PRZZ estimate. -/
 noncomputable section
 open Filter Topology
 namespace XiPrime8845.SmoothWeightMoment
+variable [PRZZProvedInput.DeepInputs]
 open SmoothWeightWitness WitnessMomentBound WuMomentTransfer
 
 theorem plateau_mass_pos : 0 < mass plateau :=

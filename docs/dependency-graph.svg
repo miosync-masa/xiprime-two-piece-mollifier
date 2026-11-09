@@ -1,271 +1,290 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="830" height="2212" viewBox="0 0 830 2212" font-family="Helvetica, Arial, sans-serif" font-size="11">
+<svg xmlns="http://www.w3.org/2000/svg" width="830" height="2584" viewBox="0 0 830 2584" font-family="Helvetica, Arial, sans-serif" font-size="11">
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/></marker></defs>
 <rect width="100%" height="100%" fill="white"/>
 <text x="415" y="18" text-anchor="middle" font-size="13" font-weight="bold">WuProportion からの依存グラフ（要約版、矢印は import 方向）</text>
-<path d="M 415.0 92.0 C 415.0 179.0 415.0 179.0 415.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Wu → Smooth: 1 import</title></path>
-<path d="M 415.0 92.0 C 415.0 120.0 415.0 120.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Wu → 主項: 単独モジュール群: 1 import</title></path>
-<path d="M 415.0 92.0 C 415.0 1005.0 347.0 1005.0 347.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.9" marker-end="url(#arrow)"><title>Wu → AF: 9 import</title></path>
-<path d="M 415.0 92.0 C 415.0 1005.0 483.0 1005.0 483.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.8" marker-end="url(#arrow)"><title>Wu → Mathlib: 8 import</title></path>
-<path d="M 578.0 800.0 C 578.0 1300.0 382.0 1300.0 382.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 入力 → 数値証明書: 1 import</title></path>
-<path d="M 578.0 800.0 C 578.0 1359.0 483.0 1359.0 483.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 入力 → Mathlib: 1 import</title></path>
-<path d="M 259.0 1154.0 C 259.0 1174.0 179.0 246.0 179.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>BareEuler → Coprime: 1 import</title></path>
-<path d="M 415.0 578.0 C 415.0 835.0 259.0 835.0 259.0 1092.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Conrey → BareEuler: 1 import</title></path>
-<path d="M 415.0 578.0 C 415.0 598.0 179.0 246.0 179.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Conrey → Coprime: 1 import</title></path>
-<path d="M 415.0 578.0 C 415.0 599.0 415.0 599.0 415.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Conrey → Zeta: 1 import</title></path>
-<path d="M 415.0 578.0 C 415.0 598.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Conrey → 主項: 単独モジュール群: 1 import</title></path>
-<path d="M 179.0 328.0 C 179.0 356.0 297.0 356.0 297.0 384.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Coprime → FengLog: 1 import</title></path>
-<path d="M 179.0 328.0 C 179.0 887.0 415.0 887.0 415.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Coprime → FengShared: 1 import</title></path>
-<path d="M 179.0 328.0 C 179.0 356.0 552.0 356.0 552.0 384.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Coprime → Shifted: 2 import</title></path>
-<path d="M 179.0 328.0 C 179.0 348.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.0" marker-end="url(#arrow)"><title>Coprime → 主項: 単独モジュール群: 3 import</title></path>
-<path d="M 571.0 1154.0 C 571.0 1174.0 297.0 364.0 297.0 384.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengCross → FengLog: 1 import</title></path>
-<path d="M 571.0 1154.0 C 571.0 1182.0 415.0 1182.0 415.0 1210.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengCross → FengOutside: 2 import</title></path>
-<path d="M 571.0 1154.0 C 571.0 1418.0 297.0 1418.0 297.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengCross → Feng（その他）: 1 import</title></path>
-<path d="M 297.0 1390.0 C 297.0 1410.0 415.0 1190.0 415.0 1210.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengInverse → FengOutside: 2 import</title></path>
-<path d="M 297.0 1390.0 C 297.0 1410.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengInverse → 主項: 単独モジュール群: 1 import</title></path>
-<path d="M 297.0 446.0 C 297.0 474.0 415.0 474.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengLog → Conrey: 1 import</title></path>
-<path d="M 297.0 446.0 C 297.0 466.0 179.0 246.0 179.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengLog → Coprime: 1 import</title></path>
-<path d="M 297.0 446.0 C 297.0 710.0 415.0 710.0 415.0 974.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengLog → FengMixed: 1 import</title></path>
-<path d="M 297.0 446.0 C 297.0 828.0 415.0 828.0 415.0 1210.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengLog → FengOutside: 1 import</title></path>
-<path d="M 297.0 446.0 C 297.0 1064.0 297.0 1064.0 297.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengLog → Feng（その他）: 1 import</title></path>
-<path d="M 415.0 1626.0 C 415.0 1646.0 415.0 1426.0 415.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMarked → FengShared: 1 import</title></path>
-<path d="M 415.0 1626.0 C 415.0 1654.0 297.0 1654.0 297.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengMarked → Feng（その他）: 2 import</title></path>
-<path d="M 415.0 1626.0 C 415.0 1654.0 557.0 1654.0 557.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMarked → Totient: 1 import</title></path>
-<path d="M 415.0 1626.0 C 415.0 1646.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMarked → 主項: 単独モジュール群: 1 import</title></path>
-<path d="M 415.0 1626.0 C 415.0 1772.0 347.0 1772.0 347.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMarked → AF: 1 import</title></path>
-<path d="M 415.0 1036.0 C 415.0 1064.0 259.0 1064.0 259.0 1092.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMixed → BareEuler: 1 import</title></path>
-<path d="M 415.0 1036.0 C 415.0 1056.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMixed → Conrey: 1 import</title></path>
-<path d="M 415.0 1036.0 C 415.0 1064.0 571.0 1064.0 571.0 1092.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMixed → FengCross: 1 import</title></path>
-<path d="M 415.0 1036.0 C 415.0 1300.0 415.0 1300.0 415.0 1564.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMixed → FengMarked: 1 import</title></path>
-<path d="M 415.0 1036.0 C 415.0 1241.0 415.0 1241.0 415.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengMixed → FengShared: 2 import</title></path>
-<path d="M 415.0 1036.0 C 415.0 1418.0 382.0 1418.0 382.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMixed → 数値証明書: 1 import</title></path>
-<path d="M 415.0 1272.0 C 415.0 1292.0 179.0 246.0 179.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.0" marker-end="url(#arrow)"><title>FengOutside → Coprime: 3 import</title></path>
-<path d="M 415.0 1272.0 C 415.0 1292.0 571.0 1072.0 571.0 1092.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengOutside → FengCross: 1 import</title></path>
-<path d="M 415.0 1272.0 C 415.0 1300.0 297.0 1300.0 297.0 1328.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengOutside → FengInverse: 2 import</title></path>
-<path d="M 415.0 1272.0 C 415.0 1292.0 297.0 364.0 297.0 384.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengOutside → FengLog: 2 import</title></path>
-<path d="M 415.0 1272.0 C 415.0 1300.0 552.0 1300.0 552.0 1328.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.2" marker-end="url(#arrow)"><title>FengOutside → FengPrime: 4 import</title></path>
-<path d="M 415.0 1272.0 C 415.0 1477.0 297.0 1477.0 297.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengOutside → Feng（その他）: 1 import</title></path>
-<path d="M 415.0 1272.0 C 415.0 1292.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengOutside → 主項: 単独モジュール群: 1 import</title></path>
-<path d="M 415.0 1272.0 C 415.0 1536.0 382.0 1536.0 382.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengOutside → 数値証明書: 1 import</title></path>
-<path d="M 552.0 1390.0 C 552.0 1410.0 415.0 1190.0 415.0 1210.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengPrime → FengOutside: 2 import</title></path>
-<path d="M 552.0 1390.0 C 552.0 1418.0 415.0 1418.0 415.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengPrime → FengShared: 1 import</title></path>
-<path d="M 552.0 1390.0 C 552.0 1536.0 297.0 1536.0 297.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengPrime → Feng（その他）: 1 import</title></path>
-<path d="M 552.0 1390.0 C 552.0 1654.0 347.0 1654.0 347.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengPrime → AF: 2 import</title></path>
-<path d="M 415.0 1508.0 C 415.0 1528.0 179.0 246.0 179.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengShared → Coprime: 2 import</title></path>
-<path d="M 415.0 1508.0 C 415.0 1528.0 297.0 364.0 297.0 384.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → FengLog: 1 import</title></path>
-<path d="M 415.0 1508.0 C 415.0 1536.0 415.0 1536.0 415.0 1564.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → FengMarked: 1 import</title></path>
-<path d="M 415.0 1508.0 C 415.0 1528.0 415.0 1190.0 415.0 1210.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → FengOutside: 1 import</title></path>
-<path d="M 415.0 1508.0 C 415.0 1528.0 552.0 1308.0 552.0 1328.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → FengPrime: 1 import</title></path>
-<path d="M 415.0 1508.0 C 415.0 1528.0 415.0 836.0 415.0 856.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → FengSquare: 1 import</title></path>
-<path d="M 415.0 1508.0 C 415.0 1595.0 297.0 1595.0 297.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengShared → Feng（その他）: 2 import</title></path>
-<path d="M 415.0 1508.0 C 415.0 1528.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → 主項: 単独モジュール群: 1 import</title></path>
-<path d="M 415.0 918.0 C 415.0 1005.0 571.0 1005.0 571.0 1092.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengSquare → FengCross: 1 import</title></path>
-<path d="M 415.0 918.0 C 415.0 938.0 297.0 364.0 297.0 384.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengSquare → FengLog: 1 import</title></path>
-<path d="M 415.0 918.0 C 415.0 946.0 415.0 946.0 415.0 974.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengSquare → FengMixed: 1 import</title></path>
-<path d="M 415.0 918.0 C 415.0 1182.0 415.0 1182.0 415.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengSquare → FengShared: 1 import</title></path>
-<path d="M 297.0 1744.0 C 297.0 1764.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → Conrey: 1 import</title></path>
-<path d="M 297.0 1744.0 C 297.0 1764.0 179.0 246.0 179.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → Coprime: 1 import</title></path>
-<path d="M 297.0 1744.0 C 297.0 1764.0 415.0 1426.0 415.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → FengShared: 1 import</title></path>
-<path d="M 297.0 1744.0 C 297.0 1764.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → 主項: 単独モジュール群: 1 import</title></path>
-<path d="M 297.0 1744.0 C 297.0 1772.0 382.0 1772.0 382.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → 数値証明書: 1 import</title></path>
-<path d="M 297.0 1744.0 C 297.0 1831.0 347.0 1831.0 347.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → AF: 1 import</title></path>
-<path d="M 136.0 1862.0 C 136.0 1890.0 347.0 1890.0 347.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Mobius → AF: 1 import</title></path>
-<path d="M 136.0 1862.0 C 136.0 1890.0 483.0 1890.0 483.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Mobius → Mathlib: 2 import</title></path>
-<path d="M 552.0 446.0 C 552.0 466.0 179.0 246.0 179.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Shifted → Coprime: 1 import</title></path>
-<path d="M 552.0 446.0 C 552.0 1123.0 661.0 1123.0 661.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Shifted → Support: 1 import</title></path>
-<path d="M 552.0 446.0 C 552.0 1064.0 557.0 1064.0 557.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Shifted → Totient: 2 import</title></path>
-<path d="M 552.0 446.0 C 552.0 466.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Shifted → 主項: 単独モジュール群: 2 import</title></path>
-<path d="M 552.0 446.0 C 552.0 1123.0 382.0 1123.0 382.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Shifted → 数値証明書: 1 import</title></path>
-<path d="M 415.0 328.0 C 415.0 533.0 578.0 533.0 578.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Smooth → PRZZ 入力: 1 import</title></path>
-<path d="M 415.0 328.0 C 415.0 1123.0 483.0 1123.0 483.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Smooth → Mathlib: 2 import</title></path>
-<path d="M 661.0 1862.0 C 661.0 1882.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Support → 主項: 単独モジュール群: 1 import</title></path>
-<path d="M 557.0 1744.0 C 557.0 1772.0 136.0 1772.0 136.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Totient → Mobius: 1 import</title></path>
-<path d="M 557.0 1744.0 C 557.0 1772.0 661.0 1772.0 661.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Totient → Support: 1 import</title></path>
-<path d="M 557.0 1744.0 C 557.0 1764.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Totient → 主項: 単独モジュール群: 1 import</title></path>
-<path d="M 278.0 814.0 C 278.0 835.0 415.0 835.0 415.0 856.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>TwoPiece → FengSquare: 1 import</title></path>
-<path d="M 278.0 814.0 C 278.0 834.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>TwoPiece → 主項: 単独モジュール群: 1 import</title></path>
-<path d="M 415.0 696.0 C 415.0 717.0 578.0 717.0 578.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Zeta → PRZZ 入力: 1 import</title></path>
-<path d="M 415.0 696.0 C 415.0 717.0 278.0 717.0 278.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Zeta → TwoPiece: 1 import</title></path>
-<path d="M 415.0 696.0 C 415.0 716.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Zeta → 主項: 単独モジュール群: 2 import</title></path>
-<path d="M 415.0 210.0 C 415.0 474.0 578.0 474.0 578.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → PRZZ 入力: 1 import</title></path>
-<path d="M 415.0 210.0 C 415.0 238.0 179.0 238.0 179.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Coprime: 3 import</title></path>
-<path d="M 415.0 210.0 C 415.0 592.0 415.0 592.0 415.0 974.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → FengMixed: 1 import</title></path>
-<path d="M 415.0 210.0 C 415.0 1005.0 136.0 1005.0 136.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Mobius: 1 import</title></path>
-<path d="M 415.0 210.0 C 415.0 297.0 552.0 297.0 552.0 384.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Shifted: 1 import</title></path>
-<path d="M 415.0 210.0 C 415.0 238.0 415.0 238.0 415.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Smooth: 1 import</title></path>
-<path d="M 415.0 210.0 C 415.0 946.0 557.0 946.0 557.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Totient: 2 import</title></path>
-<path d="M 415.0 210.0 C 415.0 415.0 415.0 415.0 415.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Zeta: 1 import</title></path>
-<path d="M 415.0 210.0 C 415.0 1005.0 382.0 1005.0 382.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → 数値証明書: 2 import</title></path>
-<path d="M 415.0 210.0 C 415.0 238.0 651.0 238.0 651.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → その他: 1 import</title></path>
-<path d="M 415.0 210.0 C 415.0 1064.0 483.0 1064.0 483.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Mathlib: 2 import</title></path>
-<path d="M 382.0 1862.0 C 382.0 1890.0 483.0 1890.0 483.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.0" marker-end="url(#arrow)"><title>数値証明書 → Mathlib: 3 import</title></path>
-<path d="M 651.0 328.0 C 651.0 1064.0 382.0 1064.0 382.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>その他 → 数値証明書: 1 import</title></path>
+<path d="M 415.0 92.0 C 415.0 120.0 415.0 120.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Wu → Smooth: 1 import</title></path>
+<path d="M 415.0 92.0 C 415.0 297.0 415.0 297.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Wu → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 415.0 92.0 C 415.0 1182.0 483.0 1182.0 483.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.9" marker-end="url(#arrow)"><title>Wu → AF: 9 import</title></path>
+<path d="M 415.0 92.0 C 415.0 1182.0 347.0 1182.0 347.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.8" marker-end="url(#arrow)"><title>Wu → Mathlib: 8 import</title></path>
+<path d="M 415.0 328.0 C 415.0 415.0 415.0 415.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 定義・証明済み接続 → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 415.0 328.0 C 415.0 1241.0 136.0 1241.0 136.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 定義・証明済み接続 → 数値証明書: 1 import</title></path>
+<path d="M 415.0 328.0 C 415.0 356.0 415.0 356.0 415.0 384.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 定義・証明済み接続 → PRZZ 4.1 の証明: 1 import</title></path>
+<path d="M 415.0 328.0 C 415.0 1300.0 347.0 1300.0 347.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>PRZZ 定義・証明済み接続 → Mathlib: 2 import</title></path>
+<path d="M 259.0 1508.0 C 259.0 1528.0 533.0 600.0 533.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>BareEuler → Coprime: 1 import</title></path>
+<path d="M 415.0 932.0 C 415.0 1189.0 259.0 1189.0 259.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Conrey → BareEuler: 1 import</title></path>
+<path d="M 415.0 932.0 C 415.0 952.0 533.0 600.0 533.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Conrey → Coprime: 1 import</title></path>
+<path d="M 415.0 932.0 C 415.0 953.0 415.0 953.0 415.0 974.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Conrey → Zeta: 1 import</title></path>
+<path d="M 415.0 932.0 C 415.0 952.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Conrey → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 533.0 682.0 C 533.0 710.0 297.0 710.0 297.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Coprime → FengLog: 1 import</title></path>
+<path d="M 533.0 682.0 C 533.0 1241.0 415.0 1241.0 415.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Coprime → FengShared: 1 import</title></path>
+<path d="M 533.0 682.0 C 533.0 710.0 552.0 710.0 552.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Coprime → Shifted: 2 import</title></path>
+<path d="M 533.0 682.0 C 533.0 702.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.0" marker-end="url(#arrow)"><title>Coprime → 主項: 単独モジュール群: 3 import</title></path>
+<path d="M 571.0 1508.0 C 571.0 1528.0 297.0 718.0 297.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengCross → FengLog: 1 import</title></path>
+<path d="M 571.0 1508.0 C 571.0 1536.0 415.0 1536.0 415.0 1564.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengCross → FengOutside: 2 import</title></path>
+<path d="M 571.0 1508.0 C 571.0 1772.0 297.0 1772.0 297.0 2036.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengCross → Feng（その他）: 1 import</title></path>
+<path d="M 297.0 1744.0 C 297.0 1764.0 415.0 1544.0 415.0 1564.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengInverse → FengOutside: 2 import</title></path>
+<path d="M 297.0 1744.0 C 297.0 1764.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengInverse → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 297.0 800.0 C 297.0 828.0 415.0 828.0 415.0 856.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengLog → Conrey: 1 import</title></path>
+<path d="M 297.0 800.0 C 297.0 820.0 533.0 600.0 533.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengLog → Coprime: 1 import</title></path>
+<path d="M 297.0 800.0 C 297.0 1064.0 415.0 1064.0 415.0 1328.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengLog → FengMixed: 1 import</title></path>
+<path d="M 297.0 800.0 C 297.0 1182.0 415.0 1182.0 415.0 1564.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengLog → FengOutside: 1 import</title></path>
+<path d="M 297.0 800.0 C 297.0 1418.0 297.0 1418.0 297.0 2036.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengLog → Feng（その他）: 1 import</title></path>
+<path d="M 415.0 1980.0 C 415.0 2000.0 415.0 1780.0 415.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMarked → FengShared: 1 import</title></path>
+<path d="M 415.0 1980.0 C 415.0 2008.0 297.0 2008.0 297.0 2036.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengMarked → Feng（その他）: 2 import</title></path>
+<path d="M 415.0 1980.0 C 415.0 2008.0 557.0 2008.0 557.0 2036.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMarked → Totient: 1 import</title></path>
+<path d="M 415.0 1980.0 C 415.0 2000.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMarked → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 415.0 1980.0 C 415.0 2126.0 483.0 2126.0 483.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMarked → AF: 1 import</title></path>
+<path d="M 415.0 1390.0 C 415.0 1418.0 259.0 1418.0 259.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMixed → BareEuler: 1 import</title></path>
+<path d="M 415.0 1390.0 C 415.0 1410.0 415.0 836.0 415.0 856.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMixed → Conrey: 1 import</title></path>
+<path d="M 415.0 1390.0 C 415.0 1418.0 571.0 1418.0 571.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMixed → FengCross: 1 import</title></path>
+<path d="M 415.0 1390.0 C 415.0 1654.0 415.0 1654.0 415.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMixed → FengMarked: 1 import</title></path>
+<path d="M 415.0 1390.0 C 415.0 1595.0 415.0 1595.0 415.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengMixed → FengShared: 2 import</title></path>
+<path d="M 415.0 1390.0 C 415.0 1772.0 136.0 1772.0 136.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengMixed → 数値証明書: 1 import</title></path>
+<path d="M 415.0 1626.0 C 415.0 1646.0 533.0 600.0 533.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.0" marker-end="url(#arrow)"><title>FengOutside → Coprime: 3 import</title></path>
+<path d="M 415.0 1626.0 C 415.0 1646.0 571.0 1426.0 571.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengOutside → FengCross: 1 import</title></path>
+<path d="M 415.0 1626.0 C 415.0 1654.0 297.0 1654.0 297.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengOutside → FengInverse: 2 import</title></path>
+<path d="M 415.0 1626.0 C 415.0 1646.0 297.0 718.0 297.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengOutside → FengLog: 2 import</title></path>
+<path d="M 415.0 1626.0 C 415.0 1654.0 552.0 1654.0 552.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.2" marker-end="url(#arrow)"><title>FengOutside → FengPrime: 4 import</title></path>
+<path d="M 415.0 1626.0 C 415.0 1831.0 297.0 1831.0 297.0 2036.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengOutside → Feng（その他）: 1 import</title></path>
+<path d="M 415.0 1626.0 C 415.0 1646.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengOutside → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 415.0 1626.0 C 415.0 1890.0 136.0 1890.0 136.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengOutside → 数値証明書: 1 import</title></path>
+<path d="M 552.0 1744.0 C 552.0 1764.0 415.0 1544.0 415.0 1564.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengPrime → FengOutside: 2 import</title></path>
+<path d="M 552.0 1744.0 C 552.0 1772.0 415.0 1772.0 415.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengPrime → FengShared: 1 import</title></path>
+<path d="M 552.0 1744.0 C 552.0 1890.0 297.0 1890.0 297.0 2036.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengPrime → Feng（その他）: 1 import</title></path>
+<path d="M 552.0 1744.0 C 552.0 2008.0 483.0 2008.0 483.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengPrime → AF: 2 import</title></path>
+<path d="M 415.0 1862.0 C 415.0 1882.0 533.0 600.0 533.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengShared → Coprime: 2 import</title></path>
+<path d="M 415.0 1862.0 C 415.0 1882.0 297.0 718.0 297.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → FengLog: 1 import</title></path>
+<path d="M 415.0 1862.0 C 415.0 1890.0 415.0 1890.0 415.0 1918.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → FengMarked: 1 import</title></path>
+<path d="M 415.0 1862.0 C 415.0 1882.0 415.0 1544.0 415.0 1564.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → FengOutside: 1 import</title></path>
+<path d="M 415.0 1862.0 C 415.0 1882.0 552.0 1662.0 552.0 1682.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → FengPrime: 1 import</title></path>
+<path d="M 415.0 1862.0 C 415.0 1882.0 415.0 1190.0 415.0 1210.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → FengSquare: 1 import</title></path>
+<path d="M 415.0 1862.0 C 415.0 1949.0 297.0 1949.0 297.0 2036.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>FengShared → Feng（その他）: 2 import</title></path>
+<path d="M 415.0 1862.0 C 415.0 1882.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengShared → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 415.0 1272.0 C 415.0 1359.0 571.0 1359.0 571.0 1446.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengSquare → FengCross: 1 import</title></path>
+<path d="M 415.0 1272.0 C 415.0 1292.0 297.0 718.0 297.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengSquare → FengLog: 1 import</title></path>
+<path d="M 415.0 1272.0 C 415.0 1300.0 415.0 1300.0 415.0 1328.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengSquare → FengMixed: 1 import</title></path>
+<path d="M 415.0 1272.0 C 415.0 1536.0 415.0 1536.0 415.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>FengSquare → FengShared: 1 import</title></path>
+<path d="M 297.0 2098.0 C 297.0 2118.0 415.0 836.0 415.0 856.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → Conrey: 1 import</title></path>
+<path d="M 297.0 2098.0 C 297.0 2118.0 533.0 600.0 533.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → Coprime: 1 import</title></path>
+<path d="M 297.0 2098.0 C 297.0 2118.0 415.0 1780.0 415.0 1800.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → FengShared: 1 import</title></path>
+<path d="M 297.0 2098.0 C 297.0 2118.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 297.0 2098.0 C 297.0 2126.0 136.0 2126.0 136.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → 数値証明書: 1 import</title></path>
+<path d="M 297.0 2098.0 C 297.0 2185.0 483.0 2185.0 483.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Feng（その他） → AF: 1 import</title></path>
+<path d="M 382.0 2216.0 C 382.0 2244.0 483.0 2244.0 483.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Mobius → AF: 1 import</title></path>
+<path d="M 382.0 2216.0 C 382.0 2244.0 347.0 2244.0 347.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Mobius → Mathlib: 2 import</title></path>
+<path d="M 552.0 800.0 C 552.0 820.0 533.0 600.0 533.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Shifted → Coprime: 1 import</title></path>
+<path d="M 552.0 800.0 C 552.0 1477.0 661.0 1477.0 661.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Shifted → Support: 1 import</title></path>
+<path d="M 552.0 800.0 C 552.0 1418.0 557.0 1418.0 557.0 2036.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Shifted → Totient: 2 import</title></path>
+<path d="M 552.0 800.0 C 552.0 820.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Shifted → 主項: 単独モジュール群: 2 import</title></path>
+<path d="M 552.0 800.0 C 552.0 1477.0 136.0 1477.0 136.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Shifted → 数値証明書: 1 import</title></path>
+<path d="M 415.0 210.0 C 415.0 238.0 415.0 238.0 415.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Smooth → PRZZ 定義・証明済み接続: 1 import</title></path>
+<path d="M 415.0 210.0 C 415.0 1241.0 347.0 1241.0 347.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Smooth → Mathlib: 2 import</title></path>
+<path d="M 661.0 2216.0 C 661.0 2236.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Support → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 557.0 2098.0 C 557.0 2126.0 382.0 2126.0 382.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Totient → Mobius: 1 import</title></path>
+<path d="M 557.0 2098.0 C 557.0 2126.0 661.0 2126.0 661.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Totient → Support: 1 import</title></path>
+<path d="M 557.0 2098.0 C 557.0 2118.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Totient → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 415.0 1168.0 C 415.0 1188.0 415.0 246.0 415.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>TwoPiece → PRZZ 定義・証明済み接続: 1 import</title></path>
+<path d="M 415.0 1168.0 C 415.0 1189.0 415.0 1189.0 415.0 1210.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>TwoPiece → FengSquare: 1 import</title></path>
+<path d="M 415.0 1168.0 C 415.0 1188.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>TwoPiece → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 415.0 1050.0 C 415.0 1070.0 415.0 246.0 415.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Zeta → PRZZ 定義・証明済み接続: 1 import</title></path>
+<path d="M 415.0 1050.0 C 415.0 1071.0 415.0 1071.0 415.0 1092.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>Zeta → TwoPiece: 1 import</title></path>
+<path d="M 415.0 1050.0 C 415.0 1070.0 415.0 482.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>Zeta → 主項: 単独モジュール群: 2 import</title></path>
+<path d="M 415.0 564.0 C 415.0 584.0 415.0 246.0 415.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → PRZZ 定義・証明済み接続: 1 import</title></path>
+<path d="M 415.0 564.0 C 415.0 592.0 533.0 592.0 533.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Coprime: 3 import</title></path>
+<path d="M 415.0 564.0 C 415.0 946.0 415.0 946.0 415.0 1328.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → FengMixed: 1 import</title></path>
+<path d="M 415.0 564.0 C 415.0 1359.0 382.0 1359.0 382.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Mobius: 1 import</title></path>
+<path d="M 415.0 564.0 C 415.0 651.0 552.0 651.0 552.0 738.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Shifted: 1 import</title></path>
+<path d="M 415.0 564.0 C 415.0 584.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Smooth: 1 import</title></path>
+<path d="M 415.0 564.0 C 415.0 1300.0 557.0 1300.0 557.0 2036.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Totient: 2 import</title></path>
+<path d="M 415.0 564.0 C 415.0 769.0 415.0 769.0 415.0 974.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Zeta: 1 import</title></path>
+<path d="M 415.0 564.0 C 415.0 1359.0 136.0 1359.0 136.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → 数値証明書: 2 import</title></path>
+<path d="M 415.0 564.0 C 415.0 592.0 297.0 592.0 297.0 620.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → その他: 1 import</title></path>
+<path d="M 415.0 564.0 C 415.0 1418.0 347.0 1418.0 347.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>主項: 単独モジュール群 → Mathlib: 2 import</title></path>
+<path d="M 136.0 2216.0 C 136.0 2244.0 347.0 2244.0 347.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.0" marker-end="url(#arrow)"><title>数値証明書 → Mathlib: 3 import</title></path>
+<path d="M 415.0 446.0 C 415.0 466.0 415.0 10.0 415.0 30.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 4.1 の証明 → Wu: 1 import</title></path>
+<path d="M 415.0 446.0 C 415.0 466.0 415.0 246.0 415.0 266.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.6" marker-end="url(#arrow)"><title>PRZZ 4.1 の証明 → PRZZ 定義・証明済み接続: 2 import</title></path>
+<path d="M 415.0 446.0 C 415.0 1241.0 297.0 1241.0 297.0 2036.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 4.1 の証明 → Feng（その他）: 1 import</title></path>
+<path d="M 415.0 446.0 C 415.0 466.0 415.0 128.0 415.0 148.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 4.1 の証明 → Smooth: 1 import</title></path>
+<path d="M 415.0 446.0 C 415.0 1300.0 661.0 1300.0 661.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 4.1 の証明 → Support: 1 import</title></path>
+<path d="M 415.0 446.0 C 415.0 710.0 415.0 710.0 415.0 974.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 4.1 の証明 → Zeta: 1 import</title></path>
+<path d="M 415.0 446.0 C 415.0 474.0 415.0 474.0 415.0 502.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>PRZZ 4.1 の証明 → 主項: 単独モジュール群: 1 import</title></path>
+<path d="M 415.0 446.0 C 415.0 1359.0 483.0 1359.0 483.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="2.2" marker-end="url(#arrow)"><title>PRZZ 4.1 の証明 → AF: 4 import</title></path>
+<path d="M 415.0 446.0 C 415.0 1359.0 347.0 1359.0 347.0 2272.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="4.0" marker-end="url(#arrow)"><title>PRZZ 4.1 の証明 → Mathlib: 42 import</title></path>
+<path d="M 297.0 682.0 C 297.0 1418.0 136.0 1418.0 136.0 2154.0" fill="none" stroke="#555" stroke-opacity="0.55" stroke-width="1.0" marker-end="url(#arrow)"><title>その他 → 数値証明書: 1 import</title></path>
 <g><title>Wu: WuAuxiliary, WuAuxiliaryBoundary, WuAuxiliaryHorizontal, WuAuxiliaryMultiplicity, WuBoundaryPhase, WuBoundaryZeros, WuContourCounting, WuCriticalDeflation, WuCriticalMultiplicity, WuDeflatedContour, WuDeflatedDetection, WuDiskCenter, WuDiskGrowth, WuDyadicCounting, WuEdgeLog, WuEtaMainPhase, WuFiniteDeflation, WuGammaCancellation, WuGammaJets, WuGammaPhase, WuHorizontalBound, WuHorizontalIntegral, WuIndependentWindows, WuLeftReturn, WuLittlewood, WuLocalCounting, WuMomentTransfer, WuParallelReturn, WuPhaseCrossings, WuProportion, WuQuotientReturn, WuRightBoundary, WuRightLittlewood, WuRightMollifier, WuSafeEndpoints, WuStirling, WuStirlingMoment, WuStirlingTransfer, WuSubintervalLog, WuTotalAsymptotic, WuTrimmedLog, WuUnsmoothing, WuVHorizontal, WuWideGamma, WuWindowTiling, WuXiBands
 代表定理: XiPrime8845.WuProportion.ratio_eventually_gt</title><rect x="314.5" y="30.0" width="201" height="62" rx="6" fill="#f6d8ae" stroke="#333"/>
 <text x="415.0" y="51.2" text-anchor="middle" font-weight="bold" font-size="11">Wu</text>
 <text x="415.0" y="65.2" text-anchor="middle" font-size="11">46 モジュール</text>
 <text x="415.0" y="79.2" text-anchor="middle" font-size="9.5">ratio_eventually_gt</text>
 </g>
-<g><title>PRZZ 入力: PRZZAsymptotic, PRZZInterface
-代表定理: XiPrime8845.PRZZ.przz41_case3_K2_profiles</title><rect x="454.0" y="738.0" width="248" height="62" rx="6" fill="#f4b6b6" stroke="#333"/>
-<text x="578.0" y="759.2" text-anchor="middle" font-weight="bold" font-size="11">PRZZ 入力</text>
-<text x="578.0" y="773.2" text-anchor="middle" font-size="11">2 モジュール</text>
-<text x="578.0" y="787.2" text-anchor="middle" font-size="9.5">przz41_case3_K2_profiles</text>
+<g><title>PRZZ 定義・証明済み接続: PRZZAsymptotic, PRZZAsymptoticCore, PRZZInterface, PRZZProvedInput, PRZZWitnessBridge
+代表定理: XiPrime8845.PRZZ.witness_densityGcdMainTerm_eq</title><rect x="267.0" y="266.0" width="296" height="62" rx="6" fill="#f4b6b6" stroke="#333"/>
+<text x="415.0" y="287.2" text-anchor="middle" font-weight="bold" font-size="11">PRZZ 定義・証明済み接続</text>
+<text x="415.0" y="301.2" text-anchor="middle" font-size="11">5 モジュール</text>
+<text x="415.0" y="315.2" text-anchor="middle" font-size="9.5">witness_densityGcdMainTerm_eq</text>
 </g>
 <g><title>BareEuler: BareEuler, BareEulerUniform
-代表定理: XiPrime8845.BareEulerUniform.weighted_Euler_error_uniform</title><rect x="116.0" y="1092.0" width="286" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="259.0" y="1113.2" text-anchor="middle" font-weight="bold" font-size="11">BareEuler</text>
-<text x="259.0" y="1127.2" text-anchor="middle" font-size="11">2 モジュール</text>
-<text x="259.0" y="1141.2" text-anchor="middle" font-size="9.5">weighted_Euler_error_uniform</text>
+代表定理: XiPrime8845.BareEulerUniform.weighted_Euler_error_uniform</title><rect x="116.0" y="1446.0" width="286" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="259.0" y="1467.2" text-anchor="middle" font-weight="bold" font-size="11">BareEuler</text>
+<text x="259.0" y="1481.2" text-anchor="middle" font-size="11">2 モジュール</text>
+<text x="259.0" y="1495.2" text-anchor="middle" font-size="9.5">weighted_Euler_error_uniform</text>
 </g>
 <g><title>Conrey: ConreyCoefficientBridge, ConreyMainTerm, ConreyOuter
-代表定理: XiPrime8845.ConreyMainTerm.normalized_gcdMainTerm_tendsto</title><rect x="265.0" y="502.0" width="300" height="76" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="415.0" y="523.2" text-anchor="middle" font-weight="bold" font-size="11">Conrey</text>
-<text x="415.0" y="537.2" text-anchor="middle" font-size="11">3 モジュール</text>
-<text x="415.0" y="551.2" text-anchor="middle" font-size="9.5">normalized_gcdM</text>
-<text x="415.0" y="565.2" text-anchor="middle" font-size="9.5">ainTerm_tendsto</text>
+代表定理: XiPrime8845.ConreyMainTerm.normalized_gcdMainTerm_tendsto</title><rect x="265.0" y="856.0" width="300" height="76" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="415.0" y="877.2" text-anchor="middle" font-weight="bold" font-size="11">Conrey</text>
+<text x="415.0" y="891.2" text-anchor="middle" font-size="11">3 モジュール</text>
+<text x="415.0" y="905.2" text-anchor="middle" font-size="9.5">normalized_gcdM</text>
+<text x="415.0" y="919.2" text-anchor="middle" font-size="9.5">ainTerm_tendsto</text>
 </g>
 <g><title>Coprime: CoprimeApproximation, CoprimeEndpoint, CoprimeEulerCompletion, CoprimeEulerError, CoprimeGluing, CoprimeHead, CoprimeShift, CoprimeSingleGluing
-代表定理: XiPrime8845.CoprimeGluing.averageError_uniform</title><rect x="74.0" y="266.0" width="210" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="179.0" y="287.2" text-anchor="middle" font-weight="bold" font-size="11">Coprime</text>
-<text x="179.0" y="301.2" text-anchor="middle" font-size="11">8 モジュール</text>
-<text x="179.0" y="315.2" text-anchor="middle" font-size="9.5">averageError_uniform</text>
+代表定理: XiPrime8845.CoprimeGluing.averageError_uniform</title><rect x="428.0" y="620.0" width="210" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="533.0" y="641.2" text-anchor="middle" font-weight="bold" font-size="11">Coprime</text>
+<text x="533.0" y="655.2" text-anchor="middle" font-size="11">8 モジュール</text>
+<text x="533.0" y="669.2" text-anchor="middle" font-size="9.5">averageError_uniform</text>
 </g>
 <g><title>FengCross: FengCrossAssembly, FengCrossCoefficient
-代表定理: XiPrime8845.FengCrossCoefficient.scaledArithmetic20_reflected</title><rect x="428.0" y="1092.0" width="286" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="571.0" y="1113.2" text-anchor="middle" font-weight="bold" font-size="11">FengCross</text>
-<text x="571.0" y="1127.2" text-anchor="middle" font-size="11">2 モジュール</text>
-<text x="571.0" y="1141.2" text-anchor="middle" font-size="9.5">scaledArithmetic20_reflected</text>
+代表定理: XiPrime8845.FengCrossCoefficient.scaledArithmetic20_reflected</title><rect x="428.0" y="1446.0" width="286" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="571.0" y="1467.2" text-anchor="middle" font-weight="bold" font-size="11">FengCross</text>
+<text x="571.0" y="1481.2" text-anchor="middle" font-size="11">2 モジュール</text>
+<text x="571.0" y="1495.2" text-anchor="middle" font-size="9.5">scaledArithmetic20_reflected</text>
 </g>
 <g><title>FengInverse: FengInverseProducts, FengInverseProfile
-代表定理: XiPrime8845.FengInverseProducts.inverse_mixed_twoBidiscs</title><rect x="173.0" y="1328.0" width="248" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="297.0" y="1349.2" text-anchor="middle" font-weight="bold" font-size="11">FengInverse</text>
-<text x="297.0" y="1363.2" text-anchor="middle" font-size="11">2 モジュール</text>
-<text x="297.0" y="1377.2" text-anchor="middle" font-size="9.5">inverse_mixed_twoBidiscs</text>
+代表定理: XiPrime8845.FengInverseProducts.inverse_mixed_twoBidiscs</title><rect x="173.0" y="1682.0" width="248" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="297.0" y="1703.2" text-anchor="middle" font-weight="bold" font-size="11">FengInverse</text>
+<text x="297.0" y="1717.2" text-anchor="middle" font-size="11">2 モジュール</text>
+<text x="297.0" y="1731.2" text-anchor="middle" font-size="9.5">inverse_mixed_twoBidiscs</text>
 </g>
 <g><title>FengLog: FengLogBounds, FengLogEndpoint, FengLogMainTerm, FengLogProducts
-代表定理: XiPrime8845.FengLogProducts.logarithmicSum_reflected</title><rect x="173.0" y="384.0" width="248" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="297.0" y="405.2" text-anchor="middle" font-weight="bold" font-size="11">FengLog</text>
-<text x="297.0" y="419.2" text-anchor="middle" font-size="11">4 モジュール</text>
-<text x="297.0" y="433.2" text-anchor="middle" font-size="9.5">logarithmicSum_reflected</text>
+代表定理: XiPrime8845.FengLogProducts.logarithmicSum_reflected</title><rect x="173.0" y="738.0" width="248" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="297.0" y="759.2" text-anchor="middle" font-weight="bold" font-size="11">FengLog</text>
+<text x="297.0" y="773.2" text-anchor="middle" font-size="11">4 モジュール</text>
+<text x="297.0" y="787.2" text-anchor="middle" font-size="9.5">logarithmicSum_reflected</text>
 </g>
 <g><title>FengMarked: FengMarkedAbel, FengMarkedArithmetic, FengMarkedCross, FengMarkedCrossLimit, FengMarkedDecomposition, FengMarkedDiagonal, FengMarkedLimit, FengMarkedProfile, FengMarkedTail
-代表定理: XiPrime8845.FengMarkedCrossLimit.marked_profile_twoBidiscs</title><rect x="286.0" y="1564.0" width="258" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="415.0" y="1585.2" text-anchor="middle" font-weight="bold" font-size="11">FengMarked</text>
-<text x="415.0" y="1599.2" text-anchor="middle" font-size="11">9 モジュール</text>
-<text x="415.0" y="1613.2" text-anchor="middle" font-size="9.5">marked_profile_twoBidiscs</text>
+代表定理: XiPrime8845.FengMarkedCrossLimit.marked_profile_twoBidiscs</title><rect x="286.0" y="1918.0" width="258" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="415.0" y="1939.2" text-anchor="middle" font-weight="bold" font-size="11">FengMarked</text>
+<text x="415.0" y="1953.2" text-anchor="middle" font-size="11">9 モジュール</text>
+<text x="415.0" y="1967.2" text-anchor="middle" font-size="9.5">marked_profile_twoBidiscs</text>
 </g>
 <g><title>FengMixed: FengMixedAbel, FengMixedInterior, FengMixedLimit, FengMixedMainTerm, FengMixedMoment, FengMixedProduct, FengMixedShift
-代表定理: XiPrime8845.FengMixedMainTerm.normalized_gcd20_tendsto</title><rect x="291.0" y="974.0" width="248" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="415.0" y="995.2" text-anchor="middle" font-weight="bold" font-size="11">FengMixed</text>
-<text x="415.0" y="1009.2" text-anchor="middle" font-size="11">7 モジュール</text>
-<text x="415.0" y="1023.2" text-anchor="middle" font-size="9.5">normalized_gcd20_tendsto</text>
+代表定理: XiPrime8845.FengMixedMainTerm.normalized_gcd20_tendsto</title><rect x="291.0" y="1328.0" width="248" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="415.0" y="1349.2" text-anchor="middle" font-weight="bold" font-size="11">FengMixed</text>
+<text x="415.0" y="1363.2" text-anchor="middle" font-size="11">7 モジュール</text>
+<text x="415.0" y="1377.2" text-anchor="middle" font-size="9.5">normalized_gcd20_tendsto</text>
 </g>
 <g><title>FengOutside: FengOutside, FengOutsideAverage, FengOutsideBounds, FengOutsideMainTerm, FengOutsidePartner, FengOutsidePrime, FengOutsideProfile, FengOutsideProxy, FengOutsideReplacement, FengOutsideShared, FengOutsideSquare
-代表定理: XiPrime8845.FengOutsideMainTerm.fullSum_reflected</title><rect x="324.0" y="1210.0" width="182" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="415.0" y="1231.2" text-anchor="middle" font-weight="bold" font-size="11">FengOutside</text>
-<text x="415.0" y="1245.2" text-anchor="middle" font-size="11">11 モジュール</text>
-<text x="415.0" y="1259.2" text-anchor="middle" font-size="9.5">fullSum_reflected</text>
+代表定理: XiPrime8845.FengOutsideMainTerm.fullSum_reflected</title><rect x="324.0" y="1564.0" width="182" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="415.0" y="1585.2" text-anchor="middle" font-weight="bold" font-size="11">FengOutside</text>
+<text x="415.0" y="1599.2" text-anchor="middle" font-size="11">11 モジュール</text>
+<text x="415.0" y="1613.2" text-anchor="middle" font-size="9.5">fullSum_reflected</text>
 </g>
 <g><title>FengPrime: FengPrimeCancellation, FengPrimeExclusion, FengPrimeMass, FengPrimeProfile, FengPrimeWindow
-代表定理: XiPrime8845.FengPrimeExclusion.excluded_mass_scaled</title><rect x="447.0" y="1328.0" width="210" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="552.0" y="1349.2" text-anchor="middle" font-weight="bold" font-size="11">FengPrime</text>
-<text x="552.0" y="1363.2" text-anchor="middle" font-size="11">5 モジュール</text>
-<text x="552.0" y="1377.2" text-anchor="middle" font-size="9.5">excluded_mass_scaled</text>
+代表定理: XiPrime8845.FengPrimeExclusion.excluded_mass_scaled</title><rect x="447.0" y="1682.0" width="210" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="552.0" y="1703.2" text-anchor="middle" font-weight="bold" font-size="11">FengPrime</text>
+<text x="552.0" y="1717.2" text-anchor="middle" font-size="11">5 モジュール</text>
+<text x="552.0" y="1731.2" text-anchor="middle" font-size="9.5">excluded_mass_scaled</text>
 </g>
 <g><title>FengShared: FengShared, FengSharedApproximation, FengSharedBlock, FengSharedBounds, FengSharedInterior, FengSharedLimit, FengSharedShift, FengSharedTail
-代表定理: XiPrime8845.FengSharedShift.fullSum_reflected</title><rect x="324.0" y="1446.0" width="182" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="415.0" y="1467.2" text-anchor="middle" font-weight="bold" font-size="11">FengShared</text>
-<text x="415.0" y="1481.2" text-anchor="middle" font-size="11">8 モジュール</text>
-<text x="415.0" y="1495.2" text-anchor="middle" font-size="9.5">fullSum_reflected</text>
+代表定理: XiPrime8845.FengSharedShift.fullSum_reflected</title><rect x="324.0" y="1800.0" width="182" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="415.0" y="1821.2" text-anchor="middle" font-weight="bold" font-size="11">FengShared</text>
+<text x="415.0" y="1835.2" text-anchor="middle" font-size="11">8 モジュール</text>
+<text x="415.0" y="1849.2" text-anchor="middle" font-size="9.5">fullSum_reflected</text>
 </g>
 <g><title>FengSquare: FengSquareAssembly, FengSquareCoefficient, FengSquareMainTerm
-代表定理: XiPrime8845.FengSquareMainTerm.normalized_gcd22_tendsto</title><rect x="291.0" y="856.0" width="248" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="415.0" y="877.2" text-anchor="middle" font-weight="bold" font-size="11">FengSquare</text>
-<text x="415.0" y="891.2" text-anchor="middle" font-size="11">3 モジュール</text>
-<text x="415.0" y="905.2" text-anchor="middle" font-size="9.5">normalized_gcd22_tendsto</text>
+代表定理: XiPrime8845.FengSquareMainTerm.normalized_gcd22_tendsto</title><rect x="291.0" y="1210.0" width="248" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="415.0" y="1231.2" text-anchor="middle" font-weight="bold" font-size="11">FengSquare</text>
+<text x="415.0" y="1245.2" text-anchor="middle" font-size="11">3 モジュール</text>
+<text x="415.0" y="1259.2" text-anchor="middle" font-size="9.5">normalized_gcd22_tendsto</text>
 </g>
 <g><title>Feng（その他）: FengArithmetic, FengAtG, FengCoefficientBridge, FengMertensModels, FengResidual, FengShift
-代表定理: XiPrime8845.FengCoefficientBridge.scaledArithmetic_diagonal</title><rect x="168.0" y="1682.0" width="258" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="297.0" y="1703.2" text-anchor="middle" font-weight="bold" font-size="11">Feng（その他）</text>
-<text x="297.0" y="1717.2" text-anchor="middle" font-size="11">6 モジュール</text>
-<text x="297.0" y="1731.2" text-anchor="middle" font-size="9.5">scaledArithmetic_diagonal</text>
+代表定理: XiPrime8845.FengCoefficientBridge.scaledArithmetic_diagonal</title><rect x="168.0" y="2036.0" width="258" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="297.0" y="2057.2" text-anchor="middle" font-weight="bold" font-size="11">Feng（その他）</text>
+<text x="297.0" y="2071.2" text-anchor="middle" font-size="11">6 モジュール</text>
+<text x="297.0" y="2085.2" text-anchor="middle" font-size="9.5">scaledArithmetic_diagonal</text>
 </g>
 <g><title>Mobius: MobiusHarmonic, MobiusPNT, MobiusPNTBridge
-代表定理: XiPrime8845.MobiusPNTBridge.linearProfile_uniform</title><rect x="26.0" y="1800.0" width="220" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="136.0" y="1821.2" text-anchor="middle" font-weight="bold" font-size="11">Mobius</text>
-<text x="136.0" y="1835.2" text-anchor="middle" font-size="11">3 モジュール</text>
-<text x="136.0" y="1849.2" text-anchor="middle" font-size="9.5">linearProfile_uniform</text>
+代表定理: XiPrime8845.MobiusPNTBridge.linearProfile_uniform</title><rect x="272.0" y="2154.0" width="220" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="382.0" y="2175.2" text-anchor="middle" font-weight="bold" font-size="11">Mobius</text>
+<text x="382.0" y="2189.2" text-anchor="middle" font-size="11">3 モジュール</text>
+<text x="382.0" y="2203.2" text-anchor="middle" font-size="9.5">linearProfile_uniform</text>
 </g>
 <g><title>Shifted: ShiftedEndpoint, ShiftedEulerLocal, ShiftedEulerUniform, ShiftedMobius, ShiftedTotient
-代表定理: XiPrime8845.ShiftedEndpoint.scaled_coprime_bound</title><rect x="447.0" y="384.0" width="210" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="552.0" y="405.2" text-anchor="middle" font-weight="bold" font-size="11">Shifted</text>
-<text x="552.0" y="419.2" text-anchor="middle" font-size="11">5 モジュール</text>
-<text x="552.0" y="433.2" text-anchor="middle" font-size="9.5">scaled_coprime_bound</text>
+代表定理: XiPrime8845.ShiftedEndpoint.scaled_coprime_bound</title><rect x="447.0" y="738.0" width="210" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="552.0" y="759.2" text-anchor="middle" font-weight="bold" font-size="11">Shifted</text>
+<text x="552.0" y="773.2" text-anchor="middle" font-size="11">5 モジュール</text>
+<text x="552.0" y="787.2" text-anchor="middle" font-size="9.5">scaled_coprime_bound</text>
 </g>
 <g><title>Smooth: SmoothMobius, SmoothWeightWitness, SmoothWindow, SmoothWindowLimit
-代表定理: XiPrime8845.SmoothWindowLimit.windowMoment_tendsto</title><rect x="310.0" y="266.0" width="210" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="415.0" y="287.2" text-anchor="middle" font-weight="bold" font-size="11">Smooth</text>
-<text x="415.0" y="301.2" text-anchor="middle" font-size="11">4 モジュール</text>
-<text x="415.0" y="315.2" text-anchor="middle" font-size="9.5">windowMoment_tendsto</text>
+代表定理: XiPrime8845.SmoothWindowLimit.windowMoment_tendsto</title><rect x="310.0" y="148.0" width="210" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="415.0" y="169.2" text-anchor="middle" font-weight="bold" font-size="11">Smooth</text>
+<text x="415.0" y="183.2" text-anchor="middle" font-size="11">4 モジュール</text>
+<text x="415.0" y="197.2" text-anchor="middle" font-size="9.5">windowMoment_tendsto</text>
 </g>
 <g><title>Support: SupportProductTail, SupportTail
-代表定理: XiPrime8845.SupportProductTail.supported_product_average_le</title><rect x="518.0" y="1800.0" width="286" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="661.0" y="1821.2" text-anchor="middle" font-weight="bold" font-size="11">Support</text>
-<text x="661.0" y="1835.2" text-anchor="middle" font-size="11">2 モジュール</text>
-<text x="661.0" y="1849.2" text-anchor="middle" font-size="9.5">supported_product_average_le</text>
+代表定理: XiPrime8845.SupportProductTail.supported_product_average_le</title><rect x="518.0" y="2154.0" width="286" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="661.0" y="2175.2" text-anchor="middle" font-weight="bold" font-size="11">Support</text>
+<text x="661.0" y="2189.2" text-anchor="middle" font-size="11">2 モジュール</text>
+<text x="661.0" y="2203.2" text-anchor="middle" font-size="9.5">supported_product_average_le</text>
 </g>
 <g><title>Totient: TotientAbel, TotientConvolution, TotientCoprime, TotientHarmonic, TotientSummability, TotientWeight
-代表定理: XiPrime8845.TotientAbel.weighted_error_bound</title><rect x="452.0" y="1682.0" width="210" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="557.0" y="1703.2" text-anchor="middle" font-weight="bold" font-size="11">Totient</text>
-<text x="557.0" y="1717.2" text-anchor="middle" font-size="11">6 モジュール</text>
-<text x="557.0" y="1731.2" text-anchor="middle" font-size="9.5">weighted_error_bound</text>
+代表定理: XiPrime8845.TotientAbel.weighted_error_bound</title><rect x="452.0" y="2036.0" width="210" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="557.0" y="2057.2" text-anchor="middle" font-weight="bold" font-size="11">Totient</text>
+<text x="557.0" y="2071.2" text-anchor="middle" font-size="11">6 モジュール</text>
+<text x="557.0" y="2085.2" text-anchor="middle" font-size="9.5">weighted_error_bound</text>
 </g>
 <g><title>TwoPiece: TwoPieceMainTerm, TwoPieceMoment
-代表定理: XiPrime8845.TwoPieceMoment.normalizedMoment_exactEvaluator_tendsto</title><rect x="128.0" y="738.0" width="300" height="76" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="278.0" y="759.2" text-anchor="middle" font-weight="bold" font-size="11">TwoPiece</text>
-<text x="278.0" y="773.2" text-anchor="middle" font-size="11">2 モジュール</text>
-<text x="278.0" y="787.2" text-anchor="middle" font-size="9.5">normalizedMoment_exa</text>
-<text x="278.0" y="801.2" text-anchor="middle" font-size="9.5">ctEvaluator_tendsto</text>
+代表定理: XiPrime8845.TwoPieceMoment.normalizedMoment_exactEvaluator_tendsto</title><rect x="265.0" y="1092.0" width="300" height="76" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="415.0" y="1113.2" text-anchor="middle" font-weight="bold" font-size="11">TwoPiece</text>
+<text x="415.0" y="1127.2" text-anchor="middle" font-size="11">2 モジュール</text>
+<text x="415.0" y="1141.2" text-anchor="middle" font-size="9.5">normalizedMoment_exa</text>
+<text x="415.0" y="1155.2" text-anchor="middle" font-size="9.5">ctEvaluator_tendsto</text>
 </g>
 <g><title>Zeta: ZetaMomentIntegral, ZetaMomentMainTerm, ZetaMomentPolynomial, ZetaPoleScaling
-代表定理: XiPrime8845.ZetaMomentMainTerm.squareMoment_exactEvaluator_tendsto</title><rect x="265.0" y="620.0" width="300" height="76" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="415.0" y="641.2" text-anchor="middle" font-weight="bold" font-size="11">Zeta</text>
-<text x="415.0" y="655.2" text-anchor="middle" font-size="11">4 モジュール</text>
-<text x="415.0" y="669.2" text-anchor="middle" font-size="9.5">squareMoment_exact</text>
-<text x="415.0" y="683.2" text-anchor="middle" font-size="9.5">Evaluator_tendsto</text>
+代表定理: XiPrime8845.ZetaMomentMainTerm.squareMoment_exactEvaluator_tendsto</title><rect x="265.0" y="974.0" width="300" height="76" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="415.0" y="995.2" text-anchor="middle" font-weight="bold" font-size="11">Zeta</text>
+<text x="415.0" y="1009.2" text-anchor="middle" font-size="11">4 モジュール</text>
+<text x="415.0" y="1023.2" text-anchor="middle" font-size="9.5">squareMoment_exact</text>
+<text x="415.0" y="1037.2" text-anchor="middle" font-size="9.5">Evaluator_tendsto</text>
 </g>
 <g><title>主項: 単独モジュール群: ArithmeticRegularity, CauchyJetTransfer, CompactShiftIntegral, ElementaryGcd, EndpointAverage, EulerHead, GcdDecomposition, HeightScaling, LogProfileSum, MultiplicativeSummability, OuterProfile, RawEuler, ShiftWeights, WeightDerivatives, WeightedMobius, WitnessMomentBound
-代表定理: XiPrime8845.WitnessMomentBound.unit_mass_moment_bound</title><rect x="300.5" y="148.0" width="229" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
-<text x="415.0" y="169.2" text-anchor="middle" font-weight="bold" font-size="11">主項: 単独モジュール群</text>
-<text x="415.0" y="183.2" text-anchor="middle" font-size="11">16 モジュール</text>
-<text x="415.0" y="197.2" text-anchor="middle" font-size="9.5">unit_mass_moment_bound</text>
+代表定理: XiPrime8845.WitnessMomentBound.unit_mass_moment_bound</title><rect x="300.5" y="502.0" width="229" height="62" rx="6" fill="#cfe3f5" stroke="#333"/>
+<text x="415.0" y="523.2" text-anchor="middle" font-weight="bold" font-size="11">主項: 単独モジュール群</text>
+<text x="415.0" y="537.2" text-anchor="middle" font-size="11">16 モジュール</text>
+<text x="415.0" y="551.2" text-anchor="middle" font-size="9.5">unit_mass_moment_bound</text>
 </g>
 <g><title>数値証明書: BetaKernel, CoefficientEvaluator, FiniteJet, FixedCertificate, IntegralJet, KernelAlgebra, NumericalGate, RationalBounds, RationalEvaluator, TaylorEnvelope
-代表定理: XiPrime8845.FixedCertificate.fixed_functional_gate</title><rect x="272.0" y="1800.0" width="220" height="62" rx="6" fill="#d9efd3" stroke="#333"/>
-<text x="382.0" y="1821.2" text-anchor="middle" font-weight="bold" font-size="11">数値証明書</text>
-<text x="382.0" y="1835.2" text-anchor="middle" font-size="11">10 モジュール</text>
-<text x="382.0" y="1849.2" text-anchor="middle" font-size="9.5">fixed_functional_gate</text>
+代表定理: XiPrime8845.FixedCertificate.fixed_functional_gate</title><rect x="26.0" y="2154.0" width="220" height="62" rx="6" fill="#d9efd3" stroke="#333"/>
+<text x="136.0" y="2175.2" text-anchor="middle" font-weight="bold" font-size="11">数値証明書</text>
+<text x="136.0" y="2189.2" text-anchor="middle" font-size="11">10 モジュール</text>
+<text x="136.0" y="2203.2" text-anchor="middle" font-size="9.5">fixed_functional_gate</text>
+</g>
+<g><title>PRZZ 4.1 の証明: PRZZAFEDual, PRZZAFEGamma, PRZZAFEIndices, PRZZAFEOuterAssembly, PRZZAFEProgression, PRZZAStar, PRZZAStarFrequency, PRZZAStarFubini, PRZZAStarIntegrability, PRZZAStarIntegralBound, PRZZAStarMellin, PRZZAStarNu, PRZZAStarRectangles, PRZZAStarTransform, PRZZAStarWindow, PRZZAbsorbedFourierTail, PRZZActiveFreezeBudget, PRZZActiveRows, PRZZActualAStar, PRZZActualAggregate, PRZZActualBranchCells, PRZZActualBranchDI, PRZZActualBudgetLayout, PRZZActualCasePowers, PRZZActualCaseSum, PRZZActualCases, PRZZActualDirectSum, PRZZActualLocalReplacement, PRZZActualLoss, PRZZActualMellin, PRZZActualPoissonError, PRZZActualRowRectangle, PRZZActualRowSmooth, PRZZActualSignedBranches, PRZZActualSmall, PRZZActualSmallReplacement, PRZZActualSupportBoxes, PRZZActualTailCollector, PRZZActualTailNative, PRZZActualTypeI, PRZZActualZeroReflection, PRZZAllBranchCells, PRZZAllCellsBound, PRZZAllOffDiagonalRows, PRZZAllPoissonAFE, PRZZAllPoissonRows, PRZZAllSignedSources, PRZZAllocationMass, PRZZAmplitudeFreeze, PRZZArithmeticBoundaryFamily, PRZZArithmeticCutoffPartition, PRZZArithmeticFourierTail, PRZZArithmeticMass, PRZZArithmeticTime, PRZZArithmeticWindowCutoff, PRZZBandOuterMass, PRZZBareFactors, PRZZBasisGridBound, PRZZBasisGridCutoff, PRZZBasisPairedBody, PRZZBodyTailCollector, PRZZBodyTailMass, PRZZBodyTailOptimal, PRZZBodyTailTime, PRZZBranchDegrees, PRZZBranchEnvelope, PRZZBranchGrouping, PRZZBranchMass, PRZZBranchSeven, PRZZCappedBandOuter, PRZZCappedBodyMass, PRZZCappedBodyTail, PRZZCappedDiscarded, PRZZCappedDiscardedFamily, PRZZCappedDiscardedIBP, PRZZCappedFreezeBudget, PRZZCappedFreezeCollector, PRZZCappedFreezeMoment, PRZZCappedGammaDefect, PRZZCappedLarge, PRZZCappedMainTerm, PRZZCappedMomentBridge, PRZZCappedNativeTail, PRZZCappedPrefactor, PRZZCappedRemainder, PRZZCappedSameMask, PRZZCappedStrictFreeze, PRZZCappedStrictTail, PRZZCappedSubunitMass, PRZZCappedTailBand, PRZZCappedTailMass, PRZZCappedWindowBand, PRZZCappedWindowMass, PRZZCappedWindowTime, PRZZCellMass, PRZZCentralArithmeticJoin, PRZZCentralFubini, PRZZCentralGridIdentity, PRZZCentralGridWeilDI, PRZZCentralIntegral, PRZZCentralMainAssembly, PRZZCentralTail, PRZZClassCases, PRZZClassDI, PRZZClassDualProfile, PRZZClassFreeLength, PRZZClassLiteral, PRZZClassNegativeGrid, PRZZClassNegativeLiteral, PRZZClassNegativePoisson, PRZZClassPoisson, PRZZClassPositiveGrid, PRZZClassRows, PRZZClassSignedGrid, PRZZClassSources, PRZZClassSpatialCases, PRZZClassSpatialDI, PRZZClassSpatialRows, PRZZClassSpatialSources, PRZZClassSpatialTypeI, PRZZClassTypeI, PRZZClassVariation, PRZZClassWideLiteral, PRZZClassWidePoisson, PRZZClassZeroBoundary, PRZZClassZeroCorrection, PRZZClassZeroPrimalGap, PRZZClassZeroTail, PRZZCoefficientPolarization, PRZZCoefficientSeparation, PRZZCombinedBudget, PRZZCommonCellBound, PRZZCommonCutMoment, PRZZCommonSignedWindow, PRZZCommonWindowCollector, PRZZCompatibleTail, PRZZCompletedStrip, PRZZCongruencePoisson, PRZZContourAFE, PRZZContourKernel, PRZZConvolutionSplit, PRZZCoprimeAllocation, PRZZCosineAbel, PRZZCosineDerivativeMellin, PRZZCosineDominated, PRZZCosineFiniteFubini, PRZZCosineGapCorrection, PRZZCosineGapMellin, PRZZCosineImproper, PRZZCosineMellin, PRZZCosineMellinCore, PRZZCosineMovingWindow, PRZZCosineSpatialBoundary, PRZZCosineSpatialImproper, PRZZCosineSpatialJets, PRZZCosineTimeDomination, PRZZCosineTimeMellin, PRZZCoupledAFE, PRZZCutoffJets, PRZZCutoffPhase, PRZZDIExpansion, PRZZDISeven, PRZZDeltaDecay, PRZZDiagonalAssembly, PRZZDiagonalContour, PRZZDiagonalKernel, PRZZDiagonalMass, PRZZDiagonalMellin, PRZZDifferenceContour, PRZZDifferenceDecay, PRZZDifferenceRegular, PRZZDiscardedAFEBridge, PRZZDiscardedOuter, PRZZDiscardedPartition, PRZZDiscardedSuppliers, PRZZDiscardedTimePair, PRZZDualDiscardedBudget, PRZZDualDiscardedIBP, PRZZDualError, PRZZDualFirstJet, PRZZDualHigherJets, PRZZDualJetMass, PRZZDualJetTransfer, PRZZDualMellinUniform, PRZZDualNativeFreeze, PRZZDualProfileUniform, PRZZDualSmooth, PRZZDualTimeIBP, PRZZDualWindowErrorJoin, PRZZDyadic, PRZZDyadicArithmetic, PRZZDyadicArithmeticMass, PRZZDyadicBudget, PRZZDyadicCellBound, PRZZDyadicEnvelope, PRZZDyadicModulus, PRZZDyadicSupport, PRZZDyadicWindow, PRZZEffectiveBalance, PRZZEmptyArithmeticMass, PRZZEmptyFrequencyDecay, PRZZEmptyMomentMass, PRZZEmptyMomentScalar, PRZZEmptyScaleAbsorption, PRZZEnvelopeMass, PRZZEulerSubpower, PRZZExhaustiveAFEError, PRZZExpandedCutoff, PRZZExplicitDomain, PRZZExtendedTailDomain, PRZZFamilyMoment, PRZZFamilyMomentOptimal, PRZZFilteredResidual, PRZZFiniteContour, PRZZFiniteFamilyRows, PRZZFiniteFreezeBudget, PRZZFourierExhaustion, PRZZFourierTime, PRZZFreeCell, PRZZFreeCoefficient, PRZZFreeDyadic, PRZZFreeLength, PRZZFreeLengthCell, PRZZFreeLengthCoefficient, PRZZFreeLogCoprime, PRZZFreeLogRow, PRZZFreeSource, PRZZFreezeErrorBudget, PRZZFreezeMass, PRZZFreezeRemovedLiteral, PRZZFreezeScales, PRZZFrozenProfileBound, PRZZFrozenTail, PRZZFullFreezeBudget, PRZZFullHeathBrown, PRZZFullLiteralBound, PRZZFullWeightJets, PRZZFullWeightSmooth, PRZZGAbsorption, PRZZGCoefficient, PRZZGammaBudgetAbsorption, PRZZGammaCentral, PRZZGammaFar, PRZZGammaLaplace, PRZZGammaMain, PRZZGammaMultiplier, PRZZGammaPath, PRZZGammaUniform, PRZZGaussianCorrection, PRZZGaussianDerivatives, PRZZGaussianLine, PRZZGaussianTail, PRZZGcdAverage, PRZZGroupBounds, PRZZGroupedConvolution, PRZZGroupedDI, PRZZGroupedSeven, PRZZGroupedTime, PRZZHBAtomSupply, PRZZHBBranches, PRZZHBRectangles, PRZZHeathBrown, PRZZHeightMass, PRZZHiAllocatedCells, PRZZHorizontalDecay, PRZZInfiniteContour, PRZZInfiniteTail, PRZZInflatedOuter, PRZZInflatedSeven, PRZZIntegratedAFE, PRZZIntegratedDefect, PRZZIntegratedFreezeAFE, PRZZInversePhase, PRZZInverseProfile, PRZZJetUniform, PRZZKeptLiteral, PRZZKernelComparison, PRZZKernelDifference, PRZZKernelTime, PRZZKernelUniform, PRZZKloostermanInputs, PRZZL1Finite, PRZZL1Poisson, PRZZL1Residue, PRZZL1Truncation, PRZZLambda, PRZZLargeResolvedPruning, PRZZLargeSpatialFamily, PRZZLargeSpatialHeight, PRZZLargeSpatialKernel, PRZZLeftCentral, PRZZLeftFar, PRZZLeftUniform, PRZZLengthBudget, PRZZLinearOuter, PRZZLiteralAFEJoin, PRZZLiteralBranches, PRZZLiteralComplement, PRZZLiteralExhaustion, PRZZLiteralFourierLimit, PRZZLiteralRows, PRZZLiteralTotalBound, PRZZLocalCentralTransfer, PRZZLocalFrequencyLoss, PRZZLocalReexpansion, PRZZLocalReplacement, PRZZLocalTailBudget, PRZZLogDerivatives, PRZZMaskedAbsorption, PRZZMaskedSource, PRZZMaskedVariation, PRZZMeanSquare, PRZZMellinInterval, PRZZMellinMoment, PRZZMellinSeminorm, PRZZMellinSeparation, PRZZMellinTail, PRZZMellinTypeII, PRZZMixedDefect, PRZZMixedLiteral, PRZZMixedMoment, PRZZMixedPoisson, PRZZMixedReplacement, PRZZMobiusHeathBrown, PRZZModulusBudget, PRZZModulusScale, PRZZMollifiedTime, PRZZNativeCentralLiteral, PRZZNativeComponents, PRZZNativeFamily, PRZZNativeFreezeEnvelope, PRZZNativeFreezeTime, PRZZNativeGcdGrid, PRZZNativeTailRectangle, PRZZNegativeActiveRows, PRZZNegativeArithmetic, PRZZNegativeLiteralRows, PRZZNegativeLocalRows, PRZZNegativeMellin, PRZZNegativeOuter, PRZZNegativeRowIntegral, PRZZNegativeRowWindow, PRZZNegativeWindowCell, PRZZNoncentralResidues, PRZZNonemptyRowBudget, PRZZNormalizedTail, PRZZNuBounds, PRZZNuCoefficient, PRZZOptimalOuter, PRZZOptimalPowers, PRZZOriginalDiagonal, PRZZOriginalRowWindow, PRZZOuterLogBudget, PRZZOuterMass, PRZZPartitionDiscrepancy, PRZZPartitionMass, PRZZPhaseDegree, PRZZPhaseError, PRZZPoissonActualWeight, PRZZPoissonAnalyticMass, PRZZPoissonTimeChange, PRZZPoissonWDerivative, PRZZPolygammaSeries, PRZZPositiveMellin, PRZZPositiveOuter, PRZZPositiveOuterGrid, PRZZPositiveRow, PRZZPowerJets, PRZZPrefactorMass, PRZZPrimitiveKernel, PRZZProductMass, PRZZProductSummation, PRZZProductTime, PRZZProfileMellin, PRZZProfileScale, PRZZProfileSmooth, PRZZProfileTimeBudget, PRZZPrunedAFEError, PRZZPrunedTailRows, PRZZQuadraticJets, PRZZQuotientMass, PRZZReciprocalJets, PRZZReconstructedAFE, PRZZReflectedContour, PRZZReflectedEnvelope, PRZZRejectedExhaustion, PRZZRemainderAbsorption, PRZZRemainderBudget, PRZZReplacementHeight, PRZZReplacementIntegral, PRZZReplacementMass, PRZZResidualCoprime, PRZZResidualRow, PRZZResidualWeighted, PRZZResidueAbsorption, PRZZResidueEnvelope, PRZZResidueTime, PRZZResolvedBoundary, PRZZResolvedComplement, PRZZResolvedTail, PRZZResolvedTailMass, PRZZRetainedNative, PRZZRetainedScale, PRZZRowCellLayout, PRZZRowIntegralBudget, PRZZRowMellinBranches, PRZZRowPlacement, PRZZRowWindow, PRZZSameMaskFreezeBudget, PRZZSameMaskResidual, PRZZScaledReplacement, PRZZSelectedDiscarded, PRZZSelectedDiscardedFamily, PRZZSelectedLocalFourier, PRZZSeriesAFE, PRZZSharpAggregation, PRZZSharpCost, PRZZSharpCutoff, PRZZSharpDI, PRZZSharpGrouped, PRZZSharpPoisson, PRZZSignedCentral, PRZZSignedSourceCell, PRZZSignedTypeII, PRZZSmallCentralLiteral, PRZZSmallRowVariation, PRZZSmoothMellin, PRZZSmoothWeights, PRZZSourceAbsorption, PRZZSourceBoundaryDecay, PRZZSourceCoefficients, PRZZSourceCutoffs, PRZZSourceDecay, PRZZSourceEnvelope, PRZZSourceFrequency, PRZZSourceGroupDI, PRZZSourceLattice, PRZZSourceMaskFamily, PRZZSourceRows, PRZZSourceScales, PRZZSourceTailBudget, PRZZSourceTailMass, PRZZSourceTypeII, PRZZSourceW, PRZZSourceWDerivatives, PRZZSourceWLine, PRZZSourceWOuter, PRZZSourceWSums, PRZZSourceWindowCutoff, PRZZSpatialErrorJoin, PRZZSpatialFreezeBudget, PRZZSpatialReconstruction, PRZZSplitScaleSum, PRZZStrictSmallTail, PRZZSubunitFourier, PRZZSubunitWindowMass, PRZZSupportedAllocation, PRZZSupportedBranches, PRZZSupportedSource, PRZZSupportedSplit, PRZZTailRowIntegrable, PRZZTailSourceFamily, PRZZTailTimeSum, PRZZThreeCaseLoss, PRZZTimeAmplitude, PRZZTimeDiscarded, PRZZTimeJets, PRZZTransformedSourceBudget, PRZZTruncatedProgression, PRZZTypeI, PRZZTypeICoprime, PRZZTypeICost, PRZZTypeIFrequency, PRZZTypeII, PRZZTypeIScaleSupplier, PRZZTypeIVariation, PRZZTypeIWeights, PRZZTypedClassification, PRZZUnfrozenPoisson, PRZZUniformAggregate, PRZZUniformCases, PRZZUniformGrid, PRZZUniformOuter, PRZZUniformTypeI, PRZZUnitModulusBudget, PRZZUnitTailMass, PRZZValuedCutoffs, PRZZValuedSourceDiscarded, PRZZWArithmeticCutoff, PRZZWRowLimit, PRZZWRowReindex, PRZZWeightFourier, PRZZWeightTail, PRZZWeightedDI, PRZZWeightedHeathBrown, PRZZWeightedSourcePoisson, PRZZWeilDIMainBound, PRZZWeilDIZeroJoin, PRZZWideActiveRows, PRZZWideRowBudget, PRZZWindowBandMass, PRZZWindowBoundary, PRZZWindowCentralAssembly, PRZZWindowComposition, PRZZWindowDominance, PRZZWindowErrorJoin, PRZZWindowGrids, PRZZWindowMoment, PRZZWindowNativeTail, PRZZWindowOptimalCell, PRZZWindowScaleSupply, PRZZWindowTailMass, PRZZWindowTailTime, PRZZWindowWeight, PRZZWitnessBasis, PRZZWitnessMass, PRZZZeroArithmeticPartition, PRZZZeroBoundaryHeight, PRZZZeroBoundaryIdentity, PRZZZeroBoundarySum, PRZZZeroCompleteCell, PRZZZeroCosine, PRZZZeroCoupled, PRZZZeroCross, PRZZZeroCutoffLimit, PRZZZeroDualBoundary, PRZZZeroDualExhaustion, PRZZZeroDualGaps, PRZZZeroDualHeight, PRZZZeroDualNativeTail, PRZZZeroDualOuter, PRZZZeroExhaustionCross, PRZZZeroExtension, PRZZZeroFourierReduction, PRZZZeroGammaBound, PRZZZeroGap, PRZZZeroGapExchange, PRZZZeroGapTime, PRZZZeroIntegerReindex, PRZZZeroMismatchHeight, PRZZZeroNativeCompletion, PRZZZeroNativeTail, PRZZZeroNormalization, PRZZZeroOmittedGaps, PRZZZeroOuterHeight, PRZZZeroOuterMellin, PRZZZeroPhaseBudget, PRZZZeroReciprocal, PRZZZeroReciprocalRows, PRZZZeroReflection, PRZZZeroRowMellin, PRZZZeroSourceHeight, PRZZZeroSpatialHeight, PRZZZeroSpatialLimit, PRZZZeroSpatialPrefix, PRZZZeroUniformHeight
+代表定理: XiPrime8845.PRZZFamilyMomentOptimal.basis_bound</title><rect x="339.0" y="384.0" width="152" height="62" rx="6" fill="#e6d5f2" stroke="#333"/>
+<text x="415.0" y="405.2" text-anchor="middle" font-weight="bold" font-size="11">PRZZ 4.1 の証明</text>
+<text x="415.0" y="419.2" text-anchor="middle" font-size="11">556 モジュール</text>
+<text x="415.0" y="433.2" text-anchor="middle" font-size="9.5">basis_bound</text>
 </g>
 <g><title>その他: LogarithmicBudget
-代表定理: XiPrime8845.LogarithmicBudget.positive_moment_gate</title><rect x="546.0" y="266.0" width="210" height="62" rx="6" fill="#e8e8e8" stroke="#333"/>
-<text x="651.0" y="287.2" text-anchor="middle" font-weight="bold" font-size="11">その他</text>
-<text x="651.0" y="301.2" text-anchor="middle" font-size="11">1 モジュール</text>
-<text x="651.0" y="315.2" text-anchor="middle" font-size="9.5">positive_moment_gate</text>
+代表定理: XiPrime8845.LogarithmicBudget.positive_moment_gate</title><rect x="192.0" y="620.0" width="210" height="62" rx="6" fill="#e8e8e8" stroke="#333"/>
+<text x="297.0" y="641.2" text-anchor="middle" font-weight="bold" font-size="11">その他</text>
+<text x="297.0" y="655.2" text-anchor="middle" font-size="11">1 モジュール</text>
+<text x="297.0" y="669.2" text-anchor="middle" font-size="9.5">positive_moment_gate</text>
 </g>
-<g><title>AF</title><rect x="292.0" y="1918.0" width="110" height="48" rx="6" fill="#fff3b0" stroke="#333"/>
-<text x="347.0" y="1939.2" text-anchor="middle" font-weight="bold" font-size="11">AF</text>
-<text x="347.0" y="1953.2" text-anchor="middle" font-size="11">外部ライブラリ</text>
+<g><title>AF</title><rect x="428.0" y="2272.0" width="110" height="48" rx="6" fill="#fff3b0" stroke="#333"/>
+<text x="483.0" y="2293.2" text-anchor="middle" font-weight="bold" font-size="11">AF</text>
+<text x="483.0" y="2307.2" text-anchor="middle" font-size="11">外部ライブラリ</text>
 </g>
-<g><title>Mathlib</title><rect x="428.0" y="1918.0" width="110" height="48" rx="6" fill="#ffffff" stroke="#333"/>
-<text x="483.0" y="1939.2" text-anchor="middle" font-weight="bold" font-size="11">Mathlib</text>
-<text x="483.0" y="1953.2" text-anchor="middle" font-size="11">外部ライブラリ</text>
+<g><title>Mathlib</title><rect x="292.0" y="2272.0" width="110" height="48" rx="6" fill="#ffffff" stroke="#333"/>
+<text x="347.0" y="2293.2" text-anchor="middle" font-weight="bold" font-size="11">Mathlib</text>
+<text x="347.0" y="2307.2" text-anchor="middle" font-size="11">外部ライブラリ</text>
 </g>
-<text x="20" y="2056" font-weight="bold">層</text>
-<rect x="20" y="2064" width="14" height="12" fill="#f6d8ae" stroke="#333"/><text x="40" y="2074">計数（Wu）</text>
-<rect x="20" y="2082" width="14" height="12" fill="#f4b6b6" stroke="#333"/><text x="40" y="2092">PRZZ 入力</text>
-<rect x="20" y="2100" width="14" height="12" fill="#cfe3f5" stroke="#333"/><text x="40" y="2110">主項</text>
-<rect x="20" y="2118" width="14" height="12" fill="#d9efd3" stroke="#333"/><text x="40" y="2128">数値証明書</text>
-<rect x="20" y="2136" width="14" height="12" fill="#e8e8e8" stroke="#333"/><text x="40" y="2146">その他</text>
-<rect x="20" y="2154" width="14" height="12" fill="#fff3b0" stroke="#333"/><text x="40" y="2164">AF</text>
-<rect x="20" y="2172" width="14" height="12" fill="#ffffff" stroke="#333"/><text x="40" y="2182">Mathlib</text>
+<text x="20" y="2410" font-weight="bold">層</text>
+<rect x="20" y="2418" width="14" height="12" fill="#f6d8ae" stroke="#333"/><text x="40" y="2428">計数（Wu）</text>
+<rect x="20" y="2436" width="14" height="12" fill="#f4b6b6" stroke="#333"/><text x="40" y="2446">PRZZ 定義・証明済み接続</text>
+<rect x="20" y="2454" width="14" height="12" fill="#cfe3f5" stroke="#333"/><text x="40" y="2464">主項</text>
+<rect x="20" y="2472" width="14" height="12" fill="#d9efd3" stroke="#333"/><text x="40" y="2482">数値証明書</text>
+<rect x="20" y="2490" width="14" height="12" fill="#e6d5f2" stroke="#333"/><text x="40" y="2500">PRZZ 4.1 の証明</text>
+<rect x="20" y="2508" width="14" height="12" fill="#e8e8e8" stroke="#333"/><text x="40" y="2518">その他</text>
+<rect x="20" y="2526" width="14" height="12" fill="#fff3b0" stroke="#333"/><text x="40" y="2536">AF</text>
+<rect x="20" y="2544" width="14" height="12" fill="#ffffff" stroke="#333"/><text x="40" y="2554">Mathlib</text>
 </svg>

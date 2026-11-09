@@ -12,6 +12,8 @@ Both counts include multiplicity. This is not a simple-zero claim. The manuscrip
 
 ## Read first
 
+**7 November 2026 erratum:** `manuscript.tex` now includes the shift-placement note linked from [STATUS](../docs/STATUS.md#v010-erratum-shift-placement-7-november-2026). `manuscript.pdf` is still the pre-note version; rebuilding and visual inspection of the revised PDF are pending. The numerical interval results are unchanged. The certificate's manuscript source hash and package manifests are updated for the revised TeX; the historical tag is preserved.
+
 1. `manuscript.pdf` or `manuscript.tex`: definitions, exact witness, counting lemma, published moment input, specialized kernel, and finite certificate.
 2. `numerical_interval.py`: the compact interval evaluator, copied without numerical changes from the previously checked fixed-witness evaluator.
 3. `verify.py`: exact rational admissibility, the four complete Laurent kernel identities, four interval runs, and optional package-integrity checking.
@@ -40,7 +42,7 @@ No nonstandard font or local TeX macro is required. Either run `pdflatex manuscr
 tectonic -X compile manuscript.tex --keep-logs
 ```
 
-The delivered PDF was built with Tectonic 0.17.0 and visually inspected page by page. A fresh Tectonic installation may need network access to fetch standard TeX packages on its first build. PDF byte equality across TeX installations is not required for mathematical reproducibility.
+The pre-note PDF was built with Tectonic 0.17.0 and visually inspected page by page. That statement does not certify a build of the revised TeX. A fresh Tectonic installation may need network access to fetch standard TeX packages on its first build. PDF byte equality across TeX installations is not required for mathematical reproducibility.
 
 ## Questions requiring analytic review
 

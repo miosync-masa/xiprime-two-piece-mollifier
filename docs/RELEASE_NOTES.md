@@ -1,5 +1,35 @@
 # Release notes
 
+## 2026 November 9 — Proved witness input and Weil/DI headline path
+
+The former `PRZZ.przz41_case3_K2_witness` axiom is replaced by a theorem
+with explicit `WeilIncomplete` and `DeshouillersIwaniecLemma1` hypotheses.
+`PRZZWitnessBridge` identifies the public moment, its actual floor cutoff
+and density-oriented main term with the height-uniform finite-family
+estimate. `PRZZProvedInput` supplies that result to `PRZZAsymptotic` and
+the original Wu counting chain. A definitions-only `PRZZAsymptoticCore`
+prevents a circular dependency through the arithmetic regularity proofs.
+
+All four `WuProportion` headline theorems now expose both hypotheses
+explicitly. No local analytic axiom is declared; this does **not** prove
+Weil or DI themselves. The numerical witness, multiplicity convention,
+fixed strict margin and historical records are unchanged.
+The [dependency-switch record](../checks/weil-di-proportion-verification.json)
+distinguishes fresh compilation from verified source/dependency/artifact
+caches; pinned AF/Mathlib outputs are reused. The older entries below
+describe the interfaces at their recorded dates.
+
+## 2026 November 7 — v0.1.0 shift-placement erratum
+
+The `v0.1.0` tag is retained, not rewritten. See the dated
+[STATUS erratum](STATUS.md#v010-erratum-shift-placement-7-november-2026)
+for the density-oriented shift placement, removal of the former general
+profile axiom from current source, and the proved finite witness symmetry.
+The following October entry and its compiler records describe the former
+interface. The numerical intervals are unchanged; only the certificate's
+manuscript provenance hash is updated for the new note. The PDF is still
+the pre-note version, pending rebuild and visual inspection.
+
 ## 2026 October 31 — Strict xi-prime proportion under the PRZZ input
 
 Implementation milestone: [`b2b2b71`](https://github.com/miosync-masa/xiprime-two-piece-mollifier/commit/b2b2b71f06b996f721849f46e71879a320b736b7).

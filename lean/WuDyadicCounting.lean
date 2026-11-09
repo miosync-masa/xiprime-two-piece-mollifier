@@ -9,6 +9,7 @@ noncomputable section
 open scoped BigOperators
 open Set Filter Topology Complex
 namespace XiPrime8845.WuDyadicCounting
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliary WuStirling WuLocalCounting Zeta23.XiPrime
 set_option maxHeartbeats 2000000
 

@@ -13,6 +13,7 @@ noncomputable section
 open scoped BigOperators
 open Complex Set Metric MeasureTheory intervalIntegral
 namespace XiPrime8845.WuHorizontalIntegral
+variable [PRZZProvedInput.DeepInputs]
 open Zeta23.XiPrime.ZeroCount
 set_option maxHeartbeats 2000000
 

@@ -1,34 +1,15 @@
-import PRZZInterface
-import KernelAlgebra
+import PRZZAsymptoticCore
+import PRZZProvedInput
+import ArithmeticRegularity
 
-/-! Uniform normalized PRZZ error for the fixed witness.
-This module does not evaluate the literal gcd sum by Euler poles or Mellin inversion.
-The only external analytic input is the explicitly named PRZZ profile axiom. -/
+/-! Uniform normalized witness error derived from explicit Weil/DI inputs.
+The elementary core avoids circular dependencies through the moment proof.
+No PRZZ analytic axiom is used. -/
 noncomputable section
 open Filter Topology
-
 namespace XiPrime8845.PRZZAsymptotic
 open PRZZ
-
-def theta : ℝ := 4/7 - 1/1000000
-def R : ℝ := (XiPrime8845.radiusParameter : ℝ)
-
-def shiftSet (bound gap : ℝ) : Set (ℂ × ℂ) :=
-  {p | ‖p.1‖ ≤ bound ∧ ‖p.2‖ ≤ bound ∧ gap ≤ ‖p.1+p.2‖}
-
-def normalizedMoment (Phi : ℝ → ℝ) (T : ℝ) (p : ℂ × ℂ) : ℂ :=
-  twistedMoment witness witness theta T Phi p.1 p.2 / (T : ℂ)
-
-def normalizedGcd (Phi : ℝ → ℝ) (T : ℝ) (p : ℂ × ℂ) : ℂ :=
-  gcdMainTerm witness witness theta T Phi p.1 p.2 / (T : ℂ)
-
-def errorEnvelope (T : ℝ) : ℝ :=
-  Real.rpow T (7/16000000) *
-    (Real.rpow (length theta T) (7/4) +
-      Real.rpow (length theta T) (7/8) * Real.rpow T (1/2)) / T
-
-theorem errorEnvelope_tendsto : Tendsto errorEnvelope atTop (nhds 0) :=
-  witness_normalized_error_tendsto_zero
+variable [PRZZProvedInput.DeepInputs]
 
 /-- The bound is simultaneous in both shifts, with C and T0 independent of them. -/
 theorem normalized_difference_bound (Phi : ℝ → ℝ) (hPhi : SmoothWeight Phi)
@@ -60,34 +41,6 @@ theorem normalized_difference_uniform (Phi : ℝ → ℝ) (hPhi : SmoothWeight P
   intro p hp
   simpa only [dist_zero_left] using (h T hT p hp).trans_lt hsmall
 
-/-- A closed bidisc with an explicit gap, suitable for later Cauchy estimates. -/
-def witnessBidisc : Set (ℂ × ℂ) :=
-  {p | ‖p.1 + (R : ℂ)‖ ≤ R/4 ∧ ‖p.2 + (R : ℂ)‖ ≤ R/4}
-
-theorem radius_pos : 0 < R := by norm_num [R, XiPrime8845.radiusParameter]
-
-theorem witnessBidisc_subset : witnessBidisc ⊆ shiftSet (5*R/4) (3*R/2) := by
-  intro p hp
-  have hr : ‖(R : ℂ)‖ = R := by simp [abs_of_pos radius_pos]
-  have hnorm (z : ℂ) (hz : ‖z+(R:ℂ)‖ ≤ R/4) : ‖z‖ ≤ 5*R/4 := by
-    have h := norm_sub_le (z+(R:ℂ)) (R:ℂ)
-    rw [add_sub_cancel_right, hr] at h
-    linarith
-  refine ⟨hnorm p.1 hp.1, hnorm p.2 hp.2, ?_⟩
-  have h := norm_sub_le ((p.1+(R:ℂ))+(p.2+(R:ℂ))) (p.1+p.2)
-  have he : (p.1+(R:ℂ))+(p.2+(R:ℂ))-(p.1+p.2) = (2:ℂ)*R := by ring
-  rw [he, norm_mul, hr] at h
-  have htri := norm_add_le (p.1+(R:ℂ)) (p.2+(R:ℂ))
-  norm_num at h
-  linarith [hp.1, hp.2]
-
-theorem witnessBidisc_sum_ne_zero (p : ℂ × ℂ) (hp : p ∈ witnessBidisc) :
-    p.1+p.2 ≠ 0 := by
-  have h := (witnessBidisc_subset hp).2.2
-  intro hz
-  rw [hz, norm_zero] at h
-  linarith [radius_pos]
-
 theorem normalized_difference_on_bidisc (Phi : ℝ → ℝ) (hPhi : SmoothWeight Phi) :
     TendstoUniformlyOn
       (fun T p => normalizedMoment Phi T p - normalizedGcd Phi T p)
@@ -113,26 +66,6 @@ theorem moment_uniform_limit_of_gcd_limit (Phi : ℝ → ℝ) (hPhi : SmoothWeig
     TendstoUniformlyOn (normalizedMoment Phi) L atTop witnessBidisc := by
   have h := (normalized_difference_on_bidisc Phi hPhi).add hmain
   simpa only [Pi.add_def, sub_add_cancel, zero_add] using h
-
-/-- Two successive Cauchy estimates. Both slice regularity hypotheses are
-explicit; a uniform bound alone never justifies differentiation. -/
-theorem mixed_cauchy_bound (f : ℂ → ℂ → ℂ) (c : ℂ) (r C : ℝ) (a b : ℕ)
-    (hr : 0 < r)
-    (hy : ∀ x ∈ Metric.sphere c r, DiffContOnCl ℂ (f x) (Metric.ball c r))
-    (hx : DiffContOnCl ℂ (fun x => iteratedDeriv b (f x) c) (Metric.ball c r))
-    (hbound : ∀ x ∈ Metric.sphere c r, ∀ y ∈ Metric.sphere c r, ‖f x y‖ ≤ C) :
-    ‖iteratedDeriv a (fun x => iteratedDeriv b (f x) c) c‖ ≤
-      (a.factorial : ℝ) * b.factorial * C / r^(a+b) := by
-  calc
-    _ ≤ (a.factorial : ℝ) * ((b.factorial : ℝ) * C / r^b) / r^a := by
-      apply Complex.norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le a hr hx
-      intro x hxs
-      exact Complex.norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le b hr
-        (hy x hxs) (hbound x hxs)
-    _ = _ := by rw [pow_add]; ring
-
-def normalizedError (Phi : ℝ → ℝ) (T : ℝ) (x y : ℂ) : ℂ :=
-  normalizedMoment Phi T (x,y) - normalizedGcd Phi T (x,y)
 
 /-- Conditional Cauchy transfer for the actual PRZZ residual, at arbitrary
 finite mixed order (in particular 0..6 on each side). The two holomorphic
@@ -170,15 +103,29 @@ theorem normalized_mixed_error_tendsto (Phi : ℝ → ℝ) (hPhi : SmoothWeight 
       exact h T hT (x,y) (witnessBidisc_subset hp)
     _ = _ := by ring
 
-#print axioms errorEnvelope_tendsto
+
 #print axioms normalized_difference_bound
 #print axioms normalized_difference_uniform
-#print axioms radius_pos
-#print axioms witnessBidisc_subset
-#print axioms witnessBidisc_sum_ne_zero
 #print axioms normalized_difference_on_bidisc
 #print axioms moment_limit_of_gcd_limit
 #print axioms moment_uniform_limit_of_gcd_limit
-#print axioms mixed_cauchy_bound
 #print axioms normalized_mixed_error_tendsto
 end XiPrime8845.PRZZAsymptotic
+
+namespace XiPrime8845.ArithmeticRegularity
+open PRZZ PRZZAsymptotic
+variable [PRZZProvedInput.DeepInputs]
+/-- The actual mixed PRZZ residual tends to zero with no regularity premises left.
+This still makes no identification of the gcd main term with the finite kernel. -/
+theorem normalized_mixed_error_tendsto (Phi : ℝ → ℝ) (hPhi : SmoothWeight Phi) (a b : ℕ) :
+    Tendsto (fun T : ℝ =>
+      iteratedDeriv a (fun x => iteratedDeriv b (normalizedError Phi T x) (-R)) (-R))
+      atTop (nhds 0) := by
+  apply PRZZAsymptotic.normalized_mixed_error_tendsto Phi hPhi a b
+  · filter_upwards [eventually_gt_atTop (1 : ℝ)] with T hT
+    exact normalizedError_right_regular Phi hPhi T hT
+  · filter_upwards [eventually_gt_atTop (1 : ℝ)] with T hT
+    exact normalizedError_left_mixed_regular Phi hPhi T hT b
+
+#print axioms normalized_mixed_error_tendsto
+end XiPrime8845.ArithmeticRegularity

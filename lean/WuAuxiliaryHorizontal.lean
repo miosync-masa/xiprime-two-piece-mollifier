@@ -6,6 +6,7 @@ height-independent constant. No branch of arg is fixed in this theorem. -/
 noncomputable section
 open Filter Topology Set Complex MeasureTheory
 namespace XiPrime8845.WuAuxiliaryHorizontal
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliary WuAuxiliaryBoundary WuStirling WuLittlewood WuHorizontalBound
 set_option maxHeartbeats 2000000
 

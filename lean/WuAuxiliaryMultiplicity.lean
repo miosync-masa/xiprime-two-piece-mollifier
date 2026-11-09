@@ -8,6 +8,7 @@ noncomputable section
 open scoped BigOperators
 open Set Filter Topology
 namespace XiPrime8845.WuAuxiliaryMultiplicity
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliary WuAuxiliaryBoundary WuBoundaryZeros WuLittlewood
 set_option maxHeartbeats 2000000
 

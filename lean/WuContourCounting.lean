@@ -7,6 +7,7 @@ noncomputable section
 open scoped BigOperators
 open Complex Set Filter Topology MeasureTheory intervalIntegral
 namespace XiPrime8845.WuContourCounting
+variable [PRZZProvedInput.DeepInputs]
 open WuLittlewood WuAuxiliary WuAuxiliaryBoundary WuBoundaryPhase
 set_option maxHeartbeats 2000000
 

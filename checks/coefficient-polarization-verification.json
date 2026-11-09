@@ -1,0 +1,25 @@
+{
+  "scope": "Fresh two-module local closure; fixed package caches reused",
+  "full_project_rebuilt": false,
+  "analytic_square_uniformity_proved": false,
+  "public_PRZZ_axiom_replaced": false,
+  "public_external_input": "PRZZ.przz41_case3_K2_witness (not discharged from Weil/DI)",
+  "general_profile_input_removed": true,
+  "af_commit": "3635e74826a4c1fcece7d1cd2b6fa75e43a00510",
+  "mathlib_commit": "51e6992efd06126df61a496bebf8f49482a4e129",
+  "lean_toolchain": "leanprover/lean4:v4.33.0-rc2",
+  "runner_sha256": "9b0eec90d6c9c2b79d28ac5fd6198af19baff450b2af39d526813eea11d88064",
+  "audit_runner_sha256": "290ca63a2523a9c2c4130344586c80d4f13eb58d2b061882987d6a4440a1347e",
+  "checks": {
+    "PRZZInterface.lean": {
+      "sha256": "8f6926b9ce8f8734021b93da00f526fe8dcf53dcc250c33b5ada160aed6c4447",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZ.witness_normalized_error_tendsto_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_przz_estimate' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n'XiPrime8845.PRZZ.witness_coefficient_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_subpower' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_profile_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.abs_fengArithmetic_le_log_sq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.coefficient_star' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.gcdMainTerm_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.witness_densityGcdMainTerm_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZ.przz41_case3_K2_witness' depends on axioms: [propext,\n Classical.choice,\n Quot.sound,\n przz41_case3_K2_witness]\n"
+    },
+    "PRZZCoefficientPolarization.lean": {
+      "sha256": "d73d9b0966429a9452df1b89e340c04dc81de9a3cb1ca6d3b3108b0689ab7f9d",
+      "exit_code": 0,
+      "output": "'XiPrime8845.PRZZCoefficientPolarization.polynomial_combine' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.scalar_polarization' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.density_polarization' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.pairing_polarization' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.arithmetic_polarization' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.gcdMainTerm_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.densityGcdMainTerm_eq' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.twistedMoment_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.mixed_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.error_polarization' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.family_combine' depends on axioms: [propext, Classical.choice, Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.finite_family_uniform' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.finite_family_uniform_fixed' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.target_exponent_margins' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'XiPrime8845.PRZZCoefficientPolarization.witness_exponent_margins' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n"
+    }
+  }
+}

@@ -7,6 +7,7 @@ not identities at the totalized value log 0. -/
 noncomputable section
 open Set Filter Topology MeasureTheory Complex
 namespace XiPrime8845.WuQuotientReturn
+variable [PRZZProvedInput.DeepInputs]
 open WuLittlewood WuAuxiliary WuAuxiliaryBoundary WuStirling WuLeftReturn WuBoundaryZeros
 set_option maxHeartbeats 2000000
 

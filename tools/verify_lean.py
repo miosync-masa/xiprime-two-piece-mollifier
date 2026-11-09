@@ -4,6 +4,7 @@
 No fetch, reset or source edit is performed. This is not a clean AF build.
 """
 import argparse
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
@@ -16,6 +17,44 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def lean_code_only(source):
+    """Mask nested comments and strings before checking declaration tokens."""
+    result, i, depth, quoted, line = [], 0, 0, False, False
+    while i < len(source):
+        ch, pair = source[i], source[i:i + 2]
+        if line:
+            line = ch != "\n"
+        elif depth:
+            if pair in ("/-", "-/"):
+                depth += 1 if pair == "/-" else -1
+                result.append("  ")
+                i += 2
+                continue
+        elif quoted:
+            if ch == "\\" and i + 1 < len(source):
+                result.append("  ")
+                i += 2
+                continue
+            if ch == '"':
+                quoted = False
+        elif pair in ("/-", "--"):
+            depth, line = (1, False) if pair == "/-" else (0, True)
+            result.append("  ")
+            i += 2
+            continue
+        elif ch == '"':
+            quoted = True
+        else:
+            result.append(ch)
+            i += 1
+            continue
+        result.append("\n" if ch == "\n" else " ")
+        i += 1
+    return "".join(result)
+
+
 AF_PATHS = [
     "Zeta23/Defs.lean",
     "Zeta23/Assembly.lean",
@@ -77,6 +116,262 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def audit_polarization(output):
+    """Reject missing, duplicate, or nonstandard audits in the profile bridge."""
+    namespace = "XiPrime8845.PRZZCoefficientPolarization."
+    expected = {namespace + name for name in (
+        "polynomial_combine", "scalar_polarization", "density_polarization",
+        "pairing_polarization", "arithmetic_polarization", "gcdMainTerm_eq", "densityGcdMainTerm_eq",
+        "twistedMoment_eq", "mixed_bound", "error_polarization",
+        "family_combine", "finite_family_uniform",
+        "finite_family_uniform_fixed", "target_exponent_margins", "witness_exponent_margins",
+    )}
+    rows = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output)
+    rows += [(name, "") for name in re.findall(r"'([^']+)' does not depend on any axioms", output)]
+    require(len(rows) == len(expected) and {name for name, _ in rows} == expected,
+            "Polarization audit coverage mismatch")
+    for theorem, axioms in rows:
+        require({a.strip() for a in axioms.split(",") if a.strip()} <=
+                {"propext", "Classical.choice", "Quot.sound"},
+                f"Unexpected polarization axioms: {theorem}")
+    require("sorryAx" not in output and "error:" not in output,
+            "Polarization compiler diagnostics contain errors")
+
+
+def audit_finite_family_rows(output):
+    namespace = "XiPrime8845.PRZZFiniteFamilyRows."
+    expected = {namespace + name for name in (
+        "diagonal_eq", "mixed_allocated", "mixed_blocks", "basis_bound",
+        "add_left", "add_right", "smul_left", "smul_right",
+        "family_expansion", "square_row_budget",
+    )}
+    rows = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output)
+    require(len(rows) == len(expected) and {name for name, _ in rows} == expected,
+            "Finite-family row audit coverage mismatch")
+    for theorem, axioms in rows:
+        require({a.strip() for a in axioms.split(",")} ==
+                {"propext", "Classical.choice", "Quot.sound"},
+                f"Unexpected finite-family row axioms: {theorem}")
+    require("sorryAx" not in output and "error:" not in output,
+            "Finite-family row compiler diagnostics contain errors")
+
+
+def audit_diagonal_kernel(output):
+    namespace = "XiPrime8845.PRZZDiagonalKernel."
+    expected = {namespace + name for name in (
+        "atom_pairing", "sum_kernel", "main_eq", "diagonalMain_eq", "error_split", "defect_bound",
+        "density_error_split",
+    )}
+    rows = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output)
+    require(len(rows) == len(expected) and {name for name, _ in rows} == expected,
+            "Diagonal-kernel audit coverage mismatch")
+    for theorem, axioms in rows:
+        require({a.strip() for a in axioms.split(",")} <=
+                {"propext", "Classical.choice", "Quot.sound"},
+                f"Unexpected diagonal-kernel axioms: {theorem}")
+    require("sorryAx" not in output and "error:" not in output,
+            "Diagonal-kernel compiler diagnostics contain errors")
+
+
+def audit_standard_module(source, output, module):
+    """Check all printed targets, including apostrophes and empty axiom lists."""
+    require(not re.search(r"^\s*(?:private\s+)?axiom\s", lean_code_only(source), re.MULTILINE),
+            f"Local analytic axiom declaration: {module}")
+    declared = re.findall(r"^#print axioms ([\w.']+)$", source, re.MULTILINE)
+    emitted = re.findall(r"^'([^\n]+)' depends on axioms: \[([^\]]*)\]", output, re.MULTILINE)
+    empty = re.findall(r"^'([^\n]+)' does not depend on any axioms", output, re.MULTILINE)
+    actual = [n for n, _ in emitted] + empty
+    require(Counter(n.rsplit(".", 1)[-1] for n in actual) ==
+            Counter(n.rsplit(".", 1)[-1] for n in declared), f"Intermediate audit coverage: {module}")
+    for name, axioms in emitted:
+        require({a.strip() for a in axioms.split(",") if a.strip()} <=
+                {"propext", "Classical.choice", "Quot.sound"}, f"Intermediate axioms: {name}")
+    require("sorryAx" not in output and "error:" not in output, f"Compiler errors: {module}")
+
+
+def audit_witness_proportion(output):
+    namespace = "XiPrime8845.WuProportion."
+    expected = {namespace + name for name in (
+        "dyadic_eventually", "cumulative_eventually", "strict_proportion", "ratio_eventually_gt",
+    )}
+    rows = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output)
+    require(len(rows) == len(expected) and {name for name, _ in rows} == expected,
+            "Weil/DI proportion audit coverage mismatch")
+    for theorem, axioms in rows:
+        require({a.strip() for a in axioms.split(",")} ==
+                {"propext", "Classical.choice", "Quot.sound"},
+                f"Unexpected Weil/DI proportion axioms: {theorem}")
+    require("sorryAx" not in output and "error:" not in output and
+            "przz41_case3_K2_profiles" not in output, "Old general input or compiler error")
+
+
+def audit_witness_basis(output, module="PRZZWitnessBasis"):
+    expected_names = {
+        "PRZZWitnessBasis": ("coordinates_unit", "witness_expansion", "witness_of_uniform_squares",
+            "profile_unit", "profile_coefficient_bound", "basis_coefficient_bound",
+            "family_coefficient_bound", "witness_normalized_envelope"),
+        "PRZZWitnessMass": ("uniform_mass", "witness_mass", "basis_arithmetic_factorization",
+                            "normalized_cutoff_target"),
+    }[module]
+    expected = {"XiPrime8845." + module + "." + n for n in expected_names}
+    rows = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output)
+    require(len(rows) == len(expected) and {n for n, _ in rows} == expected,
+            "Witness basis/mass audit coverage mismatch")
+    for name, axioms in rows:
+        require({a.strip() for a in axioms.split(",")} <=
+                {"propext", "Classical.choice", "Quot.sound"}, f"Witness bridge axioms: {name}")
+    require("sorryAx" not in output and "error:" not in output, "Witness bridge compiler errors")
+
+
+def audit_profile_uniform(output, module="PRZZProfileSmooth"):
+    expected_names = {
+        "PRZZProfileSmooth": ("expansion", "coeff_bound", "logCut_support", "logCut_compact",
+            "logCut_smooth", "window_smooth", "jet_expansion", "ordinary_uniform", "scaled_uniform",
+            "cutoff_bounds", "source_bound_uniform", "coupled_expansion", "coupled_bound_uniform"),
+        "PRZZProfileScale": ("weight_on_support", "parameters_unit", "amplitude_bound", "raw_window",
+            "cutoffRaw_eq", "cutoffRaw_smooth", "ordinary_uniform", "scaled_uniform",
+            "cutoff_bounds_actual", "source_bound_actual", "variation_uniform", "weil_bound_actual",
+            "log_length_eventually", "coupled_raw_eq",
+            "coupled_bound_actual"),
+    }[module]
+    expected = {"XiPrime8845." + module + "." + n for n in expected_names}
+    rows = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output)
+    require(len(rows) == len(expected) and {n for n, _ in rows} == expected,
+            "Uniform profile audit coverage mismatch")
+    for name, axioms in rows:
+        require({a.strip() for a in axioms.split(",")} <=
+                {"propext", "Classical.choice", "Quot.sound"}, f"Uniform profile axioms: {name}")
+    require("sorryAx" not in output and "error:" not in output, "Uniform profile compiler errors")
+
+
+def audit_moment_bridge(output, module):
+    names = {
+        "PRZZMixedLiteral": ("left_support", "right_support", "signedRow_fold", "literal_fold",
+            "row_integral_bound"),
+        "PRZZClassLiteral": ("literal_absorbed", "literal_uniform_mass"),
+        "PRZZMixedReplacement": ("replacement_mean", "bounded_target", "scaled_target", "family_target",
+            "defect_bound"),
+        "PRZZMixedDefect": ("polynomial_bound", "weight_bound", "residue_target", "dual_target", "defect_target"),
+        "PRZZMixedPoisson": ("moment_eq_lift", "original_error_eq", "square_error_limit",
+            "defect_integrable", "defect_eq_lift", "error_limit", "lift_bound", "scaled_error_limit"),
+        "PRZZMixedMoment": ("diagonal_eq", "moment_components_eq", "complete_limit",
+            "decomposition_limit", "family_decomposition_limit"),
+        "PRZZClassPoisson": ("literal_square", "member_mono", "spatial_members", "partition_members",
+            "literal_lift", "positive_eq", "positive_absorbed", "positive_target"),
+        "PRZZClassWideLiteral": ("literal_absorbed", "literal_uniform_mass"),
+        "PRZZClassWidePoisson": ("positive_absorbed", "positive_target", "window_target", "body_target"),
+        "PRZZClassPositiveGrid": ("grid_target", "grid_optimized"),
+        "PRZZClassDualProfile": ("dual_member", "common_members", "common_mass"),
+        "PRZZClassPairedGrid": ("paired_grid_optimized",),
+        "PRZZClassSpatialSources": ("small_source_class",),
+        "PRZZClassSpatialDI": ("source_bound",),
+        "PRZZClassSpatialTypeI": ("slice_bound", "nu_slice_bound", "signed_slice_bound", "cell_bound",
+            "cell_averaged", "signed_cell", "source_bound", "retained_source_bound"),
+        "PRZZClassSpatialCases": ("actual_source_bound", "retained_source_bound", "source_bound"),
+        "PRZZClassSpatialRows": ("actual_blocks", "basis_bound", "signedSum_bound"),
+        "PRZZClassNegativeLiteral": ("literal_absorbed", "literal_uniform_mass"),
+        "PRZZClassNegativePoisson": ("negative_fold", "negative_rows", "negative_absorbed", "negative_target",
+            "window_target", "body_target"),
+        "PRZZClassNegativeGrid": ("grid_target", "grid_optimized"),
+        "PRZZClassSignedGrid": ("grid_target", "grid_optimized"),
+        "PRZZClassPairedSignedGrid": ("paired_grid_optimized",),
+        "PRZZClassZeroBoundary": ("primal_power", "dual_power"),
+        "PRZZClassZeroTail": ("primal_power", "native_row_power", "model_gap_power"),
+        "PRZZClassZeroPrimalGap": ("native_row_power", "model_gap_power", "model_gap_eventually"),
+        "PRZZClassZeroCorrection": ("arithmetic_split", "arithmetic_bound", "family_power", "combine_cap", "lift_bound", "mixed_power", "primal_error_power", "actual_power"),
+        "PRZZCappedPrefactor": ("local_mass", "coefficient_row", "dilated_weighted_pair_mass", "pair_mass"),
+        "PRZZCappedTailMass": ("pair_mass", "tails_absorbed"),
+        "PRZZCappedWindowMass": ("outer_card", "absorbed"),
+        "PRZZCappedWindowTime": ("scaled_support", "wide_zero", "uniform", "time"),
+        "PRZZCappedWindowField": ("norm_le_mass", "mixed_time"),
+        "PRZZCappedFreezeMoment": ("absorbed", "spatial_moment", "first_moment", "outer_power"),
+        "PRZZCappedFreezeBudget": ("paired_mixed_bound", "norm_le_fullMass", "mixed_scaled_bound", "mass_bound", "scaled_bound", "active_freeze_identity"),
+        "PRZZCappedNativeTail": ("flat_eq", "native_eq", "native_wide_zero", "native_eq_all"),
+        "PRZZCappedStrictTail": ("local_identification", "native_row_bound", "native_dominates", "uniform", "time"),
+        "PRZZCappedBandOuter": ("native_mass", "central_row_difference", "grid_time", "absorbed", "wide_zero", "uniform", "time", "przz_time", "pair_absorbed"),
+        "PRZZCappedSameMask": ("band_reindex", "band_dominated"),
+        "PRZZCappedTailBand": ("mixed_tailBand_target", "mixed_tailBand_time", "mixed_remainder_split", "original_moment_split", "tailBand_uniform", "tailBand_time"),
+        "PRZZCappedStrictFreeze": ("partition_bound", "mixed_scaled_bound", "scaled_bound", "dominates", "freeze_charge",),
+        "PRZZCappedLarge": ("paired_mixed_time", "masked_uniform", "large_time", "dual_large_time", "coefficient_mass", "retained_uniform",),
+        "PRZZCappedDiscardedIBP": ("value_eq", "source_ibp", "integrand_integrable", "outer_eq", "source_outer_ibp",),
+        "PRZZCappedDiscarded": ("direct_negligible", "actual_negligible", "tail_scale", "multiplier_negligible", "valued_negligible", "mixed_dual_negligible", "actual_outer_bound", "outer_budget_absorbed", "dual_negligible", "pair_mass", "finite_mass",),
+        "PRZZCappedFreezeCollector": ("freezing_time", "field_bound", "paired_mixed_bound",),
+        "PRZZCappedDiscardedFamily": ("mixed_discarded_absorbed", "partition_negligible", "discarded_pair_time", "discarded_absorbed", "pair_negligible", "direct_family", "integrand_original", "outer_integrand", "outer_family",),
+        "PRZZCappedRemainder": ("original_moment_residual", "remainderPair_bound",),
+        "PRZZCappedMomentBridge": ("full_total_bound", "lift_tendsto", "limit_total_bound", "eventually_total_bound",),
+        "PRZZCappedMainTerm": ("zero_removed_reduction", "family_density_reduction", "density_reduction", "mainterm_absorbed", "centralCorrection_eq", "density_error_eq",),
+        "PRZZCentralGridIdentity": ("common_eq_body_transfer", "lift_sum", "lift_add", "body_eq_grid", "common_eq_original", "nonzero_eq_body_transfer_tail", "nonzero_eq_grid"),
+        "PRZZBasisGridCutoff": ("raw_star", "sample_factorization", "index_samples", "positive_absorb", "negative_absorb", "parameters_doubled", "normalized_scaled", "normalized_support", "normalized_members", "central_absorb", "body_basis_grid", "transfer_absorb"),
+        "PRZZBasisGridBound": ("body_target", "body_optimized", "tails_eventually", "cell_tail_transport", "transfer_tail_eq_bodyTail", "nonzero_eq_body_bodyTail"),
+        "PRZZCappedWindowBand": ("pair_absorbed", "window_pair_absorbed", "absorbed", "wide_zero", "uniform", "native_mass", "central_row_difference"),
+        "PRZZCappedSubunitMass": ("pair_absorbed", "window_pair_absorbed", "absorbed", "wide_zero", "uniform", "native_mass", "central_row_difference"),
+        "PRZZCappedBodyMass": ("row_transport", "mass_nonneg", "mass_bound", "wide_zero", "uniform"),
+        "PRZZCappedBodyTail": ("nonzero_reduction", "bodyTail_eq_lift", "paired_body_eq", "mixed_bound", "family_bound", "actual_tail_uniform", "density_bound", "mass_time", "uniform_mass", "actual_tail_bound", "actual_tail_native", "actual_tail_of_native_budget"),
+        "PRZZCappedGammaDefect": ("absorbed", "mixed_absorbed", "mass_bound", "correction_scaled_bound", "defect_scaled_bound", "defect_time_bound"),
+        "PRZZBasisPairedBody": ("bound", "strict_spatial_subset"),
+        "PRZZWitnessBridge": ("seed_smooth", "seed_antitone", "seed_bounds", "seed_left", "seed_right", "integral_window", "twisted_eq", "witness_estimate"),
+        "PRZZFamilyMomentOptimal": ("witness_bound", "witness_uniform_normalized", "finite_pair_bound", "family_bound", "moment_bound", "basis_bound"),
+        "PRZZClassFreeLength": ("log_variation", "log_retained", "log_full",
+            "free_variation", "transformed_bound"),
+        "PRZZClassTypeI": ("slice_bound", "nu_slice_bound", "signed_slice_bound", "cell_bound",
+            "cell_averaged", "signed_cell", "source_bound", "retained_source_bound"),
+        "PRZZClassCases": ("actual_source_bound", "retained_source_bound", "source_bound"),
+        "PRZZClassRows": ("actual_blocks", "basis_bound", "signedSum_bound"),
+        "PRZZClassSources": ("second_coefficient", "small_cell", "small_source",
+            "source_branch_seven", "member_sup", "small_source_class"),
+        "PRZZClassVariation": ("cutoff_bounds", "source_variation", "source_variation_uniform",
+            "masked_source_uniform", "source_absorbed", "sampled_variation", "retained_variation",
+            "full_variation", "weil_row"),
+        "PRZZClassDI": ("source_seven", "source_seven_dyadic", "source_bound"),
+        "PRZZMellinInterval": ("frequency_power", "log_jet_support", "mass_le",
+            "mass_from_scaled_jets", "linear_pointwise", "linear_mass_bound",
+            "uniform_mass_from_scaled_jets", "mass_from_jets", "uniform_mass_from_jets"),
+        "PRZZProfileMellin": ("massCap_nonneg", "member_mass", "member_unweighted_mass",
+            "coupled_bound_class", "profiles_member", "profiles_mass", "coupled_bound_profiles"),
+        "PRZZPrimitiveKernel": ("primitive_unique", "primitive_sum", "primitiveKernel_eq",
+            "exp_inverse", "primitive_weight", "primitiveKernel_gcd"),
+        "PRZZGammaMultiplier": ("multiplier_difference", "scaled_power_cap", "multiplier_scaled_difference"),
+        "PRZZKernelComparison": ("density_kernel_eq", "kernel_difference", "reciprocal_power",
+            "phi_mass", "gamma_mass_bound", "primitive_norm", "kernel_bound", "reflected_zeta_cap",
+            "kernel_log_bound", "lcm_mass", "arithmetic_defect_bound"),
+        "PRZZFamilyMoment": ("polynomial_family", "density_family", "pairing_family",
+            "arithmetic_family", "error_family", "moment_eq", "moment_error_family",
+            "witness_error_49", "witness_error_bound", "component_error_family", "witness_mainterm_bound",
+            "witness_mainterm_absorbed"),
+    }[module]
+    namespace = "PRZZZeroGammaBound" if module == "PRZZGammaMultiplier" else module
+    expected = {f"XiPrime8845.{namespace}.{name}" for name in names}
+    rows = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output)
+    require(len(rows) == len(expected) and {n for n, _ in rows} == expected,
+            "Moment bridge audit coverage mismatch")
+    for name, axioms in rows:
+        require({a.strip() for a in axioms.split(",")} <=
+                {"propext", "Classical.choice", "Quot.sound"}, f"Moment bridge axioms: {name}")
+    require("sorryAx" not in output and "error:" not in output, "Moment bridge compiler errors")
+
+
+def audit_proved_input(output, module):
+    names = {
+        "PRZZProvedInput": ("PRZZ.przz41_case3_K2_witness", "PRZZ.witness_przz_estimate"),
+        "PRZZAsymptoticCore": tuple("PRZZAsymptotic." + n for n in (
+            "errorEnvelope_tendsto", "radius_pos", "witnessBidisc_subset",
+            "witnessBidisc_sum_ne_zero", "mixed_cauchy_bound")),
+        "PRZZAsymptotic": tuple("PRZZAsymptotic." + n for n in (
+            "normalized_difference_bound", "normalized_difference_uniform",
+            "normalized_difference_on_bidisc", "moment_limit_of_gcd_limit",
+            "moment_uniform_limit_of_gcd_limit", "normalized_mixed_error_tendsto")) +
+            ("ArithmeticRegularity.normalized_mixed_error_tendsto",),
+    }[module]
+    rows = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output)
+    require(len(rows) == len(names) and {n for n, _ in rows} ==
+            {"XiPrime8845." + n for n in names}, "Proved-input audit coverage mismatch")
+    for name, axioms in rows:
+        require({a.strip() for a in axioms.split(",")} ==
+                {"propext", "Classical.choice", "Quot.sound"},
+                f"Proved-input axioms: {name}")
+    require("sorryAx" not in output and "error:" not in output, "Proved-input compiler errors")
+
+
 def compile_sources(lake, af, source_dir, jobs=1):
     # Fresh local imports: no stale package oleans, and no writes into AF.
     with tempfile.TemporaryDirectory(prefix="xiprime-lean-") as build, ThreadPoolExecutor(max_workers=jobs) as pool:
@@ -111,163 +406,268 @@ def compile_sources(lake, af, source_dir, jobs=1):
             future = pool.submit(compile_after_dependencies)
             pending[Path(name).stem] = future
             ordered.append((name, future))
-        for name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
-                     "PRZZInterface.lean", "SmoothWeightWitness.lean", "AFProbe.lean", "IntegralJet.lean", "TaylorEnvelope.lean",
-                     "CoefficientEvaluator.lean", "NumericalGate.lean", "RationalEvaluator.lean",
-                     "RationalBounds.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean",
-                     "LogarithmicBudget.lean", "CompactShiftIntegral.lean", "ArithmeticRegularity.lean",
-                     "GcdDecomposition.lean", "ZetaPoleScaling.lean", "HeightScaling.lean",
-                     "SmoothMobius.lean", "ElementaryGcd.lean", "ShiftWeights.lean", "SupportTail.lean",
-                     "MobiusHarmonic.lean", "MobiusPNT.lean", "MobiusPNTBridge.lean", "WeightedMobius.lean", "WeightDerivatives.lean", "ShiftedMobius.lean", "CoprimeShift.lean", "SupportProductTail.lean",
-                     "ShiftedEndpoint.lean", "CoprimeHead.lean", "CoprimeApproximation.lean",
-                     "TotientWeight.lean", "EndpointAverage.lean",
-                     "MultiplicativeSummability.lean", "TotientConvolution.lean", "TotientSummability.lean",
-                     "TotientHarmonic.lean", "TotientAbel.lean", "ShiftedTotient.lean",
-                     "ShiftedEulerLocal.lean", "ShiftedEulerUniform.lean",
-                     "LogProfileSum.lean", "OuterProfile.lean", "EulerHead.lean", "CoprimeEulerCompletion.lean",
-                     "BareEuler.lean", "BareEulerUniform.lean", "CoprimeEndpoint.lean",
-                     "CoprimeGluing.lean", "ConreyOuter.lean", "ConreyCoefficientBridge.lean", "ConreyMainTerm.lean",
-                     "FengArithmetic.lean", "FengCoefficientBridge.lean", "FengShift.lean",
-                     "FengAtG.lean", "FengLogBounds.lean", "FengLogEndpoint.lean", "FengPrimeCancellation.lean",
-                     "FengOutside.lean", "FengPrimeMass.lean", "FengOutsideBounds.lean", "FengOutsideEndpoint.lean",
-                     "FengShared.lean", "FengSharedBlock.lean", "FengResidual.lean", "FengSharedApproximation.lean",
-                     "FengSharedBounds.lean", "FengSharedEndpoint.lean", "FengSharedTail.lean",
-                     "FengSharedInterior.lean", "FengMarkedProfile.lean",
-                     "FengMarkedAbel.lean", "FengMarkedLimit.lean",
-                     "TotientCoprime.lean", "FengMarkedArithmetic.lean", "FengMarkedDecomposition.lean",
-                     "FengMarkedTail.lean", "FengMertensModels.lean", "FengMarkedDiagonal.lean", "FengMarkedCross.lean", "FengMarkedCrossLimit.lean",
-                     "FengMixedMoment.lean", "FengSharedLimit.lean",
-                     "FengMixedAbel.lean", "FengMixedLimit.lean",
-                     "FengMixedInterior.lean", "FengMixedProduct.lean", "FengMixedShift.lean",
-                     "FengLogMainTerm.lean", "FengOutsideProfile.lean", "FengCrossAssembly.lean",
-                     "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean",
-                     "CoprimeEulerError.lean", "FengPrimeWindow.lean", "FengOutsideAverage.lean", "FengOutsideReplacement.lean",
-                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean",
-                     "FengLogProducts.lean", "FengSquareAssembly.lean",
-                     "FengOutsidePartner.lean", "FengInverseProducts.lean", "FengOutsideSquare.lean", "FengOutsideShared.lean", "RawEuler.lean", "FengSharedShift.lean", "FengSquareCoefficient.lean", "FengSquareMainTerm.lean", "TwoPieceMainTerm.lean", "CauchyJetTransfer.lean", "TwoPieceMoment.lean", "ZetaMomentIntegral.lean", "ZetaMomentPolynomial.lean", "ZetaMomentMainTerm.lean", "WitnessMomentBound.lean", "WuAuxiliary.lean", "WuStirling.lean", "WuGammaJets.lean", "WuStirlingTransfer.lean", "WuStirlingMoment.lean", "WuMomentTransfer.lean"):
-            command = [lake, "env", "lean", "--root=" + str(source_dir)]
-            if name in ("BetaKernel.lean", "FiniteJet.lean", "KernelAlgebra.lean",
-                        "IntegralJet.lean", "TaylorEnvelope.lean", "CoefficientEvaluator.lean",
-                        "NumericalGate.lean", "RationalEvaluator.lean", "RationalBounds.lean",
-                        "PRZZInterface.lean", "SmoothWeightWitness.lean", "FixedCertificate.lean", "PRZZAsymptotic.lean", "LogarithmicBudget.lean",
-                        "CompactShiftIntegral.lean", "ArithmeticRegularity.lean", "GcdDecomposition.lean",
-                        "SmoothMobius.lean", "ElementaryGcd.lean", "MobiusHarmonic.lean", "MobiusPNT.lean", "MobiusPNTBridge.lean",
-                        "ShiftWeights.lean", "WeightedMobius.lean", "WeightDerivatives.lean",
-                        "ShiftedMobius.lean", "SupportTail.lean", "CoprimeShift.lean", "SupportProductTail.lean",
-                        "ShiftedEndpoint.lean", "CoprimeHead.lean", "CoprimeApproximation.lean",
-                        "TotientWeight.lean", "MultiplicativeSummability.lean", "TotientConvolution.lean",
-                        "TotientSummability.lean", "TotientHarmonic.lean", "ShiftedTotient.lean",
-                        "ShiftedEulerLocal.lean", "ShiftedEulerUniform.lean", "TotientAbel.lean",
-                        "LogProfileSum.lean", "OuterProfile.lean", "EulerHead.lean", "CoprimeEulerCompletion.lean",
-                        "EndpointAverage.lean", "BareEuler.lean", "BareEulerUniform.lean",
-                        "CoprimeEndpoint.lean", "CoprimeGluing.lean", "ConreyOuter.lean",
-                        "ConreyCoefficientBridge.lean", "ZetaPoleScaling.lean", "HeightScaling.lean",
-                        "FengArithmetic.lean", "FengShift.lean", "FengAtG.lean", "FengLogBounds.lean",
-                        "ConreyMainTerm.lean", "FengCoefficientBridge.lean", "FengLogEndpoint.lean", "FengOutside.lean", "FengPrimeMass.lean", "FengOutsideBounds.lean",
-                        "FengPrimeCancellation.lean", "FengShared.lean", "FengSharedBlock.lean",
-                        "FengResidual.lean", "FengSharedBounds.lean", "FengSharedApproximation.lean",
-                        "FengSharedTail.lean", "FengSharedInterior.lean",
-                        "FengMarkedProfile.lean", "FengMarkedAbel.lean",
-                        "TotientCoprime.lean", "FengMarkedArithmetic.lean", "FengMarkedDecomposition.lean",
-                        "FengMarkedLimit.lean", "FengMarkedTail.lean", "FengMertensModels.lean",
-                        "FengMarkedDiagonal.lean", "FengMarkedCross.lean", "FengMarkedCrossLimit.lean",
-                        "FengMixedMoment.lean", "FengMixedAbel.lean", "FengMixedLimit.lean",
-                        "FengSharedLimit.lean", "FengMixedInterior.lean", "FengMixedProduct.lean",
-                        "FengMixedShift.lean", "FengLogMainTerm.lean", "FengOutsideProfile.lean", "FengCrossAssembly.lean",
-                        "FengPrimeProfile.lean", "FengPrimeExclusion.lean", "FengOutsidePrime.lean",
-                        "CoprimeEulerError.lean", "FengPrimeWindow.lean", "FengOutsideAverage.lean", "FengOutsideReplacement.lean",
-                     "FengInverseProfile.lean", "CoprimeSingleGluing.lean", "FengOutsideProxy.lean", "FengOutsideMainTerm.lean", "FengCrossCoefficient.lean", "FengMixedMainTerm.lean",
-                     "FengLogProducts.lean", "FengSquareAssembly.lean",
-                     "FengOutsidePartner.lean", "FengInverseProducts.lean", "FengOutsideSquare.lean", "FengOutsideShared.lean", "RawEuler.lean", "FengSharedShift.lean", "FengSquareCoefficient.lean", "FengSquareMainTerm.lean", "TwoPieceMainTerm.lean", "CauchyJetTransfer.lean", "TwoPieceMoment.lean", "ZetaMomentIntegral.lean", "ZetaMomentPolynomial.lean", "ZetaMomentMainTerm.lean", "WitnessMomentBound.lean", "WuAuxiliary.lean", "WuStirling.lean", "WuGammaJets.lean", "WuStirlingTransfer.lean", "WuStirlingMoment.lean", "WuMomentTransfer.lean"):
-                command += ["-o", str(Path(build) / (Path(name).stem + ".olean"))]
-            enqueue(name, command)
-        name = "SmoothWeightMoment.lean"
-        enqueue(name, [lake, "env", "lean", "--root=" + str(source_dir)])
-        for name in ("SmoothWindow.lean", "SmoothWindowLimit.lean", "WuUnsmoothing.lean",
-                     "PRZZLocalization.lean", "PRZZLocalizedError.lean", "SmoothEndpoint.lean", "WuEndpointTransfer.lean",
-                     "ExpandedGcd.lean", "ExpandedHeight.lean", "ExpandedRegularity.lean",
-                     "ExpandedMainTerm.lean", "ExpandedZetaIntegral.lean", "ExpandedZetaPolynomial.lean",
-                     "ExpandedMoment.lean", "WuLocalizedMoments.lean", "WuTrimmedLog.lean", "WuWindowTiling.lean",
-                     "WuLittlewood.lean", "WuEdgeLog.lean", "WuSafeEndpoints.lean",
-                     "WuIndependentWindows.lean", "WuSubintervalLog.lean",
-                     "WuXiBands.lean", "WuAuxiliaryBoundary.lean",
-                     "WuBoundaryZeros.lean", "WuAuxiliaryMultiplicity.lean", "WuLeftReturn.lean",
-                     "WuRightMollifier.lean", "WuRightBoundary.lean", "WuRightLittlewood.lean",
-                     "WuWideGamma.lean", "WuDiskGrowth.lean", "WuDiskCenter.lean",
-                     "WuHorizontalIntegral.lean", "WuHorizontalBound.lean", "WuCriticalMultiplicity.lean",
-                     "WuAuxiliaryHorizontal.lean", "WuFiniteDeflation.lean", "WuCriticalDeflation.lean",
-                     "WuDeflatedDetection.lean", "WuPhaseCrossings.lean", "WuDeflatedContour.lean",
-                     "WuBoundaryPhase.lean", "WuParallelReturn.lean", "WuContourCounting.lean",
-                     "WuGammaPhase.lean", "WuGammaCancellation.lean", "WuVHorizontal.lean",
-                     "WuEtaMainPhase.lean", "WuQuotientReturn.lean", "WuLocalCounting.lean",
-                     "WuDyadicCounting.lean", "WuTotalAsymptotic.lean", "WuProportion.lean",
-                     "PRZZKloostermanInputs.lean", "PRZZLambda.lean", "PRZZHeathBrown.lean",
-                     "PRZZWeightedHeathBrown.lean", "PRZZTypeI.lean", "PRZZTypeII.lean",
-                     "PRZZDyadic.lean", "PRZZMobiusHeathBrown.lean", "PRZZMellinSeparation.lean",
-                     "PRZZTypeIWeights.lean", "PRZZMellinTypeII.lean", "PRZZSmoothMellin.lean",
-                     "PRZZSmoothWeights.lean", "PRZZGcdAverage.lean",
-                     "PRZZDyadicArithmetic.lean", "PRZZTypeIFrequency.lean", "PRZZDISeven.lean",
-                     "PRZZSourceTypeII.lean", "PRZZDIExpansion.lean", "PRZZGCoefficient.lean", "PRZZEulerSubpower.lean",
-                     "PRZZGAbsorption.lean", "PRZZCoprimeAllocation.lean", "PRZZConvolutionSplit.lean",
-                     "PRZZCoefficientSeparation.lean", "PRZZAStar.lean", "PRZZAStarIntegrability.lean",
-                     "PRZZAStarMellin.lean", "PRZZAStarFubini.lean", "PRZZAStarFrequency.lean",
-                     "PRZZWindowWeight.lean", "PRZZAStarWindow.lean", "PRZZWindowDominance.lean",
-                     "PRZZNuCoefficient.lean", "PRZZActualMellin.lean", "PRZZAStarTransform.lean",
-                     "PRZZNuBounds.lean", "PRZZAStarNu.lean", "PRZZSignedTypeII.lean",
-                     "PRZZAStarRectangles.lean", "PRZZAStarIntegralBound.lean",
-                     "PRZZFullHeathBrown.lean", "PRZZOuterMass.lean",
-                     "PRZZGroupedConvolution.lean", "PRZZGroupedDI.lean",
-                     "PRZZGroupBounds.lean", "PRZZSharpCutoff.lean", "PRZZSharpCost.lean", "PRZZSharpDI.lean",
-                     "PRZZHBBranches.lean", "PRZZSharpAggregation.lean", "PRZZHBRectangles.lean",
-                     "PRZZTypedClassification.lean", "PRZZHBAtomSupply.lean", "PRZZSharpGrouped.lean",
-                     "PRZZDyadicSupport.lean", "PRZZTypeIVariation.lean",
-                     "PRZZBranchGrouping.lean", "PRZZSourceEnvelope.lean", "PRZZGroupedSeven.lean",
-                     "PRZZSourceAbsorption.lean", "PRZZBranchDegrees.lean", "PRZZBranchEnvelope.lean",
-                     "PRZZBranchSeven.lean", "PRZZSourceCoefficients.lean", "PRZZBranchMass.lean",
-                     "PRZZDyadicBudget.lean", "PRZZLiteralBranches.lean",
-                     "PRZZSupportedSplit.lean", "PRZZSupportedBranches.lean",
-                     "PRZZSupportedAllocation.lean", "PRZZSupportedSource.lean",
-                     "PRZZResidualCoprime.lean", "PRZZWeightedDI.lean",
-                     "PRZZResidualWeighted.lean", "PRZZResidualRow.lean",
-                     "PRZZResidualBoxes.lean", "PRZZMaskedVariation.lean", "PRZZMaskedSource.lean",
-                     "PRZZRowWindow.lean", "PRZZMellinMoment.lean", "PRZZLinearOuter.lean",
-                     "PRZZActualBranchCells.lean", "PRZZActualBranchDI.lean",
-                     "PRZZSourceScales.lean", "PRZZInflatedSeven.lean",
-                     "PRZZMaskedAbsorption.lean", "PRZZInflatedOuter.lean",
-                     "PRZZLocalReexpansion.lean", "PRZZSmallRowVariation.lean",
-                     "PRZZActualRowSmooth.lean", "PRZZSplitScaleSum.lean", "PRZZSplitScaleOuter.lean",
-                     "PRZZRowPlacement.lean", "PRZZAllBranchCells.lean",
-                     "PRZZActualSupportBoxes.lean", "PRZZSourceGroupDI.lean",
-                     "PRZZZeroExtension.lean", "PRZZActualRowRectangle.lean", "PRZZWholeRowsSum.lean",
-                     "PRZZPositiveRow.lean", "PRZZCellAggregation.lean", "PRZZSignedSourceCell.lean", "PRZZTypeICoprime.lean",
-                     "PRZZInversePhase.lean", "PRZZEffectiveBalance.lean", "PRZZEffectiveAverage.lean",
-                     "PRZZTypeICost.lean", "PRZZAllocatedCells.lean",
-                     "PRZZRowCellLayout.lean", "PRZZCommonCellBound.lean",
-                     "PRZZHiAllocatedCells.lean", "PRZZCellMass.lean", "PRZZFreeLogRow.lean", "PRZZFreeLogCoprime.lean", "PRZZFreeSource.lean", "PRZZFreeDyadic.lean",
-                     "PRZZBareFactors.lean", "PRZZFreeCoefficient.lean", "PRZZFreeCell.lean", "PRZZAllocationMass.lean", "PRZZModulusBudget.lean",
-                     "PRZZFreeLength.lean", "PRZZFreeLengthCoefficient.lean", "PRZZFreeLengthCell.lean", "PRZZLengthBudget.lean",
-                     "PRZZModulusScale.lean", "PRZZCombinedBudget.lean", "PRZZTypeIScaleSupplier.lean",
-                     "PRZZDyadicModulus.lean", "PRZZDyadicCellBound.lean", "PRZZMixedOuter.lean",
-                     "PRZZActualSignedBranches.lean", "PRZZAllSignedSources.lean", "PRZZRetainedScale.lean",
-                     "PRZZAllCellsBound.lean", "PRZZSignedCellsAggregate.lean", "PRZZDyadicWindow.lean",
-                     "PRZZDyadicEnvelope.lean", "PRZZGaussianLine.lean", "PRZZWindowComposition.lean",
-                     "PRZZGaussianTail.lean", "PRZZGaussianCorrection.lean", "PRZZSourceW.lean",
-                     "PRZZSourceWOuter.lean", "PRZZPositiveMellin.lean",
-                     "PRZZBalancedCellEnvelope.lean", "PRZZActualBudgetLayout.lean", "PRZZActualTypeI.lean",
-                     "PRZZActualSmall.lean", "PRZZActualCases.lean", "PRZZActualCaseSum.lean",
-                     "PRZZActualAggregate.lean", "PRZZPositiveOuter.lean", "PRZZActualAStar.lean",
-                     "PRZZOptimalPowers.lean", "PRZZL1Finite.lean", "PRZZOptimalOuter.lean",
-                     "PRZZL1Truncation.lean", "PRZZL1Poisson.lean", "PRZZActualCasePowers.lean",
-                     "PRZZActualRowOuter.lean", "PRZZOriginalRowWindow.lean",
-                     "PRZZActualLoss.lean", "PRZZRowMellinBranches.lean",
-                     "PRZZLiteralRows.lean", "PRZZThreeCaseLoss.lean", "PRZZNonemptyRowBudget.lean",
-                     "PRZZRowIntegralBudget.lean", "PRZZActiveRows.lean",
-                     "PRZZSourceFrequency.lean", "PRZZL1Residue.lean", "PRZZSourceCutoffs.lean",
-                     "PRZZSourceDecay.lean", "PRZZGaussianDerivatives.lean", "PRZZLogDerivatives.lean", "PRZZSourceWDerivatives.lean", "PRZZSourceWSums.lean", "PRZZAFEGamma.lean", "PRZZGammaPath.lean",
-                     "PRZZGammaFar.lean", "PRZZMellinTail.lean", "PRZZKernelDifference.lean", "PRZZGammaCentral.lean",
-                     "PRZZGammaMain.lean", "PRZZGammaUniform.lean", "PRZZCentralIntegral.lean", "PRZZKernelUniform.lean",
-                     "PRZZActualDirectSum.lean", "PRZZAFEDual.lean",
-                     "PRZZContourKernel.lean", "PRZZKernelTime.lean", "PRZZNoncentralResidues.lean", "PRZZArithmeticTime.lean", "PRZZMollifiedTime.lean", "PRZZCompletedStrip.lean", "PRZZResidueEnvelope.lean", "PRZZHorizontalDecay.lean", "PRZZFiniteContour.lean", "PRZZInfiniteContour.lean", "PRZZContourAFE.lean", "PRZZSeriesAFE.lean", "PRZZIntegratedAFE.lean", "PRZZPoissonTimeChange.lean", "PRZZReplacementIntegral.lean", "PRZZPhaseError.lean", "PRZZPoissonSpatial.lean", "PRZZCutoffPhase.lean", "PRZZPoissonWDerivative.lean", "PRZZArithmeticMass.lean", "PRZZFullWeightSmooth.lean", "PRZZDyadicArithmeticMass.lean", "PRZZCutoffJets.lean", "PRZZQuadraticJets.lean", "PRZZReciprocalJets.lean", "PRZZPowerJets.lean", "PRZZFullWeightJets.lean", "PRZZWeightFourier.lean", "PRZZWeightTail.lean", "PRZZSourceTailBudget.lean", "PRZZEnvelopeMass.lean", "PRZZJetUniform.lean", "PRZZNormalizedTail.lean", "PRZZPhaseDegree.lean", "PRZZZeroPhaseBudget.lean", "PRZZTailSourceFamily.lean", "PRZZExtendedTailDomain.lean", "PRZZPrunedTailRows.lean", "PRZZAbsorbedFourierTail.lean", "PRZZTailTimeSum.lean", "PRZZArithmeticFourierTail.lean", "PRZZFourierTime.lean", "PRZZSourceRows.lean", "PRZZInfiniteTail.lean", "PRZZAFEIndices.lean", "PRZZAFEProgression.lean", "PRZZGroupedTime.lean", "PRZZQuotientMass.lean", "PRZZHeightMass.lean", "PRZZExplicitDomain.lean", "PRZZExplicitTail.lean", "PRZZPoissonActualWeight.lean", "PRZZCongruencePoisson.lean", "PRZZReplacementMass.lean", "PRZZTruncatedProgression.lean", "PRZZReplacementHeight.lean", "PRZZLocalReplacement.lean", "PRZZActualLocalReplacement.lean", "PRZZDifferenceRegular.lean", "PRZZDifferenceDecay.lean", "PRZZDifferenceContour.lean", "PRZZLeftCentral.lean", "PRZZLeftFar.lean", "PRZZLeftUniform.lean", "PRZZActualSmallReplacement.lean", "PRZZProductMass.lean", "PRZZProductSummation.lean", "PRZZProductTime.lean", "PRZZMeanSquare.lean", "PRZZScaledReplacement.lean", "PRZZResidueTime.lean", "PRZZResidueAbsorption.lean", "PRZZDualError.lean", "PRZZIntegratedDefect.lean", "PRZZFrozenTail.lean", "PRZZCentralTail.lean", "PRZZSharpPoisson.lean", "PRZZInverseProfile.lean", "PRZZExpandedCutoff.lean", "PRZZFrozenProfileBound.lean", "PRZZProfileTimeBudget.lean", "PRZZTransformedSourceBudget.lean", "PRZZSourceTailMass.lean", "PRZZAFEOuterAssembly.lean", "PRZZFrozenFamilyCutoff.lean", "PRZZSourceLattice.lean", "PRZZUnitModulusBudget.lean", "PRZZUnitTailMass.lean", "PRZZSourceWindowCutoff.lean", "PRZZWArithmeticCutoff.lean", "PRZZSourceBoundaryDecay.lean", "PRZZPartitionMass.lean", "PRZZDeltaDecay.lean", "PRZZTimeJets.lean", "PRZZTimeAmplitude.lean", "PRZZTimeDiscarded.lean", "PRZZDiscardedSuppliers.lean", "PRZZDiscardedPartition.lean", "PRZZDiscardedOuter.lean", "PRZZValuedCutoffs.lean", "PRZZWeightedSourcePoisson.lean", "PRZZAmplitudeFreeze.lean", "PRZZFreezeMass.lean", "PRZZFreezeScales.lean", "PRZZPrefactorMass.lean", "PRZZActiveFreezeBudget.lean", "PRZZFiniteFreezeBudget.lean", "PRZZFreezeErrorBudget.lean", "PRZZUnfrozenPoisson.lean", "PRZZPoissonAnalyticMass.lean", "PRZZSpatialFreezeBudget.lean", "PRZZEmptyFrequencyDecay.lean", "PRZZEmptyArithmeticMass.lean", "PRZZEmptyScaleAbsorption.lean", "PRZZEmptyMomentScalar.lean", "PRZZEmptyMomentMass.lean", "PRZZActualPoissonError.lean", "PRZZWRowLimit.lean", "PRZZWRowReindex.lean", "PRZZFilteredResidual.lean", "PRZZLiteralComplement.lean", "PRZZCentralFubini.lean", "PRZZDiagonalMellin.lean", "PRZZDiagonalContour.lean", "PRZZDiagonalAssembly.lean", "PRZZOriginalDiagonal.lean", "PRZZDiagonalMass.lean", "PRZZCoupledAFE.lean", "PRZZZeroReflection.lean", "PRZZSignedCentral.lean", "PRZZZeroGap.lean", "PRZZZeroGapExchange.lean", "PRZZZeroSpatialLimit.lean", "PRZZZeroCutoffLimit.lean", "PRZZZeroCosine.lean", "PRZZGammaLaplace.lean", "PRZZCosineAbel.lean", "PRZZZeroSourceHeight.lean", "PRZZCosineImproper.lean", "PRZZCosineDominated.lean", "PRZZCosineMellinCore.lean", "PRZZCosineMellin.lean", "PRZZSourceWLine.lean", "PRZZZeroMellinSpace.lean", "PRZZZeroMellinLimit.lean", "PRZZCosineGapMellin.lean", "PRZZReflectedEnvelope.lean", "PRZZReflectedContour.lean", "PRZZCosineGapCorrection.lean", "PRZZCosineSpatialJets.lean", "PRZZCosineSpatialBoundary.lean", "PRZZCosineSpatialImproper.lean", "PRZZCosineFiniteFubini.lean", "PRZZCosineDerivativeMellin.lean", "PRZZCosineTimeDomination.lean", "PRZZCosineTimeMellin.lean", "PRZZCosineMovingWindow.lean", "PRZZZeroReciprocal.lean", "PRZZZeroReciprocalRows.lean", "PRZZZeroRowMellin.lean", "PRZZZeroOuterMellin.lean", "PRZZZeroNormalization.lean", "PRZZZeroGapTime.lean", "PRZZActualZeroReflection.lean", "PRZZZeroCross.lean", "PRZZZeroCoupled.lean", "PRZZZeroGammaBound.lean", "PRZZZeroFourierReduction.lean", "PRZZAllOffDiagonalRows.lean", "PRZZAllPoissonRows.lean", "PRZZAllPoissonAFE.lean", "PRZZResolvedComplement.lean", "PRZZZeroExhaustionCross.lean", "PRZZResolvedBoundary.lean", "PRZZDualSmooth.lean", "PRZZZeroDualExhaustion.lean", "PRZZResolvedTail.lean", "PRZZPartitionDiscrepancy.lean", "PRZZOriginalSpatialLimit.lean", "PRZZArithmeticBoundaryFamily.lean", "PRZZNativeFamily.lean", "PRZZNativeComponents.lean", "PRZZNativeGcdGrid.lean", "PRZZResolvedTailMass.lean", "PRZZLargeSpatialKernel.lean", "PRZZLargeSpatialFamily.lean", "PRZZLargeSpatialHeight.lean", "PRZZLargeResolvedPruning.lean", "PRZZWindowGrids.lean", "PRZZWindowTailMass.lean", "PRZZWindowTailTime.lean", "PRZZWindowNativeTail.lean", "PRZZWindowBoundary.lean", "PRZZValuedSourceDiscarded.lean", "PRZZWindowErrorJoin.lean", "PRZZDualTimeIBP.lean", "PRZZDualDiscardedIBP.lean", "PRZZExhaustiveAFEError.lean", "PRZZSourceMaskFamily.lean", "PRZZDualFirstJet.lean", "PRZZDiscardedAFEBridge.lean", "PRZZPolygammaSeries.lean", "PRZZDualHigherJets.lean", "PRZZDualJetTransfer.lean", "PRZZDualJetMass.lean", "PRZZDualDiscardedBudget.lean", "PRZZDualWindowErrorJoin.lean", "PRZZDiscardedTimePair.lean", "PRZZPrunedAFEError.lean", "PRZZRetainedNative.lean", "PRZZNativeCentralLiteral.lean", "PRZZKeptLiteral.lean", "PRZZRejectedExhaustion.lean", "PRZZArithmeticCutoffPartition.lean", "PRZZSelectedLocalFourier.lean", "PRZZLocalTailBudget.lean", "PRZZFullFreezeBudget.lean", "PRZZSpatialErrorJoin.lean", "PRZZNativeFreezeEnvelope.lean", "PRZZDualNativeFreeze.lean", "PRZZNativeFreezeTime.lean", "PRZZIntegratedFreezeAFE.lean", "PRZZFreezeRemovedLiteral.lean", "PRZZLiteralAFEJoin.lean", "PRZZCompatibleTail.lean", "PRZZResidualPartition.lean", "PRZZBandOuterMass.lean", "PRZZSpatialReconstruction.lean", "PRZZSameMaskResidual.lean", "PRZZSameMaskFreezeBudget.lean", "PRZZReconstructedAFE.lean", "PRZZStrictSmallTail.lean", "PRZZSmallCentralLiteral.lean", "PRZZSelectedDiscarded.lean", "PRZZSelectedDiscardedFamily.lean", "PRZZRemainderBudget.lean", "PRZZRemainderAbsorption.lean", "PRZZLiteralExhaustion.lean", "PRZZLiteralTotalBound.lean", "PRZZFourierExhaustion.lean", "PRZZLiteralFourierLimit.lean", "PRZZFullLiteralBound.lean", "PRZZCentralArithmeticJoin.lean", "PRZZCentralMainAssembly.lean", "PRZZCentralGridWeilDI.lean", "PRZZWeilDIMainBound.lean", "PRZZDualProfileUniform.lean", "PRZZMellinSeminorm.lean", "PRZZDualMellinUniform.lean", "PRZZArithmeticTailLimit.lean", "PRZZNegativeArithmetic.lean", "PRZZNegativeMellin.lean", "PRZZNegativeOuter.lean", "PRZZNegativeGrid.lean", "PRZZZeroMismatchLimit.lean", "PRZZIndexedCaps.lean", "PRZZUniformTypeI.lean", "PRZZUniformCases.lean", "PRZZUniformAggregate.lean", "PRZZUniformOuter.lean", "PRZZUniformGrid.lean", "PRZZZeroUniformHeight.lean", "PRZZZeroSpatialHeight.lean", "PRZZZeroOmittedGaps.lean", "PRZZZeroOuterHeight.lean", "PRZZZeroNativeTail.lean", "PRZZZeroIntegerReindex.lean", "PRZZZeroCompleteCell.lean", "PRZZZeroDualHeight.lean", "PRZZZeroBoundaryHeight.lean", "PRZZZeroNativeCompletion.lean", "PRZZZeroSpatialPrefix.lean", "PRZZZeroArithmeticPartition.lean", "PRZZZeroBoundarySum.lean", "PRZZZeroBoundaryIdentity.lean", "PRZZZeroDualBoundary.lean", "PRZZZeroDualGaps.lean", "PRZZZeroDualOuter.lean", "PRZZZeroDualNativeTail.lean", "PRZZZeroMismatchHeight.lean", "PRZZWeilDIZeroJoin.lean", "PRZZGammaBudgetAbsorption.lean", "PRZZWeilDIErrorJoin.lean", "PRZZSignedUniformGrid.lean", "PRZZSignedMomentBudget.lean", "PRZZLocalFrequencyLoss.lean", "PRZZLocalCentralTransfer.lean", "PRZZDisjointSpatialJoin.lean", "PRZZArithmeticWindowCutoff.lean", "PRZZWindowBandMass.lean", "PRZZSubunitFourier.lean", "PRZZSubunitWindowMass.lean", "PRZZWideRowBudget.lean", "PRZZWindowCentralAssembly.lean", "PRZZWindowMoment.lean", "PRZZWideActiveRows.lean", "PRZZWindowScaleSupply.lean", "PRZZWindowSpatialJoin.lean", "PRZZWindowOptimalCell.lean", "PRZZOuterLogBudget.lean", "PRZZNegativeLocalRows.lean", "PRZZPositiveOuterGrid.lean", "PRZZNegativeRowWindow.lean", "PRZZNegativeRowIntegral.lean", "PRZZNegativeLiteralRows.lean", "PRZZNegativeActiveRows.lean", "PRZZNegativeWindowCell.lean", "PRZZNegativeOuterGrid.lean", "PRZZCommonSignedWindow.lean", "PRZZCommonWindowCollector.lean", "PRZZCommonCutMoment.lean", "PRZZCommonResidualJoin.lean", "PRZZActualTailNative.lean", "PRZZActualTailCollector.lean", "PRZZBodyTailMass.lean", "PRZZBodyTailTime.lean", "PRZZTailRowIntegrable.lean", "PRZZNativeTailRectangle.lean", "PRZZBodyTailCollector.lean", "PRZZBodyTailOptimal.lean", "PRZZMomentOptimal.lean"):
+        for name in (
+            'BetaKernel.lean', 'FiniteJet.lean', 'KernelAlgebra.lean',
+            'PRZZInterface.lean', 'PRZZCoefficientPolarization.lean', 'PRZZWitnessBasis.lean',
+            'SmoothWeightWitness.lean', 'AFProbe.lean', 'IntegralJet.lean',
+            'TaylorEnvelope.lean', 'CoefficientEvaluator.lean', 'NumericalGate.lean',
+            'RationalEvaluator.lean', 'RationalBounds.lean', 'FixedCertificate.lean',
+            'PRZZAsymptoticCore.lean', 'CompactShiftIntegral.lean', 'ArithmeticRegularity.lean',
+            'GcdDecomposition.lean', 'SmoothMobius.lean', 'ElementaryGcd.lean',
+            'FengArithmetic.lean', 'PRZZLambda.lean', 'PRZZHeathBrown.lean',
+            'PRZZMobiusHeathBrown.lean', 'PRZZWeightedHeathBrown.lean', 'SupportTail.lean',
+            'PRZZDISeven.lean', 'PRZZGCoefficient.lean', 'PRZZCoprimeAllocation.lean',
+            'PRZZConvolutionSplit.lean', 'PRZZCoefficientSeparation.lean', 'PRZZKloostermanInputs.lean',
+            'PRZZAStar.lean', 'PRZZAStarIntegrability.lean', 'PRZZAStarFubini.lean',
+            'PRZZTypeII.lean', 'PRZZMellinSeparation.lean', 'PRZZMellinTypeII.lean',
+            'PRZZSmoothMellin.lean', 'PRZZAStarMellin.lean', 'PRZZWindowWeight.lean',
+            'PRZZAStarWindow.lean', 'PRZZWindowDominance.lean', 'PRZZActualMellin.lean',
+            'PRZZAStarTransform.lean', 'PRZZAStarFrequency.lean', 'PRZZNuCoefficient.lean',
+            'PRZZEulerSubpower.lean', 'PRZZSourceTypeII.lean', 'PRZZNuBounds.lean',
+            'PRZZAStarNu.lean', 'PRZZDyadic.lean', 'PRZZAStarRectangles.lean',
+            'PRZZFullHeathBrown.lean', 'PRZZSignedTypeII.lean', 'PRZZGroupedConvolution.lean',
+            'PRZZHBBranches.lean', 'PRZZGAbsorption.lean', 'PRZZGroupBounds.lean',
+            'PRZZTypedClassification.lean', 'PRZZHBAtomSupply.lean', 'PRZZGcdAverage.lean',
+            'PRZZDyadicArithmetic.lean', 'PRZZGroupedDI.lean', 'PRZZSharpCutoff.lean',
+            'PRZZSharpCost.lean', 'PRZZSharpDI.lean', 'PRZZDIExpansion.lean',
+            'PRZZAStarIntegralBound.lean', 'PRZZOuterMass.lean', 'PRZZSharpAggregation.lean',
+            'PRZZSharpGrouped.lean', 'PRZZDyadicSupport.lean', 'PRZZBranchGrouping.lean',
+            'PRZZBranchDegrees.lean', 'PRZZBranchEnvelope.lean', 'PRZZActualBranchCells.lean',
+            'PRZZSourceScales.lean', 'PRZZSupportedSplit.lean', 'PRZZSupportedAllocation.lean',
+            'PRZZHBRectangles.lean', 'PRZZLiteralBranches.lean', 'PRZZSupportedBranches.lean',
+            'PRZZSupportedSource.lean', 'PRZZGroupedSeven.lean', 'PRZZResidualCoprime.lean',
+            'PRZZTypeI.lean', 'PRZZWeightedDI.lean', 'PRZZResidualWeighted.lean',
+            'PRZZResidualRow.lean', 'PRZZTypeIWeights.lean', 'PRZZSmoothWeights.lean',
+            'PRZZTypeIVariation.lean', 'PRZZMaskedVariation.lean', 'PRZZBranchSeven.lean',
+            'PRZZSourceEnvelope.lean', 'PRZZSourceAbsorption.lean', 'PRZZSourceCoefficients.lean',
+            'PRZZRowWindow.lean', 'PRZZLocalReexpansion.lean', 'PRZZAllBranchCells.lean',
+            'PRZZActualSupportBoxes.lean', 'PRZZInflatedSeven.lean', 'PRZZEffectiveBalance.lean',
+            'PRZZMaskedSource.lean', 'PRZZMaskedAbsorption.lean', 'PRZZSmallRowVariation.lean',
+            'PRZZActualRowSmooth.lean', 'PRZZRowPlacement.lean', 'PRZZRowCellLayout.lean',
+            'PRZZMellinMoment.lean', 'PRZZLinearOuter.lean', 'PRZZInflatedOuter.lean',
+            'PRZZSplitScaleSum.lean', 'PRZZCellMass.lean', 'PRZZRetainedScale.lean',
+            'PRZZCombinedBudget.lean', 'PRZZActualBranchDI.lean', 'PRZZSourceGroupDI.lean',
+            'PRZZActualRowRectangle.lean', 'PRZZPositiveRow.lean', 'PRZZSignedSourceCell.lean',
+            'PRZZDyadicModulus.lean', 'PRZZZeroExtension.lean', 'PRZZCommonCellBound.lean',
+            'PRZZDyadicCellBound.lean', 'PRZZActualBudgetLayout.lean', 'PRZZBareFactors.lean',
+            'PRZZFreeLogRow.lean', 'PRZZTypeICoprime.lean', 'PRZZInversePhase.lean',
+            'PRZZTypeIFrequency.lean', 'PRZZTypeICost.lean', 'PRZZFreeLogCoprime.lean',
+            'PRZZHiAllocatedCells.lean', 'PRZZFreeSource.lean', 'PRZZFreeDyadic.lean',
+            'PRZZFreeCoefficient.lean', 'PRZZFreeCell.lean', 'PRZZModulusBudget.lean',
+            'PRZZFreeLength.lean', 'PRZZFreeLengthCoefficient.lean', 'PRZZFreeLengthCell.lean',
+            'PRZZLengthBudget.lean', 'PRZZModulusScale.lean', 'PRZZTypeIScaleSupplier.lean',
+            'PRZZActualSignedBranches.lean', 'PRZZActualTypeI.lean', 'PRZZActualSmall.lean',
+            'PRZZDyadicWindow.lean', 'PRZZDyadicEnvelope.lean', 'PRZZGaussianLine.lean',
+            'PRZZGaussianTail.lean', 'PRZZGaussianCorrection.lean', 'PRZZSourceW.lean',
+            'PRZZSourceDecay.lean', 'PRZZGaussianDerivatives.lean', 'PRZZLogDerivatives.lean',
+            'PRZZSourceWDerivatives.lean', 'PRZZPoissonWDerivative.lean', 'PRZZFullWeightSmooth.lean',
+            'PRZZCutoffJets.lean', 'PRZZPowerJets.lean', 'PRZZReciprocalJets.lean',
+            'PRZZQuadraticJets.lean', 'PRZZFullWeightJets.lean', 'PRZZWeightFourier.lean',
+            'PRZZMellinSeminorm.lean', 'PRZZMellinInterval.lean', 'PRZZPoissonTimeChange.lean',
+            'PRZZL1Poisson.lean', 'PRZZPoissonActualWeight.lean', 'PRZZWeightTail.lean',
+            'PRZZSourceFrequency.lean', 'PRZZSourceCutoffs.lean', 'PRZZAFEGamma.lean',
+            'PRZZL1Residue.lean', 'PRZZAFEDual.lean', 'WuLittlewood.lean',
+            'WuEdgeLog.lean', 'PRZZGammaPath.lean', 'PRZZContourKernel.lean',
+            'PRZZNoncentralResidues.lean', 'PRZZFiniteContour.lean', 'PRZZCompletedStrip.lean',
+            'PRZZGammaFar.lean', 'PRZZGammaUniform.lean', 'PRZZResidueEnvelope.lean',
+            'PRZZHorizontalDecay.lean', 'PRZZInfiniteContour.lean', 'PRZZContourAFE.lean',
+            'PRZZGammaCentral.lean', 'PRZZMellinTail.lean', 'PRZZKernelDifference.lean',
+            'PRZZGammaMain.lean', 'PRZZCentralIntegral.lean', 'PRZZKernelUniform.lean',
+            'PRZZL1Finite.lean', 'PRZZL1Truncation.lean', 'PRZZSourceWSums.lean',
+            'PRZZActualDirectSum.lean', 'PRZZSeriesAFE.lean', 'PRZZKernelTime.lean',
+            'PRZZArithmeticTime.lean', 'PRZZMollifiedTime.lean', 'PRZZIntegratedAFE.lean',
+            'PRZZReplacementIntegral.lean', 'PRZZPhaseError.lean', 'PRZZCutoffPhase.lean',
+            'PRZZArithmeticMass.lean', 'PRZZDyadicArithmeticMass.lean', 'PRZZSourceTailBudget.lean',
+            'PRZZEnvelopeMass.lean', 'PRZZJetUniform.lean', 'PRZZNormalizedTail.lean',
+            'PRZZPhaseDegree.lean', 'PRZZZeroPhaseBudget.lean', 'PRZZTailSourceFamily.lean',
+            'PRZZExtendedTailDomain.lean', 'PRZZPrunedTailRows.lean', 'PRZZAbsorbedFourierTail.lean',
+            'PRZZTailTimeSum.lean', 'PRZZArithmeticFourierTail.lean', 'PRZZFourierTime.lean',
+            'PRZZFrozenTail.lean', 'PRZZSourceRows.lean', 'PRZZInfiniteTail.lean',
+            'PRZZAFEIndices.lean', 'PRZZAFEProgression.lean', 'PRZZGroupedTime.lean',
+            'PRZZCongruencePoisson.lean', 'PRZZCentralTail.lean', 'PRZZInverseProfile.lean',
+            'PRZZExpandedCutoff.lean', 'PRZZQuotientMass.lean', 'PRZZHeightMass.lean',
+            'PRZZReplacementMass.lean', 'PRZZReplacementHeight.lean', 'PRZZLocalReplacement.lean',
+            'PRZZActualLocalReplacement.lean', 'PRZZDifferenceRegular.lean', 'PRZZDifferenceDecay.lean',
+            'PRZZDifferenceContour.lean', 'PRZZLeftCentral.lean', 'PRZZLeftFar.lean',
+            'PRZZLeftUniform.lean', 'PRZZActualSmallReplacement.lean', 'PRZZProductMass.lean',
+            'PRZZProductSummation.lean', 'PRZZSourceWOuter.lean', 'PRZZOptimalPowers.lean',
+            'PRZZOptimalOuter.lean', 'PRZZProductTime.lean', 'PRZZMeanSquare.lean',
+            'PRZZScaledReplacement.lean', 'PRZZResidueTime.lean', 'PRZZResidueAbsorption.lean',
+            'PRZZDualError.lean', 'PRZZFrozenProfileBound.lean', 'PRZZProfileTimeBudget.lean',
+            'PRZZTransformedSourceBudget.lean', 'PRZZSourceTailMass.lean', 'PRZZExplicitDomain.lean',
+            'PRZZAFEOuterAssembly.lean', 'PRZZWArithmeticCutoff.lean', 'PRZZIntegratedDefect.lean',
+            'PRZZWRowLimit.lean', 'PRZZTruncatedProgression.lean', 'PRZZSharpPoisson.lean',
+            'PRZZSourceLattice.lean', 'PRZZWeightedSourcePoisson.lean', 'PRZZTimeJets.lean',
+            'PRZZTimeAmplitude.lean', 'PRZZDeltaDecay.lean', 'PRZZSourceBoundaryDecay.lean',
+            'PRZZTimeDiscarded.lean', 'PRZZDiscardedSuppliers.lean', 'PRZZAmplitudeFreeze.lean',
+            'PRZZPartitionMass.lean', 'PRZZDiscardedPartition.lean', 'PRZZDiscardedOuter.lean',
+            'PRZZValuedCutoffs.lean', 'PRZZFreezeMass.lean', 'PRZZFreezeScales.lean',
+            'PRZZPrefactorMass.lean', 'PRZZActiveFreezeBudget.lean', 'PRZZBranchMass.lean',
+            'PRZZDyadicBudget.lean', 'PRZZFiniteFreezeBudget.lean', 'PRZZFreezeErrorBudget.lean',
+            'PRZZUnfrozenPoisson.lean', 'PRZZPoissonAnalyticMass.lean', 'PRZZSpatialFreezeBudget.lean',
+            'PRZZEmptyFrequencyDecay.lean', 'PRZZEmptyArithmeticMass.lean', 'PRZZEmptyScaleAbsorption.lean',
+            'PRZZEmptyMomentScalar.lean', 'PRZZEmptyMomentMass.lean', 'PRZZActualPoissonError.lean',
+            'PRZZWRowReindex.lean', 'PRZZFilteredResidual.lean', 'PRZZLiteralComplement.lean',
+            'PRZZDiagonalMellin.lean', 'PRZZDiagonalContour.lean', 'PRZZDiagonalAssembly.lean',
+            'PRZZOriginalDiagonal.lean', 'PRZZDiagonalMass.lean', 'PRZZWitnessMass.lean',
+            'PRZZProfileSmooth.lean', 'PRZZProfileScale.lean', 'PRZZProfileMellin.lean',
+            'PRZZClassSources.lean', 'PRZZClassVariation.lean', 'PRZZClassDI.lean',
+            'PRZZClassFreeLength.lean', 'PRZZClassTypeI.lean', 'PRZZActualCases.lean',
+            'PRZZClassCases.lean', 'PRZZWindowComposition.lean', 'PRZZPositiveMellin.lean',
+            'PRZZOriginalRowWindow.lean', 'PRZZAllocationMass.lean', 'PRZZAllSignedSources.lean',
+            'PRZZRowMellinBranches.lean', 'PRZZActualCaseSum.lean', 'PRZZAllCellsBound.lean',
+            'PRZZActualAggregate.lean', 'PRZZFiniteFamilyRows.lean', 'PRZZClassRows.lean',
+            'PRZZLiteralRows.lean', 'PRZZActualLoss.lean', 'PRZZActualCasePowers.lean',
+            'PRZZThreeCaseLoss.lean', 'PRZZNonemptyRowBudget.lean', 'PRZZRowIntegralBudget.lean',
+            'PRZZActiveRows.lean', 'PRZZMixedLiteral.lean', 'PRZZWideRowBudget.lean',
+            'PRZZUniformTypeI.lean', 'PRZZUniformCases.lean', 'PRZZUniformAggregate.lean',
+            'PRZZWideActiveRows.lean', 'PRZZClassWideLiteral.lean', 'PRZZClassLiteral.lean',
+            'PRZZGammaLaplace.lean', 'PRZZCosineAbel.lean', 'PRZZCosineImproper.lean',
+            'PRZZCosineDominated.lean', 'PRZZCosineMellinCore.lean', 'PRZZCosineMellin.lean',
+            'PRZZCosineFiniteFubini.lean', 'PRZZCosineSpatialJets.lean', 'PRZZCosineSpatialBoundary.lean',
+            'PRZZCentralFubini.lean', 'PRZZSignedCentral.lean', 'PRZZZeroGap.lean',
+            'PRZZCosineSpatialImproper.lean', 'PRZZSourceWLine.lean', 'PRZZCosineDerivativeMellin.lean',
+            'PRZZCosineTimeDomination.lean', 'PRZZCosineTimeMellin.lean', 'PRZZZeroGapExchange.lean',
+            'PRZZZeroSpatialLimit.lean', 'PRZZZeroCutoffLimit.lean', 'PRZZCoupledAFE.lean',
+            'PRZZZeroReflection.lean', 'PRZZZeroCosine.lean', 'PRZZZeroReciprocal.lean',
+            'PRZZZeroReciprocalRows.lean', 'PRZZCosineMovingWindow.lean', 'PRZZZeroRowMellin.lean',
+            'PRZZZeroOuterMellin.lean', 'PRZZCosineGapMellin.lean', 'PRZZReflectedEnvelope.lean',
+            'PRZZReflectedContour.lean', 'PRZZCosineGapCorrection.lean', 'PRZZZeroNormalization.lean',
+            'PRZZZeroGapTime.lean', 'PRZZActualZeroReflection.lean', 'PRZZZeroCross.lean',
+            'PRZZZeroCoupled.lean', 'PRZZGammaMultiplier.lean', 'PRZZZeroGammaBound.lean',
+            'PRZZZeroFourierReduction.lean', 'PRZZAllOffDiagonalRows.lean', 'PRZZAllPoissonRows.lean',
+            'PRZZNativeFamily.lean', 'PRZZNativeComponents.lean', 'PRZZAllPoissonAFE.lean',
+            'PRZZExhaustiveAFEError.lean', 'PRZZDiagonalKernel.lean', 'PRZZPrimitiveKernel.lean',
+            'ZetaPoleScaling.lean', 'PRZZKernelComparison.lean', 'PRZZFamilyMoment.lean',
+            'PRZZMixedReplacement.lean', 'PRZZMixedDefect.lean', 'PRZZMixedPoisson.lean',
+            'PRZZPositiveOuter.lean', 'PRZZActualAStar.lean', 'PRZZZeroExhaustionCross.lean',
+            'PRZZDualSmooth.lean', 'PRZZDualTimeIBP.lean', 'PRZZDualFirstJet.lean',
+            'PRZZPolygammaSeries.lean', 'PRZZDualHigherJets.lean', 'PRZZDualJetTransfer.lean',
+            'PRZZDualJetMass.lean', 'PRZZZeroDualExhaustion.lean', 'PRZZUnitModulusBudget.lean',
+            'PRZZResolvedTail.lean', 'PRZZUnitTailMass.lean', 'PRZZResolvedTailMass.lean',
+            'PRZZWindowGrids.lean', 'PRZZWindowTailMass.lean', 'PRZZWindowTailTime.lean',
+            'PRZZValuedSourceDiscarded.lean', 'PRZZDualDiscardedIBP.lean', 'PRZZDualDiscardedBudget.lean',
+            'PRZZSourceMaskFamily.lean', 'PRZZDiscardedAFEBridge.lean', 'PRZZWindowNativeTail.lean',
+            'PRZZPartitionDiscrepancy.lean', 'PRZZArithmeticBoundaryFamily.lean', 'PRZZNativeGcdGrid.lean',
+            'PRZZSourceWindowCutoff.lean', 'PRZZResolvedBoundary.lean', 'PRZZWindowBoundary.lean',
+            'PRZZWindowErrorJoin.lean', 'PRZZDualWindowErrorJoin.lean', 'PRZZDiscardedTimePair.lean',
+            'PRZZPrunedAFEError.lean', 'PRZZRetainedNative.lean', 'PRZZNativeCentralLiteral.lean',
+            'PRZZFourierExhaustion.lean', 'PRZZKeptLiteral.lean', 'PRZZRejectedExhaustion.lean',
+            'PRZZArithmeticCutoffPartition.lean', 'PRZZSelectedLocalFourier.lean', 'PRZZLocalTailBudget.lean',
+            'PRZZFullFreezeBudget.lean', 'PRZZLargeSpatialKernel.lean', 'PRZZResolvedComplement.lean',
+            'PRZZLargeSpatialFamily.lean', 'PRZZLargeSpatialHeight.lean', 'PRZZLargeResolvedPruning.lean',
+            'PRZZSpatialErrorJoin.lean', 'PRZZNativeFreezeEnvelope.lean', 'PRZZDualNativeFreeze.lean',
+            'PRZZNativeFreezeTime.lean', 'PRZZIntegratedFreezeAFE.lean', 'PRZZFreezeRemovedLiteral.lean',
+            'PRZZLiteralAFEJoin.lean', 'PRZZCompatibleTail.lean', 'PRZZBandOuterMass.lean',
+            'PRZZSpatialReconstruction.lean', 'PRZZSameMaskResidual.lean', 'PRZZSameMaskFreezeBudget.lean',
+            'PRZZReconstructedAFE.lean', 'PRZZSmallCentralLiteral.lean', 'PRZZLiteralExhaustion.lean',
+            'PRZZLiteralFourierLimit.lean', 'PRZZCentralArithmeticJoin.lean', 'PRZZClassPoisson.lean',
+            'PRZZLocalFrequencyLoss.lean', 'PRZZArithmeticWindowCutoff.lean', 'PRZZStrictSmallTail.lean',
+            'PRZZSelectedDiscarded.lean', 'PRZZSelectedDiscardedFamily.lean', 'PRZZRemainderBudget.lean',
+            'PRZZRemainderAbsorption.lean', 'PRZZLiteralTotalBound.lean', 'PRZZFullLiteralBound.lean',
+            'PRZZCentralMainAssembly.lean', 'PRZZCentralGridWeilDI.lean', 'PRZZWindowScaleSupply.lean',
+            'PRZZLocalCentralTransfer.lean', 'PRZZWindowBandMass.lean', 'PRZZSubunitFourier.lean',
+            'PRZZSubunitWindowMass.lean', 'PRZZWindowCentralAssembly.lean', 'PRZZClassWidePoisson.lean',
+            'PRZZWindowOptimalCell.lean', 'PRZZOuterLogBudget.lean', 'PRZZNegativeArithmetic.lean',
+            'PRZZNegativeMellin.lean', 'PRZZNegativeOuter.lean', 'PRZZUniformOuter.lean',
+            'PRZZDualProfileUniform.lean', 'PRZZWeilDIMainBound.lean', 'PRZZDualMellinUniform.lean',
+            'PRZZUniformGrid.lean', 'PRZZWindowMoment.lean', 'PRZZPositiveOuterGrid.lean',
+            'PRZZClassPositiveGrid.lean', 'PRZZClassSpatialTypeI.lean', 'PRZZClassSpatialDI.lean',
+            'PRZZClassSpatialSources.lean', 'PRZZClassSpatialCases.lean', 'PRZZClassSpatialRows.lean',
+            'PRZZNegativeLocalRows.lean', 'PRZZNegativeRowWindow.lean', 'PRZZNegativeRowIntegral.lean',
+            'PRZZNegativeLiteralRows.lean', 'PRZZClassNegativeLiteral.lean', 'PRZZClassNegativePoisson.lean',
+            'PRZZClassNegativeGrid.lean', 'PRZZClassSignedGrid.lean', 'PRZZZeroSourceHeight.lean',
+            'PRZZZeroUniformHeight.lean', 'PRZZZeroSpatialHeight.lean', 'PRZZZeroOmittedGaps.lean',
+            'PRZZZeroOuterHeight.lean', 'PRZZZeroNativeTail.lean', 'PRZZZeroDualHeight.lean',
+            'PRZZZeroBoundaryHeight.lean', 'PRZZZeroIntegerReindex.lean', 'PRZZZeroCompleteCell.lean',
+            'PRZZZeroNativeCompletion.lean', 'PRZZZeroSpatialPrefix.lean', 'PRZZZeroBoundarySum.lean',
+            'PRZZZeroDualBoundary.lean', 'PRZZZeroDualGaps.lean', 'PRZZZeroArithmeticPartition.lean',
+            'PRZZZeroBoundaryIdentity.lean', 'PRZZZeroDualOuter.lean', 'PRZZClassZeroBoundary.lean',
+            'PRZZZeroDualNativeTail.lean', 'PRZZClassZeroTail.lean', 'PRZZClassZeroPrimalGap.lean',
+            'PRZZClassZeroCorrection.lean', 'PRZZCentralGridIdentity.lean', 'PRZZBasisGridCutoff.lean',
+            'PRZZBasisGridBound.lean', 'PRZZClassDualProfile.lean', 'PRZZBasisPairedBody.lean',
+            'PRZZBodyTailMass.lean', 'PRZZCappedPrefactor.lean', 'PRZZCappedTailMass.lean',
+            'PRZZCappedWindowMass.lean', 'PRZZCappedWindowTime.lean', 'PRZZCappedNativeTail.lean',
+            'PRZZCappedWindowBand.lean', 'PRZZCappedSubunitMass.lean', 'PRZZCappedBodyMass.lean',
+            'PRZZBodyTailTime.lean', 'PRZZActualTailNative.lean', 'PRZZTailRowIntegrable.lean',
+            'PRZZNegativeActiveRows.lean', 'PRZZNegativeWindowCell.lean', 'PRZZCommonSignedWindow.lean',
+            'PRZZCommonWindowCollector.lean', 'PRZZZeroMismatchHeight.lean', 'PRZZWeilDIZeroJoin.lean',
+            'PRZZGammaBudgetAbsorption.lean', 'PRZZCommonCutMoment.lean', 'PRZZActualTailCollector.lean',
+            'PRZZNativeTailRectangle.lean', 'PRZZBodyTailCollector.lean', 'PRZZBodyTailOptimal.lean',
+            'PRZZCappedBodyTail.lean', 'PRZZCappedGammaDefect.lean', 'PRZZCappedFreezeMoment.lean',
+            'PRZZCappedFreezeBudget.lean', 'PRZZCappedStrictFreeze.lean', 'PRZZCappedStrictTail.lean',
+            'PRZZCappedBandOuter.lean', 'PRZZCappedSameMask.lean', 'PRZZCappedTailBand.lean',
+            'PRZZCappedFreezeCollector.lean', 'PRZZCappedDiscardedIBP.lean', 'PRZZCappedDiscarded.lean',
+            'PRZZCappedDiscardedFamily.lean', 'PRZZCappedLarge.lean', 'PRZZCappedRemainder.lean',
+            'PRZZMixedMoment.lean', 'PRZZCappedMomentBridge.lean', 'PRZZCappedMainTerm.lean',
+            'PRZZFamilyMomentOptimal.lean', 'PRZZWitnessBridge.lean', 'PRZZProvedInput.lean',
+            'PRZZAsymptotic.lean', 'LogarithmicBudget.lean', 'HeightScaling.lean',
+            'ShiftWeights.lean', 'MobiusHarmonic.lean', 'MobiusPNT.lean',
+            'MobiusPNTBridge.lean', 'WeightedMobius.lean', 'WeightDerivatives.lean',
+            'ShiftedMobius.lean', 'CoprimeShift.lean', 'SupportProductTail.lean',
+            'ShiftedEndpoint.lean', 'CoprimeHead.lean', 'CoprimeApproximation.lean',
+            'TotientWeight.lean', 'EndpointAverage.lean', 'MultiplicativeSummability.lean',
+            'TotientConvolution.lean', 'TotientSummability.lean', 'TotientHarmonic.lean',
+            'TotientAbel.lean', 'ShiftedTotient.lean', 'ShiftedEulerLocal.lean',
+            'ShiftedEulerUniform.lean', 'LogProfileSum.lean', 'OuterProfile.lean',
+            'EulerHead.lean', 'CoprimeEulerCompletion.lean', 'BareEuler.lean',
+            'BareEulerUniform.lean', 'CoprimeEndpoint.lean', 'CoprimeGluing.lean',
+            'ConreyOuter.lean', 'ConreyCoefficientBridge.lean', 'ConreyMainTerm.lean',
+            'FengCoefficientBridge.lean', 'FengShift.lean', 'FengAtG.lean',
+            'FengLogBounds.lean', 'FengLogEndpoint.lean', 'FengPrimeCancellation.lean',
+            'FengOutside.lean', 'FengPrimeMass.lean', 'FengOutsideBounds.lean',
+            'FengOutsideEndpoint.lean', 'FengShared.lean', 'FengSharedBlock.lean',
+            'FengResidual.lean', 'FengSharedApproximation.lean', 'FengSharedBounds.lean',
+            'FengSharedEndpoint.lean', 'FengSharedTail.lean', 'FengSharedInterior.lean',
+            'FengMarkedProfile.lean', 'FengMarkedAbel.lean', 'FengMarkedLimit.lean',
+            'TotientCoprime.lean', 'FengMarkedArithmetic.lean', 'FengMarkedDecomposition.lean',
+            'FengMarkedTail.lean', 'FengMertensModels.lean', 'FengMarkedDiagonal.lean',
+            'FengMarkedCross.lean', 'FengMarkedCrossLimit.lean', 'FengMixedMoment.lean',
+            'FengSharedLimit.lean', 'FengMixedAbel.lean', 'FengMixedLimit.lean',
+            'FengMixedInterior.lean', 'FengMixedProduct.lean', 'FengMixedShift.lean',
+            'FengLogMainTerm.lean', 'FengOutsideProfile.lean', 'FengCrossAssembly.lean',
+            'FengPrimeProfile.lean', 'FengPrimeExclusion.lean', 'FengOutsidePrime.lean',
+            'CoprimeEulerError.lean', 'FengPrimeWindow.lean', 'FengOutsideAverage.lean',
+            'FengOutsideReplacement.lean', 'FengInverseProfile.lean', 'CoprimeSingleGluing.lean',
+            'FengOutsideProxy.lean', 'FengOutsideMainTerm.lean', 'FengCrossCoefficient.lean',
+            'FengMixedMainTerm.lean', 'FengLogProducts.lean', 'FengSquareAssembly.lean',
+            'FengOutsidePartner.lean', 'FengInverseProducts.lean', 'FengOutsideSquare.lean',
+            'FengOutsideShared.lean', 'RawEuler.lean', 'FengSharedShift.lean',
+            'FengSquareCoefficient.lean', 'FengSquareMainTerm.lean', 'TwoPieceMainTerm.lean',
+            'CauchyJetTransfer.lean', 'TwoPieceMoment.lean', 'ZetaMomentIntegral.lean',
+            'ZetaMomentPolynomial.lean', 'ZetaMomentMainTerm.lean', 'WitnessMomentBound.lean',
+            'WuAuxiliary.lean', 'WuStirling.lean', 'WuGammaJets.lean',
+            'WuStirlingTransfer.lean', 'WuStirlingMoment.lean', 'WuMomentTransfer.lean',
+            'SmoothWeightMoment.lean', 'SmoothWindow.lean', 'SmoothWindowLimit.lean',
+            'WuUnsmoothing.lean', 'PRZZLocalization.lean', 'PRZZLocalizedError.lean',
+            'SmoothEndpoint.lean', 'WuEndpointTransfer.lean', 'ExpandedGcd.lean',
+            'ExpandedHeight.lean', 'ExpandedRegularity.lean', 'ExpandedMainTerm.lean',
+            'ExpandedZetaIntegral.lean', 'ExpandedZetaPolynomial.lean', 'ExpandedMoment.lean',
+            'WuLocalizedMoments.lean', 'WuTrimmedLog.lean', 'WuWindowTiling.lean',
+            'WuSafeEndpoints.lean', 'WuIndependentWindows.lean', 'WuSubintervalLog.lean',
+            'WuXiBands.lean', 'WuAuxiliaryBoundary.lean', 'WuBoundaryZeros.lean',
+            'WuAuxiliaryMultiplicity.lean', 'WuLeftReturn.lean', 'WuRightMollifier.lean',
+            'WuRightBoundary.lean', 'WuRightLittlewood.lean', 'WuWideGamma.lean',
+            'WuDiskGrowth.lean', 'WuDiskCenter.lean', 'WuHorizontalIntegral.lean',
+            'WuHorizontalBound.lean', 'WuCriticalMultiplicity.lean', 'WuAuxiliaryHorizontal.lean',
+            'WuFiniteDeflation.lean', 'WuCriticalDeflation.lean', 'WuDeflatedDetection.lean',
+            'WuPhaseCrossings.lean', 'WuDeflatedContour.lean', 'WuBoundaryPhase.lean',
+            'WuParallelReturn.lean', 'WuContourCounting.lean', 'WuGammaPhase.lean',
+            'WuGammaCancellation.lean', 'WuVHorizontal.lean', 'WuEtaMainPhase.lean',
+            'WuQuotientReturn.lean', 'WuLocalCounting.lean', 'WuDyadicCounting.lean',
+            'WuTotalAsymptotic.lean', 'WuProportion.lean', 'PRZZResidualBoxes.lean',
+            'PRZZSplitScaleOuter.lean', 'PRZZWholeRowsSum.lean', 'PRZZCellAggregation.lean',
+            'PRZZEffectiveAverage.lean', 'PRZZAllocatedCells.lean', 'PRZZMixedOuter.lean',
+            'PRZZSignedCellsAggregate.lean', 'PRZZBalancedCellEnvelope.lean', 'PRZZActualRowOuter.lean',
+            'PRZZPoissonSpatial.lean', 'PRZZExplicitTail.lean', 'PRZZFrozenFamilyCutoff.lean',
+            'PRZZZeroMellinSpace.lean', 'PRZZZeroMellinLimit.lean', 'PRZZOriginalSpatialLimit.lean',
+            'PRZZResidualPartition.lean', 'PRZZArithmeticTailLimit.lean', 'PRZZNegativeGrid.lean',
+            'PRZZZeroMismatchLimit.lean', 'PRZZIndexedCaps.lean', 'PRZZWeilDIErrorJoin.lean',
+            'PRZZSignedUniformGrid.lean', 'PRZZSignedMomentBudget.lean', 'PRZZDisjointSpatialJoin.lean',
+            'PRZZWindowSpatialJoin.lean', 'PRZZNegativeOuterGrid.lean', 'PRZZCommonResidualJoin.lean',
+            'PRZZMomentOptimal.lean', 'PRZZClassPairedGrid.lean', 'PRZZClassPairedSignedGrid.lean',
+            'PRZZCappedWindowField.lean',
+        ):
             enqueue(name, [lake, "env", "lean", "--root=" + str(source_dir),
                            "-o", str(Path(build) / (Path(name).stem + ".olean"))])
         for name, future in ordered:
@@ -295,10 +695,31 @@ def main():
     for name, output in compile_sources(args.lake, af, ROOT / "lean", args.jobs):
         path = ROOT / "lean" / name
         require("sorryAx" not in output and "error:" not in output, f"Proof check failed: {name}")
-        explicit = sum(line.startswith("axiom ") for line in path.read_text().splitlines())
-        require(explicit == (1 if name == "PRZZInterface.lean" else 0),
+        explicit = len(re.findall(r"^\s*(?:private\s+)?axiom\s", lean_code_only(path.read_text()), re.MULTILINE))
+        require(explicit == 0,
                 f"Unexpected explicit axiom count: {name}")
-        if name in {"PRZZKloostermanInputs.lean", "PRZZLambda.lean", "PRZZHeathBrown.lean",
+        if name == "PRZZCoefficientPolarization.lean":
+            audit_polarization(output)
+        elif name in {"PRZZWitnessBasis.lean", "PRZZWitnessMass.lean"}:
+            audit_witness_basis(output, Path(name).stem)
+        elif name in {"PRZZProfileSmooth.lean", "PRZZProfileScale.lean"}:
+            audit_profile_uniform(output, Path(name).stem)
+        elif name in {"PRZZPrimitiveKernel.lean", "PRZZGammaMultiplier.lean",
+                      "PRZZKernelComparison.lean", "PRZZFamilyMoment.lean",
+                      "PRZZMellinInterval.lean", "PRZZProfileMellin.lean",
+                      "PRZZClassSources.lean", "PRZZClassVariation.lean", "PRZZClassDI.lean",
+                      "PRZZClassFreeLength.lean", "PRZZClassTypeI.lean", "PRZZClassCases.lean",
+                      "PRZZClassRows.lean", "PRZZMixedLiteral.lean", "PRZZClassLiteral.lean",
+                      "PRZZMixedReplacement.lean", "PRZZMixedDefect.lean", "PRZZMixedPoisson.lean", "PRZZMixedMoment.lean", "PRZZClassPoisson.lean",
+                      "PRZZClassWideLiteral.lean", "PRZZClassWidePoisson.lean", "PRZZClassPositiveGrid.lean",
+                      "PRZZClassDualProfile.lean", "PRZZClassPairedGrid.lean",
+                 "PRZZClassSpatialSources.lean", "PRZZClassSpatialDI.lean", "PRZZClassSpatialTypeI.lean", "PRZZClassSpatialCases.lean", "PRZZClassSpatialRows.lean", "PRZZClassNegativeLiteral.lean", "PRZZClassNegativePoisson.lean", "PRZZClassNegativeGrid.lean", "PRZZClassSignedGrid.lean", "PRZZClassPairedSignedGrid.lean", "PRZZClassZeroBoundary.lean", "PRZZClassZeroTail.lean", "PRZZClassZeroPrimalGap.lean", "PRZZClassZeroCorrection.lean", "PRZZCappedPrefactor.lean", "PRZZCappedTailMass.lean", "PRZZCappedWindowMass.lean", "PRZZCappedWindowTime.lean", "PRZZCappedWindowField.lean", "PRZZCappedFreezeMoment.lean", "PRZZCappedFreezeBudget.lean", "PRZZCappedNativeTail.lean", "PRZZCappedStrictTail.lean", "PRZZCappedBandOuter.lean", "PRZZCappedSameMask.lean", "PRZZCappedTailBand.lean", "PRZZCappedStrictFreeze.lean", "PRZZCappedLarge.lean", "PRZZCappedDiscardedIBP.lean", "PRZZCappedDiscarded.lean", "PRZZCappedFreezeCollector.lean", "PRZZCappedDiscardedFamily.lean", "PRZZCappedRemainder.lean", "PRZZCappedMomentBridge.lean", "PRZZCappedMainTerm.lean", "PRZZCentralGridIdentity.lean", "PRZZBasisGridCutoff.lean", "PRZZBasisGridBound.lean", "PRZZCappedWindowBand.lean", "PRZZCappedSubunitMass.lean", "PRZZCappedBodyMass.lean", "PRZZCappedBodyTail.lean", "PRZZCappedGammaDefect.lean", "PRZZBasisPairedBody.lean", "PRZZFamilyMomentOptimal.lean", "PRZZWitnessBridge.lean"}:
+            audit_moment_bridge(output, Path(name).stem)
+        elif name == "PRZZDiagonalKernel.lean":
+            audit_diagonal_kernel(output)
+        elif name == "PRZZFiniteFamilyRows.lean":
+            audit_finite_family_rows(output)
+        elif name in {"PRZZKloostermanInputs.lean", "PRZZLambda.lean", "PRZZHeathBrown.lean",
                     "PRZZWeightedHeathBrown.lean", "PRZZTypeI.lean", "PRZZTypeII.lean",
                     "PRZZDyadic.lean", "PRZZMobiusHeathBrown.lean", "PRZZMellinSeparation.lean",
                     "PRZZTypeIWeights.lean", "PRZZMellinTypeII.lean", "PRZZSmoothMellin.lean",
@@ -835,10 +1256,6 @@ def main():
                 key = "XiPrime8845." + namespace + "." + theorem
                 require(key in dependencies, f"Missing actual counting bridge audit: {key}")
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem in {"left_log_eventually_le", "safe_window_log_input", "safe_left_budget_eventually",
-                               "original_budget", "closed_count_lower", "budget_eventually_le",
-                               "dyadic_eventually", "cumulative_eventually", "strict_proportion", "ratio_eventually_gt"}:
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 require(actual == expected, f"Unexpected actual counting bridge dependencies: {key}: {actual}")
             require("LocalizedEstimate" not in path.read_text(), f"Localization leaked into counting bridge: {name}")
@@ -858,8 +1275,6 @@ def main():
                 require(key in dependencies, f"Missing independent-window audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem in {"subLogMean_eventually_le", "safe_window_log_input"}:
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected independent-window dependencies: {key}: {actual}")
             require("LocalizedEstimate" not in path.read_text(), f"Localization leaked into independent route: {name}")
         if name in {"WuLittlewood.lean", "WuEdgeLog.lean", "WuSafeEndpoints.lean"}:
@@ -897,8 +1312,6 @@ def main():
                 require(key in dependencies, f"Missing interior-window audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem in {"logMean_eventually_le", "all_window_log_inputs"}:
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected interior-window dependencies: {key}: {actual}")
             require("LocalizedEstimate" not in path.read_text(), f"Localization leaked into interior route: {name}")
         if name in {"PRZZLocalization.lean", "PRZZLocalizedError.lean", "SmoothEndpoint.lean", "WuEndpointTransfer.lean",
@@ -936,8 +1349,6 @@ def main():
                 require(key in dependencies, f"Missing localization audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem == "fullMoment_tendsto_of_localizedMoments" or (name == "WuLocalizedMoments.lean" and theorem in {"fullMoment_tendsto", "fullMoment_eventually_lt"}):
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected localization dependencies: {key}: {actual}")
         if name in {"SmoothWindow.lean", "SmoothWindowLimit.lean", "WuUnsmoothing.lean"}:
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
@@ -958,8 +1369,6 @@ def main():
                 require(key in dependencies, f"Missing unsmoothing audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if name == "WuUnsmoothing.lean" and theorem in analytic:
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected unsmoothing dependencies: {key}: {actual}")
         if name == "SmoothWeightMoment.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
@@ -971,8 +1380,6 @@ def main():
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem != "plateau_mass_pos":
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected concrete moment dependencies: {key}: {actual}")
         if name == "SmoothWeightWitness.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
@@ -990,29 +1397,15 @@ def main():
             standard = {"propext", "Classical.choice", "Quot.sound"}
             for theorem in ("abs_fengArithmetic_le_log_sq", "witness_profile_bounds",
                             "witness_coefficient_bound", "witness_subpower",
-                            "witness_normalized_error_tendsto_zero", "witness_przz_estimate"):
+                            "witness_normalized_error_tendsto_zero",
+                            "coefficient_star", "gcdMainTerm_swap", "witness_densityGcdMainTerm_eq"):
                 key = "XiPrime8845.PRZZ." + theorem
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
-                expected = standard | ({"przz41_case3_K2_profiles"}
-                                       if theorem == "witness_przz_estimate" else set())
+                expected = standard
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
-        if name == "PRZZAsymptotic.lean":
-            dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
-            standard = {"propext", "Classical.choice", "Quot.sound"}
-            elementary = {"errorEnvelope_tendsto", "radius_pos", "witnessBidisc_subset",
-                          "witnessBidisc_sum_ne_zero", "mixed_cauchy_bound"}
-            analytic = {"normalized_difference_bound", "normalized_difference_uniform",
-                        "normalized_difference_on_bidisc", "moment_limit_of_gcd_limit",
-                        "moment_uniform_limit_of_gcd_limit", "normalized_mixed_error_tendsto"}
-            audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
-            require(audited == elementary | analytic, "PRZZ asymptotic audit coverage changed")
-            for theorem in audited:
-                key = "XiPrime8845.PRZZAsymptotic." + theorem
-                require(key in dependencies, f"Missing axiom audit: {key}")
-                actual = {item.strip() for item in dependencies[key].split(",")}
-                expected = standard | ({"przz41_case3_K2_profiles"} if theorem in analytic else set())
-                require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
+        if name in {"PRZZAsymptotic.lean", "PRZZAsymptoticCore.lean", "PRZZProvedInput.lean"}:
+            audit_proved_input(output, path.stem)
         if name == "ArithmeticRegularity.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
             audited = set(re.findall(r"^#print axioms (\w+)$", path.read_text(), re.MULTILINE))
@@ -1020,15 +1413,13 @@ def main():
                                "closed_disc_re_neg", "weighted_integral_restrict", "twistedMoment_smooth",
                                "gcdCore_smooth", "gcd_integral_smooth", "gcdMainTerm_smooth",
                                "normalizedError_smooth", "normalizedError_right_regular",
-                               "normalizedError_left_mixed_regular", "normalized_mixed_error_tendsto"},
+                               "normalizedError_left_mixed_regular"},
                     "Arithmetic regularity audit coverage changed")
             for theorem in audited:
                 key = "XiPrime8845.ArithmeticRegularity." + theorem
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem == "normalized_mixed_error_tendsto":
-                    expected.add("przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
 
 
@@ -1046,8 +1437,6 @@ def main():
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem in analytic:
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
         if name in ("WuStirling.lean", "WuGammaJets.lean", "WuStirlingTransfer.lean", "WuStirlingMoment.lean"):
             coverage = {
@@ -1070,8 +1459,6 @@ def main():
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if name == "WuStirlingMoment.lean" and theorem in {"errorMoment_rate", "errorMoment_tendsto"}:
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
         if name == "WuAuxiliary.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
@@ -1088,8 +1475,6 @@ def main():
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem in analytic:
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
         if name == "WitnessMomentBound.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
@@ -1106,8 +1491,6 @@ def main():
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem in analytic:
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
         if name == "ZetaMomentMainTerm.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
@@ -1120,8 +1503,6 @@ def main():
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem in analytic:
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
         if name == "TwoPieceMoment.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))
@@ -1136,8 +1517,6 @@ def main():
                 require(key in dependencies, f"Missing axiom audit: {key}")
                 actual = {item.strip() for item in dependencies[key].split(",")}
                 expected = {"propext", "Classical.choice", "Quot.sound"}
-                if theorem in analytic:
-                    expected.add("PRZZ.przz41_case3_K2_profiles")
                 require(actual == expected, f"Unexpected axiom dependencies: {key}: {actual}")
         if name == "FiniteJet.lean":
             dependencies = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output))

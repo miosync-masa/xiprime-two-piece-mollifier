@@ -7,6 +7,7 @@ trimming correction is uniform in both chosen endpoints. -/
 noncomputable section
 open Filter Topology MeasureTheory Set
 namespace XiPrime8845.WuSubintervalLog
+variable [PRZZProvedInput.DeepInputs]
 open WuTrimmedLog WuUnsmoothing WitnessMomentBound
 set_option maxHeartbeats 2000000
 

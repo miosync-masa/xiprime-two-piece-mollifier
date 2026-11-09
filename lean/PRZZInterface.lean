@@ -1,11 +1,7 @@
 import Mathlib
 
-/- Specification prototype: exactly ONE external analytic axiom below.
-This is the K2/profile specialization of PRZZ Theorem 4.1, third case,
-including the profile extension described in its proof (p. 18).
-It is NOT a formal proof of that published theorem, a residue-asymptotic
-axiom, or a certificate of the final zero proportion.
--/
+/-! Definitions and elementary witness algebra only. No external analytic
+axiom is declared here. The proved Weil/DI input lives in PRZZProvedInput. -/
 noncomputable section
 open scoped BigOperators
 open Complex MeasureTheory Filter
@@ -48,7 +44,9 @@ def twistedMoment (P Q : Profiles) (theta T : ℝ) (Phi : ℝ → ℝ) (A B : �
     (Phi (t/T) : ℂ)
 
 /-- Literal double-sum main term, only asserted away from A+B=0.
-The two zeta terms are NOT replaced by their individual values at the pole. -/
+At A+B=0 the bracket formally becomes `2 * riemannZeta 1`, not the
+removable holomorphic extension; this formula is used analytically only
+for A+B ≠ 0. The two pole terms must be regularized together. -/
 def gcdMainTerm (P Q : Profiles) (theta T : ℝ) (Phi : ℝ → ℝ) (A B : ℂ) : ℂ :=
   let alpha := A/(Real.log T : ℂ)
   let beta := B/(Real.log T : ℂ)
@@ -63,25 +61,6 @@ def gcdMainTerm (P Q : Profiles) (theta T : ℝ) (Phi : ℝ → ℝ) (A B : ℂ)
 Constants in the external estimate may depend on this fixed weight. -/
 def SmoothWeight (Phi : ℝ → ℝ) : Prop :=
   ContDiff ℝ (⊤ : ℕ∞) Phi ∧ Function.support Phi ⊆ Set.Icc 1 2
-
-/-- External published analytic input, restricted to the coefficient family
-needed here. Cross terms use independently specified P and Q.
-No use of squarefree truncation, no RH, no main-term H-kernel in the type.
-Uniformity excludes A+B=0; a fixed bidisc about (-R,-R), radius <R/2,
-suffices for our later Cauchy derivatives. The holomorphic differentiation
-argument and the leading-pole reduction remain separate tasks. -/
-axiom przz41_case3_K2_profiles
-    (P Q : Profiles) (theta : ℝ) (hTheta0 : 0 < theta) (hTheta1 : theta < 4/7)
-    (hP : Subpower (coefficient P theta)) (hQ : Subpower (coefficient Q theta))
-    (Phi : ℝ → ℝ) (hPhi : SmoothWeight Phi)
-    (shiftBound poleGap eps : ℝ) (hShift : 0 < shiftBound)
-    (hGap : 0 < poleGap) (hEps : 0 < eps) :
-    ∃ C T0 : ℝ, 0 < C ∧ 2 ≤ T0 ∧ ∀ T : ℝ, T0 ≤ T → ∀ A B : ℂ,
-      ‖A‖ ≤ shiftBound → ‖B‖ ≤ shiftBound → poleGap ≤ ‖A+B‖ →
-      ‖twistedMoment P Q theta T Phi A B - gcdMainTerm P Q theta T Phi A B‖ ≤
-        C * Real.rpow T eps *
-          (Real.rpow (length theta T) (7/4) +
-           Real.rpow (length theta T) (7/8) * Real.rpow T (1/2))
 
 def witness : Profiles where
   conrey := Polynomial.C (-0.30528514) * Polynomial.X + Polynomial.C 2.50038954 * Polynomial.X^2 -
@@ -221,20 +200,41 @@ theorem witness_subpower (theta : ℝ) (htheta : 0 < theta) :
   apply (witness_coefficient_bound theta T htheta hT n).trans
   exact le_mul_of_one_le_right (by norm_num) (Real.one_le_rpow (by exact_mod_cast hn) heps.le)
 
-/-- Apply the external theorem with no residual coefficient-growth hypothesis. -/
-theorem witness_przz_estimate
-    (Phi : ℝ → ℝ) (hPhi : SmoothWeight Phi)
-    (shiftBound poleGap : ℝ) (hShift : 0 < shiftBound) (hGap : 0 < poleGap) :
-    ∃ C T0 : ℝ, 0 < C ∧ 2 ≤ T0 ∧ ∀ T : ℝ, T0 ≤ T → ∀ A B : ℂ,
-      ‖A‖ ≤ shiftBound → ‖B‖ ≤ shiftBound → poleGap ≤ ‖A+B‖ →
-      ‖twistedMoment witness witness (4/7-1/1000000) T Phi A B -
-        gcdMainTerm witness witness (4/7-1/1000000) T Phi A B‖ ≤
-        C * Real.rpow T (7/16000000) *
-          (Real.rpow (length (4/7-1/1000000) T) (7/4) +
-           Real.rpow (length (4/7-1/1000000) T) (7/8) * Real.rpow T (1/2)) := by
-  exact przz41_case3_K2_profiles witness witness _ (by norm_num) (by norm_num)
-    (witness_subpower _ (by norm_num)) (witness_subpower _ (by norm_num))
-    Phi hPhi shiftBound poleGap _ hShift hGap (by norm_num)
+/-- Correct orientation for the stated density: d carries beta and e alpha.
+The bracket in gcdMainTerm is symmetric in the shifts, so this definition
+changes their arithmetic placement only. No analytic estimate is asserted. -/
+def densityGcdMainTerm (P Q : Profiles) (theta T : ℝ) (Phi : ℝ → ℝ) (A B : ℂ) : ℂ :=
+  gcdMainTerm P Q theta T Phi B A
+
+theorem coefficient_star (P : Profiles) (theta T : ℝ) (n : ℕ) :
+    star (coefficient P theta T n) = coefficient P theta T n := by
+  unfold coefficient
+  split_ifs <;> simp
+
+/-- Exact finite-sum symmetry, independent of the analytic input. -/
+theorem gcdMainTerm_swap (P Q : Profiles) (theta T : ℝ) (Phi : ℝ → ℝ) (A B : ℂ) :
+    gcdMainTerm P Q theta T Phi A B = gcdMainTerm Q P theta T Phi B A := by
+  unfold gcdMainTerm
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl; intro d hd
+  apply Finset.sum_congr rfl; intro e he
+  rw [coefficient_star,coefficient_star]
+  simp only [Nat.lcm_comm e d,Nat.gcd_comm e d]
+  have hs : B/(Real.log T:ℂ)+A/(Real.log T:ℂ) =
+      A/(Real.log T:ℂ)+B/(Real.log T:ℂ) := by ring
+  have hp : (1:ℂ)+B/(Real.log T:ℂ)+A/(Real.log T:ℂ) =
+      1+A/(Real.log T:ℂ)+B/(Real.log T:ℂ) := by ring
+  have hm : (1:ℂ)-B/(Real.log T:ℂ)-A/(Real.log T:ℂ) =
+      1-A/(Real.log T:ℂ)-B/(Real.log T:ℂ) := by ring
+  have hx : ∀ t : ℝ, 2*Real.pi*(e:ℝ)*d/(t*(Nat.gcd d e)^2) =
+      2*Real.pi*(d:ℝ)*e/(t*(Nat.gcd d e)^2) := by intro t; ring
+  simp_rw [hs,hp,hm,hx]
+  ring
+
+theorem witness_densityGcdMainTerm_eq (theta T : ℝ) (Phi : ℝ → ℝ) (A B : ℂ) :
+    densityGcdMainTerm witness witness theta T Phi A B =
+      gcdMainTerm witness witness theta T Phi A B :=
+  gcdMainTerm_swap witness witness theta T Phi B A
 
 /-- The literal PRZZ error envelope, normalized by T. -/
 theorem normalized_error_tendsto_zero (theta eps : ℝ)
@@ -266,11 +266,12 @@ theorem witness_normalized_error_tendsto_zero :
   normalized_error_tendsto_zero _ _ (by norm_num) (by norm_num)
 
 #print axioms witness_normalized_error_tendsto_zero
-#print axioms witness_przz_estimate
 #print axioms witness_coefficient_bound
 #print axioms witness_subpower
 #print axioms witness_profile_bounds
 #print axioms abs_fengArithmetic_le_log_sq
 #print axioms witness_endpoints
-#print axioms przz41_case3_K2_profiles
+#print axioms coefficient_star
+#print axioms gcdMainTerm_swap
+#print axioms witness_densityGcdMainTerm_eq
 end XiPrime8845.PRZZ

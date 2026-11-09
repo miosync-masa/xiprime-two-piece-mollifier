@@ -7,6 +7,7 @@ noncomputable section
 open scoped BigOperators
 open Filter Topology Finset
 namespace XiPrime8845.WuWideGamma
+variable [PRZZProvedInput.DeepInputs]
 open WuStirling WuAuxiliary WuGammaJets
 set_option maxHeartbeats 2000000
 

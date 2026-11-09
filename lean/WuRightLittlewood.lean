@@ -7,6 +7,7 @@ noncomputable section
 open scoped BigOperators
 open Filter Topology Set Finset MeasureTheory
 namespace XiPrime8845.WuRightLittlewood
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliary WuAuxiliaryBoundary WuLittlewood WuAuxiliaryMultiplicity
 set_option maxHeartbeats 2000000
 

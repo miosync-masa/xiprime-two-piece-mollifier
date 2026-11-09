@@ -18,7 +18,7 @@ import readability_common as rc  # noqa: E402
 MAIN_THEOREM = "ratio_eventually_gt"
 EXTERNAL_DEFS = (("PRZZKloostermanInputs", "WeilIncomplete"),
                  ("PRZZKloostermanInputs", "DeshouillersIwaniecLemma1"))
-MOMENT_ROOT, MOMENT_THEOREM = "PRZZMomentOptimal", "moment_bound"
+MOMENT_ROOT, MOMENT_THEOREM = "PRZZFamilyMomentOptimal", "moment_bound"
 DECL_RE = r"^(?:axiom|theorem|def|lemma|structure|abbrev|noncomputable def)\s+{name}\b"
 
 
@@ -147,23 +147,23 @@ def main():
     # ---- 2. external inputs
     L.append("## 2. 外部入力")
     L.append("")
-    L.append("### 2a. 主定理が依存する公理: `XiPrime8845.PRZZ.przz41_case3_K2_profiles`")
+    L.append("### 2a. 旧公開入力を置き換える証明済み定理: `XiPrime8845.PRZZ.przz41_case3_K2_witness`")
     L.append("")
-    pi = modules["PRZZInterface"]
-    L.append("[lean/PRZZInterface.lean](../lean/PRZZInterface.lean) のファイル冒頭コメント:")
+    pi = modules["PRZZProvedInput"]
+    L.append("[lean/PRZZProvedInput.lean](../lean/PRZZProvedInput.lean) のファイル冒頭コメント:")
     L.append("")
     L.append("> " + pi.header.replace("\n", "\n> "))
     L.append("")
     L.append("```lean")
-    L.append(declaration(pi.source, "przz41_case3_K2_profiles"))
+    L.append(declaration(pi.source, "przz41_case3_K2_witness"))
     L.append("```")
     L.append("")
     refs = references((rc.ROOT / "README.md").read_text(encoding="utf-8"))
     przz_refs = [r for r in refs if "Pratt" in r or "PRZZ" in r]
     L.append("原典（README の参考文献から）: " + ("; ".join(przz_refs) if przz_refs else "README に記載なし"))
     L.append("")
-    L.append("照合メモ: この公理は PRZZ Theorem 4.1 第三の場合を K2 プロファイル族に特殊化した文で、"
-             "主項は literal な gcd/lcm 二重和、誤差は `C T^eps (N^{7/4} + N^{7/8} T^{1/2})`。公理の文面と原典の対応は人による照合対象。")
+    L.append("照合メモ: この定理は旧 witness 専用入力と同じ結論を Weil/DI の明示的仮定から導きます。"
+             "主項は literal な gcd/lcm 二重和、誤差は `C T^eps (N^{7/4} + N^{7/8} T^{1/2})`。元の入力との結論の一致は Lean が検査し、Weil/DI の仕様と原典の対応は別途人による照合対象です。")
     L.append("")
     L.append("### 2b. `WeilIncomplete` と `DeshouillersIwaniecLemma1`（`Prop` としての仕様。公理ではない）")
     L.append("")
@@ -173,7 +173,7 @@ def main():
     L.append(f"定義ファイル [lean/PRZZKloostermanInputs.lean](../lean/PRZZKloostermanInputs.lean) は、"
              f"主定理 `{rc.ROOT_MODULE}` の import 閉包に{'含まれます' if in_main else '**含まれません**'}"
              f"（`{MOMENT_ROOT}` の閉包には{'含まれます' if in_moment else '含まれません'}）。"
-             "つまり主定理の論理には入らず、§2c の moment 定理の明示的仮定としてのみ使われます。")
+             "現在は主定理の二つの明示的仮定です。Prop として定義されているだけで、その仕様自体をこのリポジトリで証明したという意味ではありません。")
     L.append("")
     L.append("ファイル冒頭コメント（原典と照合メモ）:")
     L.append("")
@@ -201,7 +201,7 @@ def main():
     L.append("</details>")
     L.append("")
     if MOMENT_ROOT in modules:
-        L.append(f"### 2c. 参考: `{MOMENT_ROOT}.{MOMENT_THEOREM}`（主定理の閉包外）")
+        L.append(f"### 2c. 参考: `{MOMENT_ROOT}.{MOMENT_THEOREM}`（主定理の証明経路）")
         L.append("")
         me = record[MOMENT_ROOT]
         mfull = me.resolve(MOMENT_THEOREM)
@@ -308,7 +308,7 @@ def main():
     tm = re.search(r"timeout-minutes:\s*(\d+)", wf)
     L.append(f"期待される出力: `PASS` 3 行（ハッシュ数、有理数検査、証明書 JSON の一致）。CI の制限時間は {tm.group(1) if tm else '?'} 分。")
     L.append("")
-    L.append("### 5b. Lean のクリーンビルドと公理監査")
+    L.append("### 5b. 現在の Lean 依存切替と公理監査")
     L.append("")
     L.append("[docs/REPRODUCIBILITY.md](REPRODUCIBILITY.md) の手順:")
     L.append("")
@@ -317,7 +317,14 @@ def main():
         L.append(b.rstrip())
         L.append("```")
         L.append("")
-    L.append("2026-11-07 のクリーン検証で実際に使われたコマンド（記録から）:")
+    L.append(f"現在の記録: 全 {len(record)} ローカルソースを照合、主定理閉包 {len(closure)} モジュール。"
+             f"この実行での新規コンパイル {meta.get('fresh_module_count')}、"
+             f"残りはソース・直接依存・成果物ハッシュを照合したキャッシュです。"
+             f"`full_project_rebuilt: {json.dumps(meta.get('full_project_rebuilt'))}`。")
+    L.append("")
+    L.append("### 5c. 参考: 2026-11-07 の歴史的クリーン検証（現在の記録とは別）")
+    L.append("")
+    L.append("当時実際に使われたコマンド（歴史的 AF/本体記録から）:")
     L.append("")
     L.append("```sh")
     L.append("# AF 必須閉包の新規ビルド（隔離 worktree、Mathlib キャッシュは固定版を再利用）")
@@ -326,15 +333,17 @@ def main():
     L.append(af_record.get("project_command", ""))
     L.append("```")
     L.append("")
-    L.append("期待される出力:")
+    L.append("歴史的検証の結果（現在のソースを検証したという意味ではありません）:")
     L.append("")
     L.append(f"- AF: `{af_record.get('lake_result', '')}`（新規ビルド {af_record.get('af_newly_built_module_count')} / {af_record.get('af_source_module_count')} モジュール）")
     L.append(f"- 本体: {af_record.get('project_module_count')} モジュールをすべて新規コンパイル、公理監査 {af_record.get('project_axiom_audit_count')} 件、"
-             f"`existing_build_used: {json.dumps(meta.get('existing_build_used'))}`、`clean_upstream_build_performed: {json.dumps(meta.get('clean_upstream_build_performed'))}`")
-    L.append(f"- `#print axioms {MAIN_THEOREM}` が §1 の全文と一致（標準三公理 + `{nonstd[0] if nonstd else ''}` のみ、`sorryAx` なし）")
+             "これは現在の依存切替記録ではありません。")
+    L.append(f"現在の再現時には `#print axioms {MAIN_THEOREM}` が §1 の全文と一致（" +
+             ("標準三公理 + " + ", ".join(nonstd) if nonstd else "標準三公理のみ") +
+             "、`sorryAx` なし）。Weil/DI の明示的引数も §1 の定理文で確認。")
     L.append("")
     L.append("所要時間の目安: 検証記録には経過時間が記録されていません（`parallel_jobs: "
-             f"{meta.get('parallel_jobs')}` で実行）。次回の実行時に計測して追記してください。")
+             f"{meta.get('parallel_jobs')}`）。次回の実行時に計測して追記してください。")
     L.append("")
     rc.write_markdown(args.out, L)
     print("trust-base written")

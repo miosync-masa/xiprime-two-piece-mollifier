@@ -7,6 +7,7 @@ Full-window convergence is stated only with an explicit endpoint-mass input. -/
 noncomputable section
 open Filter Topology MeasureTheory
 namespace XiPrime8845.WuUnsmoothing
+variable [PRZZProvedInput.DeepInputs]
 open SmoothWindow SmoothWindowLimit WuAuxiliary WuStirling WuMomentTransfer WitnessMomentBound
 set_option maxHeartbeats 2000000
 

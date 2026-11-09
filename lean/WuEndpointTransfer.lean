@@ -9,6 +9,7 @@ noncomputable section
 open scoped BigOperators
 open Filter Topology MeasureTheory Finset
 namespace XiPrime8845.WuEndpointTransfer
+variable [PRZZProvedInput.DeepInputs]
 open PRZZLocalization SmoothEndpoint SmoothWindow WuUnsmoothing
 open WuAuxiliary WuStirling WuStirlingTransfer WuStirlingMoment ZetaMomentIntegral
 set_option maxHeartbeats 2000000

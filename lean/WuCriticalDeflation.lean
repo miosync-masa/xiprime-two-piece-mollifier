@@ -8,6 +8,7 @@ noncomputable section
 open scoped BigOperators ComplexConjugate
 open Complex Set Filter Topology
 namespace XiPrime8845.WuCriticalDeflation
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliary WuAuxiliaryBoundary WuAuxiliaryMultiplicity WuCriticalMultiplicity
 open WuFiniteDeflation Zeta23.XiPrime
 set_option maxHeartbeats 2000000

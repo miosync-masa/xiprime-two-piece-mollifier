@@ -5,6 +5,7 @@ noncomputable section
 open scoped BigOperators
 open Filter Topology Finset Set Metric
 namespace XiPrime8845.WuDiskGrowth
+variable [PRZZProvedInput.DeepInputs]
 open WuAuxiliary WuStirling WuGammaJets WuRightMollifier ZetaMomentIntegral
 set_option maxHeartbeats 2000000
 

@@ -1,5 +1,5 @@
 import CompactShiftIntegral
-import PRZZAsymptotic
+import PRZZAsymptoticCore
 
 /-! Regularity of the literal PRZZ integrals. No main-term evaluation is assumed. -/
 noncomputable section
@@ -249,18 +249,6 @@ theorem normalizedError_left_mixed_regular (Phi : ℝ → ℝ) (hPhi : SmoothWei
     (contDiffAt_id.prodMk contDiffAt_const)
   exact (hd.differentiableAt (by simp)).differentiableWithinAt
 
-/-- The actual mixed PRZZ residual tends to zero with no regularity premises left.
-This still makes no identification of the gcd main term with the finite kernel. -/
-theorem normalized_mixed_error_tendsto (Phi : ℝ → ℝ) (hPhi : SmoothWeight Phi) (a b : ℕ) :
-    Tendsto (fun T : ℝ =>
-      iteratedDeriv a (fun x => iteratedDeriv b (normalizedError Phi T x) (-R)) (-R))
-      atTop (nhds 0) := by
-  apply PRZZAsymptotic.normalized_mixed_error_tendsto Phi hPhi a b
-  · filter_upwards [eventually_gt_atTop (1 : ℝ)] with T hT
-    exact normalizedError_right_regular Phi hPhi T hT
-  · filter_upwards [eventually_gt_atTop (1 : ℝ)] with T hT
-    exact normalizedError_left_mixed_regular Phi hPhi T hT b
-
 #print axioms momentCore_smooth
 #print axioms zeta_shift_ne_one
 #print axioms gcd_zeta_ne_one
@@ -273,5 +261,4 @@ theorem normalized_mixed_error_tendsto (Phi : ℝ → ℝ) (hPhi : SmoothWeight 
 #print axioms normalizedError_smooth
 #print axioms normalizedError_right_regular
 #print axioms normalizedError_left_mixed_regular
-#print axioms normalized_mixed_error_tendsto
 end XiPrime8845.ArithmeticRegularity

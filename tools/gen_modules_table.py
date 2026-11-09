@@ -46,7 +46,7 @@ def main():
         ax_label = rc.axioms_label(axioms)
         if entry:
             others = [(name, ax) for name, ax in entry.axioms
-                      if name != full and sorted(ax) != sorted(rc.STANDARD_AXIOMS)]
+                      if name != full and not set(ax) <= set(rc.STANDARD_AXIOMS)]
             if others:
                 nonstandard_others.append((n, others))
                 ax_label += "（同ファイル内の他の非標準出力 " + str(len(others)) + " 件: " + "; ".join(
@@ -68,7 +68,8 @@ def main():
     L.append("- **役割**: ファイル冒頭の docstring（`/-! ... -/` など）の最初の一文。無い場合は空欄にし、末尾に列挙。")
     L.append("- **代表定理**: そのファイルで最後に `#print axioms` されている対象。完全名は記録された出力行から取得。")
     L.append("- **公理**: 代表定理の `#print axioms` 出力。`propext, Classical.choice, Quot.sound` のみなら「標準」、それ以外は全文。"
-             "同じファイルの他の `#print axioms` に非標準の出力があれば併記（過小申告を防ぐため）。")
+             "同じファイルの他の `#print axioms` に標準三公理以外を含む出力があれば併記（過小申告を防ぐため）。"
+             "定理の明示的仮定は公理一覧には現れません。主定理の Weil/DI 仮定は [trust-base.md](trust-base.md) の定理文で確認します。")
     L.append("- **当該ファイルの範囲・注意（コメント抽出）**: ファイル内のすべてのコメントから、次の語を含む文を機械抽出: "
              + ", ".join(f"`{p}`" for p in rc.UNPROVED_PATTERNS) + "。"
              "肯定的な証明記述も含むため、未証明事項の一覧とは解釈しません。"

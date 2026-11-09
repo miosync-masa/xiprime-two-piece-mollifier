@@ -9,6 +9,7 @@ noncomputable section
 open scoped BigOperators
 open Filter Topology
 namespace XiPrime8845.WuLocalizedMoments
+variable [PRZZProvedInput.DeepInputs]
 open ZetaMomentPolynomial FiniteJet PRZZAsymptotic ConreyMainTerm ConreyCoefficientBridge
 
 theorem normalizedMoment_contract_eq (D : ℕ) (q : ℕ → ℂ)

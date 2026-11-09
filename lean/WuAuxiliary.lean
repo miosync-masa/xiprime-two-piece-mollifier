@@ -11,6 +11,7 @@ noncomputable section
 open scoped BigOperators ComplexConjugate
 open Filter Topology MeasureTheory
 namespace XiPrime8845.WuAuxiliary
+variable [PRZZProvedInput.DeepInputs]
 open Zeta23.XiPrime ZetaMomentPolynomial WitnessMomentBound
 set_option maxHeartbeats 1000000
 

@@ -1,6 +1,6 @@
 # 信頼の基盤（trust base）
 
-生成: `python3 tools/gen_trust_base.py --af <固定 AF checkout>`。定理文は Lean ソースから、公理出力は [checks/clean-project-verification-2026-11-07.json](../checks/clean-project-verification-2026-11-07.json)（SHA-256 `3745206bb49918e5…`）から、ライブラリの固定情報は `lake-manifest.json` / `lean-toolchain` と [lean/dependencies.json](../lean/dependencies.json) から自動抽出しています。
+生成: `python3 tools/gen_trust_base.py --af <固定 AF checkout>`。定理文は Lean ソースから、公理出力は [checks/weil-di-proportion-verification.json](../checks/weil-di-proportion-verification.json)（SHA-256 `d524f08ce38fd4cc…`）から、ライブラリの固定情報は `lake-manifest.json` / `lean-toolchain` と [lean/dependencies.json](../lean/dependencies.json) から自動抽出しています。
 
 生成前に全ローカル Lean ソースの SHA-256 と記録の完全一致、成功終了コード、`sorryAx` / コンパイルエラーの不在を確認します。不一致・記録欠落時には生成を中止します。これは新たな Lean 再ビルドではなく、記録と現在のソースの照合です。
 
@@ -11,17 +11,21 @@
 ```lean
 /-- Literal quotient statement. The denominator is eventually positive,
 as supplied by the actual AF zero-count growth theorem. -/
-theorem ratio_eventually_gt :
+theorem ratio_eventually_gt
+    (hWeil : PRZZKloostermanInputs.WeilIncomplete)
+    (hDI : PRZZKloostermanInputs.DeshouillersIwaniecLemma1) :
     ∀ᶠ X : ℝ in atTop, (0.8845:ℝ) < (N0 0 X:ℝ)/(Ncount 0 X:ℝ) := by
 ```
 
 同じファイルの `XiPrime8845.WuProportion.strict_proportion`（固定余白の形）:
 
 ```lean
-/-- More than 88.45 percent, with multiplicity, under the one existing PRZZ
-axiom. A strict margin is retained; this is stronger than an eventual
+/-- More than 88.45 percent, with multiplicity, under explicit Weil and DI
+hypotheses. A strict margin is retained; this is stronger than an eventual
 non-strict 0.8845 bound. -/
-theorem strict_proportion : StrictProportion := by
+theorem strict_proportion
+    (hWeil : PRZZKloostermanInputs.WeilIncomplete)
+    (hDI : PRZZKloostermanInputs.DeshouillersIwaniecLemma1) : StrictProportion := by
 ```
 
 `StrictProportion` の定義（[lean/WuDyadicCounting.lean](../lean/WuDyadicCounting.lean)）:
@@ -43,71 +47,56 @@ def proportion : ℝ := 1-Real.log WitnessMomentBound.countingCap/PRZZAsymptotic
 今回のビルド（Lean (version 4.33.0-rc2, arm64-apple-darwin24.6.0, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)）での `#print axioms ratio_eventually_gt` 出力の全文:
 
 ```text
-'XiPrime8845.WuProportion.ratio_eventually_gt' depends on axioms: [propext,
- Classical.choice,
- Quot.sound,
- PRZZ.przz41_case3_K2_profiles]
+'XiPrime8845.WuProportion.ratio_eventually_gt' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
 同ファイルの他の `#print axioms` 出力:
 
 ```text
-'XiPrime8845.WuProportion.dyadic_eventually' depends on axioms: [propext,
- Classical.choice,
- Quot.sound,
- PRZZ.przz41_case3_K2_profiles]
-'XiPrime8845.WuProportion.cumulative_eventually' depends on axioms: [propext,
- Classical.choice,
- Quot.sound,
- PRZZ.przz41_case3_K2_profiles]
-'XiPrime8845.WuProportion.strict_proportion' depends on axioms: [propext,
- Classical.choice,
- Quot.sound,
- PRZZ.przz41_case3_K2_profiles]
+'XiPrime8845.WuProportion.dyadic_eventually' depends on axioms: [propext, Classical.choice, Quot.sound]
+'XiPrime8845.WuProportion.cumulative_eventually' depends on axioms: [propext, Classical.choice, Quot.sound]
+'XiPrime8845.WuProportion.strict_proportion' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
-標準三公理以外: `PRZZ.przz41_case3_K2_profiles`。`sorryAx` は含まれない。
+標準三公理以外: なし。`sorryAx` は含まれない。
 
 ## 2. 外部入力
 
-### 2a. 主定理が依存する公理: `XiPrime8845.PRZZ.przz41_case3_K2_profiles`
+### 2a. 旧公開入力を置き換える証明済み定理: `XiPrime8845.PRZZ.przz41_case3_K2_witness`
 
-[lean/PRZZInterface.lean](../lean/PRZZInterface.lean) のファイル冒頭コメント:
+[lean/PRZZProvedInput.lean](../lean/PRZZProvedInput.lean) のファイル冒頭コメント:
 
-> Specification prototype: exactly ONE external analytic axiom below.
-> This is the K2/profile specialization of PRZZ Theorem 4.1, third case,
-> including the profile extension described in its proof (p. 18).
-> It is NOT a formal proof of that published theorem, a residue-asymptotic
-> axiom, or a certificate of the final zero proportion.
+> Proved replacement of the former public PRZZ witness axiom.
+> DeepInputs bundles explicit Weil/DI hypotheses, not an axiom or a default
+> instance. Headline theorems expose both hypotheses separately.
 
 ```lean
-/-- External published analytic input, restricted to the coefficient family
-needed here. Cross terms use independently specified P and Q.
-No use of squarefree truncation, no RH, no main-term H-kernel in the type.
-Uniformity excludes A+B=0; a fixed bidisc about (-R,-R), radius <R/2,
-suffices for our later Cauchy derivatives. The holomorphic differentiation
-argument and the leading-pole reduction remain separate tasks. -/
-axiom przz41_case3_K2_profiles
-    (P Q : Profiles) (theta : ℝ) (hTheta0 : 0 < theta) (hTheta1 : theta < 4/7)
-    (hP : Subpower (coefficient P theta)) (hQ : Subpower (coefficient Q theta))
+/-- The former witness input, now proved from the two stated deep inputs. -/
+theorem przz41_case3_K2_witness
+    (hWeil : PRZZKloostermanInputs.WeilIncomplete)
+    (hDI : PRZZKloostermanInputs.DeshouillersIwaniecLemma1)
+    (theta : ℝ) (hTheta0 : 0 < theta) (hTheta1 : theta < 4/7)
     (Phi : ℝ → ℝ) (hPhi : SmoothWeight Phi)
     (shiftBound poleGap eps : ℝ) (hShift : 0 < shiftBound)
     (hGap : 0 < poleGap) (hEps : 0 < eps) :
     ∃ C T0 : ℝ, 0 < C ∧ 2 ≤ T0 ∧ ∀ T : ℝ, T0 ≤ T → ∀ A B : ℂ,
       ‖A‖ ≤ shiftBound → ‖B‖ ≤ shiftBound → poleGap ≤ ‖A+B‖ →
-      ‖twistedMoment P Q theta T Phi A B - gcdMainTerm P Q theta T Phi A B‖ ≤
+      ‖twistedMoment witness witness theta T Phi A B -
+        densityGcdMainTerm witness witness theta T Phi A B‖ ≤
         C * Real.rpow T eps *
           (Real.rpow (length theta T) (7/4) +
-           Real.rpow (length theta T) (7/8) * Real.rpow T (1/2))
+           Real.rpow (length theta T) (7/8) * Real.rpow T (1/2)) :=
+  PRZZWitnessBridge.witness_estimate hWeil hDI theta hTheta0 hTheta1 Phi hPhi
+    shiftBound poleGap eps hShift hGap hEps
 ```
 
 原典（README の参考文献から）: K. Pratt, N. Robles, A. Zaharescu and D. Zeindler, [arXiv:1802.10521v3](https://arxiv.org/pdf/1802.10521v3), Theorem 4.1 and the main-term analysis.
 
-照合メモ: この公理は PRZZ Theorem 4.1 第三の場合を K2 プロファイル族に特殊化した文で、主項は literal な gcd/lcm 二重和、誤差は `C T^eps (N^{7/4} + N^{7/8} T^{1/2})`。公理の文面と原典の対応は人による照合対象。
+照合メモ: この定理は旧 witness 専用入力と同じ結論を Weil/DI の明示的仮定から導きます。主項は literal な gcd/lcm 二重和、誤差は `C T^eps (N^{7/4} + N^{7/8} T^{1/2})`。元の入力との結論の一致は Lean が検査し、Weil/DI の仕様と原典の対応は別途人による照合対象です。
 
 ### 2b. `WeilIncomplete` と `DeshouillersIwaniecLemma1`（`Prop` としての仕様。公理ではない）
 
-定義ファイル [lean/PRZZKloostermanInputs.lean](../lean/PRZZKloostermanInputs.lean) は、主定理 `WuProportion` の import 閉包に**含まれません**（`PRZZMomentOptimal` の閉包には含まれます）。つまり主定理の論理には入らず、§2c の moment 定理の明示的仮定としてのみ使われます。
+定義ファイル [lean/PRZZKloostermanInputs.lean](../lean/PRZZKloostermanInputs.lean) は、主定理 `WuProportion` の import 閉包に含まれます（`PRZZFamilyMomentOptimal` の閉包には含まれます）。現在は主定理の二つの明示的仮定です。Prop として定義されているだけで、その仕様自体をこのリポジトリで証明したという意味ではありません。
 
 ファイル冒頭コメント（原典と照合メモ）:
 
@@ -255,36 +244,35 @@ end XiPrime8845.PRZZKloostermanInputs
 
 </details>
 
-### 2c. 参考: `PRZZMomentOptimal.moment_bound`（主定理の閉包外）
+### 2c. 参考: `PRZZFamilyMomentOptimal.moment_bound`（主定理の証明経路）
 
-[lean/PRZZMomentOptimal.lean](../lean/PRZZMomentOptimal.lean) の `XiPrime8845.PRZZMomentOptimal.moment_bound` は Weil / DI を仮定にとる moment 評価で、`WuProportion` からは到達不能です。今回のビルドの出力:
+[lean/PRZZFamilyMomentOptimal.lean](../lean/PRZZFamilyMomentOptimal.lean) の `XiPrime8845.PRZZFamilyMomentOptimal.moment_bound` は Weil / DI を仮定にとる moment 評価で、`WuProportion` からは到達可能です。今回のビルドの出力:
 
 ```text
-'XiPrime8845.PRZZMomentOptimal.moment_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'XiPrime8845.PRZZFamilyMomentOptimal.moment_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
 <details><summary>定理文</summary>
 
 ```lean
-theorem moment_bound
-    (hWeil : PRZZKloostermanInputs.WeilIncomplete)
+/-- Every positive final loss is available; none is fixed by the Weil/DI
+loss parameters. The two coordinate vectors and the basis may vary with T. -/
+theorem moment_bound (hWeil : PRZZKloostermanInputs.WeilIncomplete)
     (hDI : PRZZKloostermanInputs.DeshouillersIwaniecLemma1)
-    (K : ℕ) (hK : 4 ≤ K) (js : List ℕ) (tau S r : ℝ)
-    (htau : 0 < tau) (hS : 0 ≤ S) (hr : 0 < r)
-    (P : ℝ → ℝ) (Phi : ℝ → ℂ)
+    (K : ℕ) (hK : 4 ≤ K) (P Phi : ℝ → ℝ)
     (hP : ContDiff ℝ ∞ (fun x => (P x:ℂ))) (hm : Antitone P)
     (hlo : ∀ x, 0 ≤ P x) (hhi : ∀ x, P x ≤ 1)
     (hl : ∀ x ≤ (1/2:ℝ), P x = 1) (hright : ∀ x, 1 ≤ x → P x = 0)
-    (hPhi : ContDiff ℝ ∞ Phi) (hcPhi : HasCompactSupport Phi)
-    (hsPhi : Function.support Phi ⊆ Icc (1:ℝ) 2) :
-    ∃ C : ℝ, 0 < C ∧ ∀ᶠ T : ℝ in atTop, ∀ (N : ℕ) (A B : ℂ),
-      1 ≤ N → (N:ℝ) ≤ T^(4/7:ℝ) → (N:ℝ)+1 ≤ T → 1 ≤ Real.log T →
+    (hPhi : PRZZ.SmoothWeight Phi) (tau S r : ℝ)
+    (htau : 0 < tau) (hS : 0 ≤ S) (hr : 0 < r) :
+    ∃ C : ℝ, 0 < C ∧ ∀ᶠ T : ℝ in atTop, ∀ (theta : ℝ) (N : ℕ)
+      (z w : Fin 7 → ℂ) (A B : ℂ),
+      0 < theta → 1 ≤ N → (N:ℝ)+1 ≤ T → (N:ℝ) ≤ T^(4/7:ℝ) →
+      1 ≤ Real.log (PRZZ.length theta T) → (N:ℝ) ≤ PRZZ.length theta T →
+      (∀ i, ‖z i‖ ≤ 2) → (∀ i, ‖w i‖ ≤ 2) →
       ‖A‖ ≤ S → ‖B‖ ≤ S → r ≤ ‖A+B‖ →
-      let a := fun n => (PRZZGCoefficient.coefficient js n:ℂ)
-      let alpha := A/(Real.log T:ℂ)
-      let beta := B/(Real.log T:ℂ)
-      ‖PRZZExhaustiveAFEError.moment N a alpha beta T (scaledCutoff Phi T)-
-          PRZZCoupledAFE.diagonalMain N a alpha beta T (scaledCutoff Phi T)‖ ≤
+      ‖error Phi N T A B (family (PRZZWitnessBasis.basis theta T) z)
+        (family (PRZZWitnessBasis.basis theta T) w)‖ ≤
         C*T^tau*PRZZOptimalPowers.target N T := by
 ```
 
@@ -310,18 +298,21 @@ AF checkout の `lake-manifest.json` に記録された全パッケージ:
 | --- | --- | --- | --- |
 | AF checkout の lake-manifest.json / lean-toolchain | leanprover/lean4:v4.33.0-rc2 | `51e6992efd06126df61a496bebf8f49482a4e129` |  |
 | lean/dependencies.json | leanprover/lean4:v4.33.0-rc2 | `51e6992efd06126df61a496bebf8f49482a4e129` | `3635e74826a4c1fcece7d1cd2b6fa75e43a00510` |
-| checks/clean-project-verification-2026-11-07.json | Lean (version 4.33.0-rc2, arm64-apple-darwin24.6.0, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release) | `51e6992efd06126df61a496bebf8f49482a4e129` | `3635e74826a4c1fcece7d1cd2b6fa75e43a00510` |
+| checks/weil-di-proportion-verification.json | Lean (version 4.33.0-rc2, arm64-apple-darwin24.6.0, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release) | `51e6992efd06126df61a496bebf8f49482a4e129` | `3635e74826a4c1fcece7d1cd2b6fa75e43a00510` |
 | checks/clean-af-verification-2026-11-07.json |  | `51e6992efd06126df61a496bebf8f49482a4e129` | `3635e74826a4c1fcece7d1cd2b6fa75e43a00510` |
 
 Mathlib の rev は全出典で一致、AF コミットは一致。
 
-AF（`https://github.com/anthropics/formal-math.git` @ `3635e74826a4c1fcece7d1cd2b6fa75e43a00510`）の必須ソース閉包は **101 モジュール**（[checks/clean-af-verification-2026-11-07.json](../checks/clean-af-verification-2026-11-07.json) の `af_source_sha256`）。主定理の閉包内のローカルモジュールが直接 import する AF モジュールは 12 件:
+AF（`https://github.com/anthropics/formal-math.git` @ `3635e74826a4c1fcece7d1cd2b6fa75e43a00510`）の必須ソース閉包は **101 モジュール**（[checks/clean-af-verification-2026-11-07.json](../checks/clean-af-verification-2026-11-07.json) の `af_source_sha256`）。主定理の閉包内のローカルモジュールが直接 import する AF モジュールは 15 件:
 
 - `Zeta23.Analytic.RectangleLogDeriv`
 - `Zeta23.Assembly`
 - `Zeta23.FromPNTPlus.MediumPNT`
+- `Zeta23.FromPNTPlus.ResidueCalcOnRectangles`
+- `Zeta23.FromPNTPlus.ZetaBounds`
 - `Zeta23.GammaFacts.StirlingVert`
 - `Zeta23.RvM.ZetaGrowth`
+- `Zeta23.WeilEF.Effective`
 - `Zeta23.XiPrime.Coeff.PrimeSums`
 - `Zeta23.XiPrime.ExplicitFormula.ZeroFree`
 - `Zeta23.XiPrime.Seam`
@@ -436,7 +427,7 @@ AF（`https://github.com/anthropics/formal-math.git` @ `3635e74826a4c1fcece7d1cd
 
 </details>
 
-Mathlib（rev `51e6992efd06126df61a496bebf8f49482a4e129`）: 主定理の閉包内で直接 import される Mathlib モジュールは 11 件（`import Mathlib` を含む）。
+Mathlib（rev `51e6992efd06126df61a496bebf8f49482a4e129`）: 主定理の閉包内で直接 import される Mathlib モジュールは 37 件（`import Mathlib` を含む）。
 
 ## 4. 冗長な確認（Python 区間証明書）
 
@@ -469,9 +460,15 @@ python3 -B paper/verify.py --manifest
 
 期待される出力: `PASS` 3 行（ハッシュ数、有理数検査、証明書 JSON の一致）。CI の制限時間は 20 分。
 
-### 5b. Lean のクリーンビルドと公理監査
+### 5b. 現在の Lean 依存切替と公理監査
 
 [docs/REPRODUCIBILITY.md](REPRODUCIBILITY.md) の手順:
+
+```sh
+python3 -B tools/verify_finite_family_rows.py --target WuProportion --all-local \
+  --af /path/to/pinned-af --build /path/to/new-empty-scratch \
+  --output /path/to/weil-di-proportion-verification.json --jobs 6
+```
 
 ```sh
 git clone https://github.com/anthropics/formal-math.git af
@@ -489,7 +486,11 @@ python3 tools/verify_lean.py --af af
 python3 tools/verify_lean.py --af af --output build/lean-verification.json
 ```
 
-2026-11-07 のクリーン検証で実際に使われたコマンド（記録から）:
+現在の記録: 全 778 ローカルソースを照合、主定理閉包 730 モジュール。この実行での新規コンパイル 1、残りはソース・直接依存・成果物ハッシュを照合したキャッシュです。`full_project_rebuilt: false`。
+
+### 5c. 参考: 2026-11-07 の歴史的クリーン検証（現在の記録とは別）
+
+当時実際に使われたコマンド（歴史的 AF/本体記録から）:
 
 ```sh
 # AF 必須閉包の新規ビルド（隔離 worktree、Mathlib キャッシュは固定版を再利用）
@@ -498,10 +499,10 @@ env -u LEAN_PATH lake build Zeta23.Analytic.RectangleLogDeriv:olean Zeta23.Assem
 env -u LEAN_PATH python3 -B tools/verify_lean.py --af <isolated-pinned-af> --jobs 6 --output checks/clean-project-verification-2026-11-07.json
 ```
 
-期待される出力:
+歴史的検証の結果（現在のソースを検証したという意味ではありません）:
 
 - AF: `Build completed successfully (3788 jobs).`（新規ビルド 101 / 101 モジュール）
-- 本体: 698 モジュールをすべて新規コンパイル、公理監査 3971 件、`existing_build_used: true`、`clean_upstream_build_performed: false`
-- `#print axioms ratio_eventually_gt` が §1 の全文と一致（標準三公理 + `PRZZ.przz41_case3_K2_profiles` のみ、`sorryAx` なし）
+- 本体: 698 モジュールをすべて新規コンパイル、公理監査 3971 件、これは現在の依存切替記録ではありません。
+現在の再現時には `#print axioms ratio_eventually_gt` が §1 の全文と一致（標準三公理のみ、`sorryAx` なし）。Weil/DI の明示的引数も §1 の定理文で確認。
 
-所要時間の目安: 検証記録には経過時間が記録されていません（`parallel_jobs: 6` で実行）。次回の実行時に計測して追記してください。
+所要時間の目安: 検証記録には経過時間が記録されていません（`parallel_jobs: None`）。次回の実行時に計測して追記してください。

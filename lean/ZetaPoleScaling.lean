@@ -1,4 +1,4 @@
-import PRZZAsymptotic
+import PRZZAsymptoticCore
 
 /-! Uniform scaling of the two zeta poles in the literal gcd main term.
 This does not evaluate the remaining arithmetic double sum. -/

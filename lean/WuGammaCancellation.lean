@@ -6,6 +6,7 @@ This is a finite identity, not a bound on principal arguments. -/
 noncomputable section
 open Complex Set Filter Topology MeasureTheory intervalIntegral
 namespace XiPrime8845.WuGammaCancellation
+variable [PRZZProvedInput.DeepInputs]
 open WuLittlewood WuStirling WuAuxiliary WuAuxiliaryBoundary WuGammaPhase
 set_option maxHeartbeats 2000000
 

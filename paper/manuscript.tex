@@ -208,6 +208,27 @@ sequences obtained by expanding \eqref{eq:psi}, the theorem gives
 \end{align}
 where $\Psi(a+\ii t)=\sum a_nn^{-1/2-\ii t}$ and
 $E\ll T^\varepsilon(y^{7/4}+y^{7/8}T^{1/2})$.
+
+\paragraph{Note on shift placement.}
+For independently prescribed left and right coefficient sequences, the
+density convention above gives the diagonal relation $dm=em'$ and hence
+the arithmetic denominator $d^\beta e^\alpha$.
+The denominator $d^\alpha e^\beta$ printed in PRZZ Theorem~4.1 is retained
+in \eqref{eq:PRZZ} only for the real self-pairing used here: exchanging
+$d,e$ makes the two finite sums exactly equal.
+Equivalently, $M(P,Q;A,B)=M(Q,P;B,A)$; this identity is formalized as
+\texttt{PRZZ.gcdMainTerm\_swap}, with the witness specialization
+\texttt{PRZZ.witness\_densityGcdMainTerm\_eq}.
+Both ordered cross terms are included and the same differential operator
+acts on both sides, so this exchange leaves the symmetric numerical
+functional unchanged, both here and in the corresponding self-pairing
+application of PRZZ. No claim of invariance is made for an individual
+mixed term or a complex polarized square. The present formal external
+input is restricted to the witness and uses the density-oriented main term;
+it does not assume the general mixed-profile statement with the printed
+placement. This note records a formula comparison; verification against
+the full BCHB original remains pending.
+
 Here $(d,e)$ and $[d,e]$ denote gcd and lcm. The polynomial-profile
 extension and finite linear combinations are included in the proof on
 p.~18. Expanding the two components therefore includes both cross terms,

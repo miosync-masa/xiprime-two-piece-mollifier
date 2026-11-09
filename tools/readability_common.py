@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN_DIR = ROOT / "lean"
-DEFAULT_RECORD = ROOT / "checks" / "clean-project-verification-2026-11-07.json"
+DEFAULT_RECORD = ROOT / "checks" / "weil-di-proportion-verification.json"
 DEFAULT_AF_RECORD = ROOT / "checks" / "clean-af-verification-2026-11-07.json"
 ROOT_MODULE = "WuProportion"
 STANDARD_AXIOMS = ("propext", "Classical.choice", "Quot.sound")
@@ -27,7 +27,7 @@ NUMERICAL_CERTIFICATE = (
     "CoefficientEvaluator", "NumericalGate", "RationalEvaluator", "RationalBounds",
     "FixedCertificate",
 )
-PRZZ_INPUT = ("PRZZInterface", "PRZZAsymptotic")
+PRZZ_INPUT = ("PRZZInterface", "PRZZAsymptoticCore", "PRZZAsymptotic", "PRZZProvedInput", "PRZZWitnessBridge")
 MAIN_TERM_PREFIXES = (
     "Conrey", "Feng", "Gcd", "ElementaryGcd", "Coprime", "Totient", "Mobius",
     "Euler", "BareEuler", "RawEuler", "Shifted", "Shift", "Smooth", "Expanded",
@@ -52,7 +52,7 @@ PRZZ_SUBLAYERS = (
 PRZZ_UNASSIGNED = "細分未割当"
 
 LAYER_NUMERICAL = "数値証明書"
-LAYER_PRZZ_INPUT = "PRZZ 入力"
+LAYER_PRZZ_INPUT = "PRZZ 定義・証明済み接続"
 LAYER_COUNTING = "計数（Wu）"
 LAYER_PRZZ_PROOF = "PRZZ 4.1 の証明"
 LAYER_MAIN_TERM = "主項"
@@ -64,7 +64,7 @@ LAYER_ORDER = (LAYER_COUNTING, LAYER_PRZZ_INPUT, LAYER_MAIN_TERM, LAYER_NUMERICA
 
 LAYER_RULES_TEXT = [
     (LAYER_NUMERICAL, "モジュール名が次の固定集合に一致: " + ", ".join(NUMERICAL_CERTIFICATE)),
-    (LAYER_PRZZ_INPUT, "モジュール名が次の固定集合に一致（PRZZ 公理とその直接の帰結）: " + ", ".join(PRZZ_INPUT)),
+    (LAYER_PRZZ_INPUT, "モジュール名が次の固定集合に一致（定義層と Weil/DI からの証明済み接続。公理層ではない）: " + ", ".join(PRZZ_INPUT)),
     (LAYER_COUNTING, "接頭辞 `Wu`"),
     (LAYER_PRZZ_PROOF, "接頭辞 `PRZZ`（上の固定集合を除く）。細分は `PRZZ` を除いた残りの接頭辞で: "
         + "; ".join(f"{name} = {', '.join(p)}" for name, p in PRZZ_SUBLAYERS)

@@ -1,3 +1,4 @@
+import PRZZAsymptotic
 import TwoPieceMainTerm
 import CauchyJetTransfer
 
@@ -9,6 +10,7 @@ noncomputable section
 open scoped BigOperators
 open Filter Topology
 namespace XiPrime8845.TwoPieceMoment
+variable [PRZZProvedInput.DeepInputs]
 open PRZZAsymptotic ConreyMainTerm ConreyCoefficientBridge FiniteJet IntegralJet
 open CauchyJetTransfer
 set_option maxHeartbeats 1000000

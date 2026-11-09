@@ -6,6 +6,7 @@ This is a left-line integral bound, not a Littlewood or zero-counting theorem. -
 noncomputable section
 open Filter Topology MeasureTheory
 namespace XiPrime8845.WuTrimmedLog
+variable [PRZZProvedInput.DeepInputs]
 open WuUnsmoothing WuAuxiliary WuStirling WitnessMomentBound
 set_option maxHeartbeats 2000000
 

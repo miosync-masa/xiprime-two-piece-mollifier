@@ -1,5 +1,5 @@
 import PRZZLocalization
-import PRZZAsymptotic
+import PRZZAsymptoticCore
 
 /-! The audited localized estimate, if supplied, gives the actual uniform
 normalized residual on the same witness bidisc. No localized estimate or gcd

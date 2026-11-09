@@ -9,6 +9,7 @@ noncomputable section
 open scoped BigOperators
 open Set Filter Topology
 namespace XiPrime8845.WuTotalAsymptotic
+variable [PRZZProvedInput.DeepInputs]
 open Zeta23 hiding Ncount N0
 open Zeta23.XiPrime
 set_option maxHeartbeats 2000000

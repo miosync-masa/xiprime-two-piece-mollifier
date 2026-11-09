@@ -10,6 +10,7 @@ inequality, removal of smoothing, or zero-proportion theorem is asserted. -/
 noncomputable section
 open Filter Topology MeasureTheory
 namespace XiPrime8845.WitnessMomentBound
+variable [PRZZProvedInput.DeepInputs]
 open ZetaMomentPolynomial ConreyCoefficientBridge
 set_option maxHeartbeats 1000000
 

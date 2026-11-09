@@ -3,7 +3,7 @@ import WuTotalAsymptotic
 
 /-! The actual xi-prime proportion, with analytic multiplicity.
 The retained width and all error tolerances are fixed before the height.
-Only the existing PRZZ input is used: no localized PRZZ, endpoint-tightness,
+Explicit Weil and DI hypotheses are used: no localized PRZZ, endpoint-tightness,
 counting gate, or simplicity assumption is supplied to the final theorem. -/
 noncomputable section
 open Filter Topology
@@ -11,8 +11,11 @@ namespace XiPrime8845.WuProportion
 open WuDyadicCounting Zeta23.XiPrime
 set_option maxHeartbeats 2000000
 
-theorem dyadic_eventually (c : ℝ) (hc : c < proportion) :
+theorem dyadic_eventually
+    (hWeil : PRZZKloostermanInputs.WeilIncomplete)
+    (hDI : PRZZKloostermanInputs.DeshouillersIwaniecLemma1) (c : ℝ) (hc : c < proportion) :
     ∀ᶠ T : ℝ in atTop, c*(Ncount T (2*T):ℝ) ≤ (N0 T (2*T):ℝ) := by
+  letI : PRZZProvedInput.DeepInputs := ⟨hWeil,hDI⟩
   by_cases hc0 : c ≤ 0
   · exact Eventually.of_forall (fun T =>
       (mul_nonpos_of_nonpos_of_nonneg hc0 (Nat.cast_nonneg _)).trans (Nat.cast_nonneg _))
@@ -50,25 +53,34 @@ theorem dyadic_eventually (c : ℝ) (hc : c < proportion) :
 
 /-- Every coefficient strictly below the certified Wu coefficient holds
 eventually, uniformly over ALL terminal real heights. -/
-theorem cumulative_eventually (c : ℝ) (hc : c < proportion) :
+theorem cumulative_eventually
+    (hWeil : PRZZKloostermanInputs.WeilIncomplete)
+    (hDI : PRZZKloostermanInputs.DeshouillersIwaniecLemma1) (c : ℝ) (hc : c < proportion) :
     ∀ᶠ X : ℝ in atTop, c*(Ncount 0 X:ℝ) ≤ (N0 0 X:ℝ) := by
+  letI : PRZZProvedInput.DeepInputs := ⟨hWeil,hDI⟩
   have hh := WuTotalAsymptotic.cumulative proportion (fun ε hε =>
-    eventually_atTop.mp (dyadic_eventually (proportion-ε) (by linarith)))
+    eventually_atTop.mp (dyadic_eventually hWeil hDI (proportion-ε) (by linarith)))
   obtain ⟨X₀,hX₀⟩ := hh (proportion-c) (by linarith)
   exact (eventually_ge_atTop X₀).mono (fun X hX => by simpa using hX₀ X hX)
 
-/-- More than 88.45 percent, with multiplicity, under the one existing PRZZ
-axiom. A strict margin is retained; this is stronger than an eventual
+/-- More than 88.45 percent, with multiplicity, under explicit Weil and DI
+hypotheses. A strict margin is retained; this is stronger than an eventual
 non-strict 0.8845 bound. -/
-theorem strict_proportion : StrictProportion := by
+theorem strict_proportion
+    (hWeil : PRZZKloostermanInputs.WeilIncomplete)
+    (hDI : PRZZKloostermanInputs.DeshouillersIwaniecLemma1) : StrictProportion := by
+  letI : PRZZProvedInput.DeepInputs := ⟨hWeil,hDI⟩
   refine ⟨(proportion+0.8845)/2,by linarith [proportion_gt],?_⟩
-  exact cumulative_eventually _ (by linarith [proportion_gt])
+  exact cumulative_eventually hWeil hDI _ (by linarith [proportion_gt])
 
 /-- Literal quotient statement. The denominator is eventually positive,
 as supplied by the actual AF zero-count growth theorem. -/
-theorem ratio_eventually_gt :
+theorem ratio_eventually_gt
+    (hWeil : PRZZKloostermanInputs.WeilIncomplete)
+    (hDI : PRZZKloostermanInputs.DeshouillersIwaniecLemma1) :
     ∀ᶠ X : ℝ in atTop, (0.8845:ℝ) < (N0 0 X:ℝ)/(Ncount 0 X:ℝ) := by
-  obtain ⟨b,hb,h⟩ := strict_proportion
+  letI : PRZZProvedInput.DeepInputs := ⟨hWeil,hDI⟩
+  obtain ⟨b,hb,h⟩ := strict_proportion hWeil hDI
   filter_upwards [h,WuTotalAsymptotic.total_growth.eventually_gt_atTop 0] with X hX hn
   exact hb.trans_le ((le_div_iff₀ hn).mpr hX)
 
@@ -76,4 +88,6 @@ theorem ratio_eventually_gt :
 #print axioms cumulative_eventually
 #print axioms strict_proportion
 #print axioms ratio_eventually_gt
+#check @strict_proportion
+#check @ratio_eventually_gt
 end XiPrime8845.WuProportion
