@@ -74,6 +74,8 @@ def main():
     modules = rc.load_modules()
     record, meta = rc.load_verified_record(modules)
     af_record = json.loads(rc.DEFAULT_AF_RECORD.read_text(encoding="utf-8"))
+    historical_af = json.loads((rc.ROOT / "checks" /
+                               "clean-af-verification-2026-11-07.json").read_text(encoding="utf-8"))
     pins = json.loads((rc.LEAN_DIR / "dependencies.json").read_text(encoding="utf-8"))
     closure = rc.reachable_from(modules, rc.ROOT_MODULE)
     moment_closure = rc.reachable_from(modules, MOMENT_ROOT) if MOMENT_ROOT in modules else {}
@@ -319,8 +321,22 @@ def main():
         L.append("")
     L.append(f"現在の記録: 全 {len(record)} ローカルソースを照合、主定理閉包 {len(closure)} モジュール。"
              f"この実行での新規コンパイル {meta.get('fresh_module_count')}、"
-             f"残りはソース・直接依存・成果物ハッシュを照合したキャッシュです。"
+             f"再利用 {len(record) - meta.get('fresh_module_count', 0)}。"
              f"`full_project_rebuilt: {json.dumps(meta.get('full_project_rebuilt'))}`。")
+    L.append(f"上流 AF 必須依存は {af_record.get('af_newly_built_module_count')} / "
+             f"{af_record.get('af_source_module_count')} 件を新規ビルド。"
+             "旧 AF 成果物は不使用、Mathlib とパッケージは固定版キャッシュを再利用しています。")
+    local_seconds = meta.get("clean_build", {}).get("elapsed_seconds")
+    af_seconds = af_record.get("build", {}).get("elapsed_seconds")
+    local_command = meta.get("clean_build", {}).get("command", [])
+    jobs = (local_command[local_command.index("--jobs") + 1]
+            if "--jobs" in local_command else "記録なし")
+    if local_seconds is not None and af_seconds is not None:
+        L.append(f"今回の実測コンパイル時間: AF {af_seconds:.3f} 秒、本体 {local_seconds:.3f} 秒、"
+                 f"合計 {af_seconds + local_seconds:.3f} 秒。本体並列枠 {jobs}。"
+                 "環境構築・文書/PDF 検査はこの時間に含みません。再実行時の保証値ではありません。")
+    else:
+        L.append("この検証記録には実測コンパイル時間がありません。")
     L.append("")
     L.append("### 5c. 参考: 2026-11-07 の歴史的クリーン検証（現在の記録とは別）")
     L.append("")
@@ -328,22 +344,20 @@ def main():
     L.append("")
     L.append("```sh")
     L.append("# AF 必須閉包の新規ビルド（隔離 worktree、Mathlib キャッシュは固定版を再利用）")
-    L.append(af_record.get("command", ""))
+    L.append(historical_af.get("command", ""))
     L.append("# 本体 698 モジュールの新規コンパイルと公理監査")
-    L.append(af_record.get("project_command", ""))
+    L.append(historical_af.get("project_command", ""))
     L.append("```")
     L.append("")
     L.append("歴史的検証の結果（現在のソースを検証したという意味ではありません）:")
     L.append("")
-    L.append(f"- AF: `{af_record.get('lake_result', '')}`（新規ビルド {af_record.get('af_newly_built_module_count')} / {af_record.get('af_source_module_count')} モジュール）")
-    L.append(f"- 本体: {af_record.get('project_module_count')} モジュールをすべて新規コンパイル、公理監査 {af_record.get('project_axiom_audit_count')} 件、"
+    L.append(f"- AF: `{historical_af.get('lake_result', '')}`（新規ビルド {historical_af.get('af_newly_built_module_count')} / {historical_af.get('af_source_module_count')} モジュール）")
+    L.append(f"- 本体: {historical_af.get('project_module_count')} モジュールをすべて新規コンパイル、公理監査 {historical_af.get('project_axiom_audit_count')} 件、"
              "これは現在の依存切替記録ではありません。")
+    L.append("")
     L.append(f"現在の再現時には `#print axioms {MAIN_THEOREM}` が §1 の全文と一致（" +
              ("標準三公理 + " + ", ".join(nonstd) if nonstd else "標準三公理のみ") +
              "、`sorryAx` なし）。Weil/DI の明示的引数も §1 の定理文で確認。")
-    L.append("")
-    L.append("所要時間の目安: 検証記録には経過時間が記録されていません（`parallel_jobs: "
-             f"{meta.get('parallel_jobs')}`）。次回の実行時に計測して追記してください。")
     L.append("")
     rc.write_markdown(args.out, L)
     print("trust-base written")

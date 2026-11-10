@@ -13,8 +13,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN_DIR = ROOT / "lean"
-DEFAULT_RECORD = ROOT / "checks" / "weil-di-proportion-verification.json"
-DEFAULT_AF_RECORD = ROOT / "checks" / "clean-af-verification-2026-11-07.json"
+DEFAULT_RECORD = ROOT / "checks" / "clean-verification-2026-11-10-local.json"
+DEFAULT_AF_RECORD = ROOT / "checks" / "clean-verification-2026-11-10-af.json"
 ROOT_MODULE = "WuProportion"
 STANDARD_AXIOMS = ("propext", "Classical.choice", "Quot.sound")
 

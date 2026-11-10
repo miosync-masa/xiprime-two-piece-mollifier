@@ -1,419 +1,870 @@
 \documentclass[11pt]{article}
 \usepackage[a4paper,margin=24mm]{geometry}
-\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs,booktabs,array,longtable}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,microtype}
+\usepackage{xurl}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage{fancyhdr}
-\pagestyle{fancy}\fancyhf{}\fancyhead[L]{Two-component mollification of $\xi'$}
-\fancyhead[R]{Expert-audit draft}\fancyfoot[C]{\thepage}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{Two-component mollification of $\xi'$}
+\fancyhead[R]{Conditional formalization}
+\fancyfoot[C]{\thepage}
 \setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{hypothesis}{Hypothesis}
 \newcommand{\ii}{\mathrm i}
 \newcommand{\dd}{\,\mathrm d}
 \newcommand{\Rea}{\operatorname{Re}}
 \newcommand{\Ima}{\operatorname{Im}}
 \newcommand{\Qop}{q(-\partial_A)q(-\partial_B)}
-\title{An explicit two-component mollifier for zeros of\texorpdfstring{ $\xi'$}{ xi-prime} on the critical line}
-\author{}
-\date{27 October 2026 \quad---\quad Draft for expert audit}
-\hypersetup{pdftitle={An explicit two-component mollifier for zeros of xi-prime on the critical line},pdfauthor={},pdfsubject={Proof draft for expert audit; multiplicity-counted zeros}}
+\DeclareRobustCommand{\lean}[1]{\ifmmode\text{\small\nolinkurl{#1}}\else{\small\nolinkurl{#1}}\fi}
+\newcommand{\NT}{\mathcal N_{\xi'}}
+\newcommand{\NC}{\mathcal N_{\xi',c}}
+\hypersetup{pdftitle={A conditional Lean formalization of an 88.45 percent critical-line proportion for xi-prime},pdfauthor={},pdfsubject={Explicit incomplete Weil and Deshouillers-Iwaniec hypotheses; zeros with analytic multiplicity}}
 \begin{document}
 \thispagestyle{plain}
 \begin{center}
-{\Large An explicit two-component mollifier for zeros of $\xi'$\\[3pt]
-on the critical line}\par\vspace{8pt}
-27 October 2026 \quad---\quad Draft for expert audit
+{\Large A conditional Lean formalization of an $88.45\%$\\[3pt]
+critical-line proportion for $\xi'$}\\[9pt]
+An explicit two-component mollifier\\[6pt]
+10 November 2026 --- Revised manuscript for expert review
 \end{center}
 \begin{abstract}
-We give a proof draft for a lower bound of $88.45\%$ for the proportion of
-zeros of the derivative of the Riemann xi-function on the critical line,
-counted with multiplicity. The construction combines the argument-variation
-method used by Wu with an unrestricted Conrey--Feng mollifier of fixed length
-$T^{4/7-10^{-6}}$. Only the convolution $\mu*\Lambda*\Lambda$ is added to the
-Conrey component. All polynomials are specified by exact finite decimals.
-We give the specialized leading-pole functional and an interval certificate
-for its value. The analytic transplantation is presented for specialist
-verification; the finite certificate does not verify that transplantation.
-No assertion about simple zeros or publication priority is made.
+We describe a Lean derivation of a fixed asymptotic proportion strictly
+greater than $88.45\%$ for the zeros of the derivative of the Riemann
+xi-function on the critical line, counted with analytic multiplicity.
+The result has two explicit hypotheses: a uniform incomplete
+inverse-phase estimate and a four-length Deshouillers--Iwaniec estimate.
+We give their full parameter ranges, coefficient restrictions and
+quantifier order. They are theorem arguments, not estimates proved by
+this development. From these inputs the formal chain derives the
+shifted moment for a height-dependent seven-vector coefficient family,
+including all 49 ordered pairs and the actual approximate functional
+equation remainders. It then connects the density-oriented arithmetic
+main term to a fixed two-component mollifier, a kernel-checked rational
+gate, and the actual xi-prime counting functions. A separate Python
+interval calculation supplies a sharper numerical check but is not
+trusted by Lean. We distinguish formal deduction, correspondence with
+the cited analytic inputs, and independent mathematical review.
+No simple-zero, optimality or publication-priority claim is made.
 \end{abstract}
 
-\section{Statement and explicit data}
+\section{The statement and its trust boundary}\label{sec:statement}
 
-Put
+Write
 \[
  \xi(s)=H(s)\zeta(s),\qquad
  H(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2).
 \]
-Let $N(T)$ count the nontrivial zeros of $\zeta$ with $0<\Ima\rho\le T$,
-with multiplicity, and let $N_{\xi',c}(T)$ count zeros of $\xi'$ in this
-height range on $\Rea s=1/2$, also with multiplicity.
-The standard count for $\xi'$ is $N(T)+O(\log T)$; thus the denominator
-below also gives its asymptotic proportion of all zeros.
+Let $\NT(X)$ be the total xi-prime zero count in the positive-height
+window $(0,X]$, and $\NC(X)$ its critical-line subcount. Both use analytic
+multiplicity. More precisely, these are the counts
+\texttt{Zeta23.XiPrime.Ncount 0 X} and
+\texttt{Zeta23.XiPrime.N0 0 X} in the pinned Alp\"oge--Furman (AF)
+library; they are not its simple-zero counts. The formal counting
+normalization is used throughout this manuscript, rather than replacing
+the denominator by the zeta zero count.
 
-\begin{theorem}[Claim submitted for verification]\label{thm:main}
-The explicit construction below gives
-\[
- \liminf_{T\to\infty}\frac{N_{\xi',c}(T)}{N(T)}>0.8845.
-\]
+\begin{theorem}[Conditional critical-line proportion]\label{thm:main}
+Assume Hypotheses~\ref{hyp:weil} and~\ref{hyp:di} below. There exist real
+numbers $b>0.8845$ and $X_0$ such that, for every real $X\ge X_0$,
+\begin{equation}\label{eq:main}
+ b\,\NT(X)\le\NC(X).
+\end{equation}
+In particular, the denominator is eventually positive and
+$\NC(X)/\NT(X)>0.8845$ for all sufficiently large real $X$.
+Consequently the asymptotic lower proportion is strictly greater than
+$0.8845$, with a fixed positive margin.
 \end{theorem}
 
-This updates the multiplicity-counted quantity in Wu's Section~3
-\cite{Wu}, not a simple-zero proportion. In particular, it is a different
-quantity from the $0.86864$ simple-and-on-line bound stated in
-\cite[Remark~7.1]{AF}. We fix, without further optimization,
-\begin{equation}\label{eq:constants}
- R=1.04440033,\qquad \theta=\frac47-10^{-6},\qquad L=\log T,
- \qquad a=\frac12-\frac RL,\quad y=T^\theta.
+The first assertion is
+\lean{XiPrime8845.WuProportion.strict_proportion}; the quotient assertion
+is \lean{WuProportion.ratio_eventually_gt}. The proof obtains a fixed
+margin before allowing the terminal height to grow. It does not merely
+prove a strict inequality whose margin could tend to zero.
+
+The two hypotheses are the propositions
+\lean{PRZZKloostermanInputs.WeilIncomplete} and
+\lean{PRZZKloostermanInputs.DeshouillersIwaniecLemma1}.
+No proof term for either proposition is supplied here. In particular,
+the name Weil does not suppress the completion, prime-power and
+composite-modulus obligations specified below.
+The former public PRZZ witness axiom has instead been replaced by a
+theorem deduced from these two arguments. The mathematical implication
+proved by Lean and the validity of the external analytic specifications
+are separate matters.
+
+The construction uses Wu's argument-variation strategy \cite{Wu},
+the long-mollifier moment architecture of
+Pratt--Robles--Zaharescu--Zeindler \cite{PRZZ}, and the pinned AF
+analytic/counting infrastructure \cite{AF,Repo}. The following sections
+give a proof guide to the current source, not a claim that a short prose
+argument replaces every contour, integrability and boundary lemma in
+that source.
+
+\section{The two explicit exponential-sum hypotheses}\label{sec:inputs}
+
+Put $e(x)=\exp(2\pi\ii x)$. If $(n,q)=1$, let $\bar n_q$ be the least
+nonnegative representative of the inverse of $n$ modulo $q$.
+It is a modular inverse, never the real reciprocal. At modulus $1$
+the representative is $0$, as in the Lean definition using
+$\mathbb Z/q\mathbb Z$. All occurrences below are guarded by the relevant
+coprimality conditions.
+
+\subsection{The incomplete Weil input}
+
+For $q\ge1$, $a\in\mathbb Z$, and $M,H\in\mathbb Z_{\ge0}$, set
+\[
+ S_q(a;M,H)=
+ \sum_{\substack{M<n\le M+H\\(n,q)=1}}
+     e\!\left(\frac{a\bar n_q}{q}\right).
+\]
+\begin{hypothesis}[Uniform incomplete inverse-phase estimate]\label{hyp:weil}
+For every real $\varepsilon>0$ there exists $C_\varepsilon>0$ such that,
+for every integer $q\ge1$, every $a\in\mathbb Z$, and all nonnegative
+integers $M,H$,
+\begin{equation}\label{eq:weil}
+ |S_q(a;M,H)|
+ \le C_\varepsilon q^{1/2+\varepsilon}
+          \gcd(|a|,q)\left(1+\frac Hq\right).
 \end{equation}
-The operator and two profiles are
+\end{hypothesis}
+
+Thus $C_\varepsilon$ is chosen \emph{before} $q,a,M,H$. There is no
+assumption that $(a,q)=1$, that $q$ is prime, or that $H\le q$.
+The gcd is to the first power in this precise contract; replacing it
+by $1$ would change the hypothesis. The factor $1+H/q$ retains long
+intervals. The case $H=0$ is the empty sum. This is an unweighted input;
+smooth weights and their norms are supplied later.
+
+For comparison, the separate definition \lean{WeilPrime} asks for
+\[
+ \left|\sum_{n=1}^{p-1}e\!\left(\frac{an+b\bar n_p}{p}\right)\right|
+ \le 2\sqrt p
+ \quad(p>2\text{ prime},\ (a,p)=(b,p)=1).
+\]
+This is the prime-field statement associated with Weil
+\cite{Weil,Harcos}. It is not the hypothesis of Theorem~\ref{thm:main}.
+Deriving \eqref{eq:weil} from that statement requires estimates at prime
+powers, Chinese-remainder assembly and completion of intervals, including
+the logarithmic/divisor losses absorbed by $q^\varepsilon$. The
+repository deliberately does not assert a proved
+$\lean{WeilPrime}\Rightarrow\lean{WeilIncomplete}$ implication.
+PRZZ invokes an incomplete estimate in its Type I argument
+\cite[p.~21]{PRZZ}; Hypothesis~\ref{hyp:weil} records the exact
+completion specification consumed here.
+
+For an explicit classical route, use the composite-modulus estimate
+\cite[Corollary~11.12, equation~(11.16)]{IK}:
+\[
+ |S(h,a;q)|\le\tau(q)q^{1/2}\gcd(h,a,q)^{1/2}.
+\]
+Put $g=\gcd(|a|,q)$. For an interval $J$ of fewer than $q$ consecutive
+integers, finite Fourier inversion gives
+\[
+ \sum_{\substack{n\in J\\(n,q)=1}}e(a\bar n_q/q)
+ =\frac1q\sum_{h\bmod q}
+       \left(\sum_{n\in J}e(-hn/q)\right)S(h,a;q).
+\]
+The normalized sum of absolute values of the interval Fourier
+coefficients is $O(\log(2q))$, so this is
+$O(\tau(q)\sqrt{qg}\log(2q))$.
+Each complete period is the Ramanujan sum $c_q(a)$. By von Sterneck's
+formula $c_q(a)=\mu(q/g)\varphi(q)/\varphi(q/g)$ and
+$\varphi(q)\le g\varphi(q/g)$, its modulus is at most $g$.
+Splitting $H$ into complete periods and one such interval therefore
+gives
+\[
+ |S_q(a;M,H)|\ll_\varepsilon
+ q^{1/2+\varepsilon}g^{1/2}(1+H/q).
+\]
+Here $g\le\sqrt{qg}$ and the divisor/logarithmic loss is absorbed into
+$q^\varepsilon$; $q=1$ is immediate. This stronger estimate implies
+\eqref{eq:weil}. Thus the first-power gcd is a permissible weakening,
+not a necessary cost of the zero mode. This completion argument is
+supplied in prose, not as a Lean proof term for Hypothesis~\ref{hyp:weil}.
+
+\subsection{The Deshouillers--Iwaniec input}
+
+Let $C,D,U,V\ge1$ be real numbers, $\rho\ge1$ an integer, and
+$b:\mathbb N\times\mathbb N\to\mathbb C$. Define
+\begin{equation}\label{eq:di-sum}
+ \mathscr S(C,D,U,V;\rho,b)=
+ \sum_{1\le c\le\lfloor C\rfloor}
+ \ \sum_{\substack{1\le d\le\lfloor D\rfloor\\(c,\rho d)=1}}
+ \left|
+ \sum_{1\le u\le\lfloor U\rfloor}
+ \ \sum_{\substack{1\le v\le\lfloor V\rfloor\\(v,c)=1}}
+ b(u,v)e\!\left(\frac{u\,\overline{\rho vd}_c}{c}\right)
+ \right|.
+\end{equation}
+In particular, the absolute value is \emph{inside} the two outer sums.
+The outer and inner coprimality restrictions guarantee that $\rho vd$
+is invertible modulo $c$. There is no coprimality restriction on $u$.
+Set
+\begin{align}
+ \mathscr B_\varepsilon(C,D,U,V;\rho)
+ ={}&(CDUV)^{1/2+\varepsilon}\bigl\{(CD)^{1/2}
+       +(U+V)^{1/4}\mathscr R^{1/4}\bigr\},\label{eq:di-bound}\\
+ \mathscr R={}&CD(U+\rho V)(C+\rho V^2)+\rho UV^2D^2.\notag
+\end{align}
+
+\begin{hypothesis}[Uniform DI four-length estimate]\label{hyp:di}
+For every real $\varepsilon>0$ there exists $K_\varepsilon>0$ such that,
+for every $C,D,U,V\ge1$, every integer $\rho\ge1$, and every complex
+array $b$ satisfying
+\[
+ |b(u,v)|\le1\quad
+ (1\le u\le\lfloor U\rfloor,\ 1\le v\le\lfloor V\rfloor),
+\]
+one has
+\begin{equation}\label{eq:di}
+ \mathscr S(C,D,U,V;\rho,b)
+       \le K_\varepsilon\,\mathscr B_\varepsilon(C,D,U,V;\rho).
+\end{equation}
+\end{hypothesis}
+
+The unit bound holds on the full rectangular coefficient set, including
+indices not used by a particular coprimality filter. No smoothness or
+factorization of $b(u,v)$ is assumed. One array is used across all
+$(c,d)$ in \eqref{eq:di-sum}; an arbitrary array depending on $c,d$ would
+be a different input. Most importantly, the quantifiers are
+\[
+ \forall\varepsilon>0\ \exists K_\varepsilon>0\
+ \forall C,D,U,V\ge1\ \forall\rho\ge1\ \forall b.
+\]
+The constant cannot depend on $\rho$, the four lengths, or the
+coefficient array. Real upper bounds are implemented by natural floors.
+
+The source specified for this contract is Deshouillers--Iwaniec,
+\emph{Power mean-values for Dirichlet's polynomials and the Riemann
+zeta-function, II}, Lemma~1, p.~310 \cite{DI}.
+The publisher lists volume~43 (1984), pp.~305--312; the volume~48 printed
+in PRZZ's reference is not used here. Inspection of the original
+scanned Lemma~1 confirms the displayed inverse phase, the two
+coprimality filters, and the four-length expression.
+The source writes its coefficient array as \(c(u,v)\); here it is
+renamed \(b(u,v)\) to distinguish it from the outer index \(c\).
+The symbols
+$(C,D,U,V,\rho,b(u,v))$ agree with the code's argument names.
+Checking the source statement, its uniformity and this precise
+translation is an external specification-review task, not an additional
+theorem silently asserted by the axiom audit.
+
+\subsection{How the inputs enter the proof}
+
+The definitions in \lean{PRZZKloostermanInputs.lean} are propositions,
+not declarations of analytic axioms. Intermediate modules use a class
+\lean{PRZZProvedInput.DeepInputs} with exactly two fields, one for each
+hypothesis. No default instance asserts those fields. The four headline
+theorems expose them as separate ordinary arguments.
+
+Type I partial summation uses \eqref{eq:weil}; the coupled Type II
+estimate uses \eqref{eq:di}. Cutoff seminorms, arithmetic coefficients,
+dyadic multiplicities, and the time/Mellin masses are not part of either
+input's hidden constant. They are retained and estimated in the
+adapters. This distinction is necessary for the height-dependent
+profiles below.
+
+\section{Fixed data and the height-dependent coefficient family}\label{sec:witness}
+
+Fix
+\begin{equation}\label{eq:constants}
+ R=1.04440033,\qquad \theta=\frac47-10^{-6},\qquad
+ L=\log T,\quad y=T^\theta,\quad a=\frac12-\frac RL.
+\end{equation}
+The operator and profiles are
 \begin{align}
 q(x)={}&1-2.27043254x+0.304358115x^2+0.16793368x^3\notag\\
- &\hspace{7mm}+4.34152016x^4-5.3105844x^5+1.7701948x^6,\label{eq:q}\\
-P_1(x)={}&-0.30528514x+2.50038954x^2-1.12177152x^3-0.07333288x^4,
- \label{eq:p1}\\
+ &\hspace{6mm}+4.34152016x^4-5.3105844x^5+1.7701948x^6,\label{eq:q}\\
+P_1(x)={}&-0.30528514x+2.50038954x^2-1.12177152x^3
+                 -0.07333288x^4,\label{eq:p1}\\
 P_2(x)={}&1.89779072x+0.56594804x^2+0.07023055x^3.\label{eq:p2}
 \end{align}
-Every displayed decimal in \eqref{eq:constants}--\eqref{eq:p2} is an exact
-rational number. In particular $q(0)=P_1(1)=1$ and $P_1(0)=P_2(0)=0$.
-With $x_n=\log(y/n)/\log y$, define
+Every finite decimal here is an exact rational number.
+In particular $q(0)=P_1(1)=1$ and $P_1(0)=P_2(0)=0$.
+For $1\le n\le y$ put $x_n=\log(y/n)/\log y$ and
+\begin{equation}\label{eq:coeff}
+ a_n(T)=\mu(n)P_1(x_n)
+       +\frac{(\mu*\Lambda*\Lambda)(n)}{(\log y)^2}P_2(x_n);
+\end{equation}
+put $a_n(T)=0$ outside this range. Here $*$ is Dirichlet convolution.
+There is no squarefree restriction and no extra $2!$.
+Define
 \begin{equation}\label{eq:psi}
- \Psi(s)=\sum_{n\le y}\frac{1}{n^{s+R/L}}
- \left\{\mu(n)P_1(x_n)
-       +\frac{(\mu*\Lambda*\Lambda)(n)}{(\log y)^2}P_2(x_n)\right\}.
+ \Psi_T(s)=\sum_{1\le n\le\lfloor y\rfloor}a_n(T)n^{-s-R/L},
+ \qquad U_T(s)=q(-L^{-1}\partial_s)\zeta(s).
 \end{equation}
-Here $*$ denotes Dirichlet convolution and $\Lambda$ is the von Mangoldt
-function. There is \emph{no} factor $\mu^2(n)$ in the second component and
-no extra factorial. Non-squarefree terms are retained. Write
-\begin{equation}\label{eq:U}
- U(s)=q(-L^{-1}\partial_s)\zeta(s).
-\end{equation}
-The operator acts only on $\zeta$, never on $\Psi$.
+Thus $\Psi_T(a+\ii t)=\sum a_n(T)n^{-1/2-\ii t}$.
+The differential operator acts on zeta, not on the mollifier coefficients.
 
-\section{The counting interface}
-
-The following formulation separates the exact counting function from its
-asymptotic differential operator. It is the argument principle and
-Littlewood reduction of \cite[Section~3, (18)--(23)]{Wu}, with the right
-boundary normalization checked for \eqref{eq:psi}.
-
-\begin{lemma}\label{lem:count}
-For the fixed data above, suppose
-\begin{equation}\label{eq:moment}
- \frac1T\int_T^{2T}|U(a+\ii t)\Psi(a+\ii t)|^2\dd t=M+o(1),
-\end{equation}
-and the same mollified second moments for each $L^{-k}\zeta^{(k)}$,
-$0\le k\le6$, are bounded. Then
-\begin{equation}\label{eq:count}
- \liminf\frac{N_{\xi',c}(T)}{N(T)}\ge1-\frac{\log M}{R}.
-\end{equation}
-\end{lemma}
-
-\begin{proof}
-Set $r(u)=q(1/2-u)$. Exact polynomial arithmetic gives
-\begin{equation}\label{eq:r}
- r(u)=0.09491351+0.997010185u+2.089866u^2
-                -2.29671034u^4+1.7701948u^6.
-\end{equation}
-If $r(u)=\sum r_ju^j$, use the exact auxiliary function
-\begin{equation}\label{eq:eta}
- \eta(s)=\sum_{j=0}^6r_jL^{-j}\xi^{(j)}(s),\qquad V(s)=\eta(s)/H(s).
-\end{equation}
-On the critical line, $\xi^{(2j)}$ is real and $\xi^{(2j+1)}$ is purely
-imaginary. Thus
+The elementary estimates $|\mu(n)|\le1$ and
+$|(\mu*\Lambda*\Lambda)(n)|\le(\log n)^2$ give
+$|a_n(T)|\le6.53474839$ for $T\ge2$. This coefficient bound alone does
+not assert a moment theorem for arbitrary bounded coefficient arrays.
+The relevant structured family has seven basis vectors:
 \[
- \Ima\eta(1/2+\ii t)=\frac{0.997010185}{L}\Ima\xi'(1/2+\ii t).
+ 3\mu(n)x_n^k\quad(1\le k\le4),\qquad
+ 3\,\frac{(\mu*\Lambda*\Lambda)(n)}{(\log y)^2}x_n^k
+       \quad(1\le k\le3),
 \]
-The nonzero coefficient is essential. The phase-counting argument of Wu
-therefore applies directly, without identifying his polynomial parameters
-with an unverified exact auxiliary function. Argument variation is taken
-upward on the line, passing boundary zeros on their east side. Each net
-advance of $\pi$ detects a zero of $\xi'$; zeros common to $\eta$ and the
-line are included with multiplicity.
+all with the same original support indicator. Denote them by
+$b_i(\theta,T;n)$, $0\le i<7$. The witness coordinates $z_i$ are the
+seven coefficients in $P_1,P_2$, divided by $3$; hence $|z_i|\le1$.
+The identity $a_n(T)=\sum_i z_i b_i(\theta,T;n)$ is exact at every
+height. Both the logarithmic basis and its support depend on $T$.
+The proved envelopes are $|b_i|\le6$ and
+$|\sum_i z_i b_i|\le84$ for the larger box $|z_i|\le2$.
 
-On the fixed window $T\le t\le2T$, Stirling's formula gives, uniformly in a
-fixed strip around $1/2\le\Rea s\le3$,
-\[
- \frac{H^{(j)}(s)}{H(s)L^j}=2^{-j}+O(L^{-1}).
-\]
-Since $r(1/2+z)=q(-z)$, it follows that
-\[
- V-U=\sum_{k=0}^6O(L^{-1})L^{-k}\zeta^{(k)},\qquad
- \frac1T\int_T^{2T}|(V-U)\Psi|^2\dd t=O(L^{-2}).
-\]
-The coefficients in the first error may depend on $t$ but are uniformly
-bounded as stated. Consequently the moment of $V\Psi$ is $M+o(1)$.
+\section{Uniform moments from the two inputs}\label{sec:moment}
 
-At $\Rea s=3$, absolute convergence and the profile endpoints show
-\[
- \Psi_1(s)=\zeta(s)^{-1}+O(L^{-1}),\qquad \Psi_2(s)=O(L^{-2}),
- \qquad V(s)=\zeta(s)+O(L^{-1}).
-\]
-For the first estimate, bound the profile error by $O(\log n/\log y)$
-and also include the factor $n^{-R/L}$ and the truncation tail. For the
-second, use $\sum_n|\mu*\Lambda*\Lambda|(n)n^{-3}<\infty$.
-Hence $V\Psi=1+O(L^{-1})$ on the right boundary. The logarithmic integral
-there is $O(T/L)$; it is not necessary that $\Psi\to1$.
-
-Let $n_V^+$ count zeros of $V$ in the right rectangle
-$1/2\le\Rea s\le3$, $T\le\Ima s\le2T$, using the boundary convention
-of Wu. Its argument principle and
-$\Delta\arg H=\pi(N(2T)-N(T))+O(\log T)$ give
-\begin{equation}\label{eq:phase}
- N_{\xi',c}(2T)-N_{\xi',c}(T)
- \ge N(2T)-N(T)-2n_V^++O(\log T).
-\end{equation}
-An equivalent safe convention overcounts boundary zeros on the right.
-Heights hitting zeros are treated by limiting admissible heights.
-Polynomial growth of the fixed-degree functions, together with their
-nonzero right-boundary normalization, gives the horizontal argument
-integrals $O(\log T)$ by the usual Jensen argument
-\cite[Section~2, (6)--(8)]{Wu}. There are no poles of $H$ or $\zeta$ in
-these high positive-height rectangles.
-
-Every zero counted by $n_V^+$ is a zero of $V\Psi$ and is at horizontal
-distance at least $R/L$ from $\Rea s=a$. Littlewood's formula then gives
-\[
- 2\pi\frac RL n_V^+
- \le\int_T^{2T}\log|V(a+\ii t)\Psi(a+\ii t)|\dd t
-       +O(T/L)+O(\log T).
-\]
-Apply Jensen's inequality here, \emph{before} replacing $V$ by $U$.
-No comparison of their negative logarithmic tails is used. Inserting the
-second-moment estimate and \eqref{eq:phase}, and using
-$N(2T)-N(T)\sim TL/(2\pi)$, yields the local version of
-\eqref{eq:count}. Add finitely many dyadic windows $[T/2^J,T]$, with their
-own fixed $L$ and mollifier. First let $T\to\infty$, then $J\to\infty$;
-the omitted count is a fraction $2^{-J}+o(1)$. No estimate uniform in $J$
-is required.
-\end{proof}
-
-\section{Shifted moment and the specialized kernel}
-
-We use the third coefficient case of Pratt--Robles--Zaharescu--Zeindler
-\cite[Theorem~4.1, p.~18]{PRZZ}. For fixed smooth height weight $\Phi$,
-small complex shifts $\alpha,\beta=O(L^{-1})$, and the two coefficient
-sequences obtained by expanding \eqref{eq:psi}, the theorem gives
-\begin{align}\label{eq:PRZZ}
- &\int\zeta(\tfrac12+\alpha+\ii t)\zeta(\tfrac12+\beta-\ii t)
-           \Psi(a+\ii t)\overline{\Psi(a+\ii t)}\Phi(t/T)\dd t\notag\\
- &\quad=\sum_{d,e\le y}\frac{a_da_e}{[d,e]}
-        \frac{(d,e)^{\alpha+\beta}}{d^\alpha e^\beta}
- \int\!\left\{\zeta(1+\alpha+\beta)
- +\zeta(1-\alpha-\beta)
- \left(\frac{2\pi de}{t(d,e)^2}\right)^{\alpha+\beta}\right\}
- \Phi(t/T)\dd t+O(E),
-\end{align}
-where $\Psi(a+\ii t)=\sum a_nn^{-1/2-\ii t}$ and
-$E\ll T^\varepsilon(y^{7/4}+y^{7/8}T^{1/2})$.
-
-\paragraph{Note on shift placement.}
-For independently prescribed left and right coefficient sequences, the
-density convention above gives the diagonal relation $dm=em'$ and hence
-the arithmetic denominator $d^\beta e^\alpha$.
-The denominator $d^\alpha e^\beta$ printed in PRZZ Theorem~4.1 is retained
-in \eqref{eq:PRZZ} only for the real self-pairing used here: exchanging
-$d,e$ makes the two finite sums exactly equal.
-Equivalently, $M(P,Q;A,B)=M(Q,P;B,A)$; this identity is formalized as
-\texttt{PRZZ.gcdMainTerm\_swap}, with the witness specialization
-\texttt{PRZZ.witness\_densityGcdMainTerm\_eq}.
-Both ordered cross terms are included and the same differential operator
-acts on both sides, so this exchange leaves the symmetric numerical
-functional unchanged, both here and in the corresponding self-pairing
-application of PRZZ. No claim of invariance is made for an individual
-mixed term or a complex polarized square. The present formal external
-input is restricted to the witness and uses the density-oriented main term;
-it does not assume the general mixed-profile statement with the printed
-placement. This note records a formula comparison; verification against
-the full BCHB original remains pending.
-
-Here $(d,e)$ and $[d,e]$ denote gcd and lcm. The polynomial-profile
-extension and finite linear combinations are included in the proof on
-p.~18. Expanding the two components therefore includes both cross terms,
-not just their diagonal moments. For our $\theta$, the two error exponents
-before $\varepsilon$ are $1-1.75\cdot10^{-6}$ and
-$1-0.875\cdot10^{-6}$. A sufficiently small fixed $\varepsilon$ absorbs
-all fixed logarithmic factors and leaves $o(T)$.
-
-The formula is uniform on fixed compact sets of the normalized complex
-shifts $A=\alpha L$, $B=\beta L$. The apparent poles are combined before
-differentiating. Cauchy's formula allows the fixed operator $\Qop$ to be
-applied to the main term; the normalized derivatives cancel all powers
-of $L$. This proves the bounded derivative moments in Lemma~\ref{lem:count}
-as well. Nonnegative moments pass from smooth weights to the sharp window
-by upper and lower approximations, taking the height limit before the
-width of the endpoint smoothing tends to zero. We allow a slightly
-enlarged fixed height interval for the upper approximation; a finite
-partition and comparable rescaling reduce it to the published support
-convention. The fixed positive length margin absorbs these changes.
-
-Here is a finite integral expression for the limiting main term. It
-specifies precisely the expression to be checked against the arithmetic
-asymptotic. Label the Conrey component by $0$ and the Feng component by
-$2$, and put $F_0=P_1$, $F_2=P_2$. For Mellin variables $s,t$, set
-$X=A+s$, $Y=B+t$, $h=s+t$. The four leading kernels are
+For coefficient sequences $c,d$, write
+$D_c(s)=\sum_{1\le n\le N}c_n n^{-s}$ and define
 \begin{align}
- K_{00}&=XY/h,\notag\\
- K_{20}&=XY/h^3-2Y/h^2+Y/(Xh),\qquad
- K_{02}=XY/h^3-2X/h^2+X/(Yh),\label{eq:kernels}\\
- K_{22}&=7XY/h^5-6(X+Y)/h^4
-       +(X/Y+Y/X+8)/h^3\notag\\
- &\hspace{13mm}-2(X^{-1}+Y^{-1})/h^2+(XYh)^{-1}.\notag
+ \mathcal I_T(c,d;A,B)
+ =\int_T^{2T}&\zeta(\tfrac12+\alpha+\ii t)
+              \zeta(\tfrac12+\beta-\ii t)\notag\\[-2pt]
+ &{}\cdot D_c(\tfrac12+\ii t)\overline{D_d(\tfrac12+\ii t)}
+                     \Phi(t/T)\dd t,\label{eq:moment-pair}
 \end{align}
-In particular the inverse powers of $X,Y$ must not be discarded.
+where $\alpha=A/\log T$, $\beta=B/\log T$ and $\Phi$ is a fixed real
+$C^\infty$ function with support in $[1,2]$. Positivity is not required
+for this mixed-moment statement. It is required when positive moments
+are used for counting.
 
-For $0\le w\le\theta$, define
+For positive integers $m,n$, put $g=(m,n)$ and $\ell=[m,n]$ and set
 \begin{align}
- D_1(A,w;F)&=F'(w/\theta)/\theta+AF(w/\theta),\notag\\
- D_0(A,w;F)&=F(w/\theta),\label{eq:D}\\
- D_{-1}(A,w;F)&=\int_0^we^{-Az}F((w-z)/\theta)\dd z.\notag
+ \mathcal K_T(m,n;A,B)
+ ={}&\frac1\ell\,\frac{g^{\alpha+\beta}}{m^\beta n^\alpha}
+ \int_T^{2T}\left\{\zeta(1+\alpha+\beta)\right.\notag\\
+ &\left.\hspace{13mm}+
+ \zeta(1-\alpha-\beta)
+       \left(\frac{2\pi mn}{t g^2}\right)^{\alpha+\beta}\right\}
+                   \Phi(t/T)\dd t,\label{eq:kernel}\\
+ \mathcal G_T(c,d;A,B)
+ ={}&\sum_{m,n=1}^N c_m\overline{d_n}\mathcal K_T(m,n;A,B).\notag
 \end{align}
-Extend linearly the following rule on every monomial in
-\eqref{eq:kernels}:
-\begin{equation}\label{eq:H}
- cX^eY^fh^{-n}\ \longmapsto\
- \frac{c}{\theta^{\ell+m}}
- \int_0^\theta\frac{v^{n-1}}{(n-1)!}
- D_e(A,\theta-v;F_\ell)D_f(B,\theta-v;F_m)\dd v.
-\end{equation}
-Its value on $K_{\ell m}$ is denoted $H_{\ell m}(A,B)$. Only
-$e,f\in\{-1,0,1\}$ occur. Define
-\begin{align}\label{eq:I}
- I(A,B)=\sum_{\ell,m\in\{0,2\}}
- \frac{H_{\ell m}(A,B)-e^{-A-B}H_{\ell m}(-B,-A)}{A+B},\notag\\
- M=\left.\Qop I(A,B)\right|_{A=B=-R}.
-\end{align}
-The ordered cross terms are both present. The dual term swaps the two
-shifts; $q$ differentiates the entire quotient in \eqref{eq:I}.
+Positive real bases in complex powers use the real logarithm.
+These formulas are used only with $A+B\ne0$ and sufficiently large $T$.
+At $A+B=0$ the raw bracket in Lean is formally
+$2\,\text{\texttt{riemannZeta 1}}$, not the removable holomorphic extension.
+No extension across that divisor is used in this proof.
 
-\begin{proposition}\label{prop:mainterm}
-For \eqref{eq:psi}, the constant in \eqref{eq:moment} is \eqref{eq:I}.
+\begin{proposition}[Uniform finite-family moment]\label{prop:family}
+Assume Hypotheses~\ref{hyp:weil} and~\ref{hyp:di}.
+Fix $\Phi$ as above, $\tau>0$, $S\ge0$ and $r>0$.
+There exist $C>0$ and $T_0$ such that, for every $T\ge T_0$,
+every $\theta>0$, every integer $N\ge1$, all vectors
+$z,w\in\mathbb C^7$ with $|z_i|,|w_i|\le2$, and all $A,B\in\mathbb C$
+satisfying
+\[
+ N+1\le T,\quad N\le T^{4/7},\quad
+ \log(T^\theta)\ge1,\quad N\le T^\theta,\qquad
+ |A|,|B|\le S,\quad r\le|A+B|,
+\]
+the sequences $c=\sum_i z_i b_i(\theta,T)$ and
+$d=\sum_i w_i b_i(\theta,T)$ satisfy
+\begin{equation}\label{eq:family-bound}
+ |\mathcal I_T(c,d;A,B)-\mathcal G_T(c,d;A,B)|
+ \le C T^\tau\bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr).
+\end{equation}
 \end{proposition}
 
-\begin{proof}[Derivation from the published shifted moment]
-Insert the coefficient expansion in \eqref{eq:PRZZ} and use Mellin inversion
-for each monomial of $F_\ell$. The leading zeta ratio has prefactor
-$XY/h$. Its logarithmic derivative for one left auxiliary variable is
-$h^{-1}-X^{-1}$, for one right variable it is $h^{-1}-Y^{-1}$, and for a
-left--right pair it is $h^{-2}$. The distinct auxiliary variables represent
-the copies of $\Lambda$. All other connected derivatives for these
-multiaffine coefficients vanish. Matching $k$ left variables to right
-variables has multiplicity $\binom{\ell}{k}(m)_k$. Thus the leading factor is
+This is the specialization of
+\lean{PRZZFamilyMomentOptimal.moment_bound} obtained by fixing a smooth
+monotone plateau seed and $K=4$. The seed equals $1$ on
+$(-\infty,1/2]$, equals $0$ on $[1,\infty)$, and takes values in $[0,1]$.
+The witness bridge constructs it from a smooth transition function.
+The constant and height threshold precede $\theta,N,z,w,A,B$.
+They may depend on the fixed seed, $\Phi,\tau,S,r$ and the input
+constants. This is not a uniform assertion over arbitrary time weights
+or arbitrary bounded coefficient sequences.
+
+\subsection{Uniform smooth cutoffs and Mellin mass}
+
+The support scale is not frozen when a profile is inserted into a
+dyadic arithmetic cutoff. A useful intermediate class consists of
+smooth $f:(0,\infty)\to\mathbb C$, supported in $[a,b]$ with
+$0<a\le b$, $\log(b/a)\le w$, and
 \[
- \frac{XY}{h}\sum_{k=0}^{\min(\ell,m)}
- \binom{\ell}{k}(m)_k h^{-2k}
- (h^{-1}-X^{-1})^{\ell-k}(h^{-1}-Y^{-1})^{m-k}.
+ |x^n f^{(n)}(x)|\le U_n\quad(n\ge0).
 \]
-For $\ell,m\in\{0,2\}$ this expands to \eqref{eq:kernels}.
-This is the leading-pole extraction in \cite[Section~6, (6.3), and
-pp.~39--40]{PRZZ}. The arithmetic Euler factor and its derivatives are
-treated by that paper's contour argument: after the logarithmic
-normalization, the omitted terms contribute $O(T/L)$, not a conjectural
-ratios error. See also the procedure on p.~45. Replacing those factors by
-one without this error estimate would not suffice.
-
-Use
-$h^{-n}=\int_0^\infty e^{-hv}v^{n-1}\dd v/(n-1)!$ in the Mellin inversions.
-The profiles have support $w\ge0$ and vanish at zero. Multiplication by
-$A+s$, by $1$, and by $(A+s)^{-1}$ therefore gives respectively the three
-operators \eqref{eq:D}, with no endpoint delta term. Their common support
-restricts $v$ to $[0,\theta]$. The factors $(\log y)^{-\ell-m}$ give
-$\theta^{-\ell-m}$ after rescaling, proving \eqref{eq:H}.
-The second term of \eqref{eq:PRZZ} gives the dual shift
-$(-B,-A)$ and the factor $e^{-A-B}$, with the minus sign from the pole of
-$\zeta(1-\alpha-\beta)$. This gives \eqref{eq:I}; the contour estimates and
-shift uniformity above justify applying $\Qop$.
-\end{proof}
-
-As a normalization check, deleting the Feng component reduces \eqref{eq:I} to
-\[
- 1+\theta^{-1}\int_0^1\!\int_0^1 e^{2Rv}
- [P_1'(x)q(v)+\theta P_1(x)(Rq(v)+q'(v))]^2\dd x\dd v.
-\]
-This check is not a substitute for the arithmetic identification in
-Proposition~\ref{prop:mainterm}.
-
-\section{Finite certificate and completion}
-
-\begin{lemma}\label{lem:finite}
-For the rational data \eqref{eq:constants}--\eqref{eq:p2}, the functional
-\eqref{eq:I} satisfies the outward enclosure
-\begin{equation}\label{eq:interval}
- 1.12818163807203565629105
- <M<1.12818163807203565629124.
+For $\widehat f_{\!M}(s)=\int_0^\infty f(x)x^{s-1}\dd x$, the implemented
+class estimate is
+\begin{equation}\label{eq:mellin-class}
+ \int_{\mathbb R}(1+|v|)|\widehat f_{\!M}(\ii v)|\dd v
+ \le4w(U_0+U_1+3U_2+U_3)
+          \int_{\mathbb R}\frac{\dd v}{1+v^2}.
 \end{equation}
-Moreover,
-\begin{equation}\label{eq:threshold}
+It follows from the logarithmic-coordinate derivative estimates and
+integration by parts, with endpoint terms removed by smooth compact
+support. The constants precede the function and the support scale.
+\lean{PRZZProfileScale} supplies the dimensionless jets for the actual
+height-dependent profiles, and \lean{PRZZProfileMellin.member_mass}
+supplies \eqref{eq:mellin-class}. These bounds are carried through the
+Type I/II and Heath--Brown block estimates before the outer row sums are
+taken. A fixed-function bound alone would not justify
+Proposition~\ref{prop:family}.
+
+\subsection{What is assembled before the final bound}
+
+The proof uses the actual Gamma-ratio AFE, not a replacement of its
+kernel by definition. The moment error is split into the AFE replacement
+error, the nonzero Poisson field, and the Gamma main-term defect.
+The nonzero field is further split into its paired central body and its
+body tail. The source cutoff, row Fourier cutoff and their transfer
+bands are kept distinct until their correction terms are bounded.
+Zero-frequency mismatch, spatial complements, boundary corrections,
+freezing errors and large-scale terms are included before the
+cutoffs are removed. Positive and negative frequencies and the two
+dual branches are retained.
+
+At the final assembly point the algebra has the form
+\[
+ E=(E-\mathcal R-\mathcal G_\Gamma)
+       +(\mathcal R-\mathcal B)+\mathcal B+\mathcal G_\Gamma,
+ \qquad E=\mathcal I_T-\mathcal G_T.
+\]
+The four suppliers used by
+\lean{PRZZFamilyMomentOptimal.basis_bound} are respectively
+\lean{PRZZCappedMainTerm.zero_removed_reduction},
+\lean{PRZZCappedBodyTail.nonzero_reduction},
+\lean{PRZZBasisPairedBody.bound}, and
+\lean{PRZZCappedGammaDefect.mixed_absorbed}.
+Here $\mathcal B$ is the actual paired central body, not an independent
+proxy. The Weil and DI hypotheses enter its estimate. The preceding
+reductions also include the Gamma-to-density kernel comparison
+\lean{PRZZCappedMainTerm.mainterm_absorbed}.
+
+For each of the 49 ordered basis pairs this gives a common upper bound
+$U$. Sesquilinearity then gives a bound
+\[
+ \sum_{i,j}|z_i|\,|w_j|\,U\le196U.
+\]
+The coordinate vectors may vary with height. Polarization is available
+as an algebraic bridge, but it does not replace the analytic uniformity
+of the 49 basis estimates.
+
+\subsection{Witness specialization and loss margins}
+
+\lean{PRZZWitnessBridge.witness_estimate} supplies
+$N=\lfloor T^\theta\rfloor$ for each fixed $0<\theta<4/7$, and identifies
+the compact-window integral with the public all-real-time integral,
+since $\Phi(t/T)$ vanishes outside $[T,2T]$.
+Thus \lean{PRZZ.przz41_case3_K2_witness} is now a theorem with explicit
+Weil/DI arguments, not a public analytic axiom.
+
+Every $\tau>0$ is available. For the value of $\theta$ in
+\eqref{eq:constants}, choosing $\tau=1/4000000$ gives
+\[
+ T^{\tau-1}\bigl(y^{7/4}+T^{1/2}y^{7/8}\bigr)
+ =T^{-3/2000000}+T^{-1/1600000}\longrightarrow0.
+\]
+The public counting route uses the also admissible loss
+$7/16000000$; its two normalized exponents are
+$-21/16000000$ and $-7/16000000$. These are distinct choices in two
+proved specializations. The smaller positive margin from the second
+term must not be replaced by the first term's margin.
+
+\subsection{Orientation of the shifts and the historical correction}
+
+For the density in \eqref{eq:moment-pair}, a diagonal term obeys
+$dm=em'$. Writing $g=(d,e)$ gives $m=(e/g)h$, $m'=(d/g)h$, and hence
+$m^{-\alpha}(m')^{-\beta}=(e/g)^{-\alpha}(d/g)^{-\beta}
+h^{-\alpha-\beta}$. The density kernel therefore places $\beta$ on
+$d$ and $\alpha$ on $e$. The placement is essential for independent
+left and right coefficients.
+
+PRZZ Theorem~4.1 prints the opposite denominator \cite[p.~18]{PRZZ}.
+The historical tag \lean{v0.1.0} copied that placement into a
+general-profile input. The current source removes that axiom and proves
+the witness input with the density-oriented kernel. For real profiles,
+exchanging the two finite indices proves
+$M(P,Q;A,B)=M(Q,P;B,A)$
+(\lean{PRZZ.gcdMainTerm_swap}); thus the two main terms coincide for
+the real witness self-pairing
+(\lean{PRZZ.witness_densityGcdMainTerm_eq}).
+This equality holds before limits or differentiation. Both ordered
+cross terms and the identical operators on the two sides preserve the
+numerical functional. It is not a justification of the old general
+mixed-profile statement. The historical tag and its records remain
+unchanged; a full check of the BCHB original is not claimed here.
+
+\section{Arithmetic main terms and the finite functional}\label{sec:mainterm}
+
+The gcd sum in \eqref{eq:kernel} is not defined to be the finite
+functional below. Their asymptotic identification is a separate part
+of the proof. The arithmetic calculation retains the unrestricted
+Dirichlet convolution in \eqref{eq:coeff}, extracts its Euler factors
+and leading poles, and estimates the remainder uniformly on the
+shift region needed for differentiation.
+
+For \(\ell,m\in\{0,2\}\), the four rational kernels are
+\begin{align}
+ K_{00}(X,Y,h)&=\frac{XY}{h},\notag\\
+ K_{20}(X,Y,h)&=\frac{XY}{h^3}-\frac{2Y}{h^2}+\frac{Y}{Xh},\notag\\
+ K_{02}(X,Y,h)&=\frac{XY}{h^3}-\frac{2X}{h^2}+\frac{X}{Yh},\notag\\
+ K_{22}(X,Y,h)&=\frac{7XY}{h^5}-\frac{6(X+Y)}{h^4}
+ +\frac{X/Y+Y/X+8}{h^3}\notag\\
+ &\hspace{9mm}-\frac{2(X^{-1}+Y^{-1})}{h^2}+\frac1{XYh}.
+ \label{eq:kernels}
+\end{align}
+Use \(F_0=P_1\), \(F_2=P_2\), and define
+\begin{align*}
+ \mathcal D_1(A,w;F)&=\theta^{-1}F'(w/\theta)+AF(w/\theta),\\
+ \mathcal D_0(A,w;F)&=F(w/\theta),\\
+ \mathcal D_{-1}(A,w;F)&=\int_0^w e^{-Az}F((w-z)/\theta)\dd z.
+\end{align*}
+For each monomial \(cX^eY^fh^{-n}\) in \(K_{\ell m}\), replace it by
+\[
+ \frac{c}{\theta^{\ell+m}}\int_0^\theta
+ \frac{v^{n-1}}{(n-1)!}
+ \mathcal D_e(A,\theta-v;F_\ell)
+ \mathcal D_f(B,\theta-v;F_m)\dd v.
+\]
+The resulting function is \(H_{\ell m}(A,B)\). Define
+\begin{align}
+ \mathcal I(A,B)
+ &=\sum_{\ell,m\in\{0,2\}}
+ \frac{H_{\ell m}(A,B)-e^{-A-B}H_{\ell m}(-B,-A)}{A+B},
+ \label{eq:functional}\\
+ M_*&=\left.\Qop\mathcal I(A,B)\right|_{A=B=-R}.
+ \label{eq:mstar}
+\end{align}
+The dual operation exchanges the two shifts as well as negating them.
+The evaluation in \eqref{eq:mstar} is away from \(A+B=0\).
+
+\begin{proposition}[The fixed smooth weighted moment]\label{prop:mainterm}
+Assume Hypotheses~\ref{hyp:weil} and~\ref{hyp:di}. For the fixed data
+\eqref{eq:constants}--\eqref{eq:psi} and every fixed real smooth
+\(\Phi\) supported in \([1,2]\),
+\begin{equation}\label{eq:weighted-limit}
+ \lim_{T\to\infty}\frac1T
+ \int_T^{2T}
+ |U_T(\tfrac12-R/\log T+\ii t)
+   \Psi_T(\tfrac12-R/\log T+\ii t)|^2\Phi(t/T)\dd t
+ =M_*\int_1^2\Phi(u)\dd u .
+\end{equation}
+\end{proposition}
+
+Here is the separation of proof obligations in the implementation.
+\lean{TwoPieceMainTerm.normalized_witness_uniform} identifies the
+normalized arithmetic main term uniformly with the finite shift
+functional. \lean{TwoPieceMoment.normalizedMoment_uniform} combines
+this with the actual moment estimate. The theorem
+\lean{TwoPieceMoment.normalizedMoment_exactEvaluator_tendsto}
+transfers the needed independent left and right shift derivatives
+through a Cauchy-integral argument. These include all jets through
+order six on each side, not only derivatives along the diagonal.
+A fixed bidisc about \((-R,-R)\), with radii sufficiently small,
+stays away from \(A+B=0\). Coefficients are held fixed during these
+shift derivatives; their height dependence is not differentiated.
+Finally \lean{WitnessMomentBound.witnessMoment_tendsto} identifies
+the exact evaluator with the real number in \eqref{eq:mstar} and
+gives \eqref{eq:weighted-limit}.
+
+The Gamma multiplier in the dual approximate functional equation
+is handled before this identification; it is not replaced by its
+leading height power by definition. The density-oriented gcd kernel,
+the two branches, their zero-frequency correction and the remaining
+Gamma defect are kept distinct until their stated estimates apply.
+Likewise, defining the inverse operators \(\mathcal D_e\) does not
+by itself justify inverse Mellin inversion. The convergence,
+contour-shift and integration-order lemmas are part of the source
+chain supplying the arithmetic identification.
+
+\section{The numerical gate and its two verification levels}\label{sec:numeric}
+
+All fixed polynomial coefficients and parameters are rational.
+The Lean counting proof uses the deliberately conservative bound
+\begin{equation}\label{eq:lean-gate}
+ M_*\le1.128201<1.128202
+       <\exp\{R(1-0.8845)\}.
+\end{equation}
+The first and the strict functional gate are proved in
+\lean{FixedCertificate}; the positive counting cap
+\(C_*=1.128202\) and its strict comparison with the exponential target
+are supplied in \lean{WitnessMomentBound}.
+The interval displayed next is an independent numerical check, not
+the precision claimed for \eqref{eq:lean-gate}.
+
+\begin{lemma}[Independent finite interval calculation]\label{lem:finite}
+The interval program accompanying this manuscript encloses
+\eqref{eq:mstar} and its comparison threshold as follows:
+\begin{align*}
+ 1.12818163807203565629105
+ &<M_*<1.12818163807203565629124,\\
  1.12820541062467513417945
- <e^{R(1-0.8845)}<1.12820541062467513417947.
+ &<e^{R(1-0.8845)}<1.12820541062467513417947.
+\end{align*}
+These statements concern the fixed finite functional, not the
+analytic moment or the external exponential-sum hypotheses.
+\end{lemma}
+
+The program \lean{paper/numerical_interval.py} uses rational
+polynomial algebra and interval arithmetic for the exponential
+pieces. After expansion, polynomial integrals are exact beta
+integrals. For the truncated exponential in \(\mathcal D_{-1}\),
+the normalized \(j\)-th shift-derivative remainder is bounded by
+\[
+ \frac{3C_F\theta^{1+j}}{j!(1+j)}
+       \frac{(R\theta)^{J+1}}{(J+1)!}.
+\]
+Here \(C_F\) bounds the profile on \([0,1]\), and \(R\theta<1\).
+At truncation order \(J=24\), the retained propagated error is
+less than \(8.799\times10^{-23}\). Runs at precision/order pairs
+\((40,20)\), \((45,24)\), \((55,24)\), and \((70,24)\) are retained in
+the certificate, using \texttt{mpmath 1.3.0}. This Python arithmetic and its libraries
+are independently reproducible but are not themselves formally
+verified in Lean.
+
+The kernel-checked proof of \eqref{eq:lean-gate} does not read or
+trust that JSON certificate. The distinction matters: an independent
+program can give more displayed digits without increasing the
+logical precision required by the formal theorem. No numerical
+optimization was performed for this revision.
+
+\section{From a weighted moment to actual zero counts}\label{sec:counting}
+
+The counting object is not merely the polynomial differential
+operator \(U_T\). Put \(r(u)=q(1/2-u)\); direct rational algebra gives
+\begin{align*}
+ r(u)={}&0.09491351+0.997010185u+2.089866u^2\\
+        &{}-2.29671034u^4+1.7701948u^6.
+\end{align*}
+For a fixed height parameter \(T\), define
+\[
+ \eta_T(s)=\sum_{j=0}^6r_j(\log T)^{-j}\xi^{(j)}(s),
+ \qquad V_T(s)=\eta_T(s)/H(s).
+\]
+The symmetry of \(\xi\) makes its even derivatives real and its odd
+derivatives purely imaginary on the critical line. Since \(r\) has
+only one nonzero odd coefficient, the imaginary part of \(\eta_T\)
+there is the nonzero real multiple
+\(0.997010185\,(\log T)^{-1}\Ima\xi'(s)\).
+This is the exact xi-prime interface used for argument variation.
+
+Define
+\[
+ p_*=1-\frac{\log C_*}{R},\qquad C_*=1.128202.
+\]
+By \eqref{eq:lean-gate}, \(p_*>0.8845\).
+Write \(\NC(T,2T]\) and \(\NT(T,2T]\) for the corresponding AF counts
+in that half-open height window.
+
+\begin{lemma}[Eventual dyadic count]\label{lem:count}
+Under Hypotheses~\ref{hyp:weil} and~\ref{hyp:di}, for every real
+\(c<p_*\) there is \(T_c\) such that every real \(T\ge T_c\) satisfies
+\begin{equation}\label{eq:dyadic}
+ c\,\NT(T,2T]\le\NC(T,2T].
 \end{equation}
 \end{lemma}
 
-\begin{proof}[Finite verification and its error bound]
-The attached interval evaluator computes \eqref{eq:H} without quadrature.
-It forms normalized Taylor jets in both shifts through order
-six. In $D_{-1}$, expand $e^{-Az}$ through degree $N=24$. For
-$C_F=\sum_d|F_d|$, the error in its $a$th normalized shift derivative at
-$A=\pm R$ is bounded by
-\begin{equation}\label{eq:tail}
- \frac{3C_F\theta^{1+a}}{a!(1+a)}
-       \frac{(R\theta)^{N+1}}{(N+1)!},\qquad 0\le a\le6,
-\end{equation}
-because $R\theta<1$ and $e^{R\theta}<3$. The corresponding full-derivative
-bound is the first factor in \eqref{eq:tail}. The finite polynomial
-integrals are evaluated by
+This is the contract of \lean{WuProportion.dyadic_eventually}.
+The following points describe how the analytic and geometric
+conditions are actually supplied.
+
+\paragraph{Exact \(V_T\) and the left-line logarithm.}
+The source estimates \(V_T-U_T\) in the weighted second moment.
+It uses nonnegative smooth time weights to pass from
+\eqref{eq:weighted-limit} to the logarithmic budget, with a strict
+reserve supplied by \(C_*>M_*\).
+The return to the original left line is proved by reverse Fatou
+with a dominating positive part and the regular \(H\) factor.
+No unproved endpoint-tightness or counting-gate assumption is used.
+On the right line the object estimated is the product
+\(V_T\Psi_T=1+O((\log T)^{-1})\); the argument does not assume that
+the mollifier alone tends uniformly to \(1\).
+
+\paragraph{Safe inward contours.}
+For fixed \(0<\delta<1/2\), the horizontal heights are chosen in
 \[
- \int_0^w z^j(w-z)^d\dd z=\frac{j!d!}{(j+d+1)!}w^{j+d+1},\qquad
- \int_0^\theta\frac{v^{n-1}(\theta-v)^d}{(n-1)!}\dd v
-   =\frac{d!}{(n+d)!}\theta^{n+d}.
+ u\in((1+\delta)T,(1+\delta)T+1),\qquad
+ v\in((2-\delta)T-1,(2-\delta)T).
 \]
-For a product of two truncated factors, combine the two errors with their
-full-factor bounds and the product of errors; contract with absolute
-values of the rational kernel and operator coefficients. The summed
-analytic error is less than $8.799\cdot10^{-23}$.
-All remaining operations, including the dual exponential $e^{2R}$,
-use outward-rounded \texttt{mpmath.iv} intervals at 55 decimal digits.
-They yield a narrower interval than \eqref{eq:interval}. An independent
-40-digit, degree-20 setting also passes the threshold. The wrapper
-\texttt{verify.py} checks the stated enclosures, exact polynomial
-constraints, and the four expanded kernels. This is a numerical
-certificate using a specified interval library, not a formal verification
-of that library or of Proposition~\ref{prop:mainterm}.
-\end{proof}
+Actual finite zero sets, boundary nonvanishing and regularity
+conditions are supplied for these contours. The retained critical-line
+zeros are included in \((T,2T]\); discarded endpoint strips are not
+identified with empty sets. The leading argument-variation budget is
+\[
+ \frac{(1-2\delta)T\log T}{2}
+       \left(p_*-\frac{2\varepsilon}{R}\right),
+\]
+with the proved lower-order costs retained in the finite-height
+inequality. Division by \(\pi\) gives a zero-count budget.
+One chooses \(\delta\) and \(\varepsilon\) using \(c<p_*\), before
+taking \(T\) sufficiently large.
 
-Combining Lemma~\ref{lem:count}, Proposition~\ref{prop:mainterm}, and
-Lemma~\ref{lem:finite} proves the proposed Theorem~\ref{thm:main}.
-The strict gap in \eqref{eq:interval}--\eqref{eq:threshold} is greater than
-$2.37725\cdot10^{-5}$ in moment units. Thus the conclusion uses a fixed
-rational witness, not convergence or global optimality of a numerical
-optimizer. Direct high-precision evaluation gives
-$1-\log M/R=0.884520175542196\ldots$, but the claimed bound is $0.8845$.
+\paragraph{The denominator and all terminal heights.}
+The pinned AF Riemann--von Mangoldt result for the actual xi-prime
+count yields
+\(\NT(T,2T]/(T\log T)\to1/(2\pi)\).
+The local count and this normalization imply \eqref{eq:dyadic}.
+AF's additive dyadic-to-cumulative theorem then transfers the
+inequality to every sufficiently large real terminal height \(X\).
+Taking \(b=(p_*+0.8845)/2\) proves Theorem~\ref{thm:main}.
+This route does not replace the denominator by a zeta count, require
+simple zeros, or assert a separately supplied arbitrary-window
+counting adapter.
 
-\section*{Verification priorities for the referee}
+\section{Formal correspondence, reproduction and review}\label{sec:review}
 
-Review should prioritize the phase-counting convention in \eqref{eq:phase},
-the shift-uniform applicability of \eqref{eq:PRZZ} to \eqref{eq:psi}, and
-Proposition~\ref{prop:mainterm}. The code establishes only
-Lemma~\ref{lem:finite}. The separate audit guide gives reproduction
-commands, review questions and the literature-search scope.
+\subsection{Principal contracts}
 
-\begingroup\small
+All declaration names below lie in the namespace \lean{XiPrime8845}.
+The repository's generated correspondence table is a navigation aid;
+where the prose combines several results, it is not a claim that a
+single theorem has exactly every displayed sentence as its type.
+
+\begin{longtable}{@{}p{.25\textwidth}p{.70\textwidth}@{}}
+\toprule
+Manuscript item & Lean source contract or verification level\\
+\midrule
+\endhead
+Hypotheses 1 and 2 &
+\lean{PRZZKloostermanInputs.WeilIncomplete} and
+\lean{PRZZKloostermanInputs.DeshouillersIwaniecLemma1};
+explicit assumptions, not proved inputs.\\[5pt]
+Proposition~\ref{prop:family} &
+\lean{PRZZFamilyMomentOptimal.moment_bound},
+with a fixed admissible partition seed and \(K\ge4\).\\[5pt]
+Public witness estimate &
+\lean{PRZZWitnessBridge.witness_estimate} and
+\lean{PRZZ.przz41_case3_K2_witness};
+the latter is now a theorem in \lean{PRZZProvedInput.lean}.\\[5pt]
+Proposition~\ref{prop:mainterm} &
+\lean{WitnessMomentBound.witnessMoment_tendsto},
+through \lean{TwoPieceMainTerm} and \lean{TwoPieceMoment}.\\[5pt]
+Conservative gate \eqref{eq:lean-gate} &
+\lean{FixedCertificate.actual_upper} and
+\lean{WitnessMomentBound.countingCap_lt_target}.\\[5pt]
+Lemma~\ref{lem:finite} &
+Independent Python interval certificate; its narrow decimal
+endpoints are not asserted as a matching Lean theorem.\\[5pt]
+Lemma~\ref{lem:count} &
+\lean{WuProportion.dyadic_eventually}, with the actual AF counts.\\[5pt]
+Theorem~\ref{thm:main} &
+\lean{WuProportion.strict_proportion} and
+\lean{WuProportion.ratio_eventually_gt}.\\
+\bottomrule
+\end{longtable}
+
+\clearpage
+\subsection{Pinned sources and the scope of the recorded checks}
+
+The mathematical baseline for this editorial revision is commit
+\path{2418fd5d334dbd7b4d99baaba5d8c9f41681884a}; the reviewer-document
+update is \path{3433792a3f7deb0125aba51673ff0db01c52b670}.
+The toolchain is Lean \texttt{v4.33.0-rc2}, with AF commit
+\path{3635e74826a4c1fcece7d1cd2b6fa75e43a00510}
+and Mathlib commit
+\path{51e6992efd06126df61a496bebf8f49482a4e129}.
+These fixed inputs, rather than moving upstream branches, determine
+the verification environment.
+
+The accepted record
+\path{checks/clean-verification-2026-11-10-local.json}
+covers 778 local source modules and 4,405 registered printed axiom
+audits. The headline import closure contains 730 local modules.
+All 778 modules were freshly compiled in an initially empty output directory,
+with zero reused local records. The linked upstream record
+\path{checks/clean-verification-2026-11-10-af.json}
+reports fresh compilation of all 101 required pinned AF modules, with no
+old AF outputs. Only fixed Mathlib/package caches were reused; unrelated
+AF targets were not rebuilt. Compile times were 190.253 seconds (AF)
+and 2,939.546 seconds (local, six worker slots).
+Older records, including the one-fresh/777-reused invocation, are
+preserved unchanged as history.
+
+The four headline audits list exactly
+\[
+ \{\lean{propext},\ \lean{Classical.choice},\ \lean{Quot.sound}\}.
+\]
+Neither an old PRZZ axiom nor \lean{sorryAx} appears in those audits.
+However, an axiom list does not list the assumptions supplied as
+ordinary theorem arguments: the two explicit exponential-sum
+hypotheses remain indispensable. Kernel checking proves the
+conditional implication, not the cited analytic inputs.
+
+The reviewer entry point is \path{docs/REVIEW_GUIDE.md}.
+It links the dependency graph, exact trust base, module table,
+source-to-paper correspondence and reproducibility instructions.
+The Python release verifier checks distribution hashes, links,
+and the independent finite certificate. Those checks are distinct
+from Lean compilation and from the visual inspection of this PDF.
+The manuscript/PDF revision changes neither the mathematical Lean
+sources nor the numerical algorithm or fixed witness.
+
+\subsection{Questions requiring independent analytic review}
+
+The principal external review is the exact match between
+Hypotheses~\ref{hyp:weil}--\ref{hyp:di} and their cited sources:
+normalization, inverse phases, coprimality restrictions, coefficient
+dependence and uniform constants all matter. A second review layer is
+the correspondence of the source definitions with the intended
+xi-prime problem: density-oriented shifts, the unrestricted Feng
+convolution, Gamma normalization, height-dependent basis uniformity,
+and the actual multiplicity counts. Finally, the finite main-term
+functional and its independent numerical implementation should be
+compared separately from the moment and counting arguments.
+
+These are specification and mathematical-review questions, not hidden
+hypotheses added to the Lean theorem. Conversely, a successful
+compiler run must not be reported as their independent resolution.
+This manuscript records no external submission, completed human
+referee report, simple-zero improvement, or priority claim.
+
+\clearpage
 \begin{thebibliography}{9}
+\bibitem{Weil}
+A.~Weil, On some exponential sums,
+\emph{Proc. Natl. Acad. Sci. USA} \textbf{34} (1948), 204--207.
+\href{https://doi.org/10.1073/pnas.34.5.204}{doi:10.1073/pnas.34.5.204}.
+
+\bibitem{Harcos}
+G.~Harcos, \emph{Weil's bound for Kloosterman sums}, expository notes,
+Theorem~1.
+\url{https://users.renyi.hu/~gharcos/weil.pdf}.
+
+\bibitem{IK}
+H.~Iwaniec and E.~Kowalski, \emph{Analytic Number Theory},
+American Mathematical Society Colloquium Publications, vol.~53, 2004,
+Corollary~11.12. Author-hosted chapter excerpt:
+\url{https://people.math.ethz.ch/~kowalski/ik-ant-exp-sums.pdf}.
+
+\bibitem{DI}
+J.-M.~Deshouillers and H.~Iwaniec,
+Power mean-values for Dirichlet's polynomials and the Riemann
+zeta-function, II,
+\emph{Acta Arith.} \textbf{43} (1984), 305--312, Lemma~1.
+\href{https://doi.org/10.4064/aa-43-3-305-312}{doi:10.4064/aa-43-3-305-312}.
+
 \bibitem{Wu}
-X. Wu, \emph{Distinct zeros of the Riemann zeta-function},
-arXiv:1206.3737v2 (2012), especially Section~3, pp.~6--8.
-\url{https://arxiv.org/pdf/1206.3737v2}.
+X.~Wu, \emph{On the zeros of the derivative of the Riemann xi-function},
+\href{https://arxiv.org/abs/1206.3737v2}{arXiv:1206.3737v2}.
+
 \bibitem{PRZZ}
-K. Pratt, N. Robles, A. Zaharescu and D. Zeindler,
-\emph{More than five-twelfths of the zeros of $\zeta$ are on the critical line},
-arXiv:1802.10521v3, Theorem~4.1 and Sections~6--7.
-\url{https://arxiv.org/pdf/1802.10521v3}.
+K.~Pratt, N.~Robles, A.~Zaharescu and D.~Zeindler,
+\emph{More than five-twelfths of the zeros of \(\zeta\) are on the
+critical line},
+\href{https://arxiv.org/abs/1802.10521v3}{arXiv:1802.10521v3},
+Theorem~4.1 and its proof.
+
 \bibitem{AF}
-L. Alp\"oge and R. Furman, \emph{More than two thirds of the zeta zeros
-are simple and on the critical line}, arXiv:2608.13637v2 (2026), Remark~7.1.
-\url{https://arxiv.org/html/2608.13637v2#S7.SS3}.
+L.~Alp\"oge and R.~Furman,
+\href{https://arxiv.org/abs/2608.13637v2}{arXiv:2608.13637v2};
+associated \emph{formal-math} Lean library, tag \texttt{v1.0},
+pinned commit specified in Section~\ref{sec:review}.
+\url{https://github.com/anthropics/formal-math}.
+
+\bibitem{Repo}
+\emph{Two-piece mollifier: xi-prime proportion formalization},
+source, certificates and verification records.
+\url{https://github.com/miosync-masa/xiprime-two-piece-mollifier}.
 \end{thebibliography}
-\endgroup
 \end{document}

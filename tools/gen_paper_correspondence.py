@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate docs/paper-correspondence.md from paper/manuscript.tex.
 
-Every theorem/lemma/proposition environment is listed with its label and the
+Every theorem/lemma/proposition/hypothesis environment is listed with its label and the
 first sentence of its statement. The Lean theorem column is filled by a human
 in tools/paper_correspondence_manual.json; the script never guesses. Labels
 new to the manuscript are rendered with empty entries. Updating the human
@@ -18,11 +18,12 @@ import readability_common as rc  # noqa: E402
 
 MANUSCRIPT = rc.ROOT / "paper" / "manuscript.tex"
 MANUAL = rc.ROOT / "tools" / "paper_correspondence_manual.json"
-ENV_RE = re.compile(r"\\begin\{(theorem|lemma|proposition|corollary|conjecture|definition|claim)\}"
+ENV_RE = re.compile(r"\\begin\{(theorem|lemma|proposition|corollary|conjecture|definition|claim|hypothesis)\}"
                     r"(?:\[([^\]]*)\])?\s*(?:\\label\{([^}]*)\})?(.*?)\\end\{\1\}", re.S)
 
 
 def detex(s):
+    s = s.replace(r"\(", "$").replace(r"\)", "$")
     s = re.sub(r"\\label\{[^}]*\}", "", s)
     s = re.sub(r"\\eqref\{([^}]*)\}", r"(\1)", s)
     s = re.sub(r"\\ref\{([^}]*)\}", r"\1", s)
@@ -62,13 +63,20 @@ def main():
     counter = {}
     entries = []
     numbered = 0
+    hypotheses = 0
     for m in ENV_RE.finditer(tex):
         env, title, label, body = m.groups()
-        numbered += 1  # manuscript uses one shared counter for theorem/lemma/proposition
+        # This manuscript uses a separate hypothesis counter.
+        if env == "hypothesis":
+            hypotheses += 1
+            number = f"H{hypotheses}"
+        else:
+            numbered += 1
+            number = str(numbered)
         line = tex[:m.start()].count("\n") + 1
         key = label or f"{env}@line{line}"
         counter[key] = counter.get(key, 0) + 1
-        entries.append({"label": key, "env": env, "number": numbered, "title": title or "",
+        entries.append({"label": key, "env": env, "number": number, "title": title or "",
                         "line": line, "summary": first_sentence(body)})
         manual.setdefault(key, {"lean": "", "candidates": [], "note": ""})
     # Rendering (including the parent --check) must not mutate human input.
@@ -79,7 +87,8 @@ def main():
     L.append("# 論文 ↔ Lean 対応表")
     L.append("")
     L.append(f"生成: `python3 tools/gen_paper_correspondence.py`。[{rc.rel(args.manuscript)}](../{rc.rel(args.manuscript)}) の "
-             "`theorem` / `lemma` / `proposition` 環境を抽出し、ラベルと主張の最初の一文を並べています。"
+             "`theorem` / `lemma` / `proposition` / `hypothesis` 環境を抽出し、ラベルと主張の最初の一文を並べています。"
+             "仮定は独立の番号 H1, H2 を用います。仮定の Lean 欄は証明済み定理ではなく命題定義です。"
              "**Lean 定理名の列は人が記入します**（記入先: "
              f"[{rc.rel(manual_path)}](../{rc.rel(manual_path)})。再生成しても記入内容は保持されます）。"
              "「候補」列は README など既存文書に明記された対応だけを候補として挙げ、推測は入れていません。")

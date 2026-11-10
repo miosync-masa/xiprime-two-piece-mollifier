@@ -1,6 +1,6 @@
 # モジュール表（`WuProportion` から到達可能な 730 モジュール）
 
-生成: `python3 tools/gen_modules_table.py`。すべて `import` 行・ファイル冒頭のコメント・[checks/weil-di-proportion-verification.json](../checks/weil-di-proportion-verification.json) に記録されたコンパイラ出力から自動抽出しています。
+生成: `python3 tools/gen_modules_table.py`。すべて `import` 行・ファイル冒頭のコメント・[checks/clean-verification-2026-11-10-local.json](../checks/clean-verification-2026-11-10-local.json) に記録されたコンパイラ出力から自動抽出しています。
 
 列の意味:
 

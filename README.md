@@ -13,11 +13,11 @@ An explicit Conrey–Feng two-component mollifier giving a **strictly greater th
 
 This repository contains a proof draft for specialist review, a reproducible finite numerical certificate, and a Lean derivation of the zero-proportion conclusion. `WuProportion.strict_proportion` proves a fixed margin: there exists `b > 0.8845` such that `b * Ncount 0 X ≤ N0 0 X` for every sufficiently large real `X`. Its two analytic premises are explicit Weil/DI specifications. The public witness estimate is now derived rather than postulated; Weil and DI themselves are not proved here. No simplicity, localized PRZZ, or counting-gate assumption is added.
 
-The [Weil/DI proportion record](checks/weil-di-proportion-verification.json) checks all 778 local sources and 4,405 axiom audits; the headline import closure has 730 modules. Its final run freshly compiles the headline and verifies 777 cached outputs by source/dependency/artifact hashes, including the preceding-stage compilations. This is not a fresh 778-module rebuild. The [witness-only proportion record](checks/witness-only-proportion-verification.json) is retained for the preceding interface. The [five-module record](checks/wu-proportion-verification.json) and [earlier final audit](checks/wu-proportion-final-audit.json) are retained historical evidence for the former interface, not evidence for the revised axiom list below. The numerical certificate alone still proves only a finite inequality.
+The [current local clean record](checks/clean-verification-2026-11-10-local.json) freshly compiles **all 778 local modules**, with **zero reused local outputs**, and checks **4,405 axiom audits**. The headline import closure contains 730 modules. The linked [AF clean record](checks/clean-verification-2026-11-10-af.json) freshly builds **all 101 required AF modules** in an isolated pinned worktree, with no old AF outputs; only fixed Mathlib/package caches are reused. Compile times were 190.253 seconds (AF) and 2,939.546 seconds (local, six worker slots), about 52 minutes 10 seconds combined. The [earlier interface-switch record](checks/weil-di-proportion-verification.json), with one fresh module and 777 reused outputs, is retained unchanged as history. The [witness-only record](checks/witness-only-proportion-verification.json), [five-module record](checks/wu-proportion-verification.json) and [earlier final audit](checks/wu-proportion-final-audit.json) describe their former interfaces. The numerical certificate alone still proves only a finite inequality.
 
 [日本語の案内](README.ja.md) · [Manuscript PDF](paper/manuscript.pdf) · [LaTeX source](paper/manuscript.tex) · [Expert audit questions](paper/README.md#questions-requiring-analytic-review)
 
-The LaTeX source includes the erratum note; the PDF is still the pre-note version and has not been rebuilt. Numerical intervals are unchanged; only the manuscript provenance hash in the certificate is updated.
+The manuscript and PDF were revised together on 10 November 2026 for the current conditional Weil/DI proof. Both input specifications, their quantifiers, the 49-pair family bridge and the actual counting convention are explicit. See the [render record](checks/manuscript-render-verification.json). Numerical intervals are unchanged; only the manuscript provenance hash in the certificate is refreshed.
 
 **Pre-erratum 7 November clean verification:** the [698-module local record](checks/clean-project-verification-2026-11-07.json) and [101-module AF record](checks/clean-af-verification-2026-11-07.json) remain unchanged historical records. They do not certify the subsequent witness-only or current Weil/DI interface changes.
 
@@ -25,11 +25,11 @@ The LaTeX source includes the erratum note; the PDF is still the pre-note versio
 
 Start with the [review guide](docs/REVIEW_GUIDE.md): exact conditional claim,
 reading order, evidence levels and remaining independent-review questions.
-The authoritative current statement is the Lean theorem, not the older PDF.
-The TeX includes the shift-placement erratum but has not been fully revised
-to describe the new Weil/DI-based proof; the PDF predates that erratum.
-The [paper correspondence table](docs/paper-correspondence.md) remains a
-candidate mapping, not a completed declaration-by-declaration audit.
+The authoritative statement is the Lean theorem. The revised TeX and PDF
+now narrate that conditional proof, including the shift-placement erratum.
+The [paper correspondence table](docs/paper-correspondence.md) identifies
+two hypothesis definitions and the principal theorem contracts, and keeps
+the independent Python interval separate. This is not completed human review.
 
 ## Final theorem and axiom audit
 
@@ -115,7 +115,7 @@ For optional Lean checks and manuscript rebuilding, see [reproduction instructio
 ## Repository layout
 
 ```text
-paper/       Manuscript source, pre-erratum PDF, standalone numerical bundle
+paper/       Revised conditional manuscript/PDF, standalone numerical bundle
 lean/        Lean modules and pinned dependency information
 tools/       Portable package and Lean verification commands
 checks/      Captured packaging and Lean verification output

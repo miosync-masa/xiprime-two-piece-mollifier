@@ -1,6 +1,6 @@
 # 信頼の基盤（trust base）
 
-生成: `python3 tools/gen_trust_base.py --af <固定 AF checkout>`。定理文は Lean ソースから、公理出力は [checks/weil-di-proportion-verification.json](../checks/weil-di-proportion-verification.json)（SHA-256 `d524f08ce38fd4cc…`）から、ライブラリの固定情報は `lake-manifest.json` / `lean-toolchain` と [lean/dependencies.json](../lean/dependencies.json) から自動抽出しています。
+生成: `python3 tools/gen_trust_base.py --af <固定 AF checkout>`。定理文は Lean ソースから、公理出力は [checks/clean-verification-2026-11-10-local.json](../checks/clean-verification-2026-11-10-local.json)（SHA-256 `62f738653be50059…`）から、ライブラリの固定情報は `lake-manifest.json` / `lean-toolchain` と [lean/dependencies.json](../lean/dependencies.json) から自動抽出しています。
 
 生成前に全ローカル Lean ソースの SHA-256 と記録の完全一致、成功終了コード、`sorryAx` / コンパイルエラーの不在を確認します。不一致・記録欠落時には生成を中止します。これは新たな Lean 再ビルドではなく、記録と現在のソースの照合です。
 
@@ -298,12 +298,12 @@ AF checkout の `lake-manifest.json` に記録された全パッケージ:
 | --- | --- | --- | --- |
 | AF checkout の lake-manifest.json / lean-toolchain | leanprover/lean4:v4.33.0-rc2 | `51e6992efd06126df61a496bebf8f49482a4e129` |  |
 | lean/dependencies.json | leanprover/lean4:v4.33.0-rc2 | `51e6992efd06126df61a496bebf8f49482a4e129` | `3635e74826a4c1fcece7d1cd2b6fa75e43a00510` |
-| checks/weil-di-proportion-verification.json | Lean (version 4.33.0-rc2, arm64-apple-darwin24.6.0, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release) | `51e6992efd06126df61a496bebf8f49482a4e129` | `3635e74826a4c1fcece7d1cd2b6fa75e43a00510` |
-| checks/clean-af-verification-2026-11-07.json |  | `51e6992efd06126df61a496bebf8f49482a4e129` | `3635e74826a4c1fcece7d1cd2b6fa75e43a00510` |
+| checks/clean-verification-2026-11-10-local.json | Lean (version 4.33.0-rc2, arm64-apple-darwin24.6.0, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release) | `51e6992efd06126df61a496bebf8f49482a4e129` | `3635e74826a4c1fcece7d1cd2b6fa75e43a00510` |
+| checks/clean-verification-2026-11-10-af.json |  | `51e6992efd06126df61a496bebf8f49482a4e129` | `3635e74826a4c1fcece7d1cd2b6fa75e43a00510` |
 
 Mathlib の rev は全出典で一致、AF コミットは一致。
 
-AF（`https://github.com/anthropics/formal-math.git` @ `3635e74826a4c1fcece7d1cd2b6fa75e43a00510`）の必須ソース閉包は **101 モジュール**（[checks/clean-af-verification-2026-11-07.json](../checks/clean-af-verification-2026-11-07.json) の `af_source_sha256`）。主定理の閉包内のローカルモジュールが直接 import する AF モジュールは 15 件:
+AF（`https://github.com/anthropics/formal-math.git` @ `3635e74826a4c1fcece7d1cd2b6fa75e43a00510`）の必須ソース閉包は **101 モジュール**（[checks/clean-verification-2026-11-10-af.json](../checks/clean-verification-2026-11-10-af.json) の `af_source_sha256`）。主定理の閉包内のローカルモジュールが直接 import する AF モジュールは 15 件:
 
 - `Zeta23.Analytic.RectangleLogDeriv`
 - `Zeta23.Assembly`
@@ -323,107 +323,107 @@ AF（`https://github.com/anthropics/formal-math.git` @ `3635e74826a4c1fcece7d1cd
 
 <details><summary>AF 必須モジュール一覧（101 件）</summary>
 
-- `Zeta23/Analytic/RectangleLogDeriv.lean`
-- `Zeta23/Analytic/Stirling.lean`
-- `Zeta23/Assembly.lean`
-- `Zeta23/Assembly/Inputs.lean`
-- `Zeta23/Chebyshev.lean`
-- `Zeta23/Defs.lean`
-- `Zeta23/Defs/Counting.lean`
-- `Zeta23/ExplicitFormula.lean`
-- `Zeta23/ExplicitFormula/Bridge.lean`
-- `Zeta23/FromPNTPlus/Auxiliary.lean`
-- `Zeta23/FromPNTPlus/EulerMaclaurin.lean`
-- `Zeta23/FromPNTPlus/Fourier.lean`
-- `Zeta23/FromPNTPlus/Mathlib/Algebra/Notation/Support.lean`
-- `Zeta23/FromPNTPlus/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean`
-- `Zeta23/FromPNTPlus/MediumPNT.lean`
-- `Zeta23/FromPNTPlus/MellinCalculus.lean`
-- `Zeta23/FromPNTPlus/Mertens.lean`
-- `Zeta23/FromPNTPlus/Rectangle.lean`
-- `Zeta23/FromPNTPlus/ResidueCalcOnRectangles.lean`
-- `Zeta23/FromPNTPlus/SmoothExistence.lean`
-- `Zeta23/FromPNTPlus/Sobolev.lean`
-- `Zeta23/FromPNTPlus/StrongPNTPrefix.lean`
-- `Zeta23/FromPNTPlus/Tactic/AdditiveCombination.lean`
-- `Zeta23/FromPNTPlus/ZetaBounds.lean`
-- `Zeta23/FromPNTPlus/ZetaConj.lean`
-- `Zeta23/GammaFacts.lean`
-- `Zeta23/GammaFacts/Complete.lean`
-- `Zeta23/GammaFacts/IntMu.lean`
-- `Zeta23/GammaFacts/Mu.lean`
-- `Zeta23/GammaFacts/Series.lean`
-- `Zeta23/GammaFacts/StirlingVert.lean`
-- `Zeta23/Hypotheses.lean`
-- `Zeta23/LinAlg.lean`
-- `Zeta23/LinAlg/HermitianPosPart.lean`
-- `Zeta23/LinAlg/Inertia.lean`
-- `Zeta23/LinAlg/PosIndex.lean`
-- `Zeta23/LinAlg/RankTrace.lean`
-- `Zeta23/LinAlg/Sylvester.lean`
-- `Zeta23/LinAlg/VonNeumann.lean`
-- `Zeta23/LinAlg/Weyl.lean`
-- `Zeta23/Poisson/PaperFT.lean`
-- `Zeta23/Prelude/InstancePriorities.lean`
-- `Zeta23/PrimeSideTemp.lean`
-- `Zeta23/RvM/Backlund.lean`
-- `Zeta23/RvM/BacklundDefs.lean`
-- `Zeta23/RvM/CountByIntegral.lean`
-- `Zeta23/RvM/Defs.lean`
-- `Zeta23/RvM/Fold.lean`
-- `Zeta23/RvM/GammaSide.lean`
-- `Zeta23/RvM/Halving.lean`
-- `Zeta23/RvM/LocalCount.lean`
-- `Zeta23/RvM/MainTerm.lean`
-- `Zeta23/RvM/NcountWindow.lean`
-- `Zeta23/RvM/ReZeroCount.lean`
-- `Zeta23/RvM/Statement.lean`
-- `Zeta23/RvM/ZetaGrowth.lean`
-- `Zeta23/Statement.lean`
-- `Zeta23/Statement/Seam.lean`
-- `Zeta23/Statement/SeamClosed.lean`
-- `Zeta23/Tail.lean`
-- `Zeta23/Tail/Basic.lean`
-- `Zeta23/Tail/Count.lean`
-- `Zeta23/Tail/Grid.lean`
-- `Zeta23/Tail/RankOne.lean`
-- `Zeta23/ThmE/GammaFactsChiProof.lean`
-- `Zeta23/ThmE/Hypotheses.lean`
-- `Zeta23/ThmE/IntMuChi.lean`
-- `Zeta23/TracesBoundsE.lean`
-- `Zeta23/WeilEF/Contour.lean`
-- `Zeta23/WeilEF/Effective.lean`
-- `Zeta23/WeilEF/FullLine.lean`
-- `Zeta23/WeilEF/FullLineAssembly.lean`
-- `Zeta23/WeilEF/GammaRBracket.lean`
-- `Zeta23/WeilEF/GoodHeights.lean`
-- `Zeta23/WeilEF/Horizontal.lean`
-- `Zeta23/WeilEF/Landau.lean`
-- `Zeta23/WeilEF/Main.lean`
-- `Zeta23/WeilEF/VerticalLine.lean`
-- `Zeta23/WeilEF/XiLogDeriv.lean`
-- `Zeta23/WeilEF/ZeroSumLimit.lean`
-- `Zeta23/WeilEF/ZeroSummability.lean`
-- `Zeta23/XiPrime/Coeff/Abel.lean`
-- `Zeta23/XiPrime/Coeff/Basic.lean`
-- `Zeta23/XiPrime/Coeff/NonSquarefree.lean`
-- `Zeta23/XiPrime/Coeff/PowerSums.lean`
-- `Zeta23/XiPrime/Coeff/PrimeSums.lean`
-- `Zeta23/XiPrime/Defs.lean`
-- `Zeta23/XiPrime/ExplicitFormula.lean`
-- `Zeta23/XiPrime/ExplicitFormula/ZeroFree.lean`
-- `Zeta23/XiPrime/Seam.lean`
-- `Zeta23/XiPrime/Statement.lean`
-- `Zeta23/XiPrime/ZeroCount.lean`
-- `Zeta23/XiPrime/ZeroCount/ArgBound.lean`
-- `Zeta23/XiPrime/ZeroCount/Basic.lean`
-- `Zeta23/XiPrime/ZeroCount/Contour.lean`
-- `Zeta23/XiPrime/ZeroCount/Generic.lean`
-- `Zeta23/XiPrime/ZeroCount/GenericRvM.lean`
-- `Zeta23/XiPrime/ZeroCount/Landau.lean`
-- `Zeta23/XiPrime/ZeroCount/Sides.lean`
-- `Zeta23/XiPrime/ZeroCount/Y.lean`
-- `Zeta23/ZetaReflect.lean`
+- `Zeta23.Analytic.RectangleLogDeriv`
+- `Zeta23.Analytic.Stirling`
+- `Zeta23.Assembly`
+- `Zeta23.Assembly.Inputs`
+- `Zeta23.Chebyshev`
+- `Zeta23.Defs`
+- `Zeta23.Defs.Counting`
+- `Zeta23.ExplicitFormula`
+- `Zeta23.ExplicitFormula.Bridge`
+- `Zeta23.FromPNTPlus.Auxiliary`
+- `Zeta23.FromPNTPlus.EulerMaclaurin`
+- `Zeta23.FromPNTPlus.Fourier`
+- `Zeta23.FromPNTPlus.Mathlib.Algebra.Notation.Support`
+- `Zeta23.FromPNTPlus.Mathlib.Analysis.SpecialFunctions.Log.Basic`
+- `Zeta23.FromPNTPlus.MediumPNT`
+- `Zeta23.FromPNTPlus.MellinCalculus`
+- `Zeta23.FromPNTPlus.Mertens`
+- `Zeta23.FromPNTPlus.Rectangle`
+- `Zeta23.FromPNTPlus.ResidueCalcOnRectangles`
+- `Zeta23.FromPNTPlus.SmoothExistence`
+- `Zeta23.FromPNTPlus.Sobolev`
+- `Zeta23.FromPNTPlus.StrongPNTPrefix`
+- `Zeta23.FromPNTPlus.Tactic.AdditiveCombination`
+- `Zeta23.FromPNTPlus.ZetaBounds`
+- `Zeta23.FromPNTPlus.ZetaConj`
+- `Zeta23.GammaFacts`
+- `Zeta23.GammaFacts.Complete`
+- `Zeta23.GammaFacts.IntMu`
+- `Zeta23.GammaFacts.Mu`
+- `Zeta23.GammaFacts.Series`
+- `Zeta23.GammaFacts.StirlingVert`
+- `Zeta23.Hypotheses`
+- `Zeta23.LinAlg`
+- `Zeta23.LinAlg.HermitianPosPart`
+- `Zeta23.LinAlg.Inertia`
+- `Zeta23.LinAlg.PosIndex`
+- `Zeta23.LinAlg.RankTrace`
+- `Zeta23.LinAlg.Sylvester`
+- `Zeta23.LinAlg.VonNeumann`
+- `Zeta23.LinAlg.Weyl`
+- `Zeta23.Poisson.PaperFT`
+- `Zeta23.Prelude.InstancePriorities`
+- `Zeta23.PrimeSideTemp`
+- `Zeta23.RvM.Backlund`
+- `Zeta23.RvM.BacklundDefs`
+- `Zeta23.RvM.CountByIntegral`
+- `Zeta23.RvM.Defs`
+- `Zeta23.RvM.Fold`
+- `Zeta23.RvM.GammaSide`
+- `Zeta23.RvM.Halving`
+- `Zeta23.RvM.LocalCount`
+- `Zeta23.RvM.MainTerm`
+- `Zeta23.RvM.NcountWindow`
+- `Zeta23.RvM.ReZeroCount`
+- `Zeta23.RvM.Statement`
+- `Zeta23.RvM.ZetaGrowth`
+- `Zeta23.Statement`
+- `Zeta23.Statement.Seam`
+- `Zeta23.Statement.SeamClosed`
+- `Zeta23.Tail`
+- `Zeta23.Tail.Basic`
+- `Zeta23.Tail.Count`
+- `Zeta23.Tail.Grid`
+- `Zeta23.Tail.RankOne`
+- `Zeta23.ThmE.GammaFactsChiProof`
+- `Zeta23.ThmE.Hypotheses`
+- `Zeta23.ThmE.IntMuChi`
+- `Zeta23.TracesBoundsE`
+- `Zeta23.WeilEF.Contour`
+- `Zeta23.WeilEF.Effective`
+- `Zeta23.WeilEF.FullLine`
+- `Zeta23.WeilEF.FullLineAssembly`
+- `Zeta23.WeilEF.GammaRBracket`
+- `Zeta23.WeilEF.GoodHeights`
+- `Zeta23.WeilEF.Horizontal`
+- `Zeta23.WeilEF.Landau`
+- `Zeta23.WeilEF.Main`
+- `Zeta23.WeilEF.VerticalLine`
+- `Zeta23.WeilEF.XiLogDeriv`
+- `Zeta23.WeilEF.ZeroSumLimit`
+- `Zeta23.WeilEF.ZeroSummability`
+- `Zeta23.XiPrime.Coeff.Abel`
+- `Zeta23.XiPrime.Coeff.Basic`
+- `Zeta23.XiPrime.Coeff.NonSquarefree`
+- `Zeta23.XiPrime.Coeff.PowerSums`
+- `Zeta23.XiPrime.Coeff.PrimeSums`
+- `Zeta23.XiPrime.Defs`
+- `Zeta23.XiPrime.ExplicitFormula`
+- `Zeta23.XiPrime.ExplicitFormula.ZeroFree`
+- `Zeta23.XiPrime.Seam`
+- `Zeta23.XiPrime.Statement`
+- `Zeta23.XiPrime.ZeroCount`
+- `Zeta23.XiPrime.ZeroCount.ArgBound`
+- `Zeta23.XiPrime.ZeroCount.Basic`
+- `Zeta23.XiPrime.ZeroCount.Contour`
+- `Zeta23.XiPrime.ZeroCount.Generic`
+- `Zeta23.XiPrime.ZeroCount.GenericRvM`
+- `Zeta23.XiPrime.ZeroCount.Landau`
+- `Zeta23.XiPrime.ZeroCount.Sides`
+- `Zeta23.XiPrime.ZeroCount.Y`
+- `Zeta23.ZetaReflect`
 
 </details>
 
@@ -483,7 +483,16 @@ python3 -B tools/verify_lean.py --af /absolute/path/to/pinned-af \
   --output build/full-lean-verification.json --jobs 6
 ```
 
-現在の記録: 全 778 ローカルソースを照合、主定理閉包 730 モジュール。この実行での新規コンパイル 1、残りはソース・直接依存・成果物ハッシュを照合したキャッシュです。`full_project_rebuilt: false`。
+```sh
+python3 -B tools/verify_clean_build.py \
+  --af /absolute/path/to/pinned-af \
+  --packages /absolute/path/to/pinned-af/.lake/packages \
+  --output-prefix build/new-clean-verification --jobs 6
+```
+
+現在の記録: 全 778 ローカルソースを照合、主定理閉包 730 モジュール。この実行での新規コンパイル 778、再利用 0。`full_project_rebuilt: true`。
+上流 AF 必須依存は 101 / 101 件を新規ビルド。旧 AF 成果物は不使用、Mathlib とパッケージは固定版キャッシュを再利用しています。
+今回の実測コンパイル時間: AF 190.253 秒、本体 2939.546 秒、合計 3129.799 秒。本体並列枠 6。環境構築・文書/PDF 検査はこの時間に含みません。再実行時の保証値ではありません。
 
 ### 5c. 参考: 2026-11-07 の歴史的クリーン検証（現在の記録とは別）
 
@@ -500,6 +509,5 @@ env -u LEAN_PATH python3 -B tools/verify_lean.py --af <isolated-pinned-af> --job
 
 - AF: `Build completed successfully (3788 jobs).`（新規ビルド 101 / 101 モジュール）
 - 本体: 698 モジュールをすべて新規コンパイル、公理監査 3971 件、これは現在の依存切替記録ではありません。
-現在の再現時には `#print axioms ratio_eventually_gt` が §1 の全文と一致（標準三公理のみ、`sorryAx` なし）。Weil/DI の明示的引数も §1 の定理文で確認。
 
-所要時間の目安: 検証記録には経過時間が記録されていません（`parallel_jobs: None`）。次回の実行時に計測して追記してください。
+現在の再現時には `#print axioms ratio_eventually_gt` が §1 の全文と一致（標準三公理のみ、`sorryAx` なし）。Weil/DI の明示的引数も §1 の定理文で確認。

@@ -2,7 +2,7 @@
 
 主定理モジュール [`WuProportion`](../lean/WuProportion.lean) から `import` を逆向きにたどって到達できるローカルモジュール **730 件**（全 778 件中）を、層と名前の接頭辞で束ねた図です。矢印は import 方向（A → B は A が B を import）。各ノードはモジュール数と代表定理（そのノードで主定理に最も近いモジュールの、最後の `#print axioms` 対象）を示します。
 
-生成: `python3 tools/gen_dependency_graph.py`（`import` 行と [checks/weil-di-proportion-verification.json](../checks/weil-di-proportion-verification.json) の記録から自動生成。手書きの依存関係・定理名はありません）。
+生成: `python3 tools/gen_dependency_graph.py`（`import` 行と [checks/clean-verification-2026-11-10-local.json](../checks/clean-verification-2026-11-10-local.json) の記録から自動生成。手書きの依存関係・定理名はありません）。
 
 - 全体版（機械可読）: [dependency-graph.json](dependency-graph.json), [dependency-graph.dot](dependency-graph.dot)
 - 要約版（画像）: [dependency-graph.svg](dependency-graph.svg)

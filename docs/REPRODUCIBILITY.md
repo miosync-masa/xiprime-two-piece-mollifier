@@ -1,6 +1,6 @@
 # Reproduction instructions
 
-Updated: 9 November 2026. Read [REVIEW_GUIDE.md](REVIEW_GUIDE.md) first for
+Updated: 10 November 2026. Read [REVIEW_GUIDE.md](REVIEW_GUIDE.md) first for
 the conditional claim and [trust-base.md](trust-base.md) for the exact types.
 Numerical reproduction, Lean verification, source/specification review and
 manuscript rendering are different checks.
@@ -72,10 +72,17 @@ A reused scratch directory is accepted only after fingerprint validation;
 `fresh_module_count` records how much was newly compiled in that run.
 `--prebuilt` optionally accepts unchanged baseline modules only when their
 whole local source closure matches the historical baseline. The accepted
-[current record](../checks/weil-di-proportion-verification.json) checks all
-778 sources and 4,405 axiom outputs, but its final run freshly compiles only
-one module and reuses 777 verified caches. It is **not** a fresh 778-module
-build. These counts are evidence for that recorded source snapshot.
+[current local record](../checks/clean-verification-2026-11-10-local.json)
+freshly compiles **all 778** sources, with **zero reused local rows**, and
+checks all 4,405 printed axiom audits. Its linked
+[AF record](../checks/clean-verification-2026-11-10-af.json) freshly builds
+all 101 required AF modules in an isolated pinned worktree, with no old AF
+outputs. Only pinned Mathlib/package caches are reused. The compile stages
+took 190.253 seconds (AF) and 2,939.546 seconds (local, six worker slots);
+these measurements do not guarantee future run times.
+The [preceding interface-switch record](../checks/weil-di-proportion-verification.json)
+is preserved unchanged: its one fresh module and 777 reused rows describe
+that earlier invocation, not the current clean build.
 
 The alternative full runner always uses a temporary local output directory:
 
@@ -85,8 +92,26 @@ python3 -B tools/verify_lean.py --af /absolute/path/to/pinned-af \
 ```
 
 The runners do not install dependencies or rebuild AF/Mathlib automatically.
-For a fresh AF source-closure build with fixed package caches, follow the
-isolated-worktree procedure recorded in
+To rebuild both the complete required AF source closure and every local source,
+while reusing only pinned Mathlib/package caches, use the clean orchestrator:
+
+```sh
+python3 -B tools/verify_clean_build.py \
+  --af /absolute/path/to/pinned-af \
+  --packages /absolute/path/to/pinned-af/.lake/packages \
+  --output-prefix build/new-clean-verification --jobs 6
+```
+
+It checks all package Git pins and tracked package sources, creates a new
+detached AF worktree and an empty local output directory, unsets inherited
+Lean search paths, disables downloadable build caches, and never passes
+`--prebuilt`. It retains the worktree, outputs and raw logs for inspection.
+The two output records have suffixes `-af.json` and `-local.json`; an existing
+record at either path is rejected rather than overwritten. Elapsed times,
+source/artifact hashes and every local compiler audit are recorded. The AF
+count excludes cached package jobs; Mathlib source is not rebuilt.
+
+The earlier isolated-worktree procedure is recorded in
 [clean-af-verification-2026-11-07.json](../checks/clean-af-verification-2026-11-07.json).
 It rebuilt 101 AF modules, not Mathlib or unrelated AF targets. The paired
 [698-module local record](../checks/clean-project-verification-2026-11-07.json)
@@ -110,7 +135,8 @@ Generation requires a complete source-set/hash match with the current accepted
 compiler record and successful compiler outputs. Stale/missing/failed evidence
 stops generation. This is not a new Lean rebuild. `--check` writes only to a
 temporary directory and cannot be combined with the writing `--sync-manual`.
-The default record is `checks/weil-di-proportion-verification.json`.
+The default local record is `checks/clean-verification-2026-11-10-local.json`;
+the default AF record is `checks/clean-verification-2026-11-10-af.json`.
 
 The [manual correspondence JSON](../tools/paper_correspondence_manual.json)
 is edited only deliberately; ordinary generation preserves it. Unmapped
@@ -123,23 +149,24 @@ python3 -B tools/gen_paper_correspondence.py --sync-manual
 
 ## Manuscript
 
-The numerical algorithms and fixed witness are unchanged. The TeX has a
-shift-placement erratum and its certificate provenance hash was updated;
-the PDF predates the note. The paper bundle is not wholly byte-identical to
-its original snapshot. Neither artifact narrates the complete current
-Weil/DI-based proof. See [paper/README.md](../paper/README.md).
+The numerical algorithms and fixed witness are unchanged. The TeX and PDF
+were revised together on 10 November 2026 for the conditional Weil/DI proof,
+including the shift-placement correction. Only the manuscript provenance
+hash in the numerical certificate is refreshed; its exact checks and all
+interval results are unchanged. See [paper/README.md](../paper/README.md)
+and [the PDF render record](../checks/manuscript-render-verification.json).
 
-A TeX revision and render/visual review are separate from this documentation
-refresh. To rebuild in a separate copy if preserving the distribution:
+To rebuild in a separate copy if preserving the distribution:
 
 ```sh
 cd paper
 tectonic -X compile manuscript.tex --keep-logs
 ```
 
-Alternatively run `pdflatex manuscript.tex` twice. Packages may need an initial
-network download. A rebuilt PDF must be checked page by page before delivery;
-a successful compiler exit or a matching numerical certificate is not that check.
+This revision used Tectonic 0.17.0 and PyMuPDF 1.28.2 to render every page,
+then visual inspection. Alternatively run `pdflatex manuscript.tex` twice.
+Packages may need an initial network download. Each rebuilt PDF should be
+checked page by page; a compiler exit or numerical certificate is not that check.
 
 ## Continuous integration and integrity
 
@@ -155,5 +182,7 @@ covers the full distribution except itself and runtime files.
 [provenance.json](../provenance.json) retains dated historical claims with a
 current documentation pointer; it is not a replacement for the manifests.
 After a deliberate edit, inspect changes, regenerate affected documents and
-update hashes separately. For this docs-only refresh the Lean sources,
-compiler JSONs, manuscript, numerical scripts and certificate are unchanged.
+update hashes separately. In this manuscript revision the Lean sources,
+compiler JSONs and numerical scripts are unchanged. The numerical certificate
+diff is restricted to its manuscript provenance hash. Rendering and editorial
+checks do not replace the accepted Lean verification record.

@@ -1,6 +1,6 @@
 # Reviewer entry point
 
-Updated: 9 November 2026. Mathematical-source baseline:
+Updated: 10 November 2026. Mathematical-source baseline:
 [`2418fd5`](https://github.com/miosync-masa/xiprime-two-piece-mollifier/commit/2418fd5d334dbd7b4d99baaba5d8c9f41681884a).
 This guide organizes the existing evidence; it is not an independent analytic
 audit, a new mathematical proof or a record of human peer review.
@@ -78,11 +78,14 @@ with their later suppliers.
 
 | Evidence | What was checked | What it does not establish |
 | --- | --- | --- |
-| [Current Lean record](../checks/weil-di-proportion-verification.json) | 778 source hashes, dependency/artifact fingerprints and 4,405 printed axiom audits; four headline audits and their types | A fresh whole-project rebuild: the final run freshly compiles one module and reuses 777 verified caches, including preceding-stage compilations |
+| [Current local clean record](../checks/clean-verification-2026-11-10-local.json) | All 778 local modules freshly compiled, zero reused local rows, source/dependency/artifact hashes and 4,405 axiom audits; four headline audits and their types | A proof of the explicit Weil/DI hypotheses or independent specification review |
+| [Current AF clean record](../checks/clean-verification-2026-11-10-af.json) | All 101 required pinned AF modules freshly built in an isolated worktree; no old AF outputs | A Mathlib source rebuild: pinned Mathlib/package caches are reused; unrelated AF targets are outside the required closure |
+| [Earlier interface-switch record](../checks/weil-di-proportion-verification.json) | The preceding run with one fresh local module and 777 verified cached outputs | The new clean build; this historical record is preserved unchanged |
 | [Historical local clean record](../checks/clean-project-verification-2026-11-07.json) | Fresh outputs for the then-current 698 local modules | The later 80 additions or changed public interface |
 | [Historical AF clean record](../checks/clean-af-verification-2026-11-07.json) | The pinned 101-module AF dependency closure, with fixed package caches | A fresh Mathlib source rebuild or a current local full rebuild |
 | [Python certificate](../paper/certificate.json) and [finite verifier](../paper/verify.py) | Exact rational checks and four interval runs for the fixed functional | A formal proof of mpmath, the analytic reduction or the deep input specifications |
-| [Paper correspondence](paper-correspondence.md) | Four manuscript environments and documented candidate theorem mappings | A completed theorem-by-theorem equivalence audit; blank mappings remain deliberate |
+| [Paper correspondence](paper-correspondence.md) | Five theorem/lemma/proposition environments and two separately numbered hypothesis definitions, with named source contracts | Completed independent equivalence review; the narrow Python interval deliberately has no matching Lean theorem |
+| [Revised manuscript/PDF](../checks/manuscript-render-verification.json) | Current conditional narrative, TeX compilation and every rendered page inspected | A new Lean build, proof of the two inputs, or completed human review |
 
 Reproduction commands, cache rules and fresh-build options are in
 [REPRODUCIBILITY.md](REPRODUCIBILITY.md). Passing repository CI checks the
@@ -114,12 +117,15 @@ formal connections have yet to be implemented.
 
 ## 5. Manuscript and historical material
 
-[manuscript.tex](../paper/manuscript.tex) is an older audit draft with a
-shift-placement note; it has not been fully rewritten around the current
-Weil/DI proof. [manuscript.pdf](../paper/manuscript.pdf) predates even that
-note. Neither should be presented as the updated narrative of the current
-Lean development. Updating the manuscript, rebuilding the PDF and visually
-checking every page are separate outstanding editorial work.
+[manuscript.tex](../paper/manuscript.tex) and
+[manuscript.pdf](../paper/manuscript.pdf) were revised together on
+10 November 2026. They give both deep-input formulas and quantifier
+orders, the family-uniform moment, main-term orientation, finite gates
+and actual AF count transfer. The PDF was rebuilt and inspected page by
+page; [the render record](../checks/manuscript-render-verification.json)
+fixes its source/output hashes and verification scope.
+The DI Lemma 1 scan on p.310 was visually compared with the displayed
+formula and filters; this is not a proof of the analytic input.
 
 [STATUS.md](STATUS.md) separates current results from dated milestones.
 [history.md](history.md), old compiler JSONs and `provenance.json` retain

@@ -1,15 +1,29 @@
 {
   "current_documentation": {
-    "date": "2026-11-09",
+    "date": "2026-11-10",
     "mathematical_source_commit": "2418fd5d334dbd7b4d99baaba5d8c9f41681884a",
     "review_entry_point": "docs/REVIEW_GUIDE.md",
-    "current_lean_record": "checks/weil-di-proportion-verification.json",
+    "current_lean_record": "checks/clean-verification-2026-11-10-local.json",
+    "current_af_record": "checks/clean-verification-2026-11-10-af.json",
     "headline_hypotheses": [
       "WeilIncomplete",
       "DeshouillersIwaniecLemma1"
     ],
     "local_analytic_axiom_declarations": 0,
-    "scope_note": "Documentation-only refresh. Older dated entries and their preservation/status claims describe historical snapshots, not current file identity or proof obligations. Current file integrity is given by SHA256SUMS and paper/SHA256SUMS. The TeX contains the shift-placement note but is not fully revised for the Weil/DI proof; the PDF predates the note. No manuscript rebuild, independent analytic audit or expert submission is asserted."
+    "scope_note": "Manuscript and documentation revision, 10 November 2026. Current records freshly compile all 778 local modules (zero reused rows) and all 101 required AF modules, using only pinned Mathlib/package caches; all 4,405 local axiom audits pass. TeX/PDF describe the explicit Weil/DI-conditional proof, shift-placement correction and new clean verification; visual scope is in checks/manuscript-render-verification.json. Lean sources and numerical algorithms/results are unchanged; only the manuscript hash in the numerical certificate is refreshed. Older dated entries and compiler records retain their historical scope and original hashes. Current integrity is given by SHA256SUMS and paper/SHA256SUMS. No proof of the two deep inputs, independent human analytic audit or expert submission is asserted."
+  },
+  "clean_verification_2026_11_10": {
+    "local_record": "checks/clean-verification-2026-11-10-local.json",
+    "local_record_sha256": "62f738653be500597212fe7d526eb62ea9ee771fb0af4436d95b0eb40fff3de0",
+    "af_record": "checks/clean-verification-2026-11-10-af.json",
+    "af_record_sha256": "3594996963c155efeefb2cb5e2e1539be1bf1edb53afcb388dc3842f38d317e2",
+    "fresh_local_modules": 778,
+    "reused_local_modules": 0,
+    "fresh_required_af_modules": 101,
+    "axiom_audits": 4405,
+    "mathlib_source_rebuilt": false,
+    "af_compile_seconds": 190.253,
+    "local_compile_seconds": 2939.546
   },
   "snapshot_date": "2026-10-30",
   "preservation": "Paper bundle, fixed numerical witness and dependency commits are unchanged. User-authorized correction: PRZZ.SmoothWeight now uses explicit C-infinity order (top : Nat infinity), not the formerly inferred analytic order. This changes the semantic premise of the single external PRZZ axiom; it is NOT an unchanged axiom contract. SmoothWeightWitness supplies a nonnegative plateau with mass between 1/2 and 1, and the fixed-weight logarithmic derivative bounds, without PRZZ. SmoothWeightMoment specializes the existing U and V moment bounds to this concrete positive-mass weight. The historical corrected-order full-133 verification is checks/smooth-weight-verification.json; earlier verification JSONs are historical runs under the old smoothing premise and do not establish nonvacuity. The PRZZ profile/shift-uniform specialization remains an external analytic input. The numerical logarithmic budget is not a zero-counting conclusion. Fixed interior-window smoothing removal and the iterated height-before-width limit are proved in WuUnsmoothing, conditional only on the existing PRZZ input. At the historical unsmoothing checkpoint, full [T,2T] moment convergence still required the explicit EndpointTight supplier; boundary estimates and Littlewood/argument counting remain open. This checkpoint concerns the public package checkout and makes no claim that the separate research mirror was synchronized. Subsequent localization work preserves that corrected PRZZ axiom unchanged. PRZZLocalization.LocalizedEstimate is an unproved proposition, not an added axiom. Four new modules prove the support majorants, conditional localized residual transfer, and EndpointTight/full dyadic limit from explicit LocalizedUMoments and MajorantDerivativeBounds. At that historical four-module checkpoint, neither localized PRZZ nor its connection to those two moment suppliers was discharged. See checks/wu-localized-endpoint-verification.json; its focused four-module run is not a full 140-module rebuild. Current expanded-support checkpoint: eight new modules now connect LocalizedEstimate to the [1/2,5/2]-supported gcd, Cauchy jets, concrete U moments and seven derivative bounds, then EndpointTight. Full [T,2T] V*psi convergence and eventual cap <1.128202 follow conditionally, with the existing PRZZ axiom also retained through the old trimmed-limit theorem. LocalizedEstimate itself remains unproved and is not an axiom. See checks/wu-localized-moments-verification.json: eight fresh modules and 41 axiom audits, not a full 148-module rebuild. Boundary/Littlewood zero counting and the final proportion theorem remain open. Interior-window route checkpoint: WuTrimmedLog proves a positive-regularization logarithmic left-line bound from the original PRZZ axiom, without LocalizedEstimate. WuWindowTiling proves terminal-anchored disjoint half-open tiling, error summation, and an all-terminal-height transfer from an explicit local counting inequality with the finite low-height remainder retained. The actual Littlewood/argument/multiplicity counting inequality and logarithmic zero handling remain open. See checks/wu-interior-window-verification.json: two fresh modules and 20 axiom audits, not a full 150-module rebuild.",

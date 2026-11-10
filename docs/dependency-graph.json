@@ -3,8 +3,8 @@
  "root_file": "lean/WuProportion.lean",
  "edge_direction": "A -> B means A imports B",
  "record": {
-  "path": "checks/weil-di-proportion-verification.json",
-  "sha256": "d524f08ce38fd4cc437988ec009dcec81e5cbb82fb4c4bbd06370f2ceb896c93"
+  "path": "checks/clean-verification-2026-11-10-local.json",
+  "sha256": "62f738653be500597212fe7d526eb62ea9ee771fb0af4436d95b0eb40fff3de0"
  },
  "layer_rules": [
   {

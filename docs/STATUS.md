@@ -1,8 +1,46 @@
 # Proof status
 
-Updated: 9 November 2026. The fixed witness is unchanged.
+Updated: 10 November 2026. The fixed witness is unchanged.
 
-Reviewer entry point: [REVIEW_GUIDE.md](REVIEW_GUIDE.md). Dated milestones below are historical; the mathematical source is unchanged by this documentation refresh. The manuscript TeX and PDF have separate, older scopes, described in the guide.
+Reviewer entry point: [REVIEW_GUIDE.md](REVIEW_GUIDE.md). Dated milestones below are historical; the mathematical source is unchanged by the editorial revision.
+
+## Current clean verification (10 November 2026)
+
+The [new local record](../checks/clean-verification-2026-11-10-local.json)
+freshly compiles **778 / 778** local modules, with **zero reused local rows**
+and `full_project_rebuilt: true`. All **4,405** printed axiom audits pass,
+including the four headline audits with exactly the standard three axioms
+and the printed explicit Weil/DI arguments. The 730-module headline closure
+and the 48 other local modules are both covered.
+
+The linked [AF record](../checks/clean-verification-2026-11-10-af.json)
+freshly builds **101 / 101** required AF source modules at the fixed pin in
+a new detached worktree. The AF output directory was initially absent,
+inherited Lean paths were removed, and no old AF outputs were used.
+Pinned Mathlib/package caches were reused; this is not a Mathlib source
+rebuild or a rebuild of unrelated AF targets.
+
+Measured compile time: AF **190.253 seconds**, local **2,939.546 seconds**
+(six worker slots), combined **3,129.799 seconds**, about 52 minutes 10 seconds.
+Commands, log hashes, source/artifact hashes and all local compiler outputs
+are retained in the two records. The new run leaves Lean sources, explicit
+analytic hypotheses, numerical results and all older verification records
+unchanged. README, manuscript and generated reading aids now use this run.
+The 9 November entry's one-fresh/777-reused counts below remain historical.
+
+## Manuscript revision and PDF (10 November 2026)
+
+The [TeX](../paper/manuscript.tex) and [PDF](../paper/manuscript.pdf) now
+describe the current conditional theorem. Both Weil/DI specifications are
+written with full quantifier order, inverse-phase conventions and parameter
+ranges. The seven-vector family, 49 ordered pairs, AFE/main-term bridges,
+conservative Lean gate and actual AF counting convention are distinguished.
+The independent Python interval remains a separate verification level.
+The [render record](../checks/manuscript-render-verification.json) records
+the fresh PDF build and all-page visual review. Numerical results and all
+Lean sources are unchanged; only the certificate's manuscript hash changes.
+Rendering is separate from the clean Lean build above; neither check is a
+proof of the deep inputs or completed human peer review.
 
 ## Current dependency switch: explicit Weil and DI (9 November 2026)
 
@@ -34,18 +72,19 @@ transfer, avoiding a circular import through `ZetaPoleScaling` and
 `ArithmeticRegularity`. The actual regularity proofs remain independent
 of Weil/DI; their asymptotic application uses those hypotheses.
 
-The current verification record is
+At this dependency-switch stage, the verification record was
 [`weil-di-proportion-verification.json`](../checks/weil-di-proportion-verification.json).
 It distinguishes fresh compilation from source/dependency/artifact-checked
 local caches and reuses the pinned AF/Mathlib outputs. It is not a fresh
 AF/Mathlib source rebuild. The numerical certificate and historical
 verification JSONs are unchanged by this dependency switch.
 
-The final stable-verifier run checks all **778** current local sources and
+That stage's final stable-verifier run checks all **778** local sources and
 **4,405** printed axiom audits, including the **730**-module headline import
 closure. It freshly recompiles `WuProportion`; the other 777 entries are
 verified caches, including the changed sources compiled in the preceding
-stages. This is not a fresh 778-module rebuild. All four headline audits
+stages. That invocation was not a fresh 778-module rebuild; the new clean
+run above supersedes its verification scope. All four headline audits
 contain exactly `propext`, `Classical.choice`, `Quot.sound`, with no
 `sorryAx` or PRZZ analytic axiom. The recorded `#check` output also confirms
 both explicit deep-input arguments. Audit regression tests cover comments,

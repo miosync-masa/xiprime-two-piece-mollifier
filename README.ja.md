@@ -12,12 +12,14 @@
 ξ′の臨界線上零点の割合が、**明示したWeil・DI仮定の下で、重複度込みで88.45%より真に大きい**ことを導くプロジェクトです。
 `WuProportion.strict_proportion` は、ある固定 `b > 0.8845` に対し、十分大きいすべての実数高さ `X` で `b * Ncount 0 X ≤ N0 0 X` を証明します。`ratio_eventually_gt` は実際の比率の不等式です。旧 `PRZZ.przz41_case3_K2_witness` は公理ではなく証明済み定理となり、Weil・DIの仕様自体は明示的な仮定に残ります。`LocalizedEstimate`・未証明の計数仮定・単純零点仮定は主定理にありません。
 
-[Weil・DI接続の検証記録](checks/weil-di-proportion-verification.json)は全778ソース・4,405件の公理出力を照合します。主定理の閉包は730モジュールです。最終実行では主定理を新規コンパイルし、先行段階のコンパイルを含む残り777件をソース・依存・成果物ハッシュで照合しました。全778件の新規再ビルドとは区別します。[witness 専用入力の記録](checks/witness-only-proportion-verification.json)は直前のインターフェースの履歴です。[五モジュールの検証記録](checks/wu-proportion-verification.json)・[旧最終監査](checks/wu-proportion-final-audit.json)は旧公理に対する歴史的記録で、下記の改訂後の公理一覧の根拠ではありません。原稿 TeX に正誤注記を追加しました。PDF は注記追加前の版で、再生成は未実施です。数値結果は不変ですが、証明書の原稿出典ハッシュは正誤注記追加時に更新済みです。
+[現行の全件クリーン検証記録](checks/clean-verification-2026-11-10-local.json)では、**本体778本をすべて新規コンパイルし、再利用は0本**です。4,405件の公理出力を検査し、主定理の閉包730モジュールも含みます。[上流AFの新記録](checks/clean-verification-2026-11-10-af.json)では、固定コミットの必須依存**101本をすべて新規ビルド**し、旧AF成果物は使っていません。Mathlibとパッケージのみ固定版キャッシュを再利用します。実測コンパイル時間はAF190.253秒、本体2,939.546秒（6並列枠）、合計約52分10秒です。[旧Weil・DI接続記録](checks/weil-di-proportion-verification.json)の「1本新規・777本再利用」は当時の実行の履歴として変更せず保持しています。[witness専用入力の記録](checks/witness-only-proportion-verification.json)・[五モジュールの記録](checks/wu-proportion-verification.json)・[旧最終監査](checks/wu-proportion-final-audit.json)も、それぞれの旧インターフェースの履歴です。
 
-査読はまず [現行の査読ガイド](docs/REVIEW_GUIDE.md)、[定理文と信頼境界](docs/trust-base.md)、[証明状態](docs/STATUS.md)の順でご覧ください。原稿TeXは正誤注記を含みますが、Weil・DI経路を反映した全面改訂前です。PDFはさらに古い版です。[論文↔Lean対応表](docs/paper-correspondence.md)は候補表で、全項目の照合完了を意味しません。
+2026年11月10日に原稿TeXとPDFを現行のWeil・DI条件付き証明へ改訂し、今回の全件クリーン検証を反映しました。[描画検証記録](checks/manuscript-render-verification.json)に全ページの目視確認と対象ハッシュを記録しています。数値結果は不変で、証明書では原稿出典ハッシュのみを更新しました。
+
+査読はまず [現行の査読ガイド](docs/REVIEW_GUIDE.md)、[定理文と信頼境界](docs/trust-base.md)、[証明状態](docs/STATUS.md)の順でご覧ください。改訂原稿とPDFは両入力の量化子・正確な数式、49対の一様評価、主項と実計数への接続を記述しています。[論文↔Lean対応表](docs/paper-correspondence.md)は仮定の定義と定理の対応を区別し、Pythonの細い数値区間には同値なLean定理を割り当てていません。独立した人間査読の完了を意味するものではありません。
 数値検証の成功と、解析的移植の証明・最終定理のLean化は区別します。simple+on-lineの改善は主張していません。
 
-**正誤表以前の11月7日クリーン検証：** [本体698モジュールの記録](checks/clean-project-verification-2026-11-07.json)と[AF必須依存101モジュールの記録](checks/clean-af-verification-2026-11-07.json)は歴史的記録として変更せず保持しています。現在の監査は別の[Weil・DI接続記録](checks/weil-di-proportion-verification.json)を参照してください。
+**正誤表以前の11月7日クリーン検証：** [本体698モジュールの記録](checks/clean-project-verification-2026-11-07.json)と[AF必須依存101モジュールの記録](checks/clean-af-verification-2026-11-07.json)は歴史的記録として変更せず保持しています。現在の監査は[11月10日の全件クリーン検証](checks/clean-verification-2026-11-10-local.json)を参照してください。
 
 ## 主定理の公理監査
 
@@ -71,7 +73,7 @@ Leanは別途、固定版AFのビルド済み環境が必要です。[再現手�
 
 - `lean/`：現行の定理・明示的仮定・固定依存情報。
 - `checks/`：現在の検証記録と、変更せず保持した過去の記録。
-- `paper/`：旧監査原稿、正誤注記を加えたTeX、未更新PDF、独立の数値検証器。
+- `paper/`：現行の条件付き証明に合わせた改訂TeX・PDF、独立の数値検証器。
 - `docs/`：査読入口、現状、再現手順、生成された依存資料と開発履歴。
 - `tools/`：検証・資料生成スクリプト。`.github/` のCIは数値・配布・資料生成の確認で、Lean再ビルドではありません。
 

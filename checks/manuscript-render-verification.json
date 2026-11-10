@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-10",
+  "scope": "Manuscript/PDF revision and visual validation. Current Lean compilation evidence is separately linked below: all 778 local modules and 101 required AF modules freshly compiled, fixed Mathlib/package caches reused. No proof of the explicit Weil/DI inputs, human peer-review completion, or external submission.",
+  "mathematical_source_commit": "2418fd5d334dbd7b4d99baaba5d8c9f41681884a",
+  "prior_documentation_commit": "3433792a3f7deb0125aba51673ff0db01c52b670",
+  "source": "paper/manuscript.tex",
+  "pdf": "paper/manuscript.pdf",
+  "source_sha256": "5ba8919a94859c467448726cbca067b274c5be87dee337fb1c74ea665ab75183",
+  "pdf_sha256": "5891896ab470b44dea91981f2068eeac4d87f0993db6f4600c419e96fff2fd7f",
+  "build": {
+    "engine": "Tectonic 0.17.0",
+    "command": "tectonic -X compile paper/manuscript.tex --keep-logs",
+    "working_directory": "repository root",
+    "exit_code": 0,
+    "tex_warnings": 0,
+    "overfull_boxes": 0,
+    "undefined_references_or_citations": 0,
+    "local_ignored_log": "paper/manuscript.log",
+    "log_sha256": "62918276450deeff75521904769e7586b95cc12c2e985f376f60e86cd5d0c771"
+  },
+  "rendering": {
+    "renderer": "PyMuPDF 1.28.2",
+    "scale": 1.3,
+    "page_count": 12,
+    "local_ignored_png_directory": "build/manuscript-review",
+    "all_pages_visually_inspected": true,
+    "inspected_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "visual_result": "All pages inspected after final build. No observed clipping, overlap, missing glyphs or broken reference markers; long declarations wrap, references occupy a dedicated page.",
+    "structural_page_checks": [
+      {
+        "page": 1,
+        "text_span_count": 922,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 2,
+        "text_span_count": 966,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 3,
+        "text_span_count": 858,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 4,
+        "text_span_count": 958,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 5,
+        "text_span_count": 1073,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 6,
+        "text_span_count": 832,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 7,
+        "text_span_count": 782,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 8,
+        "text_span_count": 750,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 9,
+        "text_span_count": 834,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 10,
+        "text_span_count": 190,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 11,
+        "text_span_count": 672,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 12,
+        "text_span_count": 300,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      }
+    ]
+  },
+  "contents": {
+    "numbered_theorems_lemmas_propositions": 5,
+    "separately_numbered_hypotheses": 2,
+    "explicit_deep_inputs": [
+      "WeilIncomplete",
+      "DeshouillersIwaniecLemma1"
+    ],
+    "narrow_python_interval_is_not_a_lean_theorem": true
+  },
+  "preserved": {
+    "lean_sources_unchanged": true,
+    "historical_compiler_records_unchanged": true,
+    "numerical_algorithms_unchanged": true,
+    "numerical_certificate_change": "Only source_sha256.manuscript.tex; exact checks and all four interval runs match."
+  },
+  "source_comparison": {
+    "di": {
+      "url": "https://www.impan.pl/shop/en/publication/transaction/download/product/104164",
+      "pdf_sha256": "c48baeb380fbfa6efa8f65b13976696ce218599d9c7057225dfa348e43ca9f48",
+      "printed_page": 310,
+      "scan_pdf_page_index": 3,
+      "checked": "Visual comparison of Lemma 1 displayed bound, inverse phase and coprimality filters; not a proof of the lemma or independent full specification audit."
+    },
+    "weil_completion": {
+      "url": "https://people.math.ethz.ch/~kowalski/ik-ant-exp-sums.pdf",
+      "pdf_sha256": "b4c346a8459e9a0450a16a22438220cf7f40926d875beacbcdeccdfc75c5eee5",
+      "printed_page": 280,
+      "scan_pdf_page_index": 13,
+      "checked": "Author-hosted excerpt: visually checked Corollary 11.12 and equation (11.16). Manuscript supplies the interval-completion deduction, including full periods and the Ramanujan zero mode. This is not a Lean proof term."
+    }
+  },
+  "lean_verification": {
+    "local_record": "checks/clean-verification-2026-11-10-local.json",
+    "local_record_sha256": "62f738653be500597212fe7d526eb62ea9ee771fb0af4436d95b0eb40fff3de0",
+    "af_record": "checks/clean-verification-2026-11-10-af.json",
+    "af_record_sha256": "3594996963c155efeefb2cb5e2e1539be1bf1edb53afcb388dc3842f38d317e2",
+    "fresh_local_modules": 778,
+    "reused_local_modules": 0,
+    "fresh_required_af_modules": 101,
+    "axiom_audits": 4405,
+    "mathlib_source_rebuilt": false
+  }
+}

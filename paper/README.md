@@ -1,95 +1,114 @@
-# Expert audit package for the 88.45 percent xi prime candidate
+# Conditional xi-prime proportion: manuscript and finite certificate
 
-This package fixes one explicit two-component mollifier. It contains no optimizer and needs no CUE sample, zero table, private repository, or earlier internal report.
+Revised: 10 November 2026. The [manuscript source](manuscript.tex) and
+[PDF](manuscript.pdf) now describe the current Lean route from two explicit
+exponential-sum hypotheses to a fixed proportion strictly above 88.45%.
+Both numerator and denominator are AF's actual **xi-prime** zero counts,
+with analytic multiplicity; this is not a simple-zero result.
 
-The older manuscript states its intended claim in the following notation:
+The paper states the complete `WeilIncomplete` and
+`DeshouillersIwaniecLemma1` contracts, including quantifier order,
+coprimality, modular inverses, floors and coefficient bounds. These are
+explicit Lean hypotheses, **not estimates supplied with Lean proof terms here**.
+Section 2.1 gives a prose deduction of the incomplete input from the
+classical composite-modulus bound (Iwaniec–Kowalski, Corollary 11.12),
+including the zero mode and long intervals. The former PRZZ
+witness axiom is now derived from them. The source correspondence still
+requires independent expert review.
 
-\[
-\liminf_{T\to\infty}N_{\xi',c}(T)/N(T)>.8845.
-\]
+## Reading order and verification levels
 
-Both counts include multiplicity. This is not a simple-zero claim. The manuscript is a proof draft for expert review, not a declaration of peer-reviewed validity or publication priority. Authorship and affiliations are intentionally not assigned in this package.
+The current [local clean record](../checks/clean-verification-2026-11-10-local.json)
+freshly compiles all 778 local modules (zero reused rows) and checks 4,405
+axiom audits. Its linked [AF record](../checks/clean-verification-2026-11-10-af.json)
+freshly builds all 101 required AF modules. Mathlib/package caches remain
+fixed and reused; the explicit Weil/DI hypotheses are not thereby proved.
+Older compiler records retain their original scope.
 
-## Current scope and reading order
+1. Sections 1–2: precise conditional conclusion and both external inputs.
+2. Sections 3–4: exact fixed witness, height-dependent seven-vector family,
+   all 49 ordered pairs, class-uniform Mellin masses, AFE residual assembly,
+   shift orientation and the two admissible loss exponents.
+3. Sections 5–7: arithmetic main-term identification, Cauchy derivatives,
+   finite gate, exact auxiliary function, safe contours and actual counting.
+4. Section 8 and [REVIEW_GUIDE.md](../docs/REVIEW_GUIDE.md): source contracts,
+   recorded checks and independent-review questions.
 
-Updated: 9 November 2026. This directory is the **manuscript and numerical**
-part of the repository; it is not the authoritative current Lean proof guide.
-For the current formal theorem, begin with [REVIEW_GUIDE.md](../docs/REVIEW_GUIDE.md)
-and [trust-base.md](../docs/trust-base.md).
-
-The current `WuProportion` theorems prove the proportion for AF's actual
-xi-prime zero counts under explicit `WeilIncomplete` and
-`DeshouillersIwaniecLemma1` hypotheses. The former PRZZ witness input is
-now a proved theorem. Neither deep input is proved here, and the exact
-specifications still require independent source correspondence review.
-
-The display above uses the manuscript's notation. It must not be treated
-as a declaration-by-declaration match with the Lean statement: compare
-the denominator, window conventions and asymptotic normalization using
-the [candidate correspondence table](../docs/paper-correspondence.md).
-
-| Artifact | Current role and limitation |
+| Artifact | Role and boundary |
 | --- | --- |
-| `manuscript.tex` | Older audit draft plus the 7 November shift-placement note; not fully rewritten for the current Weil/DI-based proof. |
-| `manuscript.pdf` | Historical PDF predating that note; not a render of the current TeX. Rebuild and page-by-page visual inspection remain pending. |
-| `numerical_interval.py`, `verify.py` | Unchanged finite-functional calculation; no optimizer or formal verification of mpmath. |
-| `certificate.json` | Saved finite enclosure. The TeX provenance hash was updated for the erratum; interval results are unchanged. |
-| `SHA256SUMS` | Current paper-directory file integrity, not evidence of mathematical validity or a PDF rebuild. |
+| `manuscript.tex`, `manuscript.pdf` | Revised conditional proof guide, rebuilt together; not a report of completed human peer review. |
+| `numerical_interval.py`, `verify.py` | Unchanged independent finite-functional calculation; neither an optimizer nor a formal proof of mpmath. |
+| `certificate.json` | Four interval runs and exact fixed data unchanged; only the manuscript provenance hash is refreshed. |
+| `SHA256SUMS` | Integrity of current paper-directory files, not mathematical validity. |
+| [Render record](../checks/manuscript-render-verification.json) | Build version, source/PDF hashes, page count and visual-inspection scope; not a Lean rebuild. |
 
-Read the TeX for the witness and original argument, then inspect the numerical
-code and certificate. Use the root Lean source and current verification
-record for formal claims. Authorship/submission decisions are separate.
+The [correspondence table](../docs/paper-correspondence.md) distinguishes
+two hypothesis definitions, theorem contracts and the independently
+computed decimal interval. The Lean gate is the coarser bound
+`M_* ≤ 1.128201`; the counting proof uses the cap `1.128202`.
+The narrow Python enclosure is not claimed to be that Lean theorem.
 
-The main-term inequalities in the manuscript are outward decimal weakenings of the computed intervals. They are not rounded midpoints treated as bounds.
+## Reproduce the finite certificate offline
 
-## Reproduce offline
-
-Use Python 3.10 or later. Install the single pinned dependency if necessary:
+Use Python 3.10 or later. Install the pinned dependency if necessary:
 
 ```sh
 python3 -m pip install -r requirements.txt
 python3 verify.py --manifest
 ```
 
-The script prints JSON and writes no files. Internet access is not used by the verification. Compare the printed JSON with `certificate.json`; source hashes are part of the output. `SHA256SUMS` covers all delivered files other than itself.
-
-The runs use 40 digits with Taylor order 20, and 45, 55, and 70 digits with order 24. All pass the strict 88.45-percent threshold. The normalized midpoint display agrees to 22 significant digits in the three order-24 runs; the rigorous information is the interval, not that agreement.
+The script prints JSON and writes no files. After dependency installation
+it uses no network. Compare stdout with `certificate.json`; source hashes
+are part of the result. The runs use precision/order pairs (40,20),
+(45,24), (55,24), (70,24). Every run passes the strict finite threshold.
+Displayed decimal bounds are outward weakenings of the intervals,
+not rounded midpoints. No zero table, CUE sample or private research
+checkout is needed.
 
 ## Build the manuscript
 
-No nonstandard font or local TeX macro is required. Either run `pdflatex manuscript.tex` twice, or use:
+From this directory:
 
 ```sh
 tectonic -X compile manuscript.tex --keep-logs
 ```
 
-The pre-note PDF was built with Tectonic 0.17.0 and visually inspected page by page. That statement does not certify a build of the revised TeX. A fresh Tectonic installation may need network access to fetch standard TeX packages on its first build. PDF byte equality across TeX installations is not required for mathematical reproducibility.
+The revised PDF was built with Tectonic 0.17.0, rendered with PyMuPDF
+1.28.2, and inspected page by page. See the render record for exact
+artifacts and checks. Standard TeX packages may require a network
+download on first use. Alternatively run `pdflatex manuscript.tex`
+twice and visually inspect that output. PDF byte equality across TeX
+installations is not a mathematical reproducibility requirement.
 
 ## Questions requiring analytic review
 
-These are independent interpretation/specification checks, not a claim that
-the corresponding Lean connections are still unimplemented. The current
-proof route and its actual remaining assumptions are in the review guide.
+These are specification and interpretation checks, not assertions that
+the corresponding Lean connections remain unimplemented.
 
-| Location in manuscript | Exact question |
+| Location | Review question |
 | --- | --- |
-| Lemma 2, phase-counting step | Does the direct auxiliary function, with only a nonzero linear odd term in its centered polynomial, give the stated multiplicity-counted inequality with the specified boundary convention? |
-| Lemma 2, right boundary and exact V | Are the absolute-convergence normalization and L2 comparison adequate before Jensen, without importing a negative-log-tail estimate? |
-| Section 3 and the current deep inputs | Do the exact Weil completion and DI specifications match the cited results, with their quantified constants and full parameter ranges? Does the revised witness bridge implement the intended density and coefficient family? |
-| Proposition 3 | Does the published Euler-factor/contour analysis give precisely the four expanded kernels, including inverse Mellin powers and the dual shift exchange? |
-| Lemma 4 | Are the interval tail propagation and outward bounds sufficient? The full code is supplied for reimplementation. |
-| Lemma 2, globalization | Is the fixed-window-then-finite-dyadic-sum limiting order adequate for the claimed liminf? |
+| Hypothesis 1 / Section 2.1 | Check the prose completion argument from Iwaniec–Kowalski Corollary 11.12, including the Ramanujan zero mode, arbitrary interval and uniform epsilon loss. The resulting stronger square-root-gcd estimate implies the first-power-gcd contract; this implication is not formalized here. |
+| Hypothesis 2 / Section 2.2 | Does DI Lemma 1 supply exactly the array class, filters, inverse phase and uniformity asserted here? The formula on p.310 was visually compared; this is not a new proof of the lemma. |
+| Proposition 2 / Section 4 | Are the profile-class bounds, height-dependent support and all mixed coefficient slots modeled correctly, with constants preceding variable data? |
+| Proposition 3 / Section 5 | Do the Euler-factor, Gamma and Mellin bridges produce precisely the density-oriented main term and the four finite kernels, including dual shift exchange? |
+| Lemma 4 / Section 6 | Are the interval tail propagation and outward bounds sufficient? The program is supplied for independent reimplementation. |
+| Lemma 5 / Section 7 | Are the exact auxiliary function, inward contours, boundary multiplicities and all-height AF count normalization faithful to the intended argument? |
 
-Prior separate AI contexts reviewed the analytic transplantation and the leading-pole implementation. They prompted explicit constructions of the counting auxiliary function and dyadic globalization. This is not a report of human peer review. A reviewer should not treat agreement among those checks as proof of the analytic interfaces above.
+The raw gcd kernel at `A+B=0` is not its holomorphic extension; the
+negative-shift bidisc used here excludes that divisor. The v0.1.0
+shift-placement correction is retained in Section 4.4 and
+[STATUS.md](../docs/STATUS.md#v010-erratum-shift-placement-7-november-2026).
+The historical tag and compiler records are not rewritten.
 
-## Sources and literature scope
+## Sources and boundaries
 
-- X. Wu, [arXiv:1206.3737v2](https://arxiv.org/pdf/1206.3737v2), Section 3 and the Littlewood boundary argument in Section 2.
-- K. Pratt, N. Robles, A. Zaharescu and D. Zeindler, [arXiv:1802.10521v3](https://arxiv.org/pdf/1802.10521v3), Theorem 4.1, Section 6 and p.45.
-- L. Alpöge and R. Furman, [arXiv:2608.13637v2](https://arxiv.org/html/2608.13637v2#S7.SS3), Remark 7.1, for the distinct simple-and-on-line comparison.
+The bibliography includes Weil, Harcos's prime-field exposition,
+Iwaniec–Kowalski's composite-modulus corollary, the
+DI paper (Acta Arithmetica **43**, 305–312), Wu, PRZZ and AF.
+The original DI scan's Lemma 1 on p.310 was inspected for its displayed
+formula and filters. Full BCHB original-source checking is not claimed.
 
-The preceding literature search, including 2026 materials, did not locate a scholarly implementation of this precise fixed-xi-prime optimization. It did locate a [public proposal of the modern-mollifier transplant idea](https://github.com/teal-sea/zeta-lab/blob/main/hunts/rogue_frontier/IDEA_PORTFOLIO.md). No assertion of nonexistence or priority follows from the search. The present review should focus on the explicit witness and its analytic proof.
-
-## Boundaries of the package
-
-No RH assumption, root-Palm estimate, high-moment small-value hypothesis, simple-zero theorem, or global numerical optimality assertion is used. The interval library itself is not formally verified. The analytic conclusions are not certified by running the Python script. The repository has been pushed to GitHub. This document records no expert submission or human peer-review outcome.
+Prior exploratory AI reviews are not human peer review. This package
+makes no RH, simple-zero, global-optimality or priority claim and assigns
+no manuscript authorship or affiliation. The repository was already
+public; this revision records no expert submission or new release.

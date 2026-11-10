@@ -1,5 +1,23 @@
 # Release notes
 
+## 2026 November 10 — Full clean verification and revised manuscript
+
+The [local clean record](../checks/clean-verification-2026-11-10-local.json)
+freshly compiles all 778 local modules, with zero reused local rows, and
+checks 4,405 printed axiom audits. The linked
+[AF clean record](../checks/clean-verification-2026-11-10-af.json) freshly
+builds all 101 required pinned AF modules; no old AF outputs are used.
+Only fixed Mathlib/package caches are reused. Compile stages took
+190.253 seconds (AF) and 2,939.546 seconds (local, six worker slots).
+
+README, generated reading aids and the revised manuscript/PDF now reference
+these records. The 9 November one-fresh/777-reused record and earlier
+historical records are preserved unchanged. Mathematical Lean sources,
+explicit Weil/DI hypotheses, fixed witness and numerical results are unchanged;
+the numerical certificate refreshes only the manuscript provenance hash.
+This is not a Mathlib source rebuild, proof of the two deep inputs,
+or completed independent human review.
+
 ## 2026 November 9 — Proved witness input and Weil/DI headline path
 
 The former `PRZZ.przz41_case3_K2_witness` axiom is replaced by a theorem
@@ -27,8 +45,9 @@ for the density-oriented shift placement, removal of the former general
 profile axiom from current source, and the proved finite witness symmetry.
 The following October entry and its compiler records describe the former
 interface. The numerical intervals are unchanged; only the certificate's
-manuscript provenance hash is updated for the new note. The PDF is still
-the pre-note version, pending rebuild and visual inspection.
+manuscript provenance hash is updated for the new note. At this checkpoint
+the PDF was still the pre-note version, pending rebuild and visual inspection;
+the 10 November revision above supersedes that rendering status.
 
 ## 2026 October 31 — Strict xi-prime proportion under the PRZZ input
 

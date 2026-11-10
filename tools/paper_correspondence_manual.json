@@ -1,36 +1,47 @@
 {
-  "lem:count": {
-    "lean": "",
+  "hyp:di": {
+    "lean": "XiPrime8845.PRZZKloostermanInputs.DeshouillersIwaniecLemma1",
     "candidates": [],
-    "note": ""
+    "note": "命題定義との対応。証明済み入力ではない。定数は全長さ・rho・係数配列より先。"
+  },
+  "hyp:weil": {
+    "lean": "XiPrime8845.PRZZKloostermanInputs.WeilIncomplete",
+    "candidates": [],
+    "note": "命題定義との対応。WeilPrime からの導出は未供給。合成数・長区間・gcd 因子を保持。"
+  },
+  "lem:count": {
+    "lean": "XiPrime8845.WuProportion.dyadic_eventually",
+    "candidates": [],
+    "note": "Weil/DI を仮定した実 AF 計数。p_* は WuDyadicCounting.proportion。半開区間・重複度を保持。"
   },
   "lem:finite": {
     "lean": "",
     "candidates": [
       {
         "name": "XiPrime8845.FixedCertificate.fixed_functional_gate",
-        "reason": "README「Executable rational evaluator and fixed finite gate」行。ただし Lean の囲いは 1.128201 で、原稿 (eq:interval) の Python 区間とは別物"
+        "reason": "別精度の Lean 有限ゲート。原稿の細い十進区間は paper/verify.py の独立計算であり、この定理と同値とはしない"
       }
     ],
-    "note": "Python 区間（paper/verify.py）と Lean 有限ゲートは独立の確認"
+    "note": "Python 区間と Lean 有限ゲートは独立。actual_upper は 1.128201、計数用 cap は 1.128202。"
+  },
+  "prop:family": {
+    "lean": "XiPrime8845.PRZZFamilyMomentOptimal.moment_bound",
+    "candidates": [],
+    "note": "固定の許容 plateau seed と K >= 4 を選んだ特殊化。定数は高さ・theta・N・独立な左右座標より先。"
   },
   "prop:mainterm": {
-    "lean": "",
+    "lean": "XiPrime8845.WitnessMomentBound.witnessMoment_tendsto",
     "candidates": [],
-    "note": ""
+    "note": "witnessMoment と actual.re を本文の積分・M_* に展開した表記。主項一様性と Cauchy jets の合成を本文で区別。"
   },
   "thm:main": {
-    "lean": "",
+    "lean": "XiPrime8845.WuProportion.strict_proportion",
     "candidates": [
       {
         "name": "XiPrime8845.WuProportion.ratio_eventually_gt",
-        "reason": "README「Final theorem and axiom audit」節が主定理として掲載"
-      },
-      {
-        "name": "XiPrime8845.WuProportion.strict_proportion",
-        "reason": "README 冒頭。固定余白 b > 0.8845 の形"
+        "reason": "本文の系である十分大きい全実数高さでの商の厳密不等式"
       }
     ],
-    "note": "現行Lean版は WeilIncomplete・DeshouillersIwaniecLemma1 を明示的に仮定し、公理一覧は標準三公理のみ。原稿は旧解析入力の説明を含むため、この候補欄は原稿との完全な同値性の監査完了を意味しない。"
+    "note": "固定余白 b > 0.8845。両深部入力は明示的仮定。この対応の記入は独立した人間査読の完了を意味しない。"
   }
 }
