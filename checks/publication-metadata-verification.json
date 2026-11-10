@@ -1,0 +1,242 @@
+{
+  "date": "2026-11-10",
+  "scope": "Bibliographic and publication-metadata checks, not a new Lean build or independent mathematical review. No remote release, DOI archive or tag was modified.",
+  "release": {
+    "version": "v0.2.0",
+    "doi": "10.5281/zenodo.24101490",
+    "zenodo_api": "https://zenodo.org/api/records/24101490",
+    "release_url": "https://github.com/miosync-masa/xiprime-two-piece-mollifier/releases/tag/v0.2.0",
+    "commit": "8fbfbe376d879274c5be7e2f655551c967dfdf99",
+    "published_date": "2026-11-10",
+    "published_status_verified": true,
+    "tag_commit_verified": true,
+    "archive_url": "https://zenodo.org/api/records/24101490/files/miosync-masa/xiprime-two-piece-mollifier-v0.2.0.zip/content",
+    "archive_files_checked_against_tag": {
+      "paper/manuscript.pdf": "5891896ab470b44dea91981f2068eeac4d87f0993db6f4600c419e96fff2fd7f",
+      "checks/clean-verification-2026-11-10-local.json": "62f738653be500597212fe7d526eb62ea9ee771fb0af4436d95b0eb40fff3de0",
+      "checks/clean-verification-2026-11-10-af.json": "3594996963c155efeefb2cb5e2e1539be1bf1edb53afcb388dc3842f38d317e2",
+      "lean/WuProportion.lean": "2987179987f9fc98699d3150133bcb3ee55d3c071b50c5e7c258b59533ef155c"
+    },
+    "current_manuscript_postdates_archive": true,
+    "archive_pdf_not_replaced": true
+  },
+  "author": {
+    "name": "MASAMICHI IIZUMI",
+    "affiliation": "Miosync, Inc., Tokyo, Japan",
+    "name_and_affiliation_source": "Name from published Zenodo creators metadata; expanded affiliation explicitly supplied by the author in the pre-submission correction. The archived Zenodo affiliation remains miosync and was not modified.",
+    "public_correspondence": "m.iizumi@miosync.email",
+    "email_funding_and_interests_source": "Explicit author reply in current session",
+    "external_funding": false,
+    "competing_interests": false,
+    "postal_address_not_supplied_or_invented": true
+  },
+  "bibliography": [
+    {
+      "key": "PRZZ",
+      "doi": "10.1007/s40687-019-0199-8",
+      "title": "More than five-twelfths of the zeros of zeta are on the critical line",
+      "journal": "Research in the Mathematical Sciences",
+      "volume": "7",
+      "article_number": "2",
+      "year": 2020,
+      "online_publication_date": "2019-12-06",
+      "source": "https://link.springer.com/article/10.1007/s40687-019-0199-8",
+      "theorem_and_page_reference_version": "arXiv:1802.10521v3, Theorem 4.1, printed page 18 onward"
+    },
+    {
+      "key": "Feng",
+      "doi": "10.1016/j.jnt.2011.10.002",
+      "title": "Zeros of the Riemann zeta function on the critical line",
+      "authors": [
+        "S. Feng"
+      ],
+      "journal": "Journal of Number Theory",
+      "volume": "132",
+      "issue": "4",
+      "year": 2012,
+      "pages": "511-542",
+      "source": "https://www.sciencedirect.com/science/article/pii/S0022314X11002319"
+    },
+    {
+      "key": "ConreyLong",
+      "doi": "10.1515/crll.1989.399.1",
+      "title": "More than two fifths of the zeros of the Riemann zeta function are on the critical line",
+      "authors": [
+        "J. B. Conrey"
+      ],
+      "journal": "Journal fuer die reine und angewandte Mathematik",
+      "volume": "399",
+      "year": 1989,
+      "pages": "1-26",
+      "source": "https://doi.org/10.1515/crll.1989.399.1"
+    },
+    {
+      "key": "BCHB",
+      "doi": "10.1515/crll.1985.357.161",
+      "title": "Asymptotic mean square of the product of the Riemann zeta-function and a Dirichlet polynomial",
+      "authors": [
+        "R. Balasubramanian",
+        "J. B. Conrey",
+        "D. R. Heath-Brown"
+      ],
+      "journal": "Journal fuer die reine und angewandte Mathematik",
+      "volume": "357",
+      "year": 1985,
+      "pages": "161-181",
+      "source": "https://www.degruyterbrill.com/document/doi/10.1515/crll.1985.357.161/html",
+      "author_list_source": "https://aimath.org/~kaur/conrey_vita.pdf",
+      "note": "Publisher landing-page author list is incomplete; the author-hosted CV and the inspected Wu preprint bibliography list all three authors. This is bibliographic checking, not a complete analytic audit of BCHB."
+    },
+    {
+      "key": "HeathBrown",
+      "doi": "10.4153/CJM-1982-095-9",
+      "title": "Prime numbers in short intervals and a generalized Vaughan identity",
+      "authors": [
+        "D. R. Heath-Brown"
+      ],
+      "journal": "Canadian Journal of Mathematics",
+      "volume": "34",
+      "issue": "6",
+      "year": 1982,
+      "pages": "1365-1377",
+      "source": "https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/prime-numbers-in-short-intervals-and-a-generalized-vaughan-identity/D6C21FF61C1489E5856AA5ED276CB0A9"
+    },
+    {
+      "key": "Levinson",
+      "doi": "10.1016/0001-8708(74)90074-7",
+      "title": "More than one third of zeros of Riemann's zeta-function are on sigma = 1/2",
+      "authors": [
+        "N. Levinson"
+      ],
+      "journal": "Advances in Mathematics",
+      "volume": "13",
+      "issue": "4",
+      "year": 1974,
+      "pages": "383-436",
+      "source": "https://api.crossref.org/works/10.1016%2F0001-8708%2874%2990074-7"
+    },
+    {
+      "key": "ConreyXi",
+      "doi": "10.1016/0022-314X(83)90031-8",
+      "title": "Zeros of derivatives of Riemann's xi-function on the critical line",
+      "authors": [
+        "J. B. Conrey"
+      ],
+      "journal": "Journal of Number Theory",
+      "volume": "16",
+      "issue": "1",
+      "year": 1983,
+      "pages": "49-74",
+      "source": "https://api.crossref.org/works/10.1016%2F0022-314X%2883%2990031-8",
+      "note": "Not the distinct Part II paper in volume 17, pages 71-75."
+    },
+    {
+      "key": "Lean4",
+      "doi": "10.1007/978-3-030-79876-5_37",
+      "title": "The Lean 4 Theorem Prover and Programming Language",
+      "authors": [
+        "L. de Moura",
+        "S. Ullrich"
+      ],
+      "conference": "CADE 28",
+      "series": "Lecture Notes in Computer Science",
+      "volume": "12699",
+      "year": 2021,
+      "pages": "625-635",
+      "source": "https://link.springer.com/chapter/10.1007/978-3-030-79876-5_37"
+    },
+    {
+      "key": "Mathlib",
+      "doi": "10.1145/3372885.3373824",
+      "title": "The Lean Mathematical Library",
+      "authors": [
+        "The mathlib Community"
+      ],
+      "conference": "CPP 2020",
+      "year": 2020,
+      "pages": "367-381",
+      "source": "https://leanprover-community.github.io/papers/mathlib-paper.pdf"
+    },
+    {
+      "key": "Wu",
+      "doi": "10.1093/qmath/hav014",
+      "title": "Distinct zeros of the Riemann zeta-function",
+      "authors": [
+        "X. Wu"
+      ],
+      "journal": "The Quarterly Journal of Mathematics",
+      "volume": "66",
+      "issue": "2",
+      "year": 2015,
+      "pages": "759-771",
+      "source": "https://academic.oup.com/qjmath/article-abstract/66/2/759/1594406",
+      "doi_metadata_source": "https://api.crossref.org/works/10.1093/qmath/hav014",
+      "inspected_argument_source": "https://arxiv.org/pdf/1206.3737v2",
+      "inspected_argument_section": "3 (xi-prime zeros)",
+      "preprint_metadata_source": "https://arxiv.org/abs/1206.3737v2",
+      "preprint_metadata_title": "Distinct zeros of the Riemann zeta-functions",
+      "preprint_full_text_title": "Distinct zeros of the Riemann zeta-function",
+      "identity_check": "The DOI resolves to the Oxford article by XiaoSheng Wu, QJM 66(2) (2015), 759-771. Its title and author match the arXiv v2 full text and its abstract states the same distinctive 66.036 percent distinct-zero result. The arXiv abstract-page title alone has a plural -functions. The former xi-prime-only bibliography title was an error, not the title of this preprint.",
+      "note": "Bibliographic correspondence checked against both primary landing pages and the arXiv full text; this is not a claim of byte identity or an independent full comparison of the journal proof. The argument used here remains pinned to preprint Section 3."
+    }
+  ],
+  "submission": {
+    "ai_policy_source": "https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals",
+    "ai_tools_disclosed": [
+      "Claude (Anthropic)",
+      "ChatGPT/Codex (OpenAI)"
+    ],
+    "ai_disclosure_location": "Separate final manuscript section before the bibliography",
+    "ai_disclosure_includes_substantive_research_and_code_assistance": true,
+    "jnt_guide_url": "https://www.sciencedirect.com/journal/journal-of-number-theory/publish/guide-for-authors",
+    "jnt_guide_access": "HTTP 403 in web and curl; current full JNT-specific instructions were not verified.",
+    "remaining_portal_check": "Check the live guide and submission portal for postal-address, journal-format and upload requirements before submission.",
+    "journal_submission_made": false
+  },
+  "accepted_review_changes": {
+    "reference_navigation": "Added explicit identification of coefficient m,n with PRZZInterface d,e and of the four headline audits with the four theorems audited at the end of WuProportion: dyadic_eventually, cumulative_eventually, strict_proportion, ratio_eventually_gt.",
+    "url_copy_check": "Verified the current PDF text and URI annotation both contain the ASCII tilde in https://people.math.ethz.ch/~kowalski/ik-ant-exp-sums.pdf; neither contains a substituted hyphen. The source coefficient support remains 1 <= n <= y.",
+    "C1": "Current pre-edit TeX already had tau=1/4000000, exponents -3/2000000 and -1/1600000, and public-loss exponents -21/16000000 and -7/16000000. Exact rational recomputation confirmed them. Changed typography only to scientific notation and digit-grouped fractions to prevent zero-count misreading.",
+    "C2": "The existing remainder already used (R theta)^(J+1)/(J+1)!, matching numerical_interval.py's order+1. Formula unchanged; added explicit distinction between derivative order j and truncation order J.",
+    "C3": "Added gcd(0,q)=q convention and explicitly included a=0 in the incomplete Weil input description.",
+    "M1_M2": "No changes: existing TeX already uses truncation exponent J+1 and coefficient support 1 <= n <= y.",
+    "M3": "Added large-rho trivial-bound split and absorption of an otherwise uniform rho^delta B_delta bound with delta=2epsilon/3; explicitly does not remove arbitrary rho-dependent implied constants or substitute for source correspondence.",
+    "M4": "Added published PRZZ journal/DOI citation, retaining the inspected arXiv v3 for theorem and page numbering.",
+    "M5": "Added Wu's 0.86957 on-line comparator and AF's 0.85838/0.86864 simple-and-on-line comparators. AF's results are unconditional, not premised on simple zeros; the cited AF v2 uses Remark 7.1. Wu's zeta-count denominator is compared asymptotically via Riemann-von Mangoldt. No Conrey Part II decimal is added without a separate source check.",
+    "M5_sources": [
+      "https://arxiv.org/pdf/1206.3737v2 (printed page 8, Section 3)",
+      "https://arxiv.org/html/2608.13637v2 (Remark 7.1)"
+    ],
+    "M6": "Aligned coefficient indices m,n and zeta-series indices k,k-prime in the diagonal mk=nk-prime argument."
+  },
+  "commit_comparison": {
+    "mathematical_baseline": "2418fd5d334dbd7b4d99baaba5d8c9f41681884a",
+    "release_commit": "8fbfbe376d879274c5be7e2f655551c967dfdf99",
+    "lean_tree_git_object_at_both_commits": "8ede59d418de7aab1d0872a4e8c5cda01859fe8d",
+    "lean_diff_empty": true,
+    "other_differences": "Documentation, verification records and supporting verification tools; not documentation alone.",
+    "commands": [
+      "git rev-parse 2418fd5d334dbd7b4d99baaba5d8c9f41681884a:lean 8fbfbe376d879274c5be7e2f655551c967dfdf99:lean",
+      "git diff --name-only 2418fd5d334dbd7b4d99baaba5d8c9f41681884a 8fbfbe376d879274c5be7e2f655551c967dfdf99"
+    ]
+  },
+  "documentation_consistency_review": {
+    "date": "2026-11-10",
+    "scope": "Current README EN/JA, reviewer guide, reproduction instructions, publication checklist, release notes, current STATUS sections, paper README and third-party/license notices; generated reading aids validated by regeneration/check.",
+    "stale_statements_corrected": [
+      "THIRD_PARTY.md: replaced pending original-material license selection with the already established MIT license, retaining the explicit Apache-2.0 AF-adaptation exception.",
+      "paper/README.md: removed the obsolete no-authorship-or-affiliation statement and used the author-confirmed manuscript metadata.",
+      "Reviewer/reproduction/release guides: added the frozen v0.2.0 DOI/commit and distinguished the later revised PDF and its hashes.",
+      "README references: aligned Wu and PRZZ with their verified published citations and retained inspected arXiv versions."
+    ],
+    "preserved": "Dated historical milestones, history.md, old compiler records, original provenance snapshots, Lean sources, numerical algorithms and the frozen v0.2.0 tag/archive are unchanged. Historical counts and then-unfinished obligations remain explicitly historical, not current claims.",
+    "journal_portal_requirements_still_unverified": true
+  },
+  "unchanged": {
+    "lean_sources": true,
+    "deep_input_definitions": true,
+    "historical_compiler_records": true,
+    "numerical_algorithms_and_results": true,
+    "release_tag_and_archive": true
+  }
+}

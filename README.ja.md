@@ -1,5 +1,10 @@
 # ξ′の二枚mollifierと重複度込み零点割合
 
+公開ソフトウェア版：[v0.2.0 — The PRZZ axiom is gone: 88.45% from explicit Weil and Deshouillers–Iwaniec hypotheses](https://github.com/miosync-masa/xiprime-two-piece-mollifier/releases/tag/v0.2.0)。
+版 DOI：[10.5281/zenodo.24101490](https://doi.org/10.5281/zenodo.24101490)。
+固定コミット：`8fbfbe376d879274c5be7e2f655551c967dfdf99`。
+今回の文献・投稿用メタデータ改訂は、この保存版の公開後の更新です。タグ・保存済みPDFは上書きしません。
+
 > **主定理と外部入力（三行要約）**
 > 1. `XiPrime8845.WuProportion.ratio_eventually_gt`：十分大きいすべての実数 `X` で `0.8845 < N0 0 X / Ncount 0 X`。`N0` は ξ′ の臨界線上零点の重複度込みの個数、`Ncount` は ξ′ の全零点の個数（AF の `Zeta23.XiPrime` の計数）。
 > 2. 主定理は `hWeil : WeilIncomplete` と `hDI : DeshouillersIwaniecLemma1` を明示的に受け取ります。この二つの深い評価自体を証明したとは主張しません。
@@ -20,6 +25,23 @@
 数値検証の成功と、解析的移植の証明・最終定理のLean化は区別します。simple+on-lineの改善は主張していません。
 
 **正誤表以前の11月7日クリーン検証：** [本体698モジュールの記録](checks/clean-project-verification-2026-11-07.json)と[AF必須依存101モジュールの記録](checks/clean-af-verification-2026-11-07.json)は歴史的記録として変更せず保持しています。現在の監査は[11月10日の全件クリーン検証](checks/clean-verification-2026-11-10-local.json)を参照してください。
+
+## 保存版の引用
+
+MASAMICHI IIZUMI (2026), *miosync-masa/xiprime-two-piece-mollifier:
+v0.2.0 — The PRZZ axiom is gone: 88.45% from explicit Weil and
+Deshouillers–Iwaniec hypotheses*. Zenodo.
+[doi:10.5281/zenodo.24101490](https://doi.org/10.5281/zenodo.24101490)。
+再現には固定タグ・コミットと、その版の
+[査読ガイド](https://github.com/miosync-masa/xiprime-two-piece-mollifier/blob/v0.2.0/docs/REVIEW_GUIDE.md)を使ってください。
+
+二つの入力は文献上の既知の評価で、新しい予想ではありません。
+「conditional」は、その証明自体を今回のLean開発に含めていないという形式化上の境界を指します。
+原稿の第2.1節に不完全和への完備化を記し、DIの出典を明示しています。
+正確なLean仕様と原典の対応の独立査読は、別途重要です。
+現行原稿には著者・連絡先、MSC・キーワード、データ／コード入手先、資金提供・利益相反、
+AFへの謝辞、およびClaude・ChatGPT/Codexの使用宣言を追加しています。
+
 
 ## 主定理の公理監査
 

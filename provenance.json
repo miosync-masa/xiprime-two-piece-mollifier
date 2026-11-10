@@ -10,6 +10,16 @@
       "DeshouillersIwaniecLemma1"
     ],
     "local_analytic_axiom_declarations": 0,
+    "software_release": {
+      "version": "v0.2.0",
+      "doi": "10.5281/zenodo.24101490",
+      "commit": "8fbfbe376d879274c5be7e2f655551c967dfdf99",
+      "archive_unchanged": true
+    },
+    "publication_metadata_record": "checks/publication-metadata-verification.json",
+    "publication_metadata_record_sha256": "47163af195a685c52cc58e299a74a258d7c2bba51d7fc21353b3327bdaf80160",
+    "render_record": "checks/manuscript-render-verification.json",
+    "editorial_revision_note": "Post-v0.2.0 bibliography and submission-metadata revision. The revised PDF is not the frozen Zenodo PDF; no tag or archive was modified. All 13 current pages were visually inspected. No new Lean compilation occurred in this editorial pass. Lean sources, historical compiler records and numerical algorithms/results are unchanged; only the manuscript provenance hash in the numerical certificate is refreshed. The live JNT guide returned HTTP 403; journal-specific portal requirements remain to be checked before submission.",
     "scope_note": "Manuscript and documentation revision, 10 November 2026. Current records freshly compile all 778 local modules (zero reused rows) and all 101 required AF modules, using only pinned Mathlib/package caches; all 4,405 local axiom audits pass. TeX/PDF describe the explicit Weil/DI-conditional proof, shift-placement correction and new clean verification; visual scope is in checks/manuscript-render-verification.json. Lean sources and numerical algorithms/results are unchanged; only the manuscript hash in the numerical certificate is refreshed. Older dated entries and compiler records retain their historical scope and original hashes. Current integrity is given by SHA256SUMS and paper/SHA256SUMS. No proof of the two deep inputs, independent human analytic audit or expert submission is asserted."
   },
   "clean_verification_2026_11_10": {

@@ -4,6 +4,20 @@ Updated: 10 November 2026. The fixed witness is unchanged.
 
 Reviewer entry point: [REVIEW_GUIDE.md](REVIEW_GUIDE.md). Dated milestones below are historical; the mathematical source is unchanged by the editorial revision.
 
+## Published software and submission-metadata revision (10 November 2026)
+
+Software release [v0.2.0](https://github.com/miosync-masa/xiprime-two-piece-mollifier/releases/tag/v0.2.0)
+is archived at [doi:10.5281/zenodo.24101490](https://doi.org/10.5281/zenodo.24101490),
+at commit `8fbfbe376d879274c5be7e2f655551c967dfdf99`.
+The Zenodo archive's headline source, both clean-build records and PDF were
+checked byte-for-byte against the tag. The revised manuscript adds missing
+references, the published Wu citation, author/contact and submission
+declarations. It postdates the frozen release PDF and does not overwrite it.
+The [metadata record](../checks/publication-metadata-verification.json)
+distinguishes bibliographic/source checks from independent analytic review.
+See [PUBLICATION.md](PUBLICATION.md) for the author-confirmed declarations
+and the remaining live JNT-guide/portal check.
+
 ## Current clean verification (10 November 2026)
 
 The [new local record](../checks/clean-verification-2026-11-10-local.json)

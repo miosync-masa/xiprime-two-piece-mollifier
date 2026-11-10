@@ -1,5 +1,11 @@
 # Two-piece mollification of xi prime
 
+Published software snapshot: [v0.2.0 — The PRZZ axiom is gone: 88.45% from explicit Weil and Deshouillers–Iwaniec hypotheses](https://github.com/miosync-masa/xiprime-two-piece-mollifier/releases/tag/v0.2.0).
+Version DOI: [10.5281/zenodo.24101490](https://doi.org/10.5281/zenodo.24101490).
+Pinned release commit: `8fbfbe376d879274c5be7e2f655551c967dfdf99`.
+The current manuscript's bibliography and submission-metadata revision postdates
+this frozen archive; the tag and archived PDF are not overwritten.
+
 > **Main theorem and external input, in three lines.**
 > 1. `XiPrime8845.WuProportion.ratio_eventually_gt`: for every sufficiently large real `X`, `0.8845 < N0 0 X / Ncount 0 X`, where `N0` counts critical-line zeros of ξ′ with multiplicity and `Ncount` all zeros of ξ′ (AF's `Zeta23.XiPrime` counts).
 > 2. The theorem now takes `hWeil : WeilIncomplete` and `hDI : DeshouillersIwaniecLemma1` explicitly. These deep estimates are hypotheses, not proved here.
@@ -23,6 +29,12 @@ The manuscript and PDF were revised together on 10 November 2026 for the current
 
 ## For reviewers
 
+The two inputs are established estimates in the literature, not new conjectures.
+“Conditional” describes the formal boundary: their proofs are not formalized
+here. The manuscript derives the incomplete estimate from the composite-modulus
+Kloosterman bound by completion and identifies the DI source lemma.
+Independent review of the exact Lean specifications remains distinct.
+
 Start with the [review guide](docs/REVIEW_GUIDE.md): exact conditional claim,
 reading order, evidence levels and remaining independent-review questions.
 The authoritative statement is the Lean theorem. The revised TeX and PDF
@@ -30,6 +42,19 @@ now narrate that conditional proof, including the shift-placement erratum.
 The [paper correspondence table](docs/paper-correspondence.md) identifies
 two hypothesis definitions and the principal theorem contracts, and keeps
 the independent Python interval separate. This is not completed human review.
+
+## Cite the released software
+
+MASAMICHI IIZUMI (2026), *miosync-masa/xiprime-two-piece-mollifier:
+v0.2.0 — The PRZZ axiom is gone: 88.45% from explicit Weil and
+Deshouillers–Iwaniec hypotheses*. Zenodo.
+[doi:10.5281/zenodo.24101490](https://doi.org/10.5281/zenodo.24101490).
+For reproduction, use the release tag/commit above and its
+[review guide](https://github.com/miosync-masa/xiprime-two-piece-mollifier/blob/v0.2.0/docs/REVIEW_GUIDE.md).
+The current manuscript contains author/contact information, MSC/keywords,
+data/code availability, funding and competing-interest declarations,
+AF acknowledgements, and disclosure of Claude and ChatGPT/Codex assistance.
+
 
 ## Final theorem and axiom audit
 
@@ -137,8 +162,8 @@ Licensed under the [MIT License](LICENSE.md).
 
 ## References
 
-- X. Wu, [arXiv:1206.3737v2](https://arxiv.org/pdf/1206.3737v2), Section 3.
-- K. Pratt, N. Robles, A. Zaharescu and D. Zeindler, [arXiv:1802.10521v3](https://arxiv.org/pdf/1802.10521v3), Theorem 4.1 and the main-term analysis.
+- X. Wu, *Distinct zeros of the Riemann zeta-function*, Q. J. Math. **66** (2015), 759–771, [doi:10.1093/qmath/hav014](https://doi.org/10.1093/qmath/hav014). The inspected argument is [arXiv:1206.3737v2](https://arxiv.org/pdf/1206.3737v2), Section 3.
+- K. Pratt, N. Robles, A. Zaharescu and D. Zeindler, *More than five-twelfths of the zeros of ζ are on the critical line*, Res. Math. Sci. **7** (2020), Article 2, [doi:10.1007/s40687-019-0199-8](https://doi.org/10.1007/s40687-019-0199-8). The theorem/page references use [arXiv:1802.10521v3](https://arxiv.org/pdf/1802.10521v3), Theorem 4.1 and the main-term analysis.
 - L. Alpöge and R. Furman, [arXiv:2608.13637v2](https://arxiv.org/html/2608.13637v2), and the pinned [AF Lean library](https://github.com/anthropics/formal-math/tree/3635e74826a4c1fcece7d1cd2b6fa75e43a00510).
 
 The manuscript and audit guide give the detailed source roles and literature-search limitations.

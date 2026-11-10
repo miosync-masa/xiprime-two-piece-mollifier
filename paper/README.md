@@ -3,6 +3,8 @@
 Revised: 10 November 2026. The [manuscript source](manuscript.tex) and
 [PDF](manuscript.pdf) now describe the current Lean route from two explicit
 exponential-sum hypotheses to a fixed proportion strictly above 88.45%.
+These are established estimates in the literature. The qualification is
+formal: their proof terms are not included in this Lean development.
 Both numerator and denominator are AF's actual **xi-prime** zero counts,
 with analytic multiplicity; this is not a simple-zero result.
 
@@ -102,6 +104,16 @@ The historical tag and compiler records are not rewritten.
 
 ## Sources and boundaries
 
+The published software snapshot is [v0.2.0](https://github.com/miosync-masa/xiprime-two-piece-mollifier/releases/tag/v0.2.0),
+[doi:10.5281/zenodo.24101490](https://doi.org/10.5281/zenodo.24101490),
+commit `8fbfbe376d879274c5be7e2f655551c967dfdf99`.
+This bibliography/submission-metadata revision postdates the archived PDF;
+it does not relabel or overwrite the frozen archive. The manuscript includes
+author/contact details, MSC/keywords, data/code availability, funding/interest
+declarations, acknowledgements and a substantive Claude/ChatGPT-Codex disclosure.
+The [publication checklist](../docs/PUBLICATION.md) records the remaining
+live JNT-guide/portal check and [metadata evidence](../checks/publication-metadata-verification.json).
+
 The bibliography includes Weil, Harcos's prime-field exposition,
 Iwaniec–Kowalski's composite-modulus corollary, the
 DI paper (Acta Arithmetica **43**, 305–312), Wu, PRZZ and AF.
@@ -109,6 +121,9 @@ The original DI scan's Lemma 1 on p.310 was inspected for its displayed
 formula and filters. Full BCHB original-source checking is not claimed.
 
 Prior exploratory AI reviews are not human peer review. This package
-makes no RH, simple-zero, global-optimality or priority claim and assigns
-no manuscript authorship or affiliation. The repository was already
-public; this revision records no expert submission or new release.
+makes no RH, simple-zero, global-optimality or priority claim. The revised
+manuscript identifies the author as MASAMICHI IIZUMI, Miosync, Inc., Tokyo,
+Japan, with the author-confirmed contact and declarations recorded in
+[PUBLICATION.md](../docs/PUBLICATION.md). AI assistance is disclosed but
+does not confer authorship. This post-release editorial update creates
+no new software release or journal submission.

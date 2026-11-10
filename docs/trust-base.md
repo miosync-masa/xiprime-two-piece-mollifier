@@ -90,7 +90,7 @@ theorem przz41_case3_K2_witness
     shiftBound poleGap eps hShift hGap hEps
 ```
 
-原典（README の参考文献から）: K. Pratt, N. Robles, A. Zaharescu and D. Zeindler, [arXiv:1802.10521v3](https://arxiv.org/pdf/1802.10521v3), Theorem 4.1 and the main-term analysis.
+原典（README の参考文献から）: K. Pratt, N. Robles, A. Zaharescu and D. Zeindler, *More than five-twelfths of the zeros of ζ are on the critical line*, Res. Math. Sci. **7** (2020), Article 2, [doi:10.1007/s40687-019-0199-8](https://doi.org/10.1007/s40687-019-0199-8). The theorem/page references use [arXiv:1802.10521v3](https://arxiv.org/pdf/1802.10521v3), Theorem 4.1 and the main-term analysis.
 
 照合メモ: この定理は旧 witness 専用入力と同じ結論を Weil/DI の明示的仮定から導きます。主項は literal な gcd/lcm 二重和、誤差は `C T^eps (N^{7/4} + N^{7/8} T^{1/2})`。元の入力との結論の一致は Lean が検査し、Weil/DI の仕様と原典の対応は別途人による照合対象です。
 

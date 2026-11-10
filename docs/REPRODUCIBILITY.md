@@ -5,6 +5,20 @@ the conditional claim and [trust-base.md](trust-base.md) for the exact types.
 Numerical reproduction, Lean verification, source/specification review and
 manuscript rendering are different checks.
 
+## Frozen release versus current editorial revision
+
+The published software snapshot is [v0.2.0](https://github.com/miosync-masa/xiprime-two-piece-mollifier/releases/tag/v0.2.0),
+commit `8fbfbe376d879274c5be7e2f655551c967dfdf99`,
+[doi:10.5281/zenodo.24101490](https://doi.org/10.5281/zenodo.24101490).
+For that immutable distribution, check out the tag and use its own manifests
+and reproduction instructions. The archived PDF and both clean-build records
+were checked against the tag. The current bibliography/submission-metadata
+revision leaves the complete Lean source tree unchanged but produces a
+different PDF and different documentation/provenance hashes. Do not compare
+the current PDF to the archived PDF's hash as though they were the same file.
+The [publication-metadata record](../checks/publication-metadata-verification.json)
+records the archive correspondence and subsequent editorial scope.
+
 ## Numerical certificate
 
 Python 3.10 or later and `mpmath==1.3.0` are required. From the repository root:
@@ -165,6 +179,9 @@ tectonic -X compile manuscript.tex --keep-logs
 
 This revision used Tectonic 0.17.0 and PyMuPDF 1.28.2 to render every page,
 then visual inspection. Alternatively run `pdflatex manuscript.tex` twice.
+Later narrow edits can preserve this visual coverage by inspecting changed
+pages and checking that the other rendered PNG hashes are identical to the
+previously inspected pages, as recorded in the current render record.
 Packages may need an initial network download. Each rebuilt PDF should be
 checked page by page; a compiler exit or numerical certificate is not that check.
 

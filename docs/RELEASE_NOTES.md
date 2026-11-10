@@ -1,5 +1,23 @@
 # Release notes
 
+## 2026 November 10 — v0.2.0 archive and post-release reviewer revision
+
+Software release [v0.2.0](https://github.com/miosync-masa/xiprime-two-piece-mollifier/releases/tag/v0.2.0)
+is archived at [doi:10.5281/zenodo.24101490](https://doi.org/10.5281/zenodo.24101490),
+commit `8fbfbe376d879274c5be7e2f655551c967dfdf99`.
+The complete Lean tree is identical to mathematical baseline `2418fd5`.
+The tag and Zenodo archive are preserved unchanged.
+
+The subsequent reviewer revision adds verified bibliography entries and
+published Wu/PRZZ citations, author-confirmed submission metadata, AI-use
+disclosure, loss-exponent typography, the qualified rho-loss absorption
+argument, and explicit code/index navigation. The revised PDF is not the
+PDF frozen in v0.2.0. The [metadata record](../checks/publication-metadata-verification.json)
+and [render record](../checks/manuscript-render-verification.json) state the checks.
+No Lean source, deep-input definition, historical compiler record or numerical
+algorithm/result changes. No new software tag or journal submission is made;
+the current JNT-specific guide/portal requirements remain to be checked.
+
 ## 2026 November 10 — Full clean verification and revised manuscript
 
 The [local clean record](../checks/clean-verification-2026-11-10-local.json)

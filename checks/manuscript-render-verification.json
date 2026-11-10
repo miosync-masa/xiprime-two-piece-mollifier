@@ -1,12 +1,12 @@
 {
   "date": "2026-11-10",
-  "scope": "Manuscript/PDF revision and visual validation. Current Lean compilation evidence is separately linked below: all 778 local modules and 101 required AF modules freshly compiled, fixed Mathlib/package caches reused. No proof of the explicit Weil/DI inputs, human peer-review completion, or external submission.",
+  "scope": "Post-v0.2.0 bibliographic and submission-metadata manuscript/PDF revision with all-page visual validation. The frozen release PDF is not replaced. No Lean source changes or new Lean compilation in this editorial pass; current separate clean-build records cover 778 local and 101 required AF modules, with fixed Mathlib/package caches reused. No proof of the explicit Weil/DI inputs, independent human peer-review completion, or journal submission.",
   "mathematical_source_commit": "2418fd5d334dbd7b4d99baaba5d8c9f41681884a",
-  "prior_documentation_commit": "3433792a3f7deb0125aba51673ff0db01c52b670",
+  "prior_documentation_commit": "8fbfbe376d879274c5be7e2f655551c967dfdf99",
   "source": "paper/manuscript.tex",
   "pdf": "paper/manuscript.pdf",
-  "source_sha256": "5ba8919a94859c467448726cbca067b274c5be87dee337fb1c74ea665ab75183",
-  "pdf_sha256": "5891896ab470b44dea91981f2068eeac4d87f0993db6f4600c419e96fff2fd7f",
+  "source_sha256": "082e1d826531e74439d995adeeebbee4baecfe4b822a005207e3d2282912d2ff",
+  "pdf_sha256": "925f22a2e76f19954bdb330df2a5e93cf01628d40ab41a96fb78257282638c1b",
   "build": {
     "engine": "Tectonic 0.17.0",
     "command": "tectonic -X compile paper/manuscript.tex --keep-logs",
@@ -16,12 +16,12 @@
     "overfull_boxes": 0,
     "undefined_references_or_citations": 0,
     "local_ignored_log": "paper/manuscript.log",
-    "log_sha256": "62918276450deeff75521904769e7586b95cc12c2e985f376f60e86cd5d0c771"
+    "log_sha256": "30457abf2f66f003439e9fd1f141e5cd48ef30bfe0e7036ee132c68a6f48274c"
   },
   "rendering": {
     "renderer": "PyMuPDF 1.28.2",
     "scale": 1.3,
-    "page_count": 12,
+    "page_count": 13,
     "local_ignored_png_directory": "build/manuscript-review",
     "all_pages_visually_inspected": true,
     "inspected_pages": [
@@ -36,83 +36,141 @@
       9,
       10,
       11,
-      12
+      12,
+      13
     ],
-    "visual_result": "All pages inspected after final build. No observed clipping, overlap, missing glyphs or broken reference markers; long declarations wrap, references occupy a dedicated page.",
+    "visual_result": "Pages 7 and 11 newly inspected after reference-navigation notes; the other 11 pages have identical rendered PNG SHA256 values to the previous all-page visually checked PDF. No observed clipping, overlap, missing glyphs or unresolved citation markers. All 16 references remain on one dedicated page.",
     "structural_page_checks": [
       {
         "page": 1,
-        "text_span_count": 922,
+        "text_span_count": 777,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 2,
-        "text_span_count": 966,
+        "text_span_count": 906,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 3,
-        "text_span_count": 858,
+        "text_span_count": 947,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 4,
-        "text_span_count": 958,
+        "text_span_count": 1059,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 5,
-        "text_span_count": 1073,
+        "text_span_count": 1079,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 6,
-        "text_span_count": 832,
+        "text_span_count": 851,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 7,
-        "text_span_count": 782,
+        "text_span_count": 951,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 8,
-        "text_span_count": 750,
+        "text_span_count": 848,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 9,
-        "text_span_count": 834,
+        "text_span_count": 847,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 10,
-        "text_span_count": 190,
+        "text_span_count": 647,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 11,
-        "text_span_count": 672,
+        "text_span_count": 786,
         "outside_page_spans": 0,
         "replacement_characters": 0
       },
       {
         "page": 12,
-        "text_span_count": 300,
+        "text_span_count": 455,
+        "outside_page_spans": 0,
+        "replacement_characters": 0
+      },
+      {
+        "page": 13,
+        "text_span_count": 862,
         "outside_page_spans": 0,
         "replacement_characters": 0
       }
-    ]
+    ],
+    "incremental_visual_check": {
+      "previous_pdf_sha256": "8e6e1cbd3896f28b5a871396acc9b1f729247e27bf0744d1a094504c66c80622",
+      "newly_inspected_pages": [
+        7,
+        11
+      ],
+      "unchanged_rendered_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        12,
+        13
+      ],
+      "comparison": "SHA256 of PNGs rendered using the same PyMuPDF version and scale",
+      "previous_png_sha256": {
+        "1": "14fa7b9a7d54ee9eedbe6196c7eddf4826188524613f6b46a379a9e5d67aeec4",
+        "2": "941e050a3f933e78f04539f0fbfdc4986f35b9e9d0ab4455d50381eace2ad090",
+        "3": "b805e005b6bfdba2f3f82d4a7799254fb61ce9adb80c65d504f353dbb7dedaef",
+        "4": "3b30366a231002c86a3e49886d6fcecd37f6ba8ac7c38604dd3586e84d0240c4",
+        "5": "7b3f20daee706817a40c4a6c8e3cae60504176eaa584fd627b261d6edaab9840",
+        "6": "f71219796a2becc4531b217902813fecb5de8275b09373d88b895c92aad7f94c",
+        "7": "2609b8c87aacc3d039e0b9a63c052f3e93c828cb98502ea74c1664c96b1c7f97",
+        "8": "aed234c35d94a4b26072b342aa4dc21305ba550699d3b0fae248ed25a214dca3",
+        "9": "8f6d658d2e101078d1b56b05343c355458f38607a9f04817ff9120d8160dcbda",
+        "10": "d6e222faf7a5f1794195dcfe11cec805084d2ec079507d3a11d76193cef34b1f",
+        "11": "73b2c1bdc7dff83de31d36e41177066acfcfa3c72153013597b7161d2d225977",
+        "12": "c28e13850243f99cac805175659394dba20d7d6956f2deb94f2f8ee801fd2535",
+        "13": "bb52b35ea69d00e5440df01612fdc12d0b3f30e6a5cca8301c01fac25b65b316"
+      },
+      "current_png_sha256": {
+        "1": "14fa7b9a7d54ee9eedbe6196c7eddf4826188524613f6b46a379a9e5d67aeec4",
+        "2": "941e050a3f933e78f04539f0fbfdc4986f35b9e9d0ab4455d50381eace2ad090",
+        "3": "b805e005b6bfdba2f3f82d4a7799254fb61ce9adb80c65d504f353dbb7dedaef",
+        "4": "3b30366a231002c86a3e49886d6fcecd37f6ba8ac7c38604dd3586e84d0240c4",
+        "5": "7b3f20daee706817a40c4a6c8e3cae60504176eaa584fd627b261d6edaab9840",
+        "6": "f71219796a2becc4531b217902813fecb5de8275b09373d88b895c92aad7f94c",
+        "7": "c1ab43ef8de026c61b60d77554e3b5d80ba2ccbeca581f162a96c1768cfa5dd4",
+        "8": "aed234c35d94a4b26072b342aa4dc21305ba550699d3b0fae248ed25a214dca3",
+        "9": "8f6d658d2e101078d1b56b05343c355458f38607a9f04817ff9120d8160dcbda",
+        "10": "d6e222faf7a5f1794195dcfe11cec805084d2ec079507d3a11d76193cef34b1f",
+        "11": "93aa7a8e5b776379f4c7233af8b33a2ab87e7bd664c1950b849f2faa5284869f",
+        "12": "c28e13850243f99cac805175659394dba20d7d6956f2deb94f2f8ee801fd2535",
+        "13": "bb52b35ea69d00e5440df01612fdc12d0b3f30e6a5cca8301c01fac25b65b316"
+      }
+    }
   },
   "contents": {
     "numbered_theorems_lemmas_propositions": 5,
@@ -121,7 +179,11 @@
       "WeilIncomplete",
       "DeshouillersIwaniecLemma1"
     ],
-    "narrow_python_interval_is_not_a_lean_theorem": true
+    "narrow_python_interval_is_not_a_lean_theorem": true,
+    "bibliographic_entries": 16,
+    "all_bibliographic_entries_cited": true,
+    "abstract_word_count": 192,
+    "pdf_author": "MASAMICHI IIZUMI"
   },
   "preserved": {
     "lean_sources_unchanged": true,
@@ -155,5 +217,9 @@
     "fresh_required_af_modules": 101,
     "axiom_audits": 4405,
     "mathlib_source_rebuilt": false
+  },
+  "publication_metadata_record": {
+    "path": "checks/publication-metadata-verification.json",
+    "sha256": "47163af195a685c52cc58e299a74a258d7c2bba51d7fc21353b3327bdaf80160"
   }
 }

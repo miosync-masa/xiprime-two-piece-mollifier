@@ -25,13 +25,16 @@
 \DeclareRobustCommand{\lean}[1]{\ifmmode\text{\small\nolinkurl{#1}}\else{\small\nolinkurl{#1}}\fi}
 \newcommand{\NT}{\mathcal N_{\xi'}}
 \newcommand{\NC}{\mathcal N_{\xi',c}}
-\hypersetup{pdftitle={A conditional Lean formalization of an 88.45 percent critical-line proportion for xi-prime},pdfauthor={},pdfsubject={Explicit incomplete Weil and Deshouillers-Iwaniec hypotheses; zeros with analytic multiplicity}}
+\hypersetup{pdftitle={A conditional Lean formalization of an 88.45 percent critical-line proportion for xi-prime},pdfauthor={MASAMICHI IIZUMI},pdfsubject={Explicit incomplete Weil and Deshouillers-Iwaniec hypotheses; zeros with analytic multiplicity}}
 \begin{document}
 \thispagestyle{plain}
 \begin{center}
 {\Large A conditional Lean formalization of an $88.45\%$\\[3pt]
 critical-line proportion for $\xi'$}\\[9pt]
-An explicit two-component mollifier\\[6pt]
+An explicit two-component mollifier\\[9pt]
+MASAMICHI IIZUMI\\[3pt]
+Miosync, Inc., Tokyo, Japan\\[3pt]
+\href{mailto:m.iizumi@miosync.email}{\nolinkurl{m.iizumi@miosync.email}}\\[6pt]
 10 November 2026 --- Revised manuscript for expert review
 \end{center}
 \begin{abstract}
@@ -41,8 +44,12 @@ xi-function on the critical line, counted with analytic multiplicity.
 The result has two explicit hypotheses: a uniform incomplete
 inverse-phase estimate and a four-length Deshouillers--Iwaniec estimate.
 We give their full parameter ranges, coefficient restrictions and
-quantifier order. They are theorem arguments, not estimates proved by
-this development. From these inputs the formal chain derives the
+quantifier order. Both estimates are established in the literature:
+the incomplete estimate follows by completion from the composite-modulus
+Kloosterman bound, and the second is Deshouillers--Iwaniec's Lemma~1.
+\emph{Conditional} refers to the formalization boundary: their proof terms
+are not supplied in Lean here, not to new conjectural assumptions.
+From these inputs the formal chain derives the
 shifted moment for a height-dependent seven-vector coefficient family,
 including all 49 ordered pairs and the actual approximate functional
 equation remainders. It then connects the density-oriented arithmetic
@@ -53,6 +60,13 @@ trusted by Lean. We distinguish formal deduction, correspondence with
 the cited analytic inputs, and independent mathematical review.
 No simple-zero, optimality or publication-priority claim is made.
 \end{abstract}
+
+\noindent\textbf{2020 Mathematics Subject Classification.}
+Primary 11M26; Secondary 11M06, 03B35.
+
+\noindent\textbf{Keywords.}
+Riemann xi-function; critical-line zeros; mollifiers; exponential sums;
+formal verification; Lean.
 
 \section{The statement and its trust boundary}\label{sec:statement}
 
@@ -91,6 +105,14 @@ prove a strict inequality whose margin could tend to zero.
 The two hypotheses are the propositions
 \lean{PRZZKloostermanInputs.WeilIncomplete} and
 \lean{PRZZKloostermanInputs.DeshouillersIwaniecLemma1}.
+These are established analytic estimates, not conjectures about zeros.
+Hypothesis~\ref{hyp:weil} follows from the composite-modulus Kloosterman
+bound by the completion argument in Section~\ref{sec:inputs}
+\cite[Corollary~11.12]{IK}; Hypothesis~\ref{hyp:di} is the four-length
+estimate of \cite[Lemma~1]{DI}. The word \emph{conditional} in the title
+therefore describes the formal proof boundary: their proofs are not
+formalized in this development. Independent review of the precise
+source-to-Lean specification remains important.
 No proof term for either proposition is supplied here. In particular,
 the name Weil does not suppress the completion, prime-power and
 composite-modulus obligations specified below.
@@ -99,13 +121,34 @@ theorem deduced from these two arguments. The mathematical implication
 proved by Lean and the validity of the external analytic specifications
 are separate matters.
 
+Historically, the mollified-moment method goes back to Levinson
+\cite{Levinson}; Conrey studied critical-line zeros of derivatives of
+$\xi$ \cite{ConreyXi}. The long-mollifier scale $\theta<4/7$ and the
+use of DI estimates follow the line of Conrey \cite{ConreyLong} and the
+twisted mean-square work of Balasubramanian--Conrey--Heath-Brown
+\cite{BCHB}. The two-component coefficient construction also draws on
+Feng \cite{Feng}; its unrestricted convolution is specified below.
 The construction uses Wu's argument-variation strategy \cite{Wu},
 the long-mollifier moment architecture of
 Pratt--Robles--Zaharescu--Zeindler \cite{PRZZ}, and the pinned AF
-analytic/counting infrastructure \cite{AF,Repo}. The following sections
+analytic/counting infrastructure \cite{AF,Repo}, implemented in Lean~4
+\cite{Lean4} with Mathlib \cite{Mathlib}. The following sections
 give a proof guide to the current source, not a claim that a short prose
 argument replaces every contour, integrability and boundary lemma in
 that source.
+
+For context, Wu's one-component mollifier gives the unconditional
+on-line proportion $0.86957$, without requiring the counted zeros to
+be simple \cite[Section~3]{Wu}. Wu uses the zeta zero count as the
+denominator; the Riemann--von Mangoldt asymptotics identify its leading
+term with the total $\xi'$ zero count used here.
+AF \cite[Remark~7.1 in the cited version]{AF} gives $0.85838$, or
+$0.86864$ with its quartic window, for zeros of $\xi'$ that are
+\emph{simple and on the line}, also unconditionally. Simplicity is a
+property of the zeros counted there, not an additional hypothesis.
+Under Hypotheses~\ref{hyp:weil} and~\ref{hyp:di}, our fixed two-component
+witness certifies a proportion strictly above $0.8845$ with multiplicity,
+without a simplicity conclusion.
 
 \section{The two explicit exponential-sum hypotheses}\label{sec:inputs}
 
@@ -137,6 +180,7 @@ integers $M,H$,
 
 Thus $C_\varepsilon$ is chosen \emph{before} $q,a,M,H$. There is no
 assumption that $(a,q)=1$, that $q$ is prime, or that $H\le q$.
+We use the convention $\gcd(0,q)=q$, so $a=0$ is included.
 The gcd is to the first power in this precise contract; replacing it
 by $1$ would change the hypothesis. The factor $1+H/q$ retains long
 intervals. The case $H=0$ is the empty sum. This is an unweighted input;
@@ -241,20 +285,35 @@ be a different input. Most importantly, the quantifiers are
 The constant cannot depend on $\rho$, the four lengths, or the
 coefficient array. Real upper bounds are implemented by natural floors.
 
+An auxiliary loss $\rho^\delta$ of arbitrarily small positive order can
+be absorbed, provided the estimate is otherwise uniform in $\rho$.
+Indeed, put $X=CDUV\ge1$. Then
+$(U+V)\mathscr R\ge\rho^2X$, so
+$\mathscr B_\varepsilon\ge\rho^{1/2}X^{3/4+\varepsilon}$.
+For $\rho\ge X^{1/2}$ this dominates the trivial bound
+$\mathscr S\le X$. For $1\le\rho<X^{1/2}$, an otherwise uniform bound
+$\mathscr S\ll_\delta\rho^\delta\mathscr B_\delta$ gives
+$\rho^\delta\mathscr B_\delta\le\mathscr B_\varepsilon$ on choosing
+$\delta=2\varepsilon/3$.
+This observation removes such an epsilon-power loss, not arbitrary
+dependence of the implied constant on $\rho$, and does not replace the
+source correspondence check below.
+
 The source specified for this contract is Deshouillers--Iwaniec,
 \emph{Power mean-values for Dirichlet's polynomials and the Riemann
 zeta-function, II}, Lemma~1, p.~310 \cite{DI}.
 The publisher lists volume~43 (1984), pp.~305--312; the volume~48 printed
-in PRZZ's reference is not used here. Inspection of the original
-scanned Lemma~1 confirms the displayed inverse phase, the two
-coprimality filters, and the four-length expression.
+in PRZZ's reference is not used here. The author compared the original
+scanned Lemma~1 with the displayed inverse phase, both coprimality filters
+and the four-length expression used here.
 The source writes its coefficient array as \(c(u,v)\); here it is
 renamed \(b(u,v)\) to distinguish it from the outer index \(c\).
 The symbols
 $(C,D,U,V,\rho,b(u,v))$ agree with the code's argument names.
-Checking the source statement, its uniformity and this precise
-translation is an external specification-review task, not an additional
-theorem silently asserted by the axiom audit.
+Independent review is invited to check that comparison and the complete
+source-to-Lean translation, including uniformity and quantifier order.
+The author's source comparison is not a completed independent audit
+and is not an additional theorem supplied by the axiom audit.
 
 \subsection{How the inputs enter the proof}
 
@@ -293,7 +352,8 @@ For $1\le n\le y$ put $x_n=\log(y/n)/\log y$ and
  a_n(T)=\mu(n)P_1(x_n)
        +\frac{(\mu*\Lambda*\Lambda)(n)}{(\log y)^2}P_2(x_n);
 \end{equation}
-put $a_n(T)=0$ outside this range. Here $*$ is Dirichlet convolution.
+put $a_n(T)=0$ outside this range. Here $*$ is Dirichlet convolution;
+the second component is of Feng type \cite{Feng}.
 There is no squarefree restriction and no extra $2!$.
 Define
 \begin{equation}\label{eq:psi}
@@ -407,7 +467,7 @@ support. The constants precede the function and the support scale.
 \lean{PRZZProfileScale} supplies the dimensionless jets for the actual
 height-dependent profiles, and \lean{PRZZProfileMellin.member_mass}
 supplies \eqref{eq:mellin-class}. These bounds are carried through the
-Type I/II and Heath--Brown block estimates before the outer row sums are
+Type I/II and Heath--Brown block estimates \cite{HeathBrown} before the outer row sums are
 taken. A fixed-function bound alone would not justify
 Proposition~\ref{prop:family}.
 
@@ -460,25 +520,26 @@ Thus \lean{PRZZ.przz41_case3_K2_witness} is now a theorem with explicit
 Weil/DI arguments, not a public analytic axiom.
 
 Every $\tau>0$ is available. For the value of $\theta$ in
-\eqref{eq:constants}, choosing $\tau=1/4000000$ gives
+\eqref{eq:constants}, choosing $\tau=\frac{1}{4\times10^6}$ gives
 \[
  T^{\tau-1}\bigl(y^{7/4}+T^{1/2}y^{7/8}\bigr)
- =T^{-3/2000000}+T^{-1/1600000}\longrightarrow0.
+ =T^{-\frac{3}{2\,000\,000}}+T^{-\frac{1}{1\,600\,000}}\longrightarrow0.
 \]
 The public counting route uses the also admissible loss
-$7/16000000$; its two normalized exponents are
-$-21/16000000$ and $-7/16000000$. These are distinct choices in two
+$\frac{7}{16\,000\,000}$; its two normalized exponents are
+$-\frac{21}{16\,000\,000}$ and $-\frac{7}{16\,000\,000}$.
+These are distinct choices in two
 proved specializations. The smaller positive margin from the second
 term must not be replaced by the first term's margin.
 
 \subsection{Orientation of the shifts and the historical correction}
 
-For the density in \eqref{eq:moment-pair}, a diagonal term obeys
-$dm=em'$. Writing $g=(d,e)$ gives $m=(e/g)h$, $m'=(d/g)h$, and hence
-$m^{-\alpha}(m')^{-\beta}=(e/g)^{-\alpha}(d/g)^{-\beta}
-h^{-\alpha-\beta}$. The density kernel therefore places $\beta$ on
-$d$ and $\alpha$ on $e$. The placement is essential for independent
-left and right coefficients.
+In \eqref{eq:moment-pair}, let $m,n$ be the coefficient indices
+($d,e$ in \lean{PRZZInterface}) and $k,k'$ the zeta-series indices.
+The diagonal $mk=nk'$ gives $k=(n/g)h$, $k'=(m/g)h$ with $g=(m,n)$, so
+$k^{-\alpha}(k')^{-\beta}=(n/g)^{-\alpha}(m/g)^{-\beta}
+h^{-\alpha-\beta}$. Thus \eqref{eq:kernel} places $\beta$ on $m$ and
+$\alpha$ on $n$, which matters for independent left and right coefficients.
 
 PRZZ Theorem~4.1 prints the opposite denominator \cite[p.~18]{PRZZ}.
 The historical tag \lean{v0.1.0} copied that placement into a
@@ -493,7 +554,7 @@ This equality holds before limits or differentiation. Both ordered
 cross terms and the identical operators on the two sides preserve the
 numerical functional. It is not a justification of the old general
 mixed-profile statement. The historical tag and its records remain
-unchanged; a full check of the BCHB original is not claimed here.
+unchanged; a full analytic check of the BCHB original \cite{BCHB} is not claimed here.
 
 \section{Arithmetic main terms and the finite functional}\label{sec:mainterm}
 
@@ -615,7 +676,8 @@ the normalized \(j\)-th shift-derivative remainder is bounded by
  \frac{3C_F\theta^{1+j}}{j!(1+j)}
        \frac{(R\theta)^{J+1}}{(J+1)!}.
 \]
-Here \(C_F\) bounds the profile on \([0,1]\), and \(R\theta<1\).
+Here \(j\) is the derivative order and \(J\) is the truncation order;
+\(C_F\) bounds the profile on \([0,1]\), and \(R\theta<1\).
 At truncation order \(J=24\), the retained propagated error is
 less than \(8.799\times10^{-23}\). Runs at precision/order pairs
 \((40,20)\), \((45,24)\), \((55,24)\), and \((70,24)\) are retained in
@@ -758,14 +820,22 @@ Theorem~\ref{thm:main} &
 \subsection{Pinned sources and the scope of the recorded checks}
 
 The mathematical baseline for this editorial revision is commit
-\path{2418fd5d334dbd7b4d99baaba5d8c9f41681884a}; the reviewer-document
-update is \path{3433792a3f7deb0125aba51673ff0db01c52b670}.
+\path{2418fd5d334dbd7b4d99baaba5d8c9f41681884a}.
 The toolchain is Lean \texttt{v4.33.0-rc2}, with AF commit
 \path{3635e74826a4c1fcece7d1cd2b6fa75e43a00510}
 and Mathlib commit
 \path{51e6992efd06126df61a496bebf8f49482a4e129}.
 These fixed inputs, rather than moving upstream branches, determine
 the verification environment.
+The public proof/software snapshot is release \texttt{v0.2.0}
+\cite{Repo}, at commit
+\path{8fbfbe376d879274c5be7e2f655551c967dfdf99},
+archived as \href{https://doi.org/10.5281/zenodo.24101490}{doi:10.5281/zenodo.24101490}.
+The entire \path{lean/} source tree is byte-identical at the mathematical
+baseline and the release commit; the intervening changes concern
+documentation, verification records and supporting verification tools.
+The present bibliographic and submission-metadata revision postdates
+that frozen archive; it does not replace the archived manuscript bytes.
 
 The accepted record
 \path{checks/clean-verification-2026-11-10-local.json}
@@ -781,7 +851,8 @@ and 2,939.546 seconds (local, six worker slots).
 Older records, including the one-fresh/777-reused invocation, are
 preserved unchanged as history.
 
-The four headline audits list exactly
+The four headline audits (the four theorems audited at the end of
+\lean{WuProportion}) list exactly
 \[
  \{\lean{propext},\ \lean{Classical.choice},\ \lean{Quot.sound}\}.
 \]
@@ -807,8 +878,8 @@ Hypotheses~\ref{hyp:weil}--\ref{hyp:di} and their cited sources:
 normalization, inverse phases, coprimality restrictions, coefficient
 dependence and uniform constants all matter. A second review layer is
 the correspondence of the source definitions with the intended
-xi-prime problem: density-oriented shifts, the unrestricted Feng
-convolution, Gamma normalization, height-dependent basis uniformity,
+xi-prime problem: density-oriented shifts, the unrestricted Feng-type
+convolution \cite{Feng}, Gamma normalization, height-dependent basis uniformity,
 and the actual multiplicity counts. Finally, the finite main-term
 functional and its independent numerical implementation should be
 compared separately from the moment and counting arguments.
@@ -816,11 +887,59 @@ compared separately from the moment and counting arguments.
 These are specification and mathematical-review questions, not hidden
 hypotheses added to the Lean theorem. Conversely, a successful
 compiler run must not be reported as their independent resolution.
-This manuscript records no external submission, completed human
-referee report, simple-zero improvement, or priority claim.
+At the time of writing, no independent referee report has been received.
+No simple-zero improvement or priority claim is made.
 
 \clearpage
-\begin{thebibliography}{9}
+\section*{Data and code availability}
+
+The Lean sources, Python finite-certificate code, saved numerical outputs,
+dependency pins, verification records and reproduction instructions are
+publicly available in the repository
+\url{https://github.com/miosync-masa/xiprime-two-piece-mollifier}.
+The immutable software snapshot cited here is \texttt{v0.2.0},
+commit \path{8fbfbe376d879274c5be7e2f655551c967dfdf99},
+released on 10 November 2026 and archived on Zenodo
+\cite{Repo}, \href{https://doi.org/10.5281/zenodo.24101490}{doi:10.5281/zenodo.24101490}.
+Start with \path{docs/REVIEW_GUIDE.md} and
+\path{docs/REPRODUCIBILITY.md} at that tag, not a moving branch.
+The two clean-build records cited in Section~\ref{sec:review} are included
+in the release. No empirical dataset or zero table is used; the reusable
+data are the exact witness, interval outputs and compiler audit records.
+Mathlib and AF are external dependencies fixed to the commits above.
+This revised manuscript is not claimed byte-identical to the PDF in
+the frozen \texttt{v0.2.0} archive.
+
+\section*{Acknowledgements}
+
+The author thanks Levent Alp\"oge and Ralph Furman for making the AF
+formalization and source library publicly available, and the Lean and
+Mathlib communities for the proof-assistant infrastructure and libraries.
+These acknowledgements do not imply endorsement or independent review
+of this work by those authors or communities.
+
+\section*{Funding}
+
+This research received no external funding.
+
+\section*{Declaration of competing interests}
+
+The author declares no competing interests.
+
+\section*{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
+
+The author used Claude (Anthropic) and ChatGPT/Codex (OpenAI) during
+exploratory mathematical discussions, Lean and Python code development
+and debugging, literature lookups, and the organization and revision of
+the manuscript. The author directed the work, reviewed the outputs and
+revised the included material, and accepts responsibility for the content.
+AI tools are not authors. Kernel checking and reproducible finite
+calculations do not replace that responsibility or independent review
+of the analytic specifications.
+
+\clearpage
+\begin{thebibliography}{99}
+\setlength{\itemsep}{2pt}
 \bibitem{Weil}
 A.~Weil, On some exponential sums,
 \emph{Proc. Natl. Acad. Sci. USA} \textbf{34} (1948), 204--207.
@@ -845,26 +964,83 @@ zeta-function, II,
 \href{https://doi.org/10.4064/aa-43-3-305-312}{doi:10.4064/aa-43-3-305-312}.
 
 \bibitem{Wu}
-X.~Wu, \emph{On the zeros of the derivative of the Riemann xi-function},
-\href{https://arxiv.org/abs/1206.3737v2}{arXiv:1206.3737v2}.
+X.~Wu, Distinct zeros of the Riemann zeta-function,
+\emph{Q. J. Math.} \textbf{66} (2015), no.~2, 759--771.
+\href{https://doi.org/10.1093/qmath/hav014}{doi:10.1093/qmath/hav014}.
+Preprint: \href{https://arxiv.org/abs/1206.3737v2}{arXiv:1206.3737v2};
+the argument used here was inspected in Section~3 of that version.
 
 \bibitem{PRZZ}
 K.~Pratt, N.~Robles, A.~Zaharescu and D.~Zeindler,
 \emph{More than five-twelfths of the zeros of \(\zeta\) are on the
 critical line},
+\emph{Res. Math. Sci.} \textbf{7} (2020), Article~2.
+\href{https://doi.org/10.1007/s40687-019-0199-8}{doi:10.1007/s40687-019-0199-8}.
+The theorem and page references used here refer to
 \href{https://arxiv.org/abs/1802.10521v3}{arXiv:1802.10521v3},
-Theorem~4.1 and its proof.
+Theorem~4.1 and its proof (printed p.~18 onward).
 
 \bibitem{AF}
 L.~Alp\"oge and R.~Furman,
+\emph{More than two thirds of the zeta zeros are simple and on the critical line},
 \href{https://arxiv.org/abs/2608.13637v2}{arXiv:2608.13637v2};
 associated \emph{formal-math} Lean library, tag \texttt{v1.0},
 pinned commit specified in Section~\ref{sec:review}.
 \url{https://github.com/anthropics/formal-math}.
 
 \bibitem{Repo}
-\emph{Two-piece mollifier: xi-prime proportion formalization},
-source, certificates and verification records.
-\url{https://github.com/miosync-masa/xiprime-two-piece-mollifier}.
+M.~Iizumi,
+\emph{miosync-masa/xiprime-two-piece-mollifier:
+v0.2.0 --- The PRZZ axiom is gone: 88.45\% from explicit Weil and
+Deshouillers--Iwaniec hypotheses}, software release, 10 November 2026.
+\href{https://doi.org/10.5281/zenodo.24101490}{doi:10.5281/zenodo.24101490}.
+Commit \path{8fbfbe376d879274c5be7e2f655551c967dfdf99}.
+\url{https://github.com/miosync-masa/xiprime-two-piece-mollifier/releases/tag/v0.2.0}.
+
+\bibitem{Feng}
+S.~Feng, Zeros of the Riemann zeta function on the critical line,
+\emph{J. Number Theory} \textbf{132} (2012), no.~4, 511--542.
+\href{https://doi.org/10.1016/j.jnt.2011.10.002}{doi:10.1016/j.jnt.2011.10.002}.
+
+\bibitem{ConreyLong}
+J.~B.~Conrey, More than two fifths of the zeros of the Riemann zeta
+function are on the critical line,
+\emph{J. reine angew. Math.} \textbf{399} (1989), 1--26.
+\href{https://doi.org/10.1515/crll.1989.399.1}{doi:10.1515/crll.1989.399.1}.
+
+\bibitem{BCHB}
+R.~Balasubramanian, J.~B.~Conrey and D.~R.~Heath-Brown,
+Asymptotic mean square of the product of the Riemann zeta-function
+and a Dirichlet polynomial,
+\emph{J. reine angew. Math.} \textbf{357} (1985), 161--181.
+\href{https://doi.org/10.1515/crll.1985.357.161}{doi:10.1515/crll.1985.357.161}.
+
+\bibitem{HeathBrown}
+D.~R.~Heath-Brown, Prime numbers in short intervals and a generalized
+Vaughan identity, \emph{Canad. J. Math.} \textbf{34} (1982), no.~6, 1365--1377.
+\href{https://doi.org/10.4153/CJM-1982-095-9}{doi:10.4153/CJM-1982-095-9}.
+
+\bibitem{Levinson}
+N.~Levinson, More than one third of zeros of Riemann's zeta-function
+are on $\sigma=1/2$,
+\emph{Adv. Math.} \textbf{13} (1974), no.~4, 383--436.
+\href{https://doi.org/10.1016/0001-8708(74)90074-7}{doi:10.1016/0001-8708(74)90074-7}.
+
+\bibitem{ConreyXi}
+J.~B.~Conrey, Zeros of derivatives of Riemann's xi-function on the critical line,
+\emph{J. Number Theory} \textbf{16} (1983), no.~1, 49--74.
+\href{https://doi.org/10.1016/0022-314X(83)90031-8}{doi:10.1016/0022-314X(83)90031-8}.
+
+\bibitem{Lean4}
+L.~de~Moura and S.~Ullrich, The Lean 4 theorem prover and programming language,
+in \emph{Automated Deduction --- CADE 28}, Lecture Notes in Computer Science
+\textbf{12699}, Springer, 2021, 625--635.
+\href{https://doi.org/10.1007/978-3-030-79876-5_37}{doi:10.1007/978-3-030-79876-5\_37}.
+
+\bibitem{Mathlib}
+The mathlib Community, The Lean mathematical library,
+in \emph{Proceedings of the 9th ACM SIGPLAN International Conference
+on Certified Programs and Proofs (CPP 2020)}, ACM, 2020, 367--381.
+\href{https://doi.org/10.1145/3372885.3373824}{doi:10.1145/3372885.3373824}.
 \end{thebibliography}
 \end{document}

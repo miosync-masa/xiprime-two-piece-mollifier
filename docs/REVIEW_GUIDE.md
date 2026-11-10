@@ -5,6 +5,14 @@ Updated: 10 November 2026. Mathematical-source baseline:
 This guide organizes the existing evidence; it is not an independent analytic
 audit, a new mathematical proof or a record of human peer review.
 
+The frozen software release is [v0.2.0](https://github.com/miosync-masa/xiprime-two-piece-mollifier/releases/tag/v0.2.0),
+commit `8fbfbe376d879274c5be7e2f655551c967dfdf99`, archived at
+[doi:10.5281/zenodo.24101490](https://doi.org/10.5281/zenodo.24101490).
+Its entire `lean/` tree is identical to the mathematical baseline above.
+The current manuscript's bibliography, submission metadata and reviewer
+clarifications postdate that archive; its revised PDF does not overwrite
+the frozen release PDF. See the [metadata checks](../checks/publication-metadata-verification.json).
+
 ## 1. Exact claim and remaining hypotheses
 
 For AF's actual total and critical-line xi-prime zero counts, **with analytic
@@ -35,6 +43,11 @@ The two hypotheses are the **exact propositions** in
   coefficient array satisfying the unit norm cap. Check floors, coprimality
   conditions and the placement of the absolute value against the source.
 
+These are established estimates in the literature, not new conjectures;
+the formal qualification is that their proofs are not supplied in Lean here.
+The manuscript gives the completion deduction and a qualified epsilon-power
+loss absorption argument for DI's rho-uniformity. Those prose arguments
+do not replace independent source-to-specification review.
 Neither proposition is supplied with an inhabitant here. The class
 `PRZZProvedInput.DeepInputs` only bundles them for intermediate theorems;
 it is not a default instance asserting them.
@@ -126,6 +139,11 @@ page; [the render record](../checks/manuscript-render-verification.json)
 fixes its source/output hashes and verification scope.
 The DI Lemma 1 scan on p.310 was visually compared with the displayed
 formula and filters; this is not a proof of the analytic input.
+The current bibliography includes published Wu and PRZZ citations while
+pinning the inspected arXiv versions for argument, theorem and page references.
+Author/contact information, funding/interests and substantive AI use are
+recorded in the manuscript and [publication checklist](PUBLICATION.md);
+the remaining live JNT-guide/portal check is not claimed complete.
 
 [STATUS.md](STATUS.md) separates current results from dated milestones.
 [history.md](history.md), old compiler JSONs and `provenance.json` retain

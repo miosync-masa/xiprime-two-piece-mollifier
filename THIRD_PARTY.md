@@ -12,6 +12,6 @@ Except for the explicitly attributed adaptation below, no AF, mathlib, mpmath or
 | Lean | Proof checker | `v4.33.0-rc2` |
 | GitHub Actions checkout/setup-python | Optional CI infrastructure | Commit pins in the workflow |
 
-The paper cites Wu and PRZZ for the analytic inputs and distinguishes AF's simple-and-on-line result from the present multiplicity-counted claim. No third-party paper PDF is redistributed.
+The paper states explicit Weil and Deshouillers--Iwaniec input specifications, cites Wu for the counting strategy and PRZZ for the moment architecture, and distinguishes AF's simple-and-on-line result from the present multiplicity-counted claim. No third-party paper PDF is redistributed.
 
-License selection for the original material in this directory is pending the maintainer's decision. This notice does not grant a new license or alter any upstream license.
+Original project material is provided under the [MIT license](LICENSE.md). The explicitly attributed AF adaptation above remains Apache-2.0; this notice does not change any upstream license.
