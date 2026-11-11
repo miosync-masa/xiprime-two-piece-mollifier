@@ -12,7 +12,7 @@
 >
 > **v0.1.0 正誤表：** 一般プロファイル公理をまず密度に合う witness 専用入力へ限定し、現在はその評価を Weil・DI の仮定から導く定理に置換しました。有限 witness 主項はシフト交換に厳密に不変で、証明された数値区間は不変です。[STATUS](docs/STATUS.md#v010-erratum-shift-placement-7-november-2026)参照。以下の自動生成資料は、現在のソースと照合したWeil・DI接続の監査記録から再生成しています。
 >
-> 読み方の資料（`import` 行とコンパイラ出力から `tools/generate_readability_docs.py` で自動生成）：[依存グラフ](docs/dependency-graph.md) · [モジュール表](docs/modules.md) · [論文 ↔ Lean 対応表](docs/paper-correspondence.md) · [信頼の基盤](docs/trust-base.md)。10 月 28 日以前の開発台帳は [docs/history.md](docs/history.md) に移しました。
+> 読み方の資料（`import` 行とコンパイラ出力から `tools/generate_readability_docs.py` で自動生成）：[依存グラフ](docs/dependency-graph.md) · [モジュール表](docs/modules.md) · [論文 ↔ Lean 対応表](docs/paper-correspondence.md) · [信頼の基盤](docs/trust-base.md)。
 
 ξ′の臨界線上零点の割合が、**明示したWeil・DI仮定の下で、重複度込みで88.45%より真に大きい**ことを導くプロジェクトです。
 `WuProportion.strict_proportion` は、ある固定 `b > 0.8845` に対し、十分大きいすべての実数高さ `X` で `b * Ncount 0 X ≤ N0 0 X` を証明します。`ratio_eventually_gt` は実際の比率の不等式です。旧 `PRZZ.przz41_case3_K2_witness` は公理ではなく証明済み定理となり、Weil・DIの仕様自体は明示的な仮定に残ります。`LocalizedEstimate`・未証明の計数仮定・単純零点仮定は主定理にありません。
@@ -21,7 +21,7 @@
 
 2026年11月10日に原稿TeXとPDFを現行のWeil・DI条件付き証明へ改訂し、今回の全件クリーン検証を反映しました。[描画検証記録](checks/manuscript-render-verification.json)に全ページの目視確認と対象ハッシュを記録しています。数値結果は不変で、証明書では原稿出典ハッシュのみを更新しました。
 
-査読はまず [現行の査読ガイド](docs/REVIEW_GUIDE.md)、[定理文と信頼境界](docs/trust-base.md)、[証明状態](docs/STATUS.md)の順でご覧ください。改訂原稿とPDFは両入力の量化子・正確な数式、49対の一様評価、主項と実計数への接続を記述しています。[論文↔Lean対応表](docs/paper-correspondence.md)は仮定の定義と定理の対応を区別し、Pythonの細い数値区間には同値なLean定理を割り当てていません。独立した人間査読の完了を意味するものではありません。
+査読はまず [現行の査読ガイド](docs/REVIEW_GUIDE.md)、[定理文と信頼境界](docs/trust-base.md)、[再現手順](docs/REPRODUCIBILITY.md)の順でご覧ください。改訂原稿とPDFは両入力の量化子・正確な数式、49対の一様評価、主項と実計数への接続を記述しています。[論文↔Lean対応表](docs/paper-correspondence.md)は仮定の定義と定理の対応を区別し、Pythonの細い数値区間には同値なLean定理を割り当てていません。独立した人間査読の完了を意味するものではありません。
 数値検証の成功と、解析的移植の証明・最終定理のLean化は区別します。simple+on-lineの改善は主張していません。
 
 **正誤表以前の11月7日クリーン検証：** [本体698モジュールの記録](checks/clean-project-verification-2026-11-07.json)と[AF必須依存101モジュールの記録](checks/clean-af-verification-2026-11-07.json)は歴史的記録として変更せず保持しています。現在の監査は[11月10日の全件クリーン検証](checks/clean-verification-2026-11-10-local.json)を参照してください。
@@ -100,6 +100,10 @@ Leanは別途、固定版AFのビルド済み環境が必要です。[再現手�
 - `tools/`：検証・資料生成スクリプト。`.github/` のCIは数値・配布・資料生成の確認で、Lean再ビルドではありません。
 
 旧READMEの初期モジュール説明は [history.md](docs/history.md#archived-japanese-readme-module-notes) へ保存しました。当時の「未完」「PRZZ公理を仮定」は現在の状態を示しません。現行の数学的ソースは `2418fd5` の接続を保持し、本整備では証明コード・数値計算を変更していません。
+
+## 補助的な開発記録
+
+[証明状態の履歴](docs/STATUS.md)・[リリースノート](docs/RELEASE_NOTES.md)・[開発台帳](docs/history.md)は補助資料です。[査読ガイド](docs/REVIEW_GUIDE.md)と[再現手順](docs/REPRODUCIBILITY.md)から読む際の必須資料ではありません。過去のタグ・コンパイラ記録は変更していません。
 
 ## 著作権とライセンス
 

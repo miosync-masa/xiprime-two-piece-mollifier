@@ -13,7 +13,7 @@ this frozen archive; the tag and archived PDF are not overwritten.
 >
 > **v0.1.0 erratum:** the general-profile input was first replaced by a density-oriented witness input; that witness estimate is now proved from explicit Weil/DI hypotheses. The finite witness main term is exactly invariant under the shift exchange; the certified numerical intervals are unchanged. See [STATUS](docs/STATUS.md#v010-erratum-shift-placement-7-november-2026). The reading aids below now use the current source-checked Weil/DI dependency audit.
 >
-> Reading aids (generated from `import` lines and compiler output by `tools/generate_readability_docs.py`): [dependency graph](docs/dependency-graph.md) · [module table](docs/modules.md) · [paper ↔ Lean correspondence](docs/paper-correspondence.md) · [trust base](docs/trust-base.md). The pre-28-October development ledger is in [docs/history.md](docs/history.md).
+> Reading aids (generated from `import` lines and compiler output by `tools/generate_readability_docs.py`): [dependency graph](docs/dependency-graph.md) · [module table](docs/modules.md) · [paper ↔ Lean correspondence](docs/paper-correspondence.md) · [trust base](docs/trust-base.md).
 
 An explicit Conrey–Feng two-component mollifier giving a **strictly greater than 88.45%** asymptotic lower bound for zeros of the derivative of the Riemann xi-function on the critical line, **counted with multiplicity**, under the explicit Weil and DI hypotheses.
 
@@ -149,6 +149,14 @@ docs/        Proof status and reproduction instructions
 ```
 
 The numerical algorithms, fixed witness and interval results are unchanged. The TeX erratum, its certificate provenance hash, paper README and manifests have been revised; the paper bundle as a whole is therefore **not** byte-identical to the initial draft. [Provenance](provenance.json) retains historical snapshots; current file integrity is specified by the manifests. No upstream AF or mathlib source tree is vendored.
+
+## Supplementary development records
+
+[Proof-status milestones](docs/STATUS.md), [release notes](docs/RELEASE_NOTES.md)
+and the [development ledger](docs/history.md) are retained as supplementary
+history. They are not prerequisites for the [review route](docs/REVIEW_GUIDE.md)
+or the [reproduction instructions](docs/REPRODUCIBILITY.md). Historical tags
+and compiler records remain unchanged.
 
 ## Proof boundaries
 

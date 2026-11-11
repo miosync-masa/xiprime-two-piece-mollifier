@@ -111,8 +111,9 @@ This bibliography/submission-metadata revision postdates the archived PDF;
 it does not relabel or overwrite the frozen archive. The manuscript includes
 author/contact details, MSC/keywords, data/code availability, funding/interest
 declarations, acknowledgements and a substantive Claude/ChatGPT-Codex disclosure.
-The [publication checklist](../docs/PUBLICATION.md) records the remaining
-live JNT-guide/portal check and [metadata evidence](../checks/publication-metadata-verification.json).
+The [metadata evidence](../checks/publication-metadata-verification.json)
+records the bibliographic and author-confirmed fields and its access limitations.
+Journal submission compliance is not certified by this reviewer bundle.
 
 The bibliography includes Weil, Harcos's prime-field exposition,
 Iwaniec–Kowalski's composite-modulus corollary, the
@@ -123,7 +124,7 @@ formula and filters. Full BCHB original-source checking is not claimed.
 Prior exploratory AI reviews are not human peer review. This package
 makes no RH, simple-zero, global-optimality or priority claim. The revised
 manuscript identifies the author as MASAMICHI IIZUMI, Miosync, Inc., Tokyo,
-Japan, with the author-confirmed contact and declarations recorded in
-[PUBLICATION.md](../docs/PUBLICATION.md). AI assistance is disclosed but
+Japan, with the author-confirmed contact and declarations recorded in the
+[manuscript](manuscript.tex). AI assistance is disclosed but
 does not confer authorship. This post-release editorial update creates
 no new software release or journal submission.

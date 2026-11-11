@@ -142,10 +142,12 @@ formula and filters; this is not a proof of the analytic input.
 The current bibliography includes published Wu and PRZZ citations while
 pinning the inspected arXiv versions for argument, theorem and page references.
 Author/contact information, funding/interests and substantive AI use are
-recorded in the manuscript and [publication checklist](PUBLICATION.md);
-the remaining live JNT-guide/portal check is not claimed complete.
+recorded in the [manuscript](../paper/manuscript.tex). Author-facing submission
+checklists are maintained separately from this reviewer bundle; journal
+submission compliance is not certified here.
 
-[STATUS.md](STATUS.md) separates current results from dated milestones.
+The following are supplementary development records, not required steps in
+the reading route above. [STATUS.md](STATUS.md) separates current results from dated milestones.
 [history.md](history.md), old compiler JSONs and `provenance.json` retain
 their historical context. The historical `v0.1.0` tag is not rewritten.
 No claim of human peer review, publication priority, global numerical

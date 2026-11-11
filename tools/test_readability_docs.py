@@ -13,6 +13,7 @@ import xml.etree.ElementTree as ET
 
 from gen_dependency_graph import wrap_svg_text
 from gen_paper_correspondence import first_sentence
+from gen_trust_base import header_sh_blocks
 from readability_common import DEFAULT_RECORD, DEFAULT_AF_RECORD
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -73,6 +74,25 @@ class ReadabilityTests(unittest.TestCase):
         for name in ("README.md", "README.ja.md", "docs/STATUS.md", "docs/history.md"):
             with self.subTest(path=name):
                 self.assertNotIn(r"\operatorname", (self.repo / name).read_text())
+
+    def test_trust_base_is_english_and_retains_trust_boundary(self):
+        doc = (self.repo / "docs/trust-base.md").read_text()
+        self.assertTrue(doc.startswith("# Trust base\n"))
+        self.assertNotRegex(doc, r"[\u3040-\u30ff\u3400-\u9fff]")
+        self.assertIn("`Prop` specifications, not axioms", doc)
+        self.assertIn("does not prove those propositions in this repository", doc)
+        self.assertIn("it is not a new Lean rebuild", doc)
+
+    def test_reproduction_preserves_extracted_verification_commands(self):
+        repro = (self.repo / "docs/REPRODUCIBILITY.md").read_text()
+        numerical = "\n".join(header_sh_blocks(repro, "## Numerical certificate"))
+        lean = "\n".join(header_sh_blocks(repro, "## Lean verification"))
+        self.assertIn("tools/verify_release.py", numerical)
+        self.assertIn("paper/verify.py --manifest", numerical)
+        self.assertIn("tools/verify_clean_build.py", lean)
+        self.assertIn("--output-prefix build/new-clean-verification", lean)
+        self.assertIn("tools/verify_finite_family_rows.py", lean)
+        self.assertNotIn("--prebuilt", lean)
 
     def test_default_records_are_the_complete_fresh_build(self):
         local = json.loads(self.record().read_text())

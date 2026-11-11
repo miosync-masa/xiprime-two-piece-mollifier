@@ -15,8 +15,9 @@ references, the published Wu citation, author/contact and submission
 declarations. It postdates the frozen release PDF and does not overwrite it.
 The [metadata record](../checks/publication-metadata-verification.json)
 distinguishes bibliographic/source checks from independent analytic review.
-See [PUBLICATION.md](PUBLICATION.md) for the author-confirmed declarations
-and the remaining live JNT-guide/portal check.
+The author-confirmed declarations are in the [manuscript](../paper/manuscript.tex).
+Author-facing submission checklists are maintained separately; this record
+does not certify journal submission compliance.
 
 ## Current clean verification (10 November 2026)
 
