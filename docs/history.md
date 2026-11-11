@@ -58,7 +58,7 @@ $$
 `dual_op_contraction` derives the positive weights
 
 $$
-\operatorname{op}^{+}_i=i!\sum_{n=i}^{D}q_n\binom ni
+\mathrm{op}^{+}_i=i!\sum_{n=i}^{D}q_n\binom ni
 $$
 
 from local derivatives of $e^{-A}f(-A)$. `dual_contract₂` applies this in both variables, with explicit local slice-jet regularity. `dual_quotient_W` discharges those local regularity conditions for smooth separable quotient numerators and retains the swapped arguments. `dual_quotient_diagonal` then gives the evaluator's positive-side $W$ and exponential factor: at $A=-R$, the result uses $W(2R)$ and $e^{2R}$. The sign of the original dual numerator cancels the sign of the reflected denominator. `W_symm` and `W_profile_swap` justify exchanging the two derivative arrays after contraction, not merely exchanging undifferentiated values.
@@ -100,8 +100,8 @@ The final theorem `K2_Taylor_enclosure`, assuming only $A+B\ne0$, $\theta>0$, $\
 
 $$
 \left\|q(-\partial_A)q(-\partial_B)\mathcal I(A,B)
--\operatorname{finiteEvaluator}_N(A,B)\right\|
-\le \operatorname{evaluatorError}_N(A,B).
+-\mathrm{finiteEvaluator}_N(A,B)\right\|
+\le \mathrm{evaluatorError}_N(A,B).
 $$
 
 Here q is the finite coefficient sequence through the chosen order D. `finiteEvaluator` is defined using integrals of Taylor-polynomial jets; `evaluatorError` is an explicit finite expression in norms, coefficients, powers, factorials, W weights and the dual exponential. The theorem has no assumed derivative-interchange, evaluator-equivalence or error-bound hypothesis. All 13 printed theorem dependencies are audited against only `propext`, `Classical.choice` and `Quot.sound`.
@@ -172,7 +172,7 @@ $$
 `FixedCertificate.finiteValue_upper` combines these bounds with the proved dual-exponential upper bound to obtain `finiteValue.re <= 1.12820`. Adding the proved total error gives `actual_upper`:
 
 $$
-\operatorname{Re}M_{\rm functional}\le1.128201
+\mathrm{Re}M_{\rm functional}\le1.128201
 <1.1282054105<e^{R(1-.8845)}.
 $$
 
@@ -238,7 +238,7 @@ that taking any number of right-coordinate derivatives preserves joint smoothnes
 joint complex C-infinity regularity of the literal PRZZ expressions on
 
 $$
-\{(A,B): \operatorname{Re} A<0,\ \operatorname{Re} B<0\},\qquad T>1.
+\{(A,B): \mathrm{Re} A<0,\ \mathrm{Re} B<0\},\qquad T>1.
 $$
 
 The proof restricts the real integrals exactly to `[T,2T]` using the supplied
@@ -327,7 +327,7 @@ limit. The verification flag `gcd_mainterm_limit_proved` remains false.
 `LogarithmicBudget.lean` defines a positive cap U = 1.128201 and proves
 
 $$
-\operatorname{Re}M_{\rm functional}\le U,
+\mathrm{Re}M_{\rm functional}\le U,
 \qquad 0.8845 < 1-\frac{\log U}{R}.
 $$
 

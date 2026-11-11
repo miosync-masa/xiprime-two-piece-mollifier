@@ -29,7 +29,8 @@ class ReadabilityTests(unittest.TestCase):
         for directory in ("tools", "lean"):
             shutil.copytree(ROOT / directory, cls.base / directory,
                             ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
-        for name in ("README.md", "docs/REPRODUCIBILITY.md", "paper/manuscript.tex",
+        for name in ("README.md", "README.ja.md", "docs/STATUS.md", "docs/history.md",
+                     "docs/REPRODUCIBILITY.md", "paper/manuscript.tex",
                      "paper/verify.py", ".github/workflows/verify.yml",
                      RECORD_REL, AF_RECORD_REL,
                      "checks/clean-af-verification-2026-11-07.json"):
@@ -65,6 +66,13 @@ class ReadabilityTests(unittest.TestCase):
 
     def record(self):
         return self.repo / RECORD_REL
+
+    def test_markdown_avoids_rejected_operator_macro(self):
+        # The reported Markdown renderer rejects this macro; upright labels
+        # use the simpler mathrm form. This is not a restriction on TeX/PDF.
+        for name in ("README.md", "README.ja.md", "docs/STATUS.md", "docs/history.md"):
+            with self.subTest(path=name):
+                self.assertNotIn(r"\operatorname", (self.repo / name).read_text())
 
     def test_default_records_are_the_complete_fresh_build(self):
         local = json.loads(self.record().read_text())

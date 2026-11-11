@@ -70,7 +70,7 @@ $$C T^\tau\bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr)$$
 $$
 |A^*|\le C T^{\delta+\gamma}\frac{\lambda}{d}
 \bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr)
-\int_{\mathbb R}(1+|t|)|\operatorname{mellin}\Phi(it)|\,dt.
+\int_{\mathbb R}(1+|t|)|\mathrm{mellin}\Phi(it)|\,dt.
 $$
 
 Weilの不完全和評価とDI Lemma 1は、新しい公理ではなく明示的な`Prop`仮定です。Type I・Type II・小スケールの三場合、allocation和、dyadic多重度の吸収を接続しました。周波数・スケール条件、シフトの分離、損失指数の厳密な余白は仮定に残しています。定数は後から量化する高さ・行データに一様ですが、cutoff関数は定数より先に固定します。詳細は[証明状態](docs/STATUS.md#przz-decomposition-milestone-2-november-2026)をご覧ください。

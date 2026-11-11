@@ -178,7 +178,7 @@ These are **block suppliers**, not yet the full profile-family `moment_bound`. T
 
 [`PRZZMellinInterval`](../lean/PRZZMellinInterval.lean) extends the fixed `[1,2]` seminorm estimate to any positive support `[a,b]`, with `0<a<=b`. Ordinary jets retain the explicit factors `b,b^2,b^3`. Dimensionless bounds `norm(x^n*f^(n)(x))<=U_n` instead give
 
-$$\int_{\mathbb R}(1+|t|)|\operatorname{mellin}f(it)|\,dt
+$$\int_{\mathbb R}(1+|t|)|\mathrm{mellin}f(it)|\,dt
 \le 4\log(b/a)(U_0+U_1+3U_2+U_3)
 \int_{\mathbb R}(1+t^2)^{-1}\,dt.$$
 
@@ -408,7 +408,7 @@ The basis depends on the actual height, both coordinate vectors are independent 
 
 [`PRZZKernelComparison`](../lean/PRZZKernelComparison.lean) identifies the density-oriented gcd kernel with the direct primitive kernel plus its reflected kernel weighted by the height power. Its difference from the actual Gamma diagonal kernel is exactly the Gamma-minus-power time integral times the reflected primitive kernel. The former is uniformly `O(1)` after time integration; the separated logarithmic shift pole costs `O(log T)`. Consequently one constant, before height and all indices, gives
 
-$$|K_{\rm diag}(n,m)-K_{\rm density}(n,m)|\le C\log T/\operatorname{lcm}(n,m).$$
+$$|K_{\rm diag}(n,m)-K_{\rm density}(n,m)|\le C\log T/\mathrm{lcm}(n,m).$$
 
 `arithmetic_defect_bound` retains arbitrary bounded complex coefficient slots and evaluates their sum by `C U V log(T) N (1+log N)`. This sufficient elementary bound is not advertised as the sharper harmonic-cube bound. The [kernel record](../checks/kernel-comparison-verification.json) checks the 292-module closure, with four fresh compilations and source/fingerprint-verified dependency reuse; its eleven target audits contain only standard axioms. The three existing Gamma supplier proofs were moved without changing their statements or names to the low-dependency [`PRZZGammaMultiplier`](../lean/PRZZGammaMultiplier.lean), re-exported by `PRZZZeroGammaBound`.
 
@@ -454,7 +454,7 @@ The [verification record](../checks/wu-proportion-verification.json) covers five
 $$
 |A^*|\le C T^{\delta+\gamma}\frac{\lambda}{d}
 \bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr)
-\int_{\mathbb R}(1+|t|)|\operatorname{mellin}\Phi(it)|\,dt.
+\int_{\mathbb R}(1+|t|)|\mathrm{mellin}\Phi(it)|\,dt.
 $$
 
 The connection is no longer a sum of unidentified row budgets:

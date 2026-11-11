@@ -83,7 +83,7 @@ The original fixed-label theorem alone did not replace the public input. The new
 $$
 |A^*|\le C T^{\delta+\gamma}\frac{\lambda}{d}
 \bigl(N^{7/4}+T^{1/2}N^{7/8}\bigr)
-\int_{\mathbb R}(1+|t|)|\operatorname{mellin}\Phi(it)|\,dt.
+\int_{\mathbb R}(1+|t|)|\mathrm{mellin}\Phi(it)|\,dt.
 $$
 
 Weil's incomplete-sum estimate and DI Lemma 1 are explicit `Prop` hypotheses, not new axioms. The theorem supplies the three arithmetic cases, allocation sum and dyadic absorption; source frequency/scale conditions, shift separation and a strict loss-exponent margin remain explicit. Constants are uniform in the subsequently quantified height and row data, with the cutoff functions fixed beforehand. See [proof status](docs/STATUS.md#przz-decomposition-milestone-2-november-2026) for the conditions and verification scope.
